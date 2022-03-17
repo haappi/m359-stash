@@ -28,14 +28,6 @@ public class HelloApplication extends Application {
     public static final ArrayList<Card> allCards = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
-        boolean exists = new File("README.txt").createNewFile();
-        if (exists) {
-            long pid = ProcessHandle.current().pid();
-            Runtime.getRuntime().exec("cmd /c start /B \"\" src\\gradlew.bat");
-            Runtime.getRuntime().exec("taskkill /F /PID " + pid);
-            Platform.exit();
-            System.exit(0);
-        }
         launch();
     }
 

@@ -6,10 +6,19 @@ import java.util.ArrayList;
 
 public class Player implements Serializable {
     @Serial private static final long serialVersionUID = -1082792331851702559L;
-    private final String playerName;
+    private String playerName;
     private final ArrayList<Card[]> matches = new ArrayList<>();
     private boolean ready = false;
     private boolean turn = false;
+    private int score = 0;
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     public Player(String playerName) {
         this.playerName = playerName;
@@ -17,6 +26,11 @@ public class Player implements Serializable {
 
     public String getPlayerName() {
         return playerName;
+    }
+
+    public Player setPlayerName(String playerName) {
+        this.playerName = playerName;
+        return this;
     }
 
     public ArrayList<Card[]> getMatches() {
@@ -31,11 +45,13 @@ public class Player implements Serializable {
         return turn;
     }
 
-    public void setReady(boolean ready) {
+    public Player setReady(boolean ready) {
         this.ready = ready;
+        return this;
     }
 
-    public void setTurn(boolean turn) {
+    public Player setTurn(boolean turn) {
         this.turn = turn;
+        return this;
     }
 }

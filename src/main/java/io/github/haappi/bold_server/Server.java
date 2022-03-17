@@ -1,6 +1,7 @@
 package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.CloseServer;
+import io.github.haappi.shared.Utils;
 
 import java.io.IOException;
 import java.net.Inet4Address;
@@ -8,6 +9,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+
+import static io.github.haappi.shared.Utils.getContentOfMessage;
 
 public class Server {
     private final ServerSocket serverSocket;
@@ -91,7 +94,7 @@ public class Server {
         }
     }
 
-    public void broadcast(Object object) throws IOException {
+    public void broadcast(Object object) {
         for (ClientHandler client : clients) {
             client.sendObject(object);
         }
@@ -119,5 +122,25 @@ public class Server {
 
     public String getIpListening() {
         return ipListening;
+    }
+
+
+    public void handleMessageTwo(String msg, ClientHandler clientHandler) {
+        if (msg.startsWith("playerName:")) {
+            clientHandler.setPlayer(clientHandler.getPlayer().setPlayerName(getContentOfMessage(msg)));
+            return;
+        }
+        if (msg.startsWith("ready")) {
+            clientHandler.setPlayer(clientHandler.getPlayer().setReady(true));
+            return;
+        }
+        if (msg.startsWith("unready")) {
+            clientHandler.setPlayer(clientHandler.getPlayer().setReady(false));
+            return;
+        }
+        if (msg.startsWith("endTurn")) {
+            clientHandler.getPlayer().setTurn(false);
+            return;
+        }
     }
 }

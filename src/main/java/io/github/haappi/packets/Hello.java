@@ -1,6 +1,8 @@
 package io.github.haappi.packets;
 
+import io.github.haappi.bold_server.ClientHandler;
 import io.github.haappi.bold_server.HelloApplication;
+import io.github.haappi.bold_server.Server;
 
 import java.io.Serial;
 
@@ -32,17 +34,8 @@ public class Hello implements Packet {
     }
 
     @Override
-    public void handle() {
-        HelloApplication.getInstance()
-                .getServers()
-                .forEach(
-                        server -> {
-                            System.out.println(
-                                    server.getIpListening() + ":" + server.getPortListening());
-                            if ((server.getIpListening() + ":" + server.getPortListening())
-                                    .equals(connectedTo)) {
-                                server.getGameInstance().addPlayer(new Player(clientName));
-                            }
-                        });
+    public void handle(ClientHandler client) {
+        Server server = client.getServer();
+        server.getGameInstance().addPlayer(new Player(clientName));
     }
 }

@@ -1,9 +1,7 @@
 package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.Card;
-import io.github.haappi.packets.FlipCard;
 import io.github.haappi.packets.Player;
-import io.github.haappi.packets.SendGameDeckPacket;
 import io.github.haappi.shared.Enums;
 
 import java.io.IOException;
@@ -31,6 +29,21 @@ public class Bold {
     private final int modifier;
 
     private final ArrayList<Player> players = new ArrayList<>();
+    private final ArrayList<Card> selectedCards = new ArrayList<>();
+    private Player currentPlayer;
+
+    public Bold(Server server, int modifier) {
+        this.server = server;
+        this.modifier = modifier;
+
+        setDeckCards();
+        Collections.shuffle(drawPile);
+        createGameDeck();
+    }
+
+    public Bold(Server server) {
+        this(server, 0);
+    }
 
     public void addPlayer(Player player) {
         players.add(player);
@@ -40,16 +53,12 @@ public class Bold {
         return players;
     }
 
-    public Bold(Server server, int modifier) {
-        this.server = server;
-        this.modifier = modifier;
-
-        setDeckCards();
-        Collections.shuffle(drawPile);
-    }
-
-    public Bold(Server server) {
-        this(server, 0);
+    public void selectCard(int row, int col) {
+        Card card = cards[row][col];
+        selectedCards.add(card);
+        for (ClientHandler player : server.getClients()) {
+            player.sendObject(card);
+        }
     }
 
     private void setDeckCards() {
@@ -71,47 +80,121 @@ public class Bold {
         }
     }
 
-    private boolean isMatch(Card card1, Card card2) {
-        return card1.equals(card2);
-    }
+//    private boolean isMatch(Card card1, Card card2) {
+//        return card1.equals(card2);
+//    }
+//
+//    public boolean isMatch(Card... cards) {
+//        String[] attributes = {"color", "shape", "container", "size"};
+//        String matchedAgainst = "";
+//        for (String attribute : attributes) {
+//            if (Card.isMatch(attribute, cards)) {
+//                matchedAgainst = attribute;
+//                break;
+//            }
+//        }
+//
+//        if (matchedAgainst.equals("")) {
+//            return false;
+//        }
+//
+//        for (Card card : cards) {
+//            if (card.isFlipped()) {
+//                return false;
+//            }
+//        }
+//
+//        return true;
+//    }
 
-    public boolean isMatch(Card... cards) {
-        String[] attributes = {"color", "shape", "container", "size"};
-        String matchedAgainst = "";
-        for (String attribute : attributes) {
-            if (Card.isMatch(attribute, cards)) {
-                matchedAgainst = attribute;
-                break;
+    public boolean doCardsMatch() {
+
+        String sizeCheck = "";
+        String colorCheck = "";
+        String containerCheck = "";
+        String patternCheck = "";
+
+        for (Card card : selectedCards) {
+            if (sizeCheck.equals("")) {
+                sizeCheck = card.getSize().toString();
+            } else if (!sizeCheck.equals(card.getSize().toString())) {
+                return false;
             }
-        }
-
-        if (matchedAgainst.equals("")) {
-            return false;
-        }
-
-        for (Card card : cards) {
-            if (card.isFlipped()) {
+            if (colorCheck.equals("")) {
+                colorCheck = card.getColor().toString();
+            } else if (!colorCheck.equals(card.getColor().toString())) {
+                return false;
+            }
+            if (containerCheck.equals("")) {
+                containerCheck = card.getContainer().toString();
+            } else if (!containerCheck.equals(card.getContainer().toString())) {
+                return false;
+            }
+            if (patternCheck.equals("")) {
+                patternCheck = card.getPattern().toString();
+            } else if (!patternCheck.equals(card.getPattern().toString())) {
                 return false;
             }
         }
-
         return true;
     }
 
-    public void flipCard(Card card) throws IOException {
-        card.flip();
-
-        server.broadcast(new FlipCard(card));
-    }
-
-    public void createGameDeck() throws IOException {
+    public void createGameDeck() {
         for (int i = 0; i < cards.length; i++) {
             for (int j = 0; j < cards[i].length; j++) {
                 cards[i][j] = drawPile.remove(0);
             }
         }
 
-        server.broadcast(new SendGameDeckPacket(cards));
+        server.broadcast(cards);
+    }
+
+    public void nextLosersTurn() {
+        currentPlayer.setScore((int) (currentPlayer.getScore() + Math.pow(selectedCards.size(), selectedCards.size())));
+
+        for (ClientHandler client : server.getClients()) {
+            client.sendMessage("score:" + client.getPlayer().getScore());
+        }
+
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).equals(currentPlayer)) {
+                if (i == players.size() - 1) {
+                    currentPlayer = players.get(0);
+                } else {
+                    currentPlayer = players.get(i + 1);
+                }
+                break;
+            }
+        }
+
+        if (selectedCards.size() >= 2) { // if they have selected atleast two cards, that must mean it was a match of some sort
+            for (Card card : selectedCards) {
+                Card newCard = drawPile.remove(0);
+                cards[card.getRow()][card.getCol()] = newCard;
+                newCard.setCol(card.getCol());
+                newCard.setRow(card.getRow());
+            }
+            new Thread(() -> {
+                try {
+                    Thread.sleep(3000);
+                    server.broadcast(cards);
+                    server.broadcast("flipAllCards");
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }).start();
+        }
+
+        selectedCards.clear();
+
+        for (ClientHandler client : server.getClients()) {
+            if (client.getPlayer() == currentPlayer) {
+                client.sendMessage("yourTurn");
+            } else {
+                client.sendMessage("notYourTurn");
+            }
+        }
+
     }
 
     public void start() throws IOException {
