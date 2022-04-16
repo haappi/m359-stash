@@ -17,8 +17,25 @@ public class Card extends ImageView implements Packet {
     private final Enums container;
     private final Enums pattern;
 
-    private int x;
-    private int y;
+    private int row;
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    private int col;
 
     /**
      * If this is a False it means the card is showing its face.<br>

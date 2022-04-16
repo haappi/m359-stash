@@ -1,11 +1,9 @@
 package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.Packet;
+import io.github.haappi.packets.Player;
 
-import java.io.EOFException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.SocketException;
 
@@ -20,12 +18,28 @@ public class ClientHandler extends Thread {
     private final Server server;
     private final String clientName;
 
+    private Player player;
+
     private ObjectOutputStream
             objectStream; // This is the output stream to the client (objects are "written" through
     // this)
     private ObjectInputStream
             objectInputStream; // This is the input stream from the client (objects are "read"
     // through this)
+
+    public Player getPlayer() {
+        return player == null ? new Player(clientName) : player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Server getServer() {
+        return server;
+    }
+
+
 
     public ClientHandler(Socket bindedTo, Server server) {
         Logger.getInstance()
@@ -47,7 +61,7 @@ public class ClientHandler extends Thread {
         }
     }
 
-    public void sendObject(Object object) throws IOException {
+    public void sendObject(Object object) {
         try {
             objectStream.writeObject(object);
             objectStream.flush(); // Flushing is just to make sure that the object is sent
@@ -57,29 +71,43 @@ public class ClientHandler extends Thread {
         // (i think it's necessary so i added it :D)
     }
 
+    public void sendMessage(String message) {
+        this.sendObject(message);
+    }
+
     @Override
     public void run() {
         try {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(bindedTo.getInputStream()));
             // while loop and keep listenting for objects
+
             while (true) {
-                try {
-                    Object object = objectInputStream.readObject();
-                    if (object instanceof Packet packet) {
-                        packet.handle();
-                    }
-                } catch (EOFException | SocketException e) {
+                String msg = reader.readLine();
+                if (msg == null) {
                     break;
                 }
+                Logger.getInstance().log("Message received: " + msg + " from " + clientName, Logger.YELLOW);
+                server.handleMessageTwo(msg, this);
             }
+
+//            while (true) {
+//                try {
+//                    Object object = objectInputStream.readObject();
+//                    if (object instanceof Packet packet) {
+//                        packet.handle(this);
+//                    }
+//                } catch (EOFException | SocketException e) {
+//                    break;
+//                }
+//            }
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
         }
         try {
             this.close();
+            server.removeClient(this);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

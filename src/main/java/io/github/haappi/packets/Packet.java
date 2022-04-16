@@ -1,5 +1,7 @@
 package io.github.haappi.packets;
 
+import io.github.haappi.bold_server.ClientHandler;
+
 import java.io.Serializable;
 
 public interface Packet extends Serializable {
@@ -7,7 +9,7 @@ public interface Packet extends Serializable {
      * Handles the incoming packet.<br>
      * If you wish to ignore the packet (one-way packets), override the method with an empty body.
      */
-    default void handle() {
+    default void handle(ClientHandler client) {
         throw new RuntimeException(
                 "Attempted to handle a packet, but method isn't overridden in Child class.");
     }

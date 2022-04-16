@@ -1,5 +1,6 @@
 package io.github.haappi.packets;
 
+import io.github.haappi.bold_server.ClientHandler;
 import io.github.haappi.bold_server.HelloApplication;
 import io.github.haappi.bold_server.Server;
 
@@ -20,7 +21,7 @@ public class Ready implements Packet {
     }
 
     @Override
-    public void handle() {
+    public void handle(ClientHandler client) {
         for (Server server : HelloApplication.getInstance().getServers()) {
             for (Player players :
                     (ArrayList<Player>) server.getGameInstance().getPlayers().clone()) {

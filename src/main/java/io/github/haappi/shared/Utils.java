@@ -10,4 +10,8 @@ public class Utils {
     public static String charAt(String string, int position) {
         return String.valueOf(string.charAt(position));
     }
+
+    public static String getContentOfMessage(String message) {
+        return message.split(":")[1];
+    }
 }
