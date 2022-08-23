@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.fivechallenges.Bugs">
+   <children>
+      <Button layoutX="238.0" layoutY="175.0" mnemonicParsing="false" onAction="#breed" text="Breed" />
+      <Button layoutX="300.0" layoutY="175.0" mnemonicParsing="false" onAction="#spray" text="Spray" />
+      <Button layoutX="367.0" layoutY="175.0" mnemonicParsing="false" onAction="#getBugs" text="Number of Bugs" />
+      <Text fx:id="bugCount" layoutX="418.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Roach Count: 2" />
+      <Text fx:id="currentGen" layoutX="262.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Generation: 1" />
+   </children>
+</AnchorPane>
