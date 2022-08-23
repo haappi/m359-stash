@@ -1,4 +1,4 @@
-haappi's code stash.
+haappi's code stash
 ==========
 .. image:: https://github.com/haappi/schoolStuff/actions/workflows/format.yml/badge.svg
    :target: https://github.com/haappi/schoolStuff/actions/workflows/format.yml
