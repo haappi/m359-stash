@@ -43,7 +43,7 @@ public class ShopSimulation {
         subTotal.setText("Subtotal: " + format(total) + "\nTax: " + format((total * tax)) + "\nTotal: " + format((total + (total * tax))));
     }
 
-    private double format(double d) {
+    public static double format(double d) {
         return Math.round(d * 100.0) / 100.0;
     }
 }
