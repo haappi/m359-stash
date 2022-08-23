@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.fivechallenges.SalarySimulation">
+   <children>
+      <TextField fx:id="hoursWorked" layoutX="226.0" layoutY="200.0" onAction="#onHourEnter" promptText="Hours worked this week" />
+      <TextField fx:id="percentageIncrease" layoutX="226.0" layoutY="236.0" onAction="#onIncrease" promptText="Increase Base Salary" />
+      <Text fx:id="output" layoutX="246.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Salary: 13.99\nHow many hours did you work this week?" />
+   </children>
+</AnchorPane>

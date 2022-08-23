@@ -33,7 +33,11 @@ public class HelloApplication extends Application {
             AreaOfACircle.run(stage);
             break;
         case "3":
-            SalarySimulation.run(stage);
+            System.out.println("Enter starting salary: ");
+            SalarySimulation salarySim = new SalarySimulation(reader.readLine());
+            salarySim.run(stage); // for some reason this contractor is not working
+            // https://stackoverflow.com/questions/30814258/javafx-pass-parameters-while-instantiating-controller-class
+            // most likely something that has to do with that.
             break;
         case "4":
             ShopSimulation.run(stage);
