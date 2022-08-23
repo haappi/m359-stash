@@ -12,15 +12,13 @@ import javafx.stage.Stage;
 public class HelloApplication extends Application {
   @Override
   public void start(Stage stage) throws IOException {
-    System.out.println("""
-            Select an option:
-            1. Breeding of bugs.
-            2. Area of a circle.
-            3. Salary simulation.
-            4. Shop simulator.
-            5. Calculate roots of quadratic equation.
-            6. Exit.
-            """);
+      System.out.println("Select an option:\n" +
+              "1. Breeding of bugs.\n" +
+              "2. Area of a circle. \n" +
+              "3. Salary simulation.\n" +
+              "4. Shop simulator.\n" +
+              "5. Calculate roots of quadratic equation.\n" +
+              "6. Exit.\n");
     BufferedReader reader = new BufferedReader(
             new InputStreamReader(System.in));
 
