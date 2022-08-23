@@ -1,4 +1,4 @@
-haappi's code stash.
+haappi's code stash. [![Format](https://github.com/haappi/schoolStuff/actions/workflows/format.yml/badge.svg)](https://github.com/haappi/schoolStuff/actions/workflows/format.yml)
 ==========
 Most of my assignments are stashed in here because I'm too lazy to carry around a flash drive.
 This class is M359, AP Computer Science A, 2022.
