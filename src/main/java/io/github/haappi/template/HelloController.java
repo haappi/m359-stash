@@ -1,4 +1,4 @@
-package io.github.haappi.fivechallenges;
+package io.github.haappi.template;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

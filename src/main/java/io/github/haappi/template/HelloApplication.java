@@ -1,4 +1,4 @@
-package io.github.haappi.fivechallenges;
+package io.github.haappi.template;
 
 import java.io.IOException;
 import javafx.application.Application;
