@@ -1,4 +1,4 @@
-module io.github.haappi.fivechallenges {
+module io.github.haappi.template {
   requires javafx.controls;
   requires javafx.fxml;
   requires java.desktop;
