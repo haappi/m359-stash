@@ -4,14 +4,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.storeProject.StoreHandler">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.storeProject.StoreHandler">
    <children>
-      <Button layoutX="140.0" layoutY="166.0" mnemonicParsing="false" onAction="#addProductOne" text="prod 1" />
-      <Button layoutX="212.0" layoutY="166.0" mnemonicParsing="false" onAction="#addProductTwo" text="prod 2" />
-      <Button layoutX="274.0" layoutY="166.0" mnemonicParsing="false" onAction="#addProductThree" text="prod 3" />
-      <Button layoutX="346.0" layoutY="166.0" mnemonicParsing="false" onAction="#addProductFour" text="prod 4" />
-      <Button layoutX="248.0" layoutY="262.0" mnemonicParsing="false" onAction="#purchaseItems" text="purchase" />
-      <Text fx:id="output" layoutX="269.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="output" />
+      <Button fx:id="productOne" layoutX="131.0" layoutY="135.0" mnemonicParsing="false" onAction="#addProductOne" text="Product 1" />
+      <Button fx:id="productTwo" layoutX="131.0" layoutY="166.0" mnemonicParsing="false" onAction="#addProductTwo" text="Product 2" />
+      <Button fx:id="productThree" layoutX="131.0" layoutY="200.0" mnemonicParsing="false" onAction="#addProductThree" text="Product 3" />
+      <Button fx:id="productFour" layoutX="131.0" layoutY="237.0" mnemonicParsing="false" onAction="#addProductFour" text="Product 4" />
+      <Button layoutX="419.0" layoutY="179.0" mnemonicParsing="false" onAction="#purchaseItems" text="Checkout" />
+      <Text fx:id="output" layoutX="434.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="output" />
    </children>
 </AnchorPane>
