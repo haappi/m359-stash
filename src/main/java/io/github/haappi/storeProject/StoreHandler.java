@@ -5,12 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.util.*;
 
 public class StoreHandler {
   private final double tax = 0.08F;
+  @FXML
+  protected Text change;
   @FXML
   protected Text currentOperation;
   @FXML
@@ -76,7 +79,7 @@ public class StoreHandler {
   }
 
   public double getRoundedPrice(double numRound){
-    return Math.round(numRound*Math.pow(10,2))/Math.pow(10,2);
+    return Math.round(numRound * 100.00) / 100.00;
   }
 
 
@@ -126,12 +129,15 @@ public class StoreHandler {
     try {
         int amount = Integer.parseInt(checkout.getText());
         if (amount < getTotalPrice(true)) {
-            output.setText("You can't afford that!");
+          change.setText("You can't afford that!");
+          change.setFill(Color.RED);
         } else {
-            output.setText(changeHandler(amount));
+            change.setText(changeHandler(amount));
+            change.setFill(Color.GREEN);
         }
         } catch (NumberFormatException e) {
-            output.setText("Please enter a valid number.");
+      change.setText("Please enter a valid number.");
+        change.setFill(Color.RED);
     }
   }
 
@@ -160,28 +166,28 @@ public class StoreHandler {
     StringBuilder stringBuilder = new StringBuilder();
     stringBuilder.append("Your change is: \n");
     if (twenties > 0) {
-      stringBuilder.append(twenties + " twenties\n");
+      stringBuilder.append("x" + twenties + " twenties\n");
     }
     if (tens > 0) {
-      stringBuilder.append(tens + " tens\n");
+      stringBuilder.append("x" + tens + " tens\n");
     }
     if (fives > 0) {
-      stringBuilder.append(fives + " fives\n");
+      stringBuilder.append("x" + fives + " fives\n");
     }
     if (ones > 0) {
-      stringBuilder.append(ones + " ones\n");
+      stringBuilder.append("x" + ones + " ones\n");
     }
     if (quarters > 0) {
-      stringBuilder.append(quarters + " quarters\n");
+      stringBuilder.append("x" + quarters + " quarters\n");
     }
     if (dimes > 0) {
-      stringBuilder.append(dimes + " dimes\n");
+      stringBuilder.append("x" + dimes + " dimes\n");
     }
     if (nickels > 0) {
-      stringBuilder.append(nickels + " nickels\n");
+      stringBuilder.append("x" + nickels + " nickels\n");
     }
     if (pennies > 0) {
-      stringBuilder.append(pennies + " pennies\n");
+      stringBuilder.append("x" + pennies + " pennies\n");
     }
     stringBuilder.append("Totaling to $" + getRoundedPrice(savedDue) + ".");
     return stringBuilder.toString();
