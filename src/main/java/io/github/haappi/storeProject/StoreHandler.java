@@ -86,11 +86,23 @@ public class StoreHandler {
     /**
      * A pretty awful method to round a double.
      * @param numRound the number to round
-     * @return the rounded number
+     * @return A double containing the rounded number
      */
     public double getRoundedPrice(double numRound) {
         return Math.round(numRound * 100.00) / 100.00;
     }
+
+
+    /**
+     * Formats the provided price to 2 decimal places.
+     * @param numRound the number to round
+     * @return A String containing the formatted number, with two decimal places, regardless of the number of decimal places in the original number.
+     */
+    public String getStringNumberRounded(double numRound) {
+        return String.format("%.2f", getRoundedPrice(numRound));
+    }
+
+
 
 
     /**
@@ -136,7 +148,7 @@ public class StoreHandler {
      * @param total the total price, with tax.
      */
     protected void setTotal(double subtotal, double total) {
-        output.setText("Your subtotal is $" + getRoundedPrice(subtotal) + ".\nYour total is $" + getRoundedPrice(total) + ".");
+        output.setText("Your subtotal is $" + getStringNumberRounded(subtotal) + ".\nYour total is $" + getStringNumberRounded(total) + ".");
 
     }
 
