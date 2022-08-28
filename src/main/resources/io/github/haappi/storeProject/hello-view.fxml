@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.storeProject.StoreHandler">
    <children>
-      <Button fx:id="productOne" layoutX="131.0" layoutY="135.0" mnemonicParsing="false" onAction="#addProductOne" text="Product 1" />
-      <Button fx:id="productTwo" layoutX="131.0" layoutY="166.0" mnemonicParsing="false" onAction="#addProductTwo" text="Product 2" />
-      <Button fx:id="productThree" layoutX="131.0" layoutY="200.0" mnemonicParsing="false" onAction="#addProductThree" text="Product 3" />
-      <Button fx:id="productFour" layoutX="131.0" layoutY="237.0" mnemonicParsing="false" onAction="#addProductFour" text="Product 4" />
+      <Button fx:id="productOne" layoutX="99.0" layoutY="137.0" mnemonicParsing="false" onAction="#addProduct" text="Product 1" />
+      <Button fx:id="productTwo" layoutX="99.0" layoutY="168.0" mnemonicParsing="false" onAction="#addProduct" text="Product 2" />
+      <Button fx:id="productThree" layoutX="99.0" layoutY="202.0" mnemonicParsing="false" onAction="#addProduct" text="Product 3" />
+      <Button fx:id="productFour" layoutX="99.0" layoutY="239.0" mnemonicParsing="false" onAction="#addProduct" text="Product 4" />
       <Button layoutX="419.0" layoutY="179.0" mnemonicParsing="false" onAction="#purchaseItems" text="Checkout" />
       <Text fx:id="output" layoutX="434.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="output" />
+      <Text fx:id="shoppingCart" layoutX="187.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shopping Cart:" wrappingWidth="146.13671875" />
+      <TextField fx:id="checkout" disable="true" layoutX="378.0" layoutY="213.0" promptText="Please checkout first." />
+      <Text fx:id="currentOperation" layoutX="227.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You just opened the shop!" wrappingWidth="146.13671875" />
    </children>
 </AnchorPane>
