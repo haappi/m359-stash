@@ -12,9 +12,9 @@
       <Button fx:id="productThree" layoutX="99.0" layoutY="202.0" mnemonicParsing="false" onAction="#addProduct" text="Product 3" />
       <Button fx:id="productFour" layoutX="99.0" layoutY="239.0" mnemonicParsing="false" onAction="#addProduct" text="Product 4" />
       <Button layoutX="419.0" layoutY="179.0" mnemonicParsing="false" onAction="#purchaseItems" text="Checkout" />
-      <Text fx:id="output" layoutX="434.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="output" />
+      <Text fx:id="output" layoutX="434.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checkout" />
       <Text fx:id="shoppingCart" layoutX="219.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shopping Cart:" wrappingWidth="146.13671875" />
-      <TextField fx:id="checkout" disable="true" layoutX="378.0" layoutY="213.0" promptText="Please checkout first." />
+      <TextField fx:id="checkout" disable="true" layoutX="378.0" layoutY="213.0" onAction="#onCheckout" promptText="Please checkout first." />
       <Text fx:id="currentOperation" layoutX="187.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You just opened the shop!" wrappingWidth="211.13671875" />
    </children>
 </AnchorPane>

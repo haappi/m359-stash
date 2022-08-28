@@ -7,12 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class StoreHandler {
+  private final double tax = 0.08F;
   @FXML
   protected Text currentOperation;
   @FXML
@@ -29,10 +27,11 @@ public class StoreHandler {
   protected Button productFour;
   @FXML
   protected Text output;
-  private HashMap<String, Integer> itemsInCart = new HashMap<>();
+  private final HashMap<String, Integer> itemsInCart = new HashMap<>();
   private List<Button> buttons;
-  private List<String> groceryItemTypes = List.of("Milk", "Bread", "Eggs", "Cheese", "Apples", "Pineapple", "Cake", "Water", "Pizza", "Yogurt");
-  private List<String> usedItemTypes = new ArrayList<>();
+  private final List<String> groceryItemTypes = List.of("Milk", "Bread", "Eggs", "Cheese", "Apples", "Pineapple", "Cake", "Water", "Pizza", "Yogurt");
+  private final List<String> usedItemTypes = new ArrayList<>();
+  private final HashMap<String, Integer> itemPrices = new HashMap<>();
 
   private String getRandomItem() {
     int randomItem = (int) (Math.random() * groceryItemTypes.size());
@@ -45,6 +44,15 @@ public class StoreHandler {
     return item;
   }
 
+  /**
+   * todo
+   Fix decimals not rounding to 2 places
+   - They're stuck at 1 place
+   Fix the output looking a bit funny
+   Add colors to the output
+   Use more parameters in general.
+   */
+
   private Integer getRandomNumber(int min, int max) {
     max = max + 1; // max is exclusive
     return (int) (Math.random() * (max - min) + min);
@@ -54,7 +62,10 @@ public class StoreHandler {
   public void initialize() {
     buttons = Arrays.asList(productOne, productTwo, productThree, productFour);
     buttons.forEach(button -> { // this is known as a lambda expression - an anonymous function. Basically a function without a name.
-        button.setText(getRandomItem() + " - $" + getRandomNumber(5, 15));
+      String item = getRandomItem();
+      Integer price = getRandomNumber(1, 15);
+        button.setText(item + " - $" + price);
+        itemPrices.put(item, price);
     });
 
     output.setText("Checkout"); // this successfully changes the value of the Text without it complaining
@@ -63,6 +74,11 @@ public class StoreHandler {
   private String getFormattedItem(String item, Integer count) {
     return "x" + count + " " + item + "\n";
   }
+
+  public double getRoundedPrice(double numRound){
+    return Math.round(numRound*Math.pow(10,2))/Math.pow(10,2);
+  }
+
 
   private String getFormattedShoppingCart() {
     StringBuilder formattedCart = new StringBuilder(); // Basically a String, but it's mutable (can be changed)
@@ -79,6 +95,20 @@ public class StoreHandler {
 
   @FXML
   protected void purchaseItems() {
+    checkout.setDisable(false);
+    currentOperation.setText("Purchase Items");
+    output.setText("Your subtotal is $" + getRoundedPrice(getTotalPrice(false)) + ".\nYour total is $" + getRoundedPrice(getTotalPrice(true)) + ".");
+  }
+
+  private double getTotalPrice(boolean includeTax) {
+    double totalPrice = 0.00F;
+    for (Map.Entry<String, Integer> entry : itemsInCart.entrySet()) {
+      totalPrice += itemPrices.get(entry.getKey()) * entry.getValue();
+    }
+    if (includeTax) {
+      totalPrice += totalPrice * tax;
+    }
+    return totalPrice;
   }
 
   @FXML
@@ -89,6 +119,74 @@ public class StoreHandler {
     itemsInCart.put(item, count); // put adds the key and value to the HashMap
     currentOperation.setText("You just added " + item + " to your cart. You now have " + count + " of " + item + " in your cart.");
     setShoppingCart();
+  }
+
+  @FXML
+  protected void onCheckout() {
+    try {
+        int amount = Integer.parseInt(checkout.getText());
+        if (amount < getTotalPrice(true)) {
+            output.setText("You can't afford that!");
+        } else {
+            output.setText(changeHandler(amount));
+        }
+        } catch (NumberFormatException e) {
+            output.setText("Please enter a valid number.");
+    }
+  }
+
+  protected String changeHandler(double paidAmount) {
+    // Figure out how much change is due, in dollars and cents
+    double changeDue = paidAmount - getTotalPrice(true);
+    final double savedDue = paidAmount - getTotalPrice(true);
+    // See how many twnties, tens, fives, ones, quarters, dimes, nickels, and pennies are due
+
+    int twenties = (int) (changeDue / 20);
+    changeDue -= twenties * 20;
+    int tens = (int) (changeDue / 10);
+    changeDue -= tens * 10;
+    int fives = (int) (changeDue / 5);
+    changeDue -= fives * 5;
+    int ones = (int) (changeDue);
+    changeDue -= ones;
+    int quarters = (int) (changeDue / 0.25);
+    changeDue -= quarters * 0.25;
+    int dimes = (int) (changeDue / 0.10);
+    changeDue -= dimes * 0.10;
+    int nickels = (int) (changeDue / 0.05);
+    changeDue -= nickels * 0.05;
+    int pennies = (int) (changeDue / 0.01);
+
+    StringBuilder stringBuilder = new StringBuilder();
+    stringBuilder.append("Your change is: \n");
+    if (twenties > 0) {
+      stringBuilder.append(twenties + " twenties\n");
+    }
+    if (tens > 0) {
+      stringBuilder.append(tens + " tens\n");
+    }
+    if (fives > 0) {
+      stringBuilder.append(fives + " fives\n");
+    }
+    if (ones > 0) {
+      stringBuilder.append(ones + " ones\n");
+    }
+    if (quarters > 0) {
+      stringBuilder.append(quarters + " quarters\n");
+    }
+    if (dimes > 0) {
+      stringBuilder.append(dimes + " dimes\n");
+    }
+    if (nickels > 0) {
+      stringBuilder.append(nickels + " nickels\n");
+    }
+    if (pennies > 0) {
+      stringBuilder.append(pennies + " pennies\n");
+    }
+    stringBuilder.append("Totaling to $" + getRoundedPrice(savedDue) + ".");
+    return stringBuilder.toString();
+
+
   }
 
   /*
