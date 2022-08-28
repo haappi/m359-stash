@@ -179,7 +179,7 @@ public class StoreHandler {
     @FXML
     protected void onCheckout() {
         try {
-            int amount = Integer.parseInt(checkout.getText());
+            double amount = Double.parseDouble(checkout.getText());
             if (!canAfford(amount, getTotalPrice(true))) {
                 change.setText("You can't afford that!");
                 change.setFill(Color.RED);
