@@ -16,6 +16,8 @@ public class StoreHandler {
     private final List<String> usedItemTypes = new ArrayList<>();
     private final HashMap<String, Integer> itemPrices = new HashMap<>();
     @FXML
+    protected Button submitButton;
+    @FXML
     protected Text change;
     @FXML
     protected Text currentOperation;
@@ -123,6 +125,7 @@ public class StoreHandler {
      */
     protected void startCheckout() {
         checkout.setDisable(false);
+        submitButton.setDisable(false);
         currentOperation.setText("Purchase Items");
         setTotal(getTotalPrice(false), getTotalPrice(true));
     }
