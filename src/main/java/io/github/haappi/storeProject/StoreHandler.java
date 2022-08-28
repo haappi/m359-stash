@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 import java.util.*;
 
 public class StoreHandler {
-    private final double tax = 0.08F;
+    private final double tax = 0.08;
     private final HashMap<String, Integer> itemsInCart = new HashMap<>();
     private final List<String> groceryItemTypes = List.of("Milk", "Bread", "Eggs", "Cheese", "Apples", "Pineapple", "Cake", "Water", "Pizza", "Yogurt");
     private final List<String> usedItemTypes = new ArrayList<>();
@@ -50,8 +50,6 @@ public class StoreHandler {
      * todo
      * Fix decimals not rounding to 2 places
      * - They're stuck at 1 place
-     * Fix the output looking a bit funny
-     * Add colors to the output
      * Use more parameters in general.
      */
 
@@ -60,7 +58,7 @@ public class StoreHandler {
         return (int) (Math.random() * (max - min) + min);
     }
 
-    @FXML
+    @FXML// This is basically the constructor. It's called when the FXML file is loaded, the default Java constructor is not allowed as it causes NPE's with FXML attrubutes.
     public void initialize() {
         buttons = Arrays.asList(productOne, productTwo, productThree, productFour);
         buttons.forEach(button -> { // this is known as a lambda expression - an anonymous function. Basically a function without a name.
@@ -97,13 +95,22 @@ public class StoreHandler {
 
     @FXML
     protected void purchaseItems() {
+        startCheckout();
+    }
+
+    protected void startCheckout() {
         checkout.setDisable(false);
         currentOperation.setText("Purchase Items");
+        setTotal();
+    }
+
+    protected void setTotal() {
         output.setText("Your subtotal is $" + getRoundedPrice(getTotalPrice(false)) + ".\nYour total is $" + getRoundedPrice(getTotalPrice(true)) + ".");
+
     }
 
     private double getTotalPrice(boolean includeTax) {
-        double totalPrice = 0.00F;
+        double totalPrice = 0.00;
         for (Map.Entry<String, Integer> entry : itemsInCart.entrySet()) {
             totalPrice += itemPrices.get(entry.getKey()) * entry.getValue();
         }
@@ -121,13 +128,18 @@ public class StoreHandler {
         itemsInCart.put(item, count); // put adds the key and value to the HashMap
         currentOperation.setText("You just added " + item + " to your cart. You now have " + count + " of " + item + " in your cart.");
         setShoppingCart();
+        setTotal();
+    }
+
+    protected boolean canAfford(double paid, double totalPrice) {
+        return paid >= totalPrice;
     }
 
     @FXML
     protected void onCheckout() {
         try {
             int amount = Integer.parseInt(checkout.getText());
-            if (amount < getTotalPrice(true)) {
+            if (!canAfford(amount, getTotalPrice(true))) {
                 change.setText("You can't afford that!");
                 change.setFill(Color.RED);
             } else {
@@ -190,12 +202,5 @@ public class StoreHandler {
         }
         stringBuilder.append("Totaling to $" + getRoundedPrice(savedDue) + ".");
         return stringBuilder.toString();
-
-
     }
-
-  /*
-  Random number everytime program inits
-  When returning change, show the user the actual cash (54 -> 2 twenties, 1 ten, 4 dollars)
-   */
 }
