@@ -64,23 +64,39 @@ public class StoreHandler {
         buttons.forEach(button -> { // this is known as a lambda expression - an anonymous function. Basically a function without a name.
             String item = getRandomItem();
             Integer price = getRandomNumber(1, 15);
-            button.setText(item + " - $" + price);
+            button.setText(item + " - $" + price); // Milk - $1
             itemPrices.put(item, price);
         });
 
         output.setText("Checkout"); // this successfully changes the value of the Text without it complaining
     }
 
+    /**
+     * Helper method to format the shopping cart String for a specific item.
+     * @param item The item to be added to the shopping cart.
+     * @param count The amount of the item to be added to the shopping cart.
+     * @return  The formatted String for the shopping cart.
+     */
     private String getFormattedItem(String item, Integer count) {
-        return "x" + count + " " + item + "\n";
+        return "x" + count + " " + item + "\n"; // 1x Milk\n
     }
 
+    /**
+     * A pretty awful method to round a double.
+     * @param numRound the number to round
+     * @return the rounded number
+     */
     public double getRoundedPrice(double numRound) {
         return Math.round(numRound * 100.00) / 100.00;
     }
 
 
-    private String getFormattedShoppingCart() {
+    /**
+     * Gets the formatted String of all items in the shopping cart.
+     * @param itemsInCart the HashMap of items in the shopping cart.
+     * @return the formatted String of all items in the shopping cart.
+     */
+    private String getFormattedShoppingCart(HashMap<String, Integer> itemsInCart) {
         StringBuilder formattedCart = new StringBuilder(); // Basically a String, but it's mutable (can be changed)
         // With a String, I'd have to set the new value of the String to the old value of the String, and then add the new value to the old value.
         for (String item : itemsInCart.keySet()) {
@@ -89,8 +105,12 @@ public class StoreHandler {
         return formattedCart.toString();
     }
 
-    private void setShoppingCart() {
-        shoppingCart.setText("Shopping Cart:\n\n" + getFormattedShoppingCart());
+    /**
+     * Sets the items in the shopping cart to be viewable by the user.
+     * @param itemsInCart A HashMap of the items in the shopping cart.
+     */
+    private void setShoppingCart(HashMap<String, Integer> itemsInCart) {
+        shoppingCart.setText("Shopping Cart:\n\n" + getFormattedShoppingCart(itemsInCart));
     }
 
     @FXML
@@ -98,17 +118,30 @@ public class StoreHandler {
         startCheckout();
     }
 
+    /**
+     * Enables inputting money into the TextField.
+     */
     protected void startCheckout() {
         checkout.setDisable(false);
         currentOperation.setText("Purchase Items");
-        setTotal();
+        setTotal(getTotalPrice(false), getTotalPrice(true));
     }
 
-    protected void setTotal() {
-        output.setText("Your subtotal is $" + getRoundedPrice(getTotalPrice(false)) + ".\nYour total is $" + getRoundedPrice(getTotalPrice(true)) + ".");
+    /**
+     * Simply sets the subtotal and total price.
+     * @param subtotal the subtotal price.
+     * @param total the total price, with tax.
+     */
+    protected void setTotal(double subtotal, double total) {
+        output.setText("Your subtotal is $" + getRoundedPrice(subtotal) + ".\nYour total is $" + getRoundedPrice(total) + ".");
 
     }
 
+    /**
+     * Gets the total price of the items in the cart. Pass true if you want to get the total price with tax.
+     * @param includeTax If tax should be included in the total.
+     * @return The total price of the items in the cart.
+     */
     private double getTotalPrice(boolean includeTax) {
         double totalPrice = 0.00;
         for (Map.Entry<String, Integer> entry : itemsInCart.entrySet()) {
@@ -120,6 +153,10 @@ public class StoreHandler {
         return totalPrice;
     }
 
+    /**
+     * Add's a product to the user's shopping cart. This is saved into a HashMap, with the Item & the amount of that item.
+     * @param actionEvent - The event (generally a button) that triggered this method.
+     */
     @FXML
     protected void addProduct(ActionEvent actionEvent) {
         String text = ((Button) actionEvent.getSource()).getText(); // Cast it to a Button, because it's a button, and I got nothing else.
@@ -127,14 +164,18 @@ public class StoreHandler {
         Integer count = itemsInCart.getOrDefault(item, 0) + 1; // getOrDefault returns the value of the key if it exists, otherwise it returns the default value supplied
         itemsInCart.put(item, count); // put adds the key and value to the HashMap
         currentOperation.setText("You just added " + item + " to your cart. You now have " + count + " of " + item + " in your cart.");
-        setShoppingCart();
-        setTotal();
+        setShoppingCart(this.itemsInCart);
+        setTotal(getTotalPrice(false), getTotalPrice(true));
     }
 
     protected boolean canAfford(double paid, double totalPrice) {
         return paid >= totalPrice;
     }
 
+    /**
+     * Handles the checkout button.
+     * - Checks the TextField for a valid number & if the user can afford the total price.
+     */
     @FXML
     protected void onCheckout() {
         try {
@@ -152,6 +193,13 @@ public class StoreHandler {
         }
     }
 
+    /**
+     * This handles the change calculation. Returns the exact change in dollars & cents, and not plain numbers.
+     *
+     * @param paidAmount The amount the customer paid.
+     *               This is the amount the customer paid, not the total price.
+     * @return The change the customer should get.
+     */
     protected String changeHandler(double paidAmount) {
         // Figure out how much change is due, in dollars and cents
         double changeDue = paidAmount - getTotalPrice(true);
