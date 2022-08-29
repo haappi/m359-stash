@@ -1,3 +1,8 @@
+/*
+Attempting A level
+No one but me myself and I
+ */
+
 package io.github.haappi.storeProject;
 
 import javafx.event.ActionEvent;
@@ -22,7 +27,7 @@ public class StoreHandler {
     private final static double DOLLAR = 1.00;
     private final static double QUARTER = 0.25;
     private final static double DIME = 0.10;
-    private final static double NICKLE = 0.05;
+    private final static double NICKEL = 0.05;
     private final static double PENNY = 0.01;
     @FXML
     protected Button submitButton;
@@ -230,22 +235,21 @@ public class StoreHandler {
         final double savedDue = paidAmount - getTotalPrice(true);
         // See how many twnties, tens, fives, ones, quarters, dimes, nickels, and pennies are due
 
-        int twenties = (int) (changeDue / TWENTY);
+        int twenties = (int) Math.floor(changeDue / TWENTY);
         changeDue = changeDue % TWENTY;
-        int tens = (int) (changeDue / TEN);
+        int tens = (int) Math.floor(changeDue / TEN);
         changeDue = changeDue % TEN;
-        int fives = (int) (changeDue / FIVE);
+        int fives = (int) Math.floor(changeDue / FIVE);
         changeDue = changeDue % FIVE;
-        int ones = (int) (changeDue * DOLLAR);
+        int ones = (int) Math.floor(changeDue / DOLLAR);
         changeDue = changeDue % DOLLAR;
-        int quarters = (int) (changeDue / QUARTER);
+        int quarters = (int) Math.floor(changeDue / QUARTER);
         changeDue = changeDue % QUARTER;
-        int dimes = (int) (changeDue / DIME);
+        int dimes = (int) Math.floor(changeDue / DIME);
         changeDue = changeDue % DIME;
-        int nickels = (int) (changeDue / NICKLE);
-        changeDue = changeDue % NICKLE;
-        System.out.println(changeDue);
-        int pennies = (int) (changeDue / PENNY);
+        int nickels = (int) Math.floor(changeDue / NICKEL);
+        changeDue = changeDue % NICKEL;
+        int pennies = (int) Math.ceil(changeDue / PENNY);
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Your change is: \n");
