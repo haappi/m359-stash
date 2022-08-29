@@ -10,20 +10,20 @@ import javafx.scene.text.Text;
 import java.util.*;
 
 public class StoreHandler {
-    private final double tax = 0.08;
+    private final static double tax = 0.08;
     private final HashMap<String, Integer> itemsInCart = new HashMap<>();
     private final List<String> groceryItemTypes = List.of("Milk", "Bread", "Eggs", "Cheese", "Apples", "Pineapple", "Cake", "Water", "Pizza", "Yogurt");
     private final List<String> usedItemTypes = new ArrayList<>();
     private final HashMap<String, Integer> itemPrices = new HashMap<>();
 
-    private final double TWENTY = 20.00;
-    private final double TEN = 10.00;
-    private final double FIVE = 5.00;
-    private final double DOLLAR = 1.00;
-    private final double QUARTER = 0.25;
-    private final double DIME = 0.10;
-    private final double NICKLE = 0.05;
-    private final double PENNY = 0.01;
+    private final static double TWENTY = 20.00;
+    private final static double TEN = 10.00;
+    private final static double FIVE = 5.00;
+    private final static double DOLLAR = 1.00;
+    private final static double QUARTER = 0.25;
+    private final static double DIME = 0.10;
+    private final static double NICKLE = 0.05;
+    private final static double PENNY = 0.01;
     @FXML
     protected Button submitButton;
     @FXML
@@ -231,19 +231,20 @@ public class StoreHandler {
         // See how many twnties, tens, fives, ones, quarters, dimes, nickels, and pennies are due
 
         int twenties = (int) (changeDue / TWENTY);
-        changeDue -= twenties * TWENTY;
+        changeDue = changeDue % TWENTY;
         int tens = (int) (changeDue / TEN);
-        changeDue -= tens * TEN;
+        changeDue = changeDue % TEN;
         int fives = (int) (changeDue / FIVE);
-        changeDue -= fives * FIVE;
-        int ones = (int) (changeDue);
-        changeDue -= ones;
+        changeDue = changeDue % FIVE;
+        int ones = (int) (changeDue * DOLLAR);
+        changeDue = changeDue % DOLLAR;
         int quarters = (int) (changeDue / QUARTER);
-        changeDue -= quarters * QUARTER;
+        changeDue = changeDue % QUARTER;
         int dimes = (int) (changeDue / DIME);
-        changeDue -= dimes * DIME;
+        changeDue = changeDue % DIME;
         int nickels = (int) (changeDue / NICKLE);
-        changeDue -= nickels * NICKLE;
+        changeDue = changeDue % NICKLE;
+        System.out.println(changeDue);
         int pennies = (int) (changeDue / PENNY);
 
         StringBuilder stringBuilder = new StringBuilder();
