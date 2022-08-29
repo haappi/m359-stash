@@ -15,6 +15,15 @@ public class StoreHandler {
     private final List<String> groceryItemTypes = List.of("Milk", "Bread", "Eggs", "Cheese", "Apples", "Pineapple", "Cake", "Water", "Pizza", "Yogurt");
     private final List<String> usedItemTypes = new ArrayList<>();
     private final HashMap<String, Integer> itemPrices = new HashMap<>();
+
+    private final double TWENTY = 20.00;
+    private final double TEN = 10.00;
+    private final double FIVE = 5.00;
+    private final double DOLLAR = 1.00;
+    private final double QUARTER = 0.25;
+    private final double DIME = 0.10;
+    private final double NICKLE = 0.05;
+    private final double PENNY = 0.01;
     @FXML
     protected Button submitButton;
     @FXML
@@ -221,21 +230,21 @@ public class StoreHandler {
         final double savedDue = paidAmount - getTotalPrice(true);
         // See how many twnties, tens, fives, ones, quarters, dimes, nickels, and pennies are due
 
-        int twenties = (int) (changeDue / 20);
-        changeDue -= twenties * 20;
-        int tens = (int) (changeDue / 10);
-        changeDue -= tens * 10;
-        int fives = (int) (changeDue / 5);
-        changeDue -= fives * 5;
+        int twenties = (int) (changeDue / TWENTY);
+        changeDue -= twenties * TWENTY;
+        int tens = (int) (changeDue / TEN);
+        changeDue -= tens * TEN;
+        int fives = (int) (changeDue / FIVE);
+        changeDue -= fives * FIVE;
         int ones = (int) (changeDue);
         changeDue -= ones;
-        int quarters = (int) (changeDue / 0.25);
-        changeDue -= quarters * 0.25;
-        int dimes = (int) (changeDue / 0.10);
-        changeDue -= dimes * 0.10;
-        int nickels = (int) (changeDue / 0.05);
-        changeDue -= nickels * 0.05;
-        int pennies = (int) (changeDue / 0.01);
+        int quarters = (int) (changeDue / QUARTER);
+        changeDue -= quarters * QUARTER;
+        int dimes = (int) (changeDue / DIME);
+        changeDue -= dimes * DIME;
+        int nickels = (int) (changeDue / NICKLE);
+        changeDue -= nickels * NICKLE;
+        int pennies = (int) (changeDue / PENNY);
 
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Your change is: \n");
