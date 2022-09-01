@@ -3,8 +3,7 @@ package io.github.haappi.stock;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static io.github.haappi.stock.Utils.getRandomInteger;
-import static io.github.haappi.stock.Utils.getRandomPrice;
+import static io.github.haappi.stock.Utils.*;
 
 public class Stock {
     private final String name;
@@ -16,7 +15,7 @@ public class Stock {
 
     public Stock(String name, Double price) {
         this.name = name;
-        this.price = price;
+        this.price = round(price);
 
         init();
     }
@@ -36,12 +35,12 @@ public class Stock {
     }
 
     public Double setPrice(Double price) {
-        this.price = price;
+        this.price = round(price);
         if (this.price < 0.00) {
-            this.price = 0.00;
+            setPrice(0.00);
         }
         if (this.price > 60.00) {
-            this.price = 60.00;
+            setPrice(60.00);
         }
         return this.getPrice();
     }
