@@ -30,4 +30,13 @@ public class Utils {
         stock.setPrice(stock.getPrice() + priceChange);
     }
 
+    public static String getRecentMessage(String current, final String newMessage) {
+        System.out.println(current.split("\n").length);
+        current = current.replace("Recent Changes: \n", "");
+        if (current.split("\n").length > 5) {
+            current = "Recent Changes: \n" + current.substring(current.indexOf("\n") + 1);
+        }
+        return current + "\n" + newMessage;
+    }
+
 }
