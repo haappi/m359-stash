@@ -55,7 +55,7 @@ public class Person {
     return message;
   }
 
-public String decreaseStockTwo(Integer amount) {
+public String changeStockTwo(Integer amount) {
   if (amount < 0 && stockTwoAmount < 0) {
     return "You don't have any shares of " + stockTwo.getName() + "!";
   }

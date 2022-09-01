@@ -3,6 +3,8 @@ package io.github.haappi.stock;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
+
 import javax.swing.JOptionPane;
 
 import static io.github.haappi.stock.Utils.*;
@@ -24,7 +26,6 @@ public class StockHandler {
   protected Text welcome;
   @FXML
   protected Text recent;
-
   private final Stock stockOne;
   private final Stock stockTwo;
   private final Person person;
@@ -60,6 +61,7 @@ public class StockHandler {
 
   @FXML
   protected void decreaseStockB() {
+    recent.setText(getRecentMessage(recent.getText(), person.changeStockTwo(-1)));
   }
 
   @FXML
@@ -69,5 +71,6 @@ public class StockHandler {
 
   @FXML
   protected void increaseStockB() {
+    recent.setText(getRecentMessage(recent.getText(), person.changeStockTwo(1)));
   }
 }
