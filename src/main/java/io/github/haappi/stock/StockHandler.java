@@ -29,6 +29,12 @@ public class StockHandler {
 
 
   @FXML
+  protected void initialize() {
+    stockA.setText(stockOne.toString());
+    stockB.setText(stockTwo.toString());
+  }
+
+  @FXML
   protected void decreaseStockA() {
   }
 

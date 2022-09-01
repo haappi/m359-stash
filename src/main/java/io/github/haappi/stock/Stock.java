@@ -47,7 +47,7 @@ public class Stock {
     }
 
     public String toString() {
-        return name + " " + price;
+        return name + ": " + price;
     }
 
     private void setPrice() {
