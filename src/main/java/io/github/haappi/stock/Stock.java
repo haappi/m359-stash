@@ -1,9 +1,6 @@
 package io.github.haappi.stock;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import static io.github.haappi.stock.Utils.*;
+import static io.github.haappi.stock.Utils.round;
 
 public class Stock {
     private final String name;
