@@ -3,8 +3,8 @@ module io.github.haappi.fivechallenges {
   requires javafx.fxml;
   requires java.desktop;
 
-  opens io.github.haappi.template to
+  opens io.github.haappi.stock to
       javafx.fxml;
 
-  exports io.github.haappi.template;
+  exports io.github.haappi.stock;
 }
