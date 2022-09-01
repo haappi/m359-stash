@@ -35,7 +35,7 @@ public class Person {
 
 
   public String changeStockOne(Integer amount) {
-    if (amount < 0 && stockOneAmount < 0) {
+    if (amount < 0 && stockOneAmount <=0) {
       return "You don't have any shares of " + stockOne.getName() + "!";
     }
 
@@ -58,7 +58,7 @@ public class Person {
   }
 
 public String changeStockTwo(Integer amount) {
-  if (amount < 0 && stockTwoAmount < 0) {
+  if (amount < 0 && stockTwoAmount <= 0) {
     return "You don't have any shares of " + stockTwo.getName() + "!";
   }
 

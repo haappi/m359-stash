@@ -28,13 +28,11 @@ public class StockHandler {
   protected Text welcome;
   @FXML
   protected Text recent;
-  private final Stock stockOne;
-  private final Stock stockTwo;
   private final Person person;
 
   public StockHandler() {
-    stockOne = new Stock("Not A Space Agency", getRandomPrice(5.00, 30.00));
-    stockTwo = new Stock("Identified Flying Objects", getRandomPrice(5.00, 30.00));
+    Stock stockOne = new Stock("Not A Space Agency", getRandomPrice(5.00, 30.00));
+    Stock stockTwo = new Stock("Identified Flying Objects", getRandomPrice(5.00, 30.00));
     person = new Person(JOptionPane.showInputDialog("What is your name?"), (double) getRandomInteger(600, 700));
     person.setStockOne(stockOne);
     person.setStockTwo(stockTwo);
@@ -46,22 +44,25 @@ public class StockHandler {
     welcome.setText("Welcome, " + person.getName() + "!");
     updateWalletAndWorth();
 
-    stockA.setText(stockOne.toString());
-    stockB.setText(stockTwo.toString());
+    stockA.setText(getStockFormatted(person.getStockOne(), person.getStockOneAmount()));
+    stockB.setText(getStockFormatted(person.getStockTwo(), person.getStockTwoAmount()));
 
     int length = Math.max(stockA.getText().length(), stockB.getText().length()); // get the longest string length
 
-    aIncrease.setLayoutX(aIncrease.getLayoutX() + length * 3.5); // center-ish the text
-    bIncrease.setLayoutX(bIncrease.getLayoutX() + length * 3.5); // center-ish the text
+    aIncrease.setLayoutX(aIncrease.getLayoutX() + length * 3.9); // center-ish the text
+    bIncrease.setLayoutX(bIncrease.getLayoutX() + length * 3.9); // center-ish the text
 
-    updateStockPrice(stockOne);
-    updateStockPrice(stockTwo);
+    updateStockPrice(person.getStockOne());
+    updateStockPrice(person.getStockTwo());
     updateStuff();
   }
 
   private void updateWalletAndWorth() {
     wallet.setText("Wallet: $" + person.getWallet());
     netWorth.setText("Net Worth: $" + person.getNetworth());
+
+    stockA.setText(getStockFormatted(person.getStockOne(), person.getStockOneAmount()));
+    stockB.setText(getStockFormatted(person.getStockTwo(), person.getStockTwoAmount()));
   }
 
   @FXML
@@ -106,8 +107,6 @@ public class StockHandler {
         double oldPrice = stock.getPrice();
         stock.setPrice(stock.getPrice() + getRandomPrice(-6.0, 6.0));
         recent.setText(getRecentMessage(recent.getText(), getStockPrice(stock, oldPrice)));
-        stockA.setText(stockOne.toString());
-        stockB.setText(stockTwo.toString());
       }
     }, 1000L * getRandomInteger(5, 10), 1000 * 15); // every 15 seconds
   }

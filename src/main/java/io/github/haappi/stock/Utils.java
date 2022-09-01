@@ -26,6 +26,10 @@ public class Utils {
         return round(value, 2);
     }
 
+    public static String getStockFormatted(Stock stock, Integer count) {
+        return stock.toString() + " (x" + count + ")";
+    }
+
     public static void handleChangingPrice(Stock stock, Double priceChange) {
         stock.setPrice(stock.getPrice() + priceChange);
     }
