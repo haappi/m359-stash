@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="io.github.haappi.stock.StockHandler">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.stock.StockHandler">
+   <children>
+      <Text fx:id="wallet" layoutX="398.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Wallet:" />
+      <Text fx:id="netWorth" layoutX="398.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Net Worth:" />
+      <Text fx:id="stockA" layoutX="87.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock A:" />
+      <Text fx:id="stockB" layoutX="87.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stock B:" />
+      <Text fx:id="welcome" layoutX="256.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome haappi" />
+      <Button layoutX="42.0" layoutY="95.0" mnemonicParsing="false" onAction="#decreaseStockA" text="&lt;" />
+      <Button layoutX="42.0" layoutY="130.0" mnemonicParsing="false" onAction="#decreaseStockB" text="&lt;" />
+      <Button layoutX="142.0" layoutY="95.0" mnemonicParsing="false" onAction="#increaseStockA" text="&gt;" />
+      <Button layoutX="142.0" layoutY="130.0" mnemonicParsing="false" onAction="#increaseStockB" text="&gt;" />
+      <Text fx:id="recent" layoutX="256.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Changes:" />
+   </children>
+</AnchorPane>
