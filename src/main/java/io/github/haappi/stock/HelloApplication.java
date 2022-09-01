@@ -9,8 +9,7 @@ import javafx.stage.Stage;
 import static io.github.haappi.stock.Utils.getRandomPrice;
 
 public class HelloApplication extends Application {
-  public static Stock stockOne = new Stock("Not A Space Agency", getRandomPrice(0.00, 60.00));
-    public static Stock stockTwo = new Stock("Identified Flying Objects", getRandomPrice(0.00, 60.00));
+
   public static void main(String[] args) {
     launch();
   }
