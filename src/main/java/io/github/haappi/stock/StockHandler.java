@@ -3,9 +3,11 @@ package io.github.haappi.stock;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static io.github.haappi.stock.Utils.*;
 
@@ -50,27 +52,62 @@ public class StockHandler {
 
     int length = Math.max(stockA.getText().length(), stockB.getText().length()); // get the longest string length
 
-    aIncrease.setLayoutX(aIncrease.getLayoutX() + length * 3.5); // center the text
-    bIncrease.setLayoutX(bIncrease.getLayoutX() + length * 3.5); // center the text
+    aIncrease.setLayoutX(aIncrease.getLayoutX() + length * 3.5); // center-ish the text
+    bIncrease.setLayoutX(bIncrease.getLayoutX() + length * 3.5); // center-ish the text
+
+    updateStockPrice(stockOne);
+    updateStockPrice(stockTwo);
+    updateStuff();
+  }
+
+  private void updateWalletAndWorth() {
+    wallet.setText("Wallet: $" + person.getWallet());
+    netWorth.setText("Net Worth: $" + person.getNetworth());
   }
 
   @FXML
   protected void decreaseStockA() {
     recent.setText(getRecentMessage(recent.getText(), person.changeStockOne(-1)));
+    updateWalletAndWorth();
   }
 
   @FXML
   protected void decreaseStockB() {
     recent.setText(getRecentMessage(recent.getText(), person.changeStockTwo(-1)));
+    updateWalletAndWorth();
   }
 
   @FXML
   protected void increaseStockA() {
     recent.setText(getRecentMessage(recent.getText(), person.changeStockOne(1)));
+    updateWalletAndWorth();
   }
 
   @FXML
   protected void increaseStockB() {
     recent.setText(getRecentMessage(recent.getText(), person.changeStockTwo(1)));
+    updateWalletAndWorth();
+  }
+
+  private void updateStuff() {
+      java.util.Timer timer = new Timer();
+      timer.schedule(new TimerTask() {
+        @Override
+        public void run() {
+          updateWalletAndWorth();
+        }
+      }, 0L, 1000); // every second
+  }
+
+  private void updateStockPrice(Stock stock) {
+    Timer timer = new Timer();
+    timer.schedule(new TimerTask() {
+      @Override
+      public void run() {
+        double oldPrice = stock.getPrice();
+        stock.setPrice(stock.getPrice() + getRandomPrice(-4.0, 4.0));
+        recent.setText(getRecentMessage(recent.getText(), getStockPrice(stock, oldPrice)));
+      }
+    }, 1000L * getRandomInteger(5, 10), 1000 * 15); // every 15 seconds
   }
 }

@@ -30,8 +30,19 @@ public class Utils {
         stock.setPrice(stock.getPrice() + priceChange);
     }
 
+    public static String getStockPrice(Stock stock, Double oldPrice) {
+        String message;
+        if (stock.getPrice() > oldPrice) {
+            message = "The price of " + stock.getName() + " has risen to $" + stock.getPrice() + " (+" + round(stock.getPrice() - oldPrice) + ")";
+        } else if (stock.getPrice() < oldPrice) {
+            message = "The price of " + stock.getName() + " has fallen to $" + stock.getPrice() + " (" + round(oldPrice - stock.getPrice()) + ")";
+        } else {
+            message = "The price of " + stock.getName() + " has stayed at $" + stock.getPrice() + ".";
+        }
+        return message;
+    }
+
     public static String getRecentMessage(String current, final String newMessage) {
-        System.out.println(current.split("\n").length);
         current = current.replace("Recent Changes: \n", "");
         if (current.split("\n").length > 5) {
             current = "Recent Changes: \n" + current.substring(current.indexOf("\n") + 1);

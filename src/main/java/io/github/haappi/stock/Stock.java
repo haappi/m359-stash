@@ -9,21 +9,13 @@ public class Stock {
     private final String name;
     private Double price;
 
-    private void init() {
-        setPrice();
-    }
-
     public Stock(String name, Double price) {
         this.name = name;
         this.price = round(price);
-
-        init();
     }
 
     public Stock(String name) {
         this.name = name;
-
-        init();
     }
 
     public String getName() {
@@ -47,15 +39,5 @@ public class Stock {
 
     public String toString() {
         return name + ": " + price;
-    }
-
-    private void setPrice() {
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                setPrice(getPrice() + getRandomPrice(-4.0, 4.0));
-            }
-        }, 1000L * getRandomInteger(5, 10), 1000 * 15); // every 15 seconds
     }
 }
