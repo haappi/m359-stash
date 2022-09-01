@@ -1,5 +1,7 @@
 package io.github.haappi.stock;
 
+import static io.github.haappi.stock.Utils.round;
+
 public class Person {
   private final String name;
   private Stock stockOne;
@@ -99,14 +101,15 @@ public String changeStockTwo(Integer amount) {
   }
 
   public Double getNetworth() {
-    Double worth = wallet;
+    setWallet(round(this.getWallet()));
+    Double worth = this.wallet;
     if (stockOne != null) {
-      worth += stockOne.getPrice() * stockOneAmount;
+      worth += round(stockOne.getPrice() * stockOneAmount);
     }
     if (stockTwo != null) {
-      worth += stockTwo.getPrice() * stockTwoAmount;
+      worth += round(stockTwo.getPrice() * stockTwoAmount);
     }
-    return worth;
+    return round(worth);
   }
 
   public void setWallet(Double wallet) {

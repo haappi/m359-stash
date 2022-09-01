@@ -44,8 +44,7 @@ public class StockHandler {
   @FXML
   protected void initialize() {
     welcome.setText("Welcome, " + person.getName() + "!");
-    wallet.setText("Wallet: $" + person.getWallet());
-    netWorth.setText("Net Worth: $" + person.getNetworth());
+    updateWalletAndWorth();
 
     stockA.setText(stockOne.toString());
     stockB.setText(stockTwo.toString());
@@ -105,8 +104,10 @@ public class StockHandler {
       @Override
       public void run() {
         double oldPrice = stock.getPrice();
-        stock.setPrice(stock.getPrice() + getRandomPrice(-4.0, 4.0));
+        stock.setPrice(stock.getPrice() + getRandomPrice(-6.0, 6.0));
         recent.setText(getRecentMessage(recent.getText(), getStockPrice(stock, oldPrice)));
+        stockA.setText(stockOne.toString());
+        stockB.setText(stockTwo.toString());
       }
     }, 1000L * getRandomInteger(5, 10), 1000 * 15); // every 15 seconds
   }
