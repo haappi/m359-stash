@@ -57,6 +57,6 @@ public class Stock {
             public void run() {
                 setPrice(getPrice() + getRandomPrice(-4.0, 4.0));
             }
-        }, 1000L * getRandomInteger(1, 5), 1000 * 15); // every 15 seconds
+        }, 1000L * getRandomInteger(5, 10), 1000 * 15); // every 15 seconds
     }
 }
