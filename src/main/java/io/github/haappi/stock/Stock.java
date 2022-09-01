@@ -26,6 +26,10 @@ public class Stock {
         return price;
     }
 
+    public String getPriceFormatted() {
+        return String.format("$%.2f", getPrice());
+    }
+
     public Double setPrice(Double price) {
         this.price = round(price);
         if (this.price < 0.00) {
@@ -38,6 +42,6 @@ public class Stock {
     }
 
     public String toString() {
-        return name + ": " + price;
+        return String.format(name + ": %.2f", price);
     }
 }

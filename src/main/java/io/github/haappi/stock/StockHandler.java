@@ -58,8 +58,8 @@ public class StockHandler {
   }
 
   private void updateWalletAndWorth() {
-    netWorth.setText("Net Worth: $" + person.getNetworth());
-    wallet.setText("Wallet: $" + person.getWallet());
+    netWorth.setText(String.format("Net Worth: $%.2f", person.getNetworth()));
+    wallet.setText(String.format("Wallet: $%.2f", person.getWallet()));
 
     stockA.setText(getStockFormatted(person.getStockOne(), person.getStockOneAmount()));
     stockB.setText(getStockFormatted(person.getStockTwo(), person.getStockTwoAmount()));

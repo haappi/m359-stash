@@ -43,14 +43,14 @@ public class Person {
     String message;
     if (amount < 0) {
       wallet += stockOne.getPrice();
-      message = "You sold 1 share of " + stockOne.getName() + " for $" + stockOne.getPrice();
+      message = String.format("You sold 1 share of " + stockOne.getName() + " for $%.2f", stockOne.getPrice());
     } else {
       if (wallet < stockOne.getPrice()) {
         stockOneAmount -= amount;
         message = "You don't have enough money to buy a share of " + stockOne.getName() + "!";
       } else {
         wallet -= stockOne.getPrice();
-        message = "You bought 1 share of " + stockOne.getName() + " for $" + stockOne.getPrice();
+        message = String.format("You bought 1 share of " + stockOne.getName() + " for $%.2f", stockOne.getPrice());
       }
     }
 
@@ -66,14 +66,14 @@ public String changeStockTwo(Integer amount) {
   String message;
   if (amount < 0) {
     wallet += stockTwo.getPrice();
-    message = "You sold 1 share of " + stockTwo.getName() + " for $" + stockTwo.getPrice();
+    message = String.format("You sold 1 share of " + stockTwo.getName() + " for $%.2f", stockTwo.getPrice());
   } else {
     if (wallet < stockTwo.getPrice()) {
       stockTwoAmount -= amount;
       message = "You don't have enough money to buy a share of " + stockTwo.getName() + "!";
     } else {
       wallet -= stockTwo.getPrice();
-      message = "You bought 1 share of " + stockTwo.getName() + " for $" + stockTwo.getPrice();
+      message = String.format("You bought 1 share of " + stockTwo.getName() + " for $$.2f", stockTwo.getPrice());
     }
   }
 
@@ -117,6 +117,6 @@ public String changeStockTwo(Integer amount) {
   }
 
   public String toString() {
-    return name + " " + stockOne + " " + stockTwo + " " + wallet;
+    return String.format(name + " " + stockOne + " " + stockTwo + " $.2f", wallet);
   }
 }

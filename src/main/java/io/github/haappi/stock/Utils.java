@@ -37,11 +37,11 @@ public class Utils {
     public static String getStockPrice(Stock stock, Double oldPrice) {
         String message;
         if (stock.getPrice() > oldPrice) {
-            message = "The price of " + stock.getName() + " has risen to $" + stock.getPrice() + " (+" + round(stock.getPrice() - oldPrice) + ")";
+            message = "The price of " + stock.getName() + " has risen to $" + stock.getPriceFormatted() + " (+" + round(stock.getPrice() - oldPrice) + ")";
         } else if (stock.getPrice() < oldPrice) {
-            message = "The price of " + stock.getName() + " has fallen to $" + stock.getPrice() + " (-" + round(oldPrice - stock.getPrice()) + ")";
+            message = "The price of " + stock.getName() + " has fallen to $" + stock.getPriceFormatted() + " (-" + round(oldPrice - stock.getPrice()) + ")";
         } else {
-            message = "The price of " + stock.getName() + " has stayed at $" + stock.getPrice() + ".";
+            message = "The price of " + stock.getName() + " has stayed at $" + stock.getPriceFormatted() + ".";
         }
         return message;
     }
