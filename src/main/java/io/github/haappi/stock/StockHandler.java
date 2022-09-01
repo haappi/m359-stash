@@ -33,8 +33,8 @@ public class StockHandler {
   private final Person person;
 
   public StockHandler() {
-    stockOne = new Stock("Not A Space Agency", getRandomPrice(0.00, 60.00));
-    stockTwo = new Stock("Identified Flying Objects", getRandomPrice(0.00, 60.00));
+    stockOne = new Stock("Not A Space Agency", getRandomPrice(5.00, 30.00));
+    stockTwo = new Stock("Identified Flying Objects", getRandomPrice(5.00, 30.00));
     person = new Person(JOptionPane.showInputDialog("What is your name?"), (double) getRandomInteger(600, 700));
     person.setStockOne(stockOne);
     person.setStockTwo(stockTwo);
