@@ -35,7 +35,7 @@ public class Utils {
         if (stock.getPrice() > oldPrice) {
             message = "The price of " + stock.getName() + " has risen to $" + stock.getPrice() + " (+" + round(stock.getPrice() - oldPrice) + ")";
         } else if (stock.getPrice() < oldPrice) {
-            message = "The price of " + stock.getName() + " has fallen to $" + stock.getPrice() + " (" + round(oldPrice - stock.getPrice()) + ")";
+            message = "The price of " + stock.getName() + " has fallen to $" + stock.getPrice() + " (-" + round(oldPrice - stock.getPrice()) + ")";
         } else {
             message = "The price of " + stock.getName() + " has stayed at $" + stock.getPrice() + ".";
         }
