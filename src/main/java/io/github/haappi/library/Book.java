@@ -1,5 +1,7 @@
 package io.github.haappi.library;
 
+import org.jetbrains.annotations.Nullable;
+
 import static io.github.haappi.library.Utils.getRandomStringOfNumbers;
 
 public class Book {
@@ -11,6 +13,15 @@ public class Book {
     private final Integer checkoutDuration = 14;
     private boolean isAvailable = true;
     private Integer checkoutTimeRemaining = 0;
+    private Person checkedOutBy; // I'm too lazy to loop through the People array
+
+    public @Nullable Person getCheckedOutBy() {
+        return checkedOutBy;
+    }
+
+    public void setCheckedOutBy(Person checkedOutBy) {
+        this.checkedOutBy = checkedOutBy;
+    }
 
     private Book(String name, String author, String genre) {
         this.bookName = name;
