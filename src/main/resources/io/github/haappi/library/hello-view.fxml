@@ -2,5 +2,11 @@
 
 
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"/>
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.library.LibraryController">
+   <children>
+      <Text fx:id="outut" layoutX="170.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
+   </children>
+</AnchorPane>

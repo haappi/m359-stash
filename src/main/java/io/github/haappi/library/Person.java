@@ -7,7 +7,7 @@ import static io.github.haappi.library.Utils.getRandomStringOfNumbers;
 public class Person {
     private final String name;
     private final Integer age;
-    private final Integer libraryCardNumber;
+    private final Long libraryCardNumber;
     private final ArrayList<Book> booksCheckedOut = new ArrayList<>();
     private Integer bookCheckoutLimit;
     private String genrePreference;
@@ -28,7 +28,7 @@ public class Person {
         return age;
     }
 
-    public Integer getLibraryCardNumber() {
+    public Long getLibraryCardNumber() {
         return libraryCardNumber;
     }
 
@@ -54,7 +54,7 @@ public class Person {
 
     public static class PersonBuilder {
         private final String name;
-        private final Integer libraryCardNumber;
+        private final Long libraryCardNumber;
         private final ArrayList<Book> booksCheckedOut = new ArrayList<>();
         private Integer age;
         private Integer bookCheckoutLimit = 1;
@@ -62,7 +62,7 @@ public class Person {
 
         public PersonBuilder(String name) {
             this.name = name;
-            this.libraryCardNumber = getRandomStringOfNumbers(5);
+            this.libraryCardNumber = getRandomStringOfNumbers(10);
         }
 
         public PersonBuilder age(Integer age) {

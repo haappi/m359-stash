@@ -6,17 +6,17 @@ public class Book {
     private final String bookName;
     private final String author;
     private final String genre;
-    private final Integer bookId;
+    private final Long bookId;
     private final Integer minimumAge = 0;
     private final Integer checkoutDuration = 14;
     private boolean isAvailable = true;
     private Integer checkoutTimeRemaining = 0;
 
-    private Book(String name, String author, String genr) {
+    private Book(String name, String author, String genre) {
         this.bookName = name;
         this.author = author;
-        this.genre = genr;
-        this.bookId = getRandomStringOfNumbers(5);
+        this.genre = genre;
+        this.bookId = getRandomStringOfNumbers(8);
     }
 
     public Integer getCheckoutTimeRemaining() {
@@ -39,7 +39,7 @@ public class Book {
         return genre;
     }
 
-    public Integer getBookId() {
+    public Long getBookId() {
         return bookId;
     }
 
