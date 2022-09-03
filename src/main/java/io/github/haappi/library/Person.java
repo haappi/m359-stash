@@ -11,6 +11,7 @@ public class Person {
     private final ArrayList<Book> booksCheckedOut = new ArrayList<>();
     private Integer bookCheckoutLimit;
     private String genrePreference;
+    private Boolean canCheckout = true;
 
     private Person(PersonBuilder builder) {
         this.name = builder.name;
@@ -26,6 +27,14 @@ public class Person {
 
     public Integer getAge() {
         return age;
+    }
+
+    public Boolean getCanCheckout() {
+        return canCheckout;
+    }
+
+    public void setCanCheckout(Boolean canCheckout) {
+        this.canCheckout = canCheckout;
     }
 
     public Long getLibraryCardNumber() {
@@ -44,6 +53,10 @@ public class Person {
         return booksCheckedOut;
     }
 
+    public Integer getNumberOfBooksCheckedOut() {
+        return booksCheckedOut.size();
+    }
+
     public String getGenrePreference() {
         return genrePreference;
     }
@@ -55,7 +68,6 @@ public class Person {
     public static class PersonBuilder {
         private final String name;
         private final Long libraryCardNumber;
-        private final ArrayList<Book> booksCheckedOut = new ArrayList<>();
         private Integer age;
         private Integer bookCheckoutLimit = 1;
         private String genrePreference;

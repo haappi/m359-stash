@@ -6,8 +6,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 public class HelloApplication extends Application {
+    public static final List<String> bookNames = Arrays.asList("The Hobbit", "The Ruins of Dawn", "The Marked Wedding");
     public static void main(String[] args) {
         launch();
     }

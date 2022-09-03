@@ -16,4 +16,8 @@ public class Utils {
     public static Integer getRandomNumber(Integer min, Integer max) {
         return (int) (Math.random() * (max - min + 1) + min);
     }
+
+    public static String booleanToString(Boolean bool) {
+        return bool ? "Yes" : "No";
+    }
 }
