@@ -2,7 +2,6 @@ package io.github.haappi.library;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Utils {
@@ -55,15 +54,9 @@ public class Utils {
     }
 
     public static List<Book> getBooksToAdd(List<Book> books) {
-        List<Book> returnBooks = new ArrayList<>();
+        List<Book> returnBooks = new ArrayList<>(books);
 
-        Iterator<Book> iterator = books.iterator();
-        while (iterator.hasNext()) {
-            Book book = iterator.next();
-            if (book.isAvailable()) {
-                returnBooks.add(book);
-            }
-        }
+        returnBooks.removeIf(book -> !book.isAvailable());
         return returnBooks;
     }
 }

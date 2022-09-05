@@ -72,7 +72,7 @@ public class LibraryController {
                     public void run() {
                         System.out.println(books.size());
                         Iterator<Book> bookIterator = books.iterator();
-                        while (bookIterator.hasNext()) {
+                        while (bookIterator.hasNext()) { // I think(?) i can do it this way
                             Book book = bookIterator.next();
                             if (book.getCheckoutTimeRemaining() > 0) {
                                 book.setCheckoutTimeRemaining(book.getCheckoutTimeRemaining() - 1);
