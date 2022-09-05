@@ -12,8 +12,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static io.github.haappi.library.Utils.getRandomNumber;
-import static io.github.haappi.library.Utils.listToString;
+import static io.github.haappi.library.Utils.*;
 
 public class LibraryController {
     private final static ArrayList<Book> books = new ArrayList<>();
@@ -56,20 +55,13 @@ public class LibraryController {
     @FXML
     protected void initialize() {
         personView.getItems().addAll(persons);
-        addBooks();
+        bookView.getItems().addAll(books);
 
 //        userInformationView.setEditable(true);
 //        userInformationView.setCellFactory(TextFieldListCell.forListView()); // https://stackoverflow.com/questions/53692517/javafx-set-listview-to-be-editable
         // Just wanted to not use a Text so I can easily edit more stuff yknow
     }
 
-    private void addBooks() {
-        for (Book book : books) {
-            if (book.isAvailable()) {
-                bookView.getItems().add(book);
-            }
-        }
-    }
 
     private void updateBookDueTime(Book book) {
         Timer timer = new Timer();
@@ -95,7 +87,14 @@ public class LibraryController {
     protected void onUserSelect(MouseEvent mouseEvent) {
         ListView<Person> source = (ListView<Person>) mouseEvent.getSource();
         Person selectedPerson = source.getSelectionModel().getSelectedItem();
-        userInformationOutput.setText(listToString(selectedPerson.getPersonInfo(), "\n"));
+        if (selectedPerson != null) {
+            userInformationOutput.setText(listToString(selectedPerson.getPersonInfo(), "\n"));
+            bookView.getItems().clear();
+            bookView.getItems().addAll(getBooksToAdd(selectedPerson.getBooksCheckedOut()));
+        } else {
+            bookView.getItems().clear();
+            bookView.getItems().addAll(getBooksToAdd(books));
+        }
     }
 
     @FXML

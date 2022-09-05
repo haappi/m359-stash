@@ -11,7 +11,6 @@ public class Book {
     private final Long bookId;
     private final Integer minimumAge = 0;
     private final Integer checkoutDuration = 14;
-    private boolean isAvailable = true;
     private Integer checkoutTimeRemaining = checkoutDuration;
     private Person checkedOutBy; // I'm too lazy to loop through the People array
 
@@ -63,16 +62,12 @@ public class Book {
     }
 
     public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
+        return this.getCheckedOutBy() == null;
     }
 
     public String getInformation() {
         return String.format("Book Name: %s\nAuthor: %s\nGenre: %s\nBook ID: %s\nMinimum Age: %s\nCheckout Duration: %s\nIs Available: %s\n",
-                name, author, genre, bookId, minimumAge, checkoutDuration, isAvailable ? "Yes" : "No");
+                name, author, genre, bookId, minimumAge, checkoutDuration, this.getCheckedOutBy() == null ? "Yes" : "No");
     }
 
     public String toString() {
