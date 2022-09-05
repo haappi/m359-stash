@@ -1,6 +1,7 @@
 package io.github.haappi.library;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static io.github.haappi.library.Utils.getRandomStringOfNumbers;
 
@@ -63,6 +64,21 @@ public class Person {
 
     public void setGenrePreference(String genrePreference) {
         this.genrePreference = genrePreference;
+    }
+
+    public String toString() {
+        return name;
+    }
+
+    public List<String> getPersonInfo() {
+        List<String> returnType = new ArrayList<>();
+        returnType.add("Name: " + name);
+        returnType.add("Age: " + age);
+        returnType.add("Library Card Number: " + libraryCardNumber);
+        returnType.add("Books Checked Out: " + booksCheckedOut.size());
+        returnType.add("Book Checkout Limit: " + bookCheckoutLimit);
+        returnType.add("Genre Preference: " + genrePreference);
+        return returnType;
     }
 
     public static class PersonBuilder {

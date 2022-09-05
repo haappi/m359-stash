@@ -5,14 +5,14 @@ import org.jetbrains.annotations.Nullable;
 import static io.github.haappi.library.Utils.getRandomStringOfNumbers;
 
 public class Book {
-    private final String bookName;
+    private final String name;
     private final String author;
     private final String genre;
     private final Long bookId;
     private final Integer minimumAge = 0;
     private final Integer checkoutDuration = 14;
     private boolean isAvailable = true;
-    private Integer checkoutTimeRemaining = 0;
+    private Integer checkoutTimeRemaining = checkoutDuration;
     private Person checkedOutBy; // I'm too lazy to loop through the People array
 
     public @Nullable Person getCheckedOutBy() {
@@ -23,8 +23,8 @@ public class Book {
         this.checkedOutBy = checkedOutBy;
     }
 
-    private Book(String name, String author, String genre) {
-        this.bookName = name;
+    public Book(String name, String author, String genre) {
+        this.name = name;
         this.author = author;
         this.genre = genre;
         this.bookId = getRandomStringOfNumbers(8);
@@ -38,8 +38,8 @@ public class Book {
         this.checkoutTimeRemaining = checkoutTimeRemaining;
     }
 
-    public String getBookName() {
-        return bookName;
+    public String getName() {
+        return name;
     }
 
     public String getAuthor() {
@@ -70,8 +70,12 @@ public class Book {
         isAvailable = available;
     }
 
-    public String toString() {
+    public String getInformation() {
         return String.format("Book Name: %s\nAuthor: %s\nGenre: %s\nBook ID: %s\nMinimum Age: %s\nCheckout Duration: %s\nIs Available: %s\n",
-                bookName, author, genre, bookId, minimumAge, checkoutDuration, isAvailable);
+                name, author, genre, bookId, minimumAge, checkoutDuration, isAvailable ? "Yes" : "No");
+    }
+
+    public String toString() {
+        return this.name;
     }
 }
