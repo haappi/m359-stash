@@ -11,7 +11,7 @@ public class Book {
     private final Long bookId;
     private final Integer minimumAge = 0;
     private final Integer checkoutDuration = 14;
-    private Integer checkoutTimeRemaining = checkoutDuration;
+    private Integer checkoutTimeRemaining = -1;
     private Person checkedOutBy; // I'm too lazy to loop through the People array
 
     public @Nullable Person getCheckedOutBy() {
@@ -20,6 +20,7 @@ public class Book {
 
     public void setCheckedOutBy(Person checkedOutBy) {
         this.checkedOutBy = checkedOutBy;
+        this.checkoutTimeRemaining = checkoutDuration;
     }
 
     public Book(String name, String author, String genre) {

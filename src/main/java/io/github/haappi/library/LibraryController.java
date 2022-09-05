@@ -14,6 +14,7 @@ import static io.github.haappi.library.Utils.*;
 public class LibraryController {
     private final static ArrayList<Book> books = new ArrayList<>();
     private final static ArrayList<Person> persons = new ArrayList<>();
+    public ListView<Book> personBookView;
     @FXML
     protected Text userInformationOutput;
     //    public ListView<String> userInformationView;
@@ -32,6 +33,7 @@ public class LibraryController {
     @FXML
     protected Text booksOut;
 
+    private Person selectedPerson;
     public LibraryController() {
         persons.add(new Person.PersonBuilder("John Doe").age(18).bookCheckoutLimit(getRandomNumber(1, 3)).genrePreference("Horror").build());
         persons.add(new Person.PersonBuilder("Jane Doe").age(16).bookCheckoutLimit(getRandomNumber(1, 3)).genrePreference("Romance").build());
@@ -70,11 +72,11 @@ public class LibraryController {
                 new TimerTask() {
                     @Override
                     public void run() {
-                        System.out.println(books.size());
                         Iterator<Book> bookIterator = books.iterator();
                         while (bookIterator.hasNext()) { // I think(?) i can do it this way
                             Book book = bookIterator.next();
                             if (book.getCheckoutTimeRemaining() > 0) {
+                                System.out.println(book);
                                 book.setCheckoutTimeRemaining(book.getCheckoutTimeRemaining() - 1);
                             } else {
                                 if (book.getCheckedOutBy() != null) {
@@ -93,15 +95,16 @@ public class LibraryController {
     protected void onUserSelect(MouseEvent mouseEvent) {
         ListView<Person> source = (ListView<Person>) mouseEvent.getSource();
         Person selectedPerson = source.getSelectionModel().getSelectedItem();
-        source.getSelectionModel().clearSelection();
+//        source.getSelectionModel().clearSelection();
         if (selectedPerson != null) {
+            this.selectedPerson = selectedPerson;
             userInformationOutput.setText(listToString(selectedPerson.getPersonInfo(), "\n"));
-            bookView.getItems().clear();
-            bookView.getItems().addAll(getBooksToAdd(selectedPerson.getBooksCheckedOut()));
-        } else {
-            bookView.getItems().clear();
-            bookView.getItems().addAll(getBooksToAdd(books));
+            personBookView.getItems().clear();
+            personBookView.getItems().addAll(getBooksToAdd(selectedPerson.getBooksCheckedOut()));
         }
+        bookView.getItems().clear();
+        bookView.getItems().addAll(getBooksToAdd(books));
+
     }
 
     @FXML
@@ -109,5 +112,9 @@ public class LibraryController {
         ListView<Book> source = (ListView<Book>) mouseEvent.getSource();
         Book book = source.getSelectionModel().getSelectedItem();
         bookInfo.setText(book.getInformation());
+
+        if (this.selectedPerson != null) {
+            this.selectedPerson.checkoutBook(book);
+        }
     }
 }

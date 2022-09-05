@@ -25,7 +25,7 @@ public class HelloApplication extends Application {
         authorNames.addAll(Files.readAllLines(Utils.getResourcePath("author_names.txt")));
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 700);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 800);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

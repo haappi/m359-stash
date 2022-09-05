@@ -54,6 +54,20 @@ public class Person {
         return booksCheckedOut;
     }
 
+    public ArrayList<Book> checkoutBook(Book book) {
+        if (booksCheckedOut.size() < bookCheckoutLimit) {
+            booksCheckedOut.add(book);
+            book.setCheckedOutBy(this);
+        }
+        return booksCheckedOut;
+    }
+
+    public ArrayList<Book> returnBook(Book book) {
+        booksCheckedOut.remove(book);
+        book.setCheckedOutBy(null);
+        return booksCheckedOut;
+    }
+
     public Integer getNumberOfBooksCheckedOut() {
         return booksCheckedOut.size();
     }
