@@ -81,7 +81,6 @@ public class LibraryController {
                                     book.getCheckedOutBy().setCanCheckout(false);
                                 }
                             }
-                            bookIterator.remove();
                         }
                     }
                 },
@@ -101,7 +100,6 @@ public class LibraryController {
             bookView.getItems().addAll(getBooksToAdd(selectedPerson.getBooksCheckedOut()));
         } else {
             bookView.getItems().clear();
-            System.out.println(books);
             bookView.getItems().addAll(getBooksToAdd(books));
         }
     }

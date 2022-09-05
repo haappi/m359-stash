@@ -62,7 +62,6 @@ public class Utils {
             Book book = iterator.next();
             if (book.isAvailable()) {
                 returnBooks.add(book);
-                iterator.remove();
             }
         }
         return returnBooks;
