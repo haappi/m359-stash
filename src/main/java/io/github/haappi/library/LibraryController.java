@@ -7,10 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import static io.github.haappi.library.Utils.*;
 
@@ -41,21 +38,25 @@ public class LibraryController {
         persons.add(new Person.PersonBuilder("John Smith").age(12).bookCheckoutLimit(getRandomNumber(1, 3)).genrePreference("Mystery").build());
         persons.add(new Person.PersonBuilder("Jane Smith").age(10).bookCheckoutLimit(getRandomNumber(1, 3)).genrePreference("Fantasy").build());
 
+
+    }
+
+    @FXML
+    protected void initialize() {
+        personView.getItems().addAll(persons);
+
         List<String> usedBookNames = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             String bookName = Utils.getRandomElement(HelloApplication.bookNames);
             while (usedBookNames.contains(bookName)) {
                 bookName = Utils.getRandomElement(HelloApplication.bookNames);
             }
-            usedBookNames.add(bookName);
             books.add(new Book(bookName, Utils.getRandomElement(HelloApplication.authorNames), Utils.getRandomElement(HelloApplication.genreNames)));
+            usedBookNames.add(bookName);
         }
-    }
 
-    @FXML
-    protected void initialize() {
-        personView.getItems().addAll(persons);
-        bookView.getItems().addAll(books);
+        bookView.getItems().addAll(getBooksToAdd(books));
+        updateBookDueTime(books);
 
 //        userInformationView.setEditable(true);
 //        userInformationView.setCellFactory(TextFieldListCell.forListView()); // https://stackoverflow.com/questions/53692517/javafx-set-listview-to-be-editable
@@ -63,18 +64,24 @@ public class LibraryController {
     }
 
 
-    private void updateBookDueTime(Book book) {
+    private void updateBookDueTime(List<Book> books) {
         Timer timer = new Timer();
         timer.schedule(
                 new TimerTask() {
                     @Override
                     public void run() {
-                        if (book.getCheckoutTimeRemaining() > 0) {
-                            book.setCheckoutTimeRemaining(book.getCheckoutTimeRemaining() - 1);
-                        } else {
-                            if (book.getCheckedOutBy() != null) {
-                                book.getCheckedOutBy().setCanCheckout(false);
+                        System.out.println(books.size());
+                        Iterator<Book> bookIterator = books.iterator();
+                        while (bookIterator.hasNext()) {
+                            Book book = bookIterator.next();
+                            if (book.getCheckoutTimeRemaining() > 0) {
+                                book.setCheckoutTimeRemaining(book.getCheckoutTimeRemaining() - 1);
+                            } else {
+                                if (book.getCheckedOutBy() != null) {
+                                    book.getCheckedOutBy().setCanCheckout(false);
+                                }
                             }
+                            bookIterator.remove();
                         }
                     }
                 },
@@ -87,12 +94,14 @@ public class LibraryController {
     protected void onUserSelect(MouseEvent mouseEvent) {
         ListView<Person> source = (ListView<Person>) mouseEvent.getSource();
         Person selectedPerson = source.getSelectionModel().getSelectedItem();
+        source.getSelectionModel().clearSelection();
         if (selectedPerson != null) {
             userInformationOutput.setText(listToString(selectedPerson.getPersonInfo(), "\n"));
             bookView.getItems().clear();
             bookView.getItems().addAll(getBooksToAdd(selectedPerson.getBooksCheckedOut()));
         } else {
             bookView.getItems().clear();
+            System.out.println(books);
             bookView.getItems().addAll(getBooksToAdd(books));
         }
     }
