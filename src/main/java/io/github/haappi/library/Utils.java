@@ -49,9 +49,9 @@ public class Utils {
         return listToString(list, ", ");
     }
 
-    public static List<Book> getBooksToAdd(Person person) {
-        return person.getBooksCheckedOut();
-    }
+//    public static List<Book> getBooksToAdd(Person person) {
+//        return person.getBooksCheckedOut();
+//    }
 
     public static List<Book> getBooksToAdd(List<Book> books) {
         List<Book> returnBooks = new ArrayList<>(books);

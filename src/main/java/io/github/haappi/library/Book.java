@@ -9,18 +9,21 @@ public class Book {
     private final String author;
     private final String genre;
     private final Long bookId;
-    private final Integer minimumAge = 0;
-    private final Integer checkoutDuration = 14;
-    private Integer checkoutTimeRemaining = -1;
+    private final Long checkoutDuration = 14 * 1000L;
+    private Long dueDate = -1L; // -1L means the book is not checked out
     private Person checkedOutBy; // I'm too lazy to loop through the People array
 
     public @Nullable Person getCheckedOutBy() {
         return checkedOutBy;
     }
 
-    public void setCheckedOutBy(Person checkedOutBy) {
+    public void setCheckedOutBy(@Nullable Person checkedOutBy) {
+        if (checkedOutBy == null) {
+            this.dueDate = -1L;
+        } else {
+            this.dueDate = System.currentTimeMillis() + checkoutDuration;
+        }
         this.checkedOutBy = checkedOutBy;
-        this.checkoutTimeRemaining = checkoutDuration;
     }
 
     public Book(String name, String author, String genre) {
@@ -30,12 +33,14 @@ public class Book {
         this.bookId = getRandomStringOfNumbers(8);
     }
 
-    public Integer getCheckoutTimeRemaining() {
-        return checkoutTimeRemaining;
+    public Long getWhenBookIsDue() {
+        return dueDate;
     }
 
-    public void setCheckoutTimeRemaining(Integer checkoutTimeRemaining) {
-        this.checkoutTimeRemaining = checkoutTimeRemaining;
+    public void checkoutBook(Person person) {
+        if (person.getCanCheckout()) {
+            setCheckedOutBy(person);
+        }
     }
 
     public String getName() {
@@ -54,21 +59,13 @@ public class Book {
         return bookId;
     }
 
-    public Integer getMinimumAge() {
-        return minimumAge;
-    }
-
-    public Integer getCheckoutDuration() {
-        return checkoutDuration;
-    }
-
     public boolean isAvailable() {
         return this.getCheckedOutBy() == null;
     }
 
     public String getInformation() {
-        return String.format("Book Name: %s\nAuthor: %s\nGenre: %s\nBook ID: %s\nMinimum Age: %s\nCheckout Duration: %s\nIs Available: %s\n",
-                name, author, genre, bookId, minimumAge, checkoutDuration, this.getCheckedOutBy() == null ? "Yes" : "No");
+        return String.format("Book Name: %s\nAuthor: %s\nGenre: %s\nBook ID: %s\nCheckout Duration: %s seconds\nIs Available: %s\n",
+                name, author, genre, bookId, checkoutDuration / 1000, this.getCheckedOutBy() == null ? "Yes" : "No");
     }
 
     public String toString() {

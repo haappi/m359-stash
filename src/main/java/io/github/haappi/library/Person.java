@@ -1,5 +1,7 @@
 package io.github.haappi.library;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +11,11 @@ public class Person {
     private final String name;
     private final Integer age;
     private final Long libraryCardNumber;
-    private final ArrayList<Book> booksCheckedOut = new ArrayList<>();
+    private Integer booksCheckedOut = 0;
+    private Book book1 = null;
+    private Book book2 = null;
+    private Book book3 = null;
+
     private Integer bookCheckoutLimit;
     private String genrePreference;
     private Boolean canCheckout = true;
@@ -50,26 +56,55 @@ public class Person {
         this.bookCheckoutLimit = bookCheckoutLimit;
     }
 
-    public ArrayList<Book> getBooksCheckedOut() {
-        return booksCheckedOut;
+    public @Nullable Book getBook1() {
+        return book1;
     }
 
-    public ArrayList<Book> checkoutBook(Book book) {
-        if (booksCheckedOut.size() < bookCheckoutLimit) {
-            booksCheckedOut.add(book);
-            book.setCheckedOutBy(this);
+    public @Nullable Book getBook2() {
+        return book2;
+    }
+
+    public @Nullable Book getBook3() {
+        return book3;
+    }
+
+    public boolean checkoutBook(Book book) {
+        if (booksCheckedOut > bookCheckoutLimit) {
+            canCheckout = false;
+            return false;
         }
-        return booksCheckedOut;
+        if (book1 == null) {
+            book1 = book;
+            booksCheckedOut++;
+            return true;
+        } else if (book2 == null) {
+            book2 = book;
+            booksCheckedOut++;
+            return true;
+        } else if (book3 == null) {
+            book3 = book;
+            booksCheckedOut++;
+            return true;
+        }
+        return false;
     }
 
-    public ArrayList<Book> returnBook(Book book) {
-        booksCheckedOut.remove(book);
+    public void returnBook(Book book) {
+        if (book1 == book) {
+            book1 = null;
+            booksCheckedOut--;
+        } else if (book2 == book) {
+            book2 = null;
+            booksCheckedOut--;
+        } else if (book3 == book) {
+            book3 = null;
+            booksCheckedOut--;
+        }
         book.setCheckedOutBy(null);
-        return booksCheckedOut;
     }
 
     public Integer getNumberOfBooksCheckedOut() {
-        return booksCheckedOut.size();
+        return booksCheckedOut;
     }
 
     public String getGenrePreference() {
@@ -89,7 +124,7 @@ public class Person {
         returnType.add("Name: " + name);
         returnType.add("Age: " + age);
         returnType.add("Library Card Number: " + libraryCardNumber);
-        returnType.add("Books Checked Out: " + booksCheckedOut.size());
+        returnType.add("Books Checked Out: " + booksCheckedOut);
         returnType.add("Book Checkout Limit: " + bookCheckoutLimit);
         returnType.add("Genre Preference: " + genrePreference);
         return returnType;
