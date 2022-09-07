@@ -15,6 +15,7 @@ public class Person {
     private Book book1 = null;
     private Book book2 = null;
     private Book book3 = null;
+    private Double fineDue = 0.00;
 
     private Integer bookCheckoutLimit;
     private String genrePreference;
@@ -69,27 +70,36 @@ public class Person {
     }
 
     public boolean checkoutBook(Book book) {
-        if (booksCheckedOut > bookCheckoutLimit) {
+        if (booksCheckedOut >= bookCheckoutLimit) {
+            System.out.println("Walp, it appears you checked out more books your little brain can handle. I can't allow you to checkout books at this time.");
+            canCheckout = false;
+            return false;
+        }
+        if (fineDue > 0.00) {
+            System.out.println("Walp, it appears you have a fine to pay of: " + fineDue + ". I can't allow you to checkout books at this time.");
             canCheckout = false;
             return false;
         }
         if (book1 == null) {
             book1 = book;
             booksCheckedOut++;
-            return true;
         } else if (book2 == null) {
             book2 = book;
             booksCheckedOut++;
-            return true;
         } else if (book3 == null) {
             book3 = book;
             booksCheckedOut++;
-            return true;
+        } else{
+             return false;
         }
-        return false;
+        book.checkoutBook(this);
+        return true;
     }
 
     public void returnBook(Book book) {
+        if (book.getWhenBookIsDue() >= System.currentTimeMillis()) {
+            this.fineDue += 0.50;
+        }
         if (book1 == book) {
             book1 = null;
             booksCheckedOut--;

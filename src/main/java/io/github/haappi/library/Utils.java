@@ -1,5 +1,7 @@
 package io.github.haappi.library;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,5 +60,12 @@ public class Utils {
 
         returnBooks.removeIf(book -> !book.isAvailable());
         return returnBooks;
+    }
+
+    public static String getBookInformation(@Nullable Book book) {
+        if (book == null) {
+            return "";
+        }
+        return book.getInformation();
     }
 }
