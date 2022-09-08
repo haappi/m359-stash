@@ -120,7 +120,7 @@ public class Person {
     }
 
     public void returnBook(Book book) {
-        if (book.getWhenBookIsDue() >= System.currentTimeMillis()) {
+        if (book.getWhenBookIsDue() <= System.currentTimeMillis()) {
             this.fineDue += 0.50;
         }
         if (book1 == book) {
