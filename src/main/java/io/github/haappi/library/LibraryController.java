@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.jetbrains.annotations.Nullable;
@@ -11,14 +12,24 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.github.haappi.library.Utils.*;
+import static io.github.haappi.library.Utils.getBooksToAdd;
+import static io.github.haappi.library.Utils.getRandomNumber;
 
 public class LibraryController {
     private final static ArrayList<Book> books = new ArrayList<>();
+    private final Person person1;
+    private final Person person2;
+    private final Person person3;
+    private final List<Integer> editableFields = List.of(0, 1, 5); // 0 = name, 1 = age, 5 = genre preference
     public ListView<Book> personBookView;
     @FXML
-    protected Text userInformationOutput;
-    //    public ListView<String> userInformationView;
+    protected Text latestMessage;
+    @FXML
+    protected Text personInformation;
+    @FXML
+    protected ListView<String> userInformationView;
+    @FXML
+    protected Text userBooksOut;
     @FXML
     protected ListView<Person> personView;
     @FXML
@@ -31,14 +42,8 @@ public class LibraryController {
     protected TextField input;
     @FXML
     protected Text bookInfo;
-    @FXML
-    protected Text booksOut;
-
-    private final Person person1;
-    private final Person person2;
-    private final Person person3;
-
     private Person selectedPerson;
+
     public LibraryController() {
         person1 = new Person.PersonBuilder("John Doe").age(18).bookCheckoutLimit(getRandomNumber(1, 3)).genrePreference("Horror").build();
         person2 = new Person.PersonBuilder("Jane Doe").age(16).bookCheckoutLimit(getRandomNumber(1, 3)).genrePreference("Romance").build();
@@ -63,29 +68,27 @@ public class LibraryController {
 
         bookView.getItems().addAll(getBooksToAdd(books));
 
-//        userInformationView.setEditable(true);
-//        userInformationView.setCellFactory(TextFieldListCell.forListView()); // https://stackoverflow.com/questions/53692517/javafx-set-listview-to-be-editable
-        // Just wanted to not use a Text so I can easily edit more stuff yknow
+        userInformationView.setEditable(true);
+        userInformationView.setCellFactory(TextFieldListCell.forListView()); // https://stackoverflow.com/questions/53692517/javafx-set-listview-to-be-editable
     }
 
 
-
+    @SuppressWarnings("unchecked")
     @FXML
     protected void onUserSelect(MouseEvent mouseEvent) {
         ListView<Person> source = (ListView<Person>) mouseEvent.getSource();
         Person selectedPerson = source.getSelectionModel().getSelectedItem();
-//        source.getSelectionModel().clearSelection();
         if (selectedPerson != null) {
             this.selectedPerson = selectedPerson;
-            userInformationOutput.setText(listToString(selectedPerson.getPersonInfo(), "\n"));
+            updatePersonInformation();
 
             updatePersonBookView(this.selectedPerson);
 
-            bookView.getItems().clear();
-            bookView.getItems().addAll(getBooksToAdd(books));
+            updateBookStuff();
         }
     }
 
+    @SuppressWarnings("unchecked")
     @FXML
     protected void onBookSelect(MouseEvent mouseEvent) {
         ListView<Book> source = (ListView<Book>) mouseEvent.getSource();
@@ -97,11 +100,12 @@ public class LibraryController {
         if (this.selectedPerson != null) {
             this.selectedPerson.checkoutBook(book);
             updatePersonBookView(this.selectedPerson);
+            updatePersonInformation();
         }
-        bookView.getItems().clear();
-        bookView.getItems().addAll(getBooksToAdd(books));
+        updateBookStuff();
     }
 
+    @SuppressWarnings("unchecked")
     @FXML
     protected void onPersonBookSelect(MouseEvent mouseEvent) {
         ListView<Book> source = (ListView<Book>) mouseEvent.getSource();
@@ -113,22 +117,61 @@ public class LibraryController {
         if (this.selectedPerson != null) {
             this.selectedPerson.returnBook(book);
             updatePersonBookView(this.selectedPerson);
+            updatePersonInformation();
         }
+        updateBookStuff();
+    }
+
+    @FXML
+    protected void onUserViewEdit(ListView.EditEvent<String> event) {
+        if (this.selectedPerson == null) {
+            return;
+        }
+        int index = event.getIndex();
+        if (editableFields.contains(index)) {
+            String newValue = event.getNewValue();
+            switch (index) {
+                case 0 -> {
+                    this.selectedPerson.setName(newValue);
+                    latestMessage.setText(this.selectedPerson.getName() + "'s Name changed to " + newValue);
+                }
+                case 1 -> {
+                    this.selectedPerson.setAge(Integer.parseInt(newValue));
+                    latestMessage.setText(this.selectedPerson.getName() + "'s Age changed to " + newValue);
+                }
+                case 5 -> {
+                    this.selectedPerson.setGenrePreference(newValue);
+                    latestMessage.setText(this.selectedPerson.getName() + "'s Genre Preference changed to " + newValue);
+                }
+            }
+            updatePersonInformation();
+        }
+    }
+
+    private void updateBookStuff() {
         bookView.getItems().clear();
         bookView.getItems().addAll(getBooksToAdd(books));
-
-
     }
 
     private void updatePersonBookView(@Nullable Person person) {
         if (person == null) {
             return;
         }
+        updatePersonInformation();
         personBookView.getItems().clear();
         personBookView.getItems().add(person.getBook1());
         personBookView.getItems().add(person.getBook2());
         personBookView.getItems().add(person.getBook3());
+    }
 
+    private void updatePersonInformation() {
+        this.updatePersonInformation(this.selectedPerson);
+    }
 
+    private void updatePersonInformation(Person person) {
+        userInformationView.getItems().clear();
+        userInformationView.getItems().addAll(person.getPersonInfo());
+        userBooksOut.setText(person.getName() + "'s books checked out.");
+        personInformation.setText(person.getName() + "'s information");
     }
 }

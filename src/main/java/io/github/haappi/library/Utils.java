@@ -47,6 +47,19 @@ public class Utils {
         return sb.toString();
     }
 
+    @SuppressWarnings("unchecked")
+    public static <E> List<E> stringToList(String string, String separator) {
+        List<E> list = new ArrayList<>();
+        for (String element : string.split(separator)) {
+            list.add((E) element);
+        }
+        return list;
+    }
+
+    public static <E> List<E> stringToList(String string) {
+        return stringToList(string, ", ");
+    }
+
     public static <E> String listToString(List<E> list) {
         return listToString(list, ", ");
     }

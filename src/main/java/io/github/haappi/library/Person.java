@@ -8,15 +8,14 @@ import java.util.List;
 import static io.github.haappi.library.Utils.getRandomStringOfNumbers;
 
 public class Person {
-    private final String name;
-    private final Integer age;
     private final Long libraryCardNumber;
+    private String name;
+    private Integer age;
     private Integer booksCheckedOut = 0;
     private Book book1 = null;
     private Book book2 = null;
     private Book book3 = null;
     private Double fineDue = 0.00;
-
     private Integer bookCheckoutLimit;
     private String genrePreference;
     private Boolean canCheckout = true;
@@ -33,8 +32,16 @@ public class Person {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Integer getAge() {
         return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public Boolean getCanCheckout() {
@@ -89,8 +96,8 @@ public class Person {
         } else if (book3 == null) {
             book3 = book;
             booksCheckedOut++;
-        } else{
-             return false;
+        } else {
+            return false;
         }
         book.checkoutBook(this);
         return true;
@@ -129,14 +136,14 @@ public class Person {
         return name;
     }
 
-    public List<String> getPersonInfo() {
+    public List<String> getPersonInfo() { // I got too lazy to refactor this into a String
         List<String> returnType = new ArrayList<>();
-        returnType.add("Name: " + name);
-        returnType.add("Age: " + age);
-        returnType.add("Library Card Number: " + libraryCardNumber);
-        returnType.add("Books Checked Out: " + booksCheckedOut);
-        returnType.add("Book Checkout Limit: " + bookCheckoutLimit);
-        returnType.add("Genre Preference: " + genrePreference);
+        returnType.add("Name: " + name); // 0
+        returnType.add("Age: " + age); // 1
+        returnType.add("Library Card Number: " + libraryCardNumber); // 2
+        returnType.add("Books Checked Out: " + booksCheckedOut); // 3
+        returnType.add("Book Checkout Limit: " + bookCheckoutLimit); // 4
+        returnType.add("Genre Preference: " + genrePreference); // 5
         return returnType;
     }
 

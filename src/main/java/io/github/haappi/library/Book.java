@@ -13,6 +13,13 @@ public class Book {
     private Long dueDate = -1L; // -1L means the book is not checked out
     private Person checkedOutBy; // I'm too lazy to loop through the People array
 
+    public Book(String name, String author, String genre) {
+        this.name = name;
+        this.author = author;
+        this.genre = genre;
+        this.bookId = getRandomStringOfNumbers(8);
+    }
+
     public @Nullable Person getCheckedOutBy() {
         return checkedOutBy;
     }
@@ -24,13 +31,6 @@ public class Book {
             this.dueDate = System.currentTimeMillis() + checkoutDuration;
         }
         this.checkedOutBy = checkedOutBy;
-    }
-
-    public Book(String name, String author, String genre) {
-        this.name = name;
-        this.author = author;
-        this.genre = genre;
-        this.bookId = getRandomStringOfNumbers(8);
     }
 
     public Long getWhenBookIsDue() {
