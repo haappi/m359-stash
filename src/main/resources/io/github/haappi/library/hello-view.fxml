@@ -15,7 +15,7 @@
                 prefWidth="149.0"/>
       <Text layoutX="107.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of Users"/>
       <Button fx:id="selectButton" layoutX="375.0" layoutY="352.0" mnemonicParsing="false" text="Button"/>
-      <TextField fx:id="input" layoutX="327.0" layoutY="388.0"/>
+      <TextField fx:id="input" layoutX="327.0" layoutY="388.0" onAction="#inputButtonSlapped"/>
       <Text layoutX="327.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library">
          <font>
             <Font size="41.0"/>
@@ -33,5 +33,7 @@
                 prefHeight="200.0" prefWidth="149.0" visible="false"/>
       <Text fx:id="personInformation" layoutX="90.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0"
             text="your's Information" textAlignment="CENTER" visible="false"/>
+      <Button fx:id="higherLimitButton" layoutX="48.0" layoutY="520.0" mnemonicParsing="false" onAction="#higherLimit"
+              text="Request Higher Checkout Limit" visible="false"/>
    </children>
 </AnchorPane>

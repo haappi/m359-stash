@@ -28,6 +28,17 @@ public class Person {
         this.genrePreference = builder.genrePreference;
     }
 
+    public Double getFineDue() {
+        return fineDue;
+    }
+
+    public void setFineDue(Double fineDue) {
+        this.fineDue = fineDue;
+        if (fineDue == 0) {
+            canCheckout = true;
+        }
+    }
+
     public String getName() {
         return name;
     }

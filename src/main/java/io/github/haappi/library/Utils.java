@@ -23,6 +23,7 @@ public class Utils {
         return (int) (Math.random() * (max - min + 1) + min);
     }
 
+    @SuppressWarnings("unused")
     public static String booleanToString(Boolean bool) {
         return bool ? "Yes" : "No";
     }
@@ -35,6 +36,7 @@ public class Utils {
         return array.get(getRandomNumber(0, array.size() - 1));
     }
 
+    @SuppressWarnings("unused")
     public static Integer getRandomElement(Integer sizeOfList) {
         return getRandomNumber(0, sizeOfList - 1);
     }
@@ -56,17 +58,15 @@ public class Utils {
         return list;
     }
 
+    @SuppressWarnings("unused")
     public static <E> List<E> stringToList(String string) {
         return stringToList(string, ", ");
     }
 
+    @SuppressWarnings("unused")
     public static <E> String listToString(List<E> list) {
         return listToString(list, ", ");
     }
-
-//    public static List<Book> getBooksToAdd(Person person) {
-//        return person.getBooksCheckedOut();
-//    }
 
     public static List<Book> getBooksToAdd(List<Book> books) {
         List<Book> returnBooks = new ArrayList<>(books);
@@ -75,6 +75,7 @@ public class Utils {
         return returnBooks;
     }
 
+    @SuppressWarnings("unused")
     public static String getBookInformation(@Nullable Book book) {
         if (book == null) {
             return "";

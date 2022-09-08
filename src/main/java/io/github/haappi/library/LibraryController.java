@@ -23,6 +23,8 @@ public class LibraryController {
     private final List<Integer> editableFields = List.of(0, 1, 5); // 0 = name, 1 = age, 5 = genre preference
     public ListView<Book> personBookView;
     @FXML
+    protected Button higherLimitButton;
+    @FXML
     protected Text latestMessage;
     @FXML
     protected Text personInformation;
@@ -102,8 +104,8 @@ public class LibraryController {
             } else {
                 updatePersonBookView(this.selectedPerson);
                 latestMessage.setText(book.getName() + " has been checked out by " + this.selectedPerson.getName());
-                updatePersonInformation();
             }
+            updatePersonInformation();
         }
         updateBookStuff();
     }
@@ -174,6 +176,14 @@ public class LibraryController {
         userInformationView.setVisible(true);
         personBookView.setVisible(true);
         userBooksOut.setVisible(true);
+        higherLimitButton.setVisible(true);
+
+        if (person.getFineDue() > 0) {
+            input.setVisible(true);
+            input.setPromptText("Enter amount to pay");
+        } else {
+            input.setVisible(false);
+        }
 
         userInformationView.getItems().clear();
         userInformationView.getItems().addAll(person.getPersonInfo());
@@ -184,5 +194,37 @@ public class LibraryController {
         personBookView.getItems().add(person.getBook1());
         personBookView.getItems().add(person.getBook2());
         personBookView.getItems().add(person.getBook3());
+    }
+
+    @FXML
+    protected void higherLimit() {
+        if (this.selectedPerson == null) {
+            return;
+        }
+        int number = getRandomNumber(1, 3);
+        if (number == 3) {
+            latestMessage.setText(this.selectedPerson.getName() + " has been approved for a higher limit!");
+            this.selectedPerson.setBookCheckoutLimit(this.selectedPerson.getBookCheckoutLimit() + 1);
+        }
+        updatePersonInformation();
+    }
+
+    @FXML
+    protected void inputButtonSlapped() {
+        if (this.selectedPerson == null) {
+            return;
+        }
+        String inputText = input.getText();
+        if (inputText.equals("")) {
+            return;
+        }
+        Double amount = Double.parseDouble(inputText);
+        if (amount > this.selectedPerson.getFineDue()) {
+            latestMessage.setText("You can't pay more than you owe!");
+            return;
+        }
+        this.selectedPerson.setFineDue(this.selectedPerson.getFineDue() - amount);
+        latestMessage.setText("You have paid " + amount + " dollars.");
+        updatePersonInformation();
     }
 }

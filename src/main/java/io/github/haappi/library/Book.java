@@ -65,7 +65,7 @@ public class Book {
 
     public String getInformation() {
         return String.format("Book Name: %s\nAuthor: %s\nGenre: %s\nBook ID: %s\nCheckout Duration: %s seconds\nIs Available: %s\n",
-                name, author, genre, bookId, checkoutDuration / 1000, this.getCheckedOutBy() == null ? "Yes" : "No");
+                this.getName(), this.getAuthor(), this.getGenre(), this.getBookId(), checkoutDuration / 1000, this.getCheckedOutBy() == null ? "Yes" : "No");
     }
 
     public String toString() {
