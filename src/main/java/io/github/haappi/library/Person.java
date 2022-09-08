@@ -76,16 +76,14 @@ public class Person {
         return book3;
     }
 
-    public boolean checkoutBook(Book book) {
+    public String checkoutBook(Book book) {
         if (booksCheckedOut >= bookCheckoutLimit) {
-            System.out.println("Walp, it appears you checked out more books your little brain can handle. I can't allow you to checkout books at this time.");
             canCheckout = false;
-            return false;
+            return "Walp, it appears you checked out more books your little brain can handle. I can't allow you to checkout books at this time.";
         }
         if (fineDue > 0.00) {
-            System.out.println("Walp, it appears you have a fine to pay of: " + fineDue + ". I can't allow you to checkout books at this time.");
             canCheckout = false;
-            return false;
+            return "Walp, it appears you have a fine to pay of: " + fineDue + ". I can't allow you to checkout books at this time.";
         }
         if (book1 == null) {
             book1 = book;
@@ -97,10 +95,10 @@ public class Person {
             book3 = book;
             booksCheckedOut++;
         } else {
-            return false;
+            return "You checked out too many books!";
         }
         book.checkoutBook(this);
-        return true;
+        return "You checked out " + book.getName() + " by " + book.getAuthor() + "!";
     }
 
     public void returnBook(Book book) {

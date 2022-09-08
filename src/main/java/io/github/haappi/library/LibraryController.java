@@ -81,9 +81,7 @@ public class LibraryController {
         if (selectedPerson != null) {
             this.selectedPerson = selectedPerson;
             updatePersonInformation();
-
             updatePersonBookView(this.selectedPerson);
-
             updateBookStuff();
         }
     }
@@ -98,9 +96,14 @@ public class LibraryController {
         }
         bookInfo.setText(book.getInformation());
         if (this.selectedPerson != null) {
-            this.selectedPerson.checkoutBook(book);
-            updatePersonBookView(this.selectedPerson);
-            updatePersonInformation();
+            String returnMessage = this.selectedPerson.checkoutBook(book);
+            if (!returnMessage.equals("")) {
+                latestMessage.setText(returnMessage);
+            } else {
+                updatePersonBookView(this.selectedPerson);
+                latestMessage.setText(book.getName() + " has been checked out by " + this.selectedPerson.getName());
+                updatePersonInformation();
+            }
         }
         updateBookStuff();
     }
@@ -118,6 +121,7 @@ public class LibraryController {
             this.selectedPerson.returnBook(book);
             updatePersonBookView(this.selectedPerson);
             updatePersonInformation();
+            latestMessage.setText(book.getName() + " has been returned by " + this.selectedPerson.getName());
         }
         updateBookStuff();
     }
@@ -158,10 +162,7 @@ public class LibraryController {
             return;
         }
         updatePersonInformation();
-        personBookView.getItems().clear();
-        personBookView.getItems().add(person.getBook1());
-        personBookView.getItems().add(person.getBook2());
-        personBookView.getItems().add(person.getBook3());
+
     }
 
     private void updatePersonInformation() {
@@ -169,9 +170,19 @@ public class LibraryController {
     }
 
     private void updatePersonInformation(Person person) {
+        personInformation.setVisible(true);
+        userInformationView.setVisible(true);
+        personBookView.setVisible(true);
+        userBooksOut.setVisible(true);
+
         userInformationView.getItems().clear();
         userInformationView.getItems().addAll(person.getPersonInfo());
         userBooksOut.setText(person.getName() + "'s books checked out.");
         personInformation.setText(person.getName() + "'s information");
+
+        personBookView.getItems().clear();
+        personBookView.getItems().add(person.getBook1());
+        personBookView.getItems().add(person.getBook2());
+        personBookView.getItems().add(person.getBook3());
     }
 }

@@ -24,14 +24,14 @@
       <Text fx:id="bookInfo" layoutX="610.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0"
             text="Book Information"/>
       <ListView fx:id="personBookView" layoutX="275.0" layoutY="99.0" onMouseClicked="#onPersonBookSelect"
-                prefHeight="200.0" prefWidth="200.0"/>
+                prefHeight="200.0" prefWidth="200.0" visible="false"/>
       <Text fx:id="userBooksOut" layoutX="311.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0"
-            text="Your checked out books"/>
+            text="Your checked out books" visible="false"/>
       <Text fx:id="latestMessage" layoutX="347.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0"
             text="Latest Message"/>
       <ListView fx:id="userInformationView" layoutX="64.0" layoutY="345.0" onEditCommit="#onUserViewEdit"
-                prefHeight="200.0" prefWidth="149.0"/>
+                prefHeight="200.0" prefWidth="149.0" visible="false"/>
       <Text fx:id="personInformation" layoutX="90.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0"
-            text="your's Information" textAlignment="CENTER"/>
+            text="your's Information" textAlignment="CENTER" visible="false"/>
    </children>
 </AnchorPane>
