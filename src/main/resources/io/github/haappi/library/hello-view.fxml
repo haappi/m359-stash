@@ -15,8 +15,7 @@
       <ListView fx:id="personView" layoutX="64.0" layoutY="98.0" onMouseClicked="#onUserSelect" prefHeight="200.0"
                 prefWidth="149.0"/>
       <Text layoutX="107.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List of Users"/>
-      <Button fx:id="selectButton" layoutX="375.0" layoutY="352.0" mnemonicParsing="false" text="Button"/>
-      <TextField fx:id="input" layoutX="327.0" layoutY="388.0" onAction="#inputButtonSlapped"/>
+      <TextField fx:id="input" layoutX="327.0" layoutY="388.0" onAction="#inputButtonSlapped" visible="false"/>
       <Text layoutX="327.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Library">
          <font>
             <Font size="41.0"/>

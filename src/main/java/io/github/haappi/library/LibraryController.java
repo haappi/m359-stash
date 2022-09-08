@@ -42,8 +42,6 @@ public class LibraryController {
     @FXML
     protected Text currentBookPage;
     @FXML
-    protected Button selectButton;
-    @FXML
     protected TextField input;
     @FXML
     protected Text bookInfo;
@@ -209,6 +207,8 @@ public class LibraryController {
         if (number == 3) {
             latestMessage.setText(this.selectedPerson.getName() + " has been approved for a higher limit!");
             this.selectedPerson.setBookCheckoutLimit(this.selectedPerson.getBookCheckoutLimit() + 1);
+        } else {
+            latestMessage.setText(this.selectedPerson.getName() + " has not been approved for a higher limit.");
         }
         updatePersonInformation();
     }
