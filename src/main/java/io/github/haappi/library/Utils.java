@@ -1,7 +1,5 @@
 package io.github.haappi.library;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.FileInputStream;
@@ -87,13 +85,13 @@ public class Utils {
         return book.getInformation();
     }
 
-    public static void showCard(ImageView imageView, String fileName) {
+    public static FileInputStream showCard(String fileName) {
         fileName = fileName.replace(" ", "_").split("\\.")[0]; // Escape the dot, get the first element
         try {
-            FileInputStream input = new FileInputStream("src/main/resources/images/" + fileName + ".png");
-            imageView.setImage(new Image(input));
+            return new FileInputStream("src/main/resources/images/" + fileName + ".png");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }

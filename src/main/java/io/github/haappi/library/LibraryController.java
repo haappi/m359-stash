@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import org.jetbrains.annotations.Nullable;
@@ -22,6 +23,8 @@ public class LibraryController {
     private final Person person3;
     private final List<Integer> editableFields = List.of(0, 1, 5); // 0 = name, 1 = age, 5 = genre preference
     public ListView<Book> personBookView;
+    @FXML
+    protected ImageView imageView;
     @FXML
     protected Button higherLimitButton;
     @FXML
@@ -194,6 +197,7 @@ public class LibraryController {
         personBookView.getItems().add(person.getBook1());
         personBookView.getItems().add(person.getBook2());
         personBookView.getItems().add(person.getBook3());
+        imageView.setImage(person.getImage());
     }
 
     @FXML

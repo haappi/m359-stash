@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
@@ -35,5 +36,7 @@
             text="your's Information" textAlignment="CENTER" visible="false"/>
       <Button fx:id="higherLimitButton" layoutX="48.0" layoutY="520.0" mnemonicParsing="false" onAction="#higherLimit"
               text="Request Higher Checkout Limit" visible="false"/>
+      <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="200.0" layoutX="302.0" layoutY="425.0"
+                 pickOnBounds="true" preserveRatio="true"/>
    </children>
 </AnchorPane>

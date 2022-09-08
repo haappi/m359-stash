@@ -1,14 +1,16 @@
 package io.github.haappi.library;
 
+import javafx.scene.image.Image;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static io.github.haappi.library.Utils.getRandomStringOfNumbers;
+import static io.github.haappi.library.Utils.*;
 
 public class Person {
     private final Long libraryCardNumber;
+    private final Image image;
     private String name;
     private Integer age;
     private Integer booksCheckedOut = 0;
@@ -26,6 +28,11 @@ public class Person {
         this.libraryCardNumber = builder.libraryCardNumber;
         this.bookCheckoutLimit = builder.bookCheckoutLimit;
         this.genrePreference = builder.genrePreference;
+        this.image = new Image(showCard(getRandomElement(HelloApplication.imageNames)));
+    }
+
+    public Image getImage() {
+        return image;
     }
 
     public Double getFineDue() {
