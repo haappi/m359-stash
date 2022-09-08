@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
     public static final List<String> bookNames = new ArrayList<>();
     public static final List<String> authorNames = new ArrayList<>();
     public static final List<String> genreNames = List.of("Fiction", "Non-Fiction", "Fantasy", "Graphic Novel", "Romance", "Horror", "Science Fiction", "Biography", "History", "Poetry", "Drama", "Travel", "Children's", "Religion", "Mystery", "Thriller", "Crime");
-
+    public static final List<String> imageNames = List.of("img_1", "img_2", "img_3");
     public static void main(String[] args) {
         launch();
     }
