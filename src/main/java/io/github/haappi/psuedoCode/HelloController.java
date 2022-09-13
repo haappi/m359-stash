@@ -1,4 +1,4 @@
-package io.github.haappi.template;
+package io.github.haappi.psuedoCode;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
