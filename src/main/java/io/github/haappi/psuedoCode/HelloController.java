@@ -56,6 +56,6 @@ public class HelloController {
     }
     return arrayToString(
         numbers); // todo fix the output thing not working across the 20 different types of stuipd
-                  // things i have
+    // things i have
   }
 }
