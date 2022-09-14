@@ -1,16 +1,14 @@
 package io.github.haappi.psuedoCode;
 
-import javafx.fxml.FXML;
-
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
-
 import static io.github.haappi.psuedoCode.Common.arrayToString;
 import static io.github.haappi.psuedoCode.Common.parseJOptionInput;
 
-public class HelloController {
+import java.util.ArrayList;
+import java.util.List;
+import javafx.fxml.FXML;
+import javax.swing.*;
 
+public class HelloController {
 
   private String generateFibonacci(int count) {
     count++;
@@ -25,7 +23,8 @@ public class HelloController {
 
   @FXML
   protected void doFibonacci() {
-    Integer inputDialog = parseJOptionInput(JOptionPane.showInputDialog("How many things "), Integer.class);
+    Integer inputDialog =
+        parseJOptionInput(JOptionPane.showInputDialog("How many things "), Integer.class);
     if (inputDialog == null) {
       JOptionPane.showMessageDialog(null, "Invalid input");
       return;
@@ -35,8 +34,12 @@ public class HelloController {
 
   @FXML
   protected void doMultiples() {
-    Integer instances = parseJOptionInput(JOptionPane.showInputDialog("How many instances? "), Integer.class);
-    Integer y = parseJOptionInput(JOptionPane.showInputDialog("What # do you want to find the multiple for? "), Integer.class);
+    Integer instances =
+        parseJOptionInput(JOptionPane.showInputDialog("How many instances? "), Integer.class);
+    Integer y =
+        parseJOptionInput(
+            JOptionPane.showInputDialog("What # do you want to find the multiple for? "),
+            Integer.class);
 
     if (instances == null || y == null) {
       JOptionPane.showMessageDialog(null, "Invalid input");
@@ -51,6 +54,8 @@ public class HelloController {
     for (int i = 0; i < count; i++) {
       numbers.add(i * multiple);
     }
-    return arrayToString(numbers); // todo fix the output thing not working across the 20 different types of stuipd things i have
+    return arrayToString(
+        numbers); // todo fix the output thing not working across the 20 different types of stuipd
+                  // things i have
   }
 }
