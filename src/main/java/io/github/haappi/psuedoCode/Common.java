@@ -24,11 +24,11 @@ public class Common {
         return newString;
     }
 
-    public static <T> String arrayToString(List<T> array, String seperator) {
+    public static <T> String arrayToString(List<T> array, String separator) {
         String newString = "";
         for (int i = 0; i < array.size() - 1; i++) {
-            newString += array.get(i) + seperator;
-        }
+            newString += array.get(i) + getEndingThing(array.size(), i + 1, separator);
+        } // todo fix the output thing not working across the 20 different types of stuipd things i have
         return newString;
     }
 
@@ -37,39 +37,53 @@ public class Common {
     }
 
     /**
-     * Parses a string to the type specified. Pass a variable from that class type.
+     * Parses a string to the type specified. Pass a variable from that class type. <BR>
+     * May return null if the type couldn't be cast to the specified type
      *
      * @param input The string to parse
-     * @param type  The type to parse to
+     * @param clazz The class type to parse to
      * @param <T>   The type to parse to
      * @return The parsed value
      */
     public @Nullable
-    static <T> T parseJOptionInput(String input, T type) {
+    static <T> T parseJOptionInput(String input, Class<T> clazz) {
         try {
-            if (type instanceof Integer) {
+            if (input == null) {
+                return null;
+            }
+            if (clazz == Integer.class) {
                 return (T) Integer.valueOf(input);
-            } else if (type instanceof Double) {
+            } else if (clazz == Double.class) {
                 return (T) Double.valueOf(input);
-            } else if (type instanceof Float) {
+            } else if (clazz == Float.class) {
                 return (T) Float.valueOf(input);
-            } else if (type instanceof Long) {
+            } else if (clazz == Long.class) {
                 return (T) Long.valueOf(input);
-            } else if (type instanceof Short) {
+            } else if (clazz == Short.class) {
                 return (T) Short.valueOf(input);
-            } else if (type instanceof Byte) {
+            } else if (clazz == Byte.class) {
                 return (T) Byte.valueOf(input);
-            } else if (type instanceof Boolean) {
+            } else if (clazz == Boolean.class) {
                 return (T) Boolean.valueOf(input);
-            } else if (type instanceof Character) {
-                return (T) Character.valueOf(input.charAt(0));
-            } else if (type instanceof String) {
+            } else if (clazz == String.class) {
                 return (T) input;
             } else {
-                throw new IllegalArgumentException("Type not supported");
+                throw new IllegalArgumentException("Unknown type: " + clazz);
             }
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static String getEndingThing(int totalCount, int currentCount, String separator) {
+        if (totalCount == currentCount) {
+            return ".";
+        } else {
+            return separator;
+        }
+    }
+
+    public static String getEndingThing(int totalCount, int currentCount) {
+        return getEndingThing(totalCount, currentCount, ", ");
     }
 }

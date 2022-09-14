@@ -1,0 +1,35 @@
+Fibonacci sequence-
+Make an array or a string with a seperator of some sort
+add 2 elements by default; 0, 1
+loop through the array and add the last 2 elements together
+add the new element to the array
+repeat until user input + 2 (because of the 2 elements added by default)
+
+x number oif multiples of y
+just a basic for loop, starting at 0, going up to x + 1, and adding y to the counter each time
+> or i can just multiply by the counter
+
+print substrings of a number
+convert the number to a string
+- use a double for loop to loop through the string
+- the outer loop will be the starting index
+- the inner loop will be the ending index
+it would increment by 1 each time, thus leading to each substring being printed
+THIS WON'T PRINT ALL PERMUTATIONS OF THE STRING.
+
+prime factoraization
+integer division the number by all single digit prime numbers until all things are single digits prime numbers
+
+Strong numbers:
+convert the number to a string
+loop through the string
+raise each digit to the length of the string (Math.pow)
+add the result to a counter
+if the counter is equal to the number, then it is a strong number
+
+Armstrong / Narcissistic numbers:
+convert the number to a string
+loop through the string
+cube each digit
+see if they all add up to the number
+if it does, then it is an armstrong number
