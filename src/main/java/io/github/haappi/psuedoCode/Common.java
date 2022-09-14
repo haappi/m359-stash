@@ -1,7 +1,8 @@
 package io.github.haappi.psuedoCode;
 
-import java.util.List;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * Just an utils class for common methods that can be shared between the different "programs"<br>
@@ -23,11 +24,11 @@ public class Common {
     return newString;
   }
 
-  public static <T> String arrayToString(List<T> array, String separator) {
+  public static <E> String arrayToString(List<E> array, String separator) {
     String newString = "";
     for (int i = 0; i < array.size() - 1; i++) {
       newString += array.get(i) + separator;
-    } // todo fix the output thing not working across the 20 different types of stuipd things i have
+    }
 
     newString = newString.substring(0, newString.length() - separator.length()) + ".";
     return newString;
@@ -71,12 +72,11 @@ public class Common {
       } else {
         throw new IllegalArgumentException("Unknown type: " + clazz);
       }
+    } catch (NumberFormatException e) {
+      return null;
     } catch (Exception e) {
+      e.printStackTrace();
       return null;
     }
   }
-
-  //  public static String getEndingThing(int totalCount, int currentCount) {
-  //    return getEndingThing(totalCount, currentCount, ", ");
-  //  }
 }
