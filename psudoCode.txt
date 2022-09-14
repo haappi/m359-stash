@@ -33,3 +33,8 @@ loop through the string
 cube each digit
 see if they all add up to the number
 if it does, then it is an armstrong number
+
+Heron's method for calculating a square root
+a lot of looping
+- take the output & use it in the next calculation
+loop like, 10 ish times?

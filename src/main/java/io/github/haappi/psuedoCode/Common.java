@@ -26,8 +26,10 @@ public class Common {
   public static <T> String arrayToString(List<T> array, String separator) {
     String newString = "";
     for (int i = 0; i < array.size() - 1; i++) {
-      newString += array.get(i) + getEndingThing(array.size(), i + 1, separator);
+      newString += array.get(i) + separator;
     } // todo fix the output thing not working across the 20 different types of stuipd things i have
+
+    newString = newString.substring(0, newString.length() - separator.length()) + ".";
     return newString;
   }
 
@@ -44,6 +46,7 @@ public class Common {
    * @param <T> The type to parse to
    * @return The parsed value
    */
+  @SuppressWarnings("unchecked")
   public @Nullable static <T> T parseJOptionInput(String input, Class<T> clazz) {
     try {
       if (input == null) {
@@ -73,15 +76,7 @@ public class Common {
     }
   }
 
-  public static String getEndingThing(int totalCount, int currentCount, String separator) {
-    if (totalCount == currentCount) {
-      return ".";
-    } else {
-      return separator;
-    }
-  }
-
-  public static String getEndingThing(int totalCount, int currentCount) {
-    return getEndingThing(totalCount, currentCount, ", ");
-  }
+//  public static String getEndingThing(int totalCount, int currentCount) {
+//    return getEndingThing(totalCount, currentCount, ", ");
+//  }
 }
