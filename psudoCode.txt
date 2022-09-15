@@ -38,3 +38,18 @@ Heron's method for calculating a square root
 a lot of looping
 - take the output & use it in the next calculation
 loop like, 10 ish times?
+
+calucuatying if a number is prime
+ignore all numbers less than or equal to 1
+- just return false for them
+loop through all numbers from 2 to the number divided by 2
+- we only need to check half because after the halfway point, wer're justy doing useless work
+- if the number is divisible by any of the numbers, then it is not prime
+- if it is not divisible by any of the numbers, then it is prime
+a lot of looping!
+
+getting x prime numbers
+use the above functiopn to calucate if the given number is prime or not
+- if it is, add it to an array
+loop through x times and return the array as a string
+returns a len of x prime numbers

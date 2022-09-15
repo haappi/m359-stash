@@ -24,6 +24,11 @@ public class Common {
     return newString;
   }
 
+  public static String formatStringWithSeparator(String string, String separator, String split) {
+    List<String> splitString = List.of(string.split(split));
+    return arrayToString(splitString, separator);
+  }
+
   public static <E> String arrayToString(List<E> array, String separator) {
     String newString = "";
     for (int i = 0; i < array.size() - 1; i++) {
@@ -78,5 +83,23 @@ public class Common {
       e.printStackTrace();
       return null;
     }
+  }
+
+  /**
+   * Returns a boolean whether the input is a prime number.
+   *
+   * @param number An int to check
+   * @return Whether the number is prime or not
+   */
+  public static boolean isPrime(int number) {
+    if (number <= 1) { // 1 & I'm starting at 2, so I need to check this case.
+      return false;
+    }
+    for (int i = 2; i < number / 2; i++) { // only need to check up to half the number
+      if (number % i == 0) {
+        return false;
+      }
+    }
+    return true;
   }
 }
