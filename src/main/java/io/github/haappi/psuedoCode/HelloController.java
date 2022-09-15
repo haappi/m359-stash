@@ -1,12 +1,11 @@
 package io.github.haappi.psuedoCode;
 
-import javafx.fxml.FXML;
+import static io.github.haappi.psuedoCode.Common.*;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static io.github.haappi.psuedoCode.Common.*;
+import javafx.fxml.FXML;
+import javax.swing.*;
 
 public class HelloController {
 
@@ -54,14 +53,14 @@ public class HelloController {
     for (int i = 0; i < count; i++) {
       numbers.add(i * multiple);
     }
-    return arrayToString(
-            numbers);
+    return arrayToString(numbers);
   }
 
   @FXML
   protected void expandANumberThing() {
     Integer input =
-            parseJOptionInput(JOptionPane.showInputDialog("What number do you want to expand? "), Integer.class);
+        parseJOptionInput(
+            JOptionPane.showInputDialog("What number do you want to expand? "), Integer.class);
     if (input == null) {
       JOptionPane.showMessageDialog(null, "Invalid input");
       return;
@@ -73,9 +72,11 @@ public class HelloController {
     String numberString = String.valueOf(number);
     String newString = "";
     for (int i = 0; i < numberString.length(); i++) {
-      newString = newString + numberString.charAt(i) + getZeros(numberString.length() - i - 1) + ", ";
+      newString =
+          newString + numberString.charAt(i) + getZeros(numberString.length() - i - 1) + ", ";
     }
-    return formatStringWithSeparator(newString, " + ", ", "); // fixme the last number is just yeeted out of existence
+    return formatStringWithSeparator(
+        newString, " + ", ", "); // fixme the last number is just yeeted out of existence
   }
 
   private String getZeros(int count) {
@@ -89,7 +90,8 @@ public class HelloController {
   @FXML
   protected void getXPrimes() {
     Integer input =
-            parseJOptionInput(JOptionPane.showInputDialog("How many primes do you want? "), Integer.class);
+        parseJOptionInput(
+            JOptionPane.showInputDialog("How many primes do you want? "), Integer.class);
     if (input == null) {
       JOptionPane.showMessageDialog(null, "Invalid input");
       return;

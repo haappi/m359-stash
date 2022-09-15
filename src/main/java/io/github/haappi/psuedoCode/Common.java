@@ -1,8 +1,7 @@
 package io.github.haappi.psuedoCode;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Just an utils class for common methods that can be shared between the different "programs"<br>
@@ -49,7 +48,7 @@ public class Common {
    *
    * @param input The {@link java.lang.String} to parse
    * @param clazz The {@link java.lang.Class} type to parse to
-   * @param <T>   The type to parse to
+   * @param <T> The type to parse to
    * @return The parsed value
    */
   @SuppressWarnings("unchecked")
