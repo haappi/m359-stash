@@ -1,6 +1,8 @@
 package io.github.haappi.psuedoCode;
 
 import java.util.List;
+
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -43,13 +45,13 @@ public class Common {
   }
 
   /**
-   * Parses a string to the type specified. Pass a variable from that class type. <br>
-   * May return <span color="orange">null</span> if the type couldn't be cast to the specified type
+   * Parses a {@link java.lang.String} to the type specified. Pass a variable from that {@link java.lang.Class} type. <br>
+   * May return {@link null} if the type couldn't be cast to the specified type
    *
    * @param input The {@link java.lang.String} to parse
    * @param clazz The {@link java.lang.Class} type to parse to
    * @param <T> The type to parse to
-   * @return The parsed value
+   * @return The parsed value, cast to the specified {@link java.lang.Class}
    */
   @SuppressWarnings("unchecked")
   public @Nullable static <T> T parseJOptionInput(String input, Class<T> clazz) {
@@ -100,5 +102,21 @@ public class Common {
       }
     }
     return true;
+  }
+
+  /**
+   * Gets the factorial of the given {@link java.lang.Integer}
+   * @param number An {@link java.lang.Integer} to find the factorial of.
+   * @return An {@link java.lang.Integer}, returning the factorial.
+   */
+  public static @Nullable Integer factorial(Integer number) {
+    if (number < 0) {
+      return null;
+    }
+    int output = 1;
+    for (int i = number; i != 1; i--) {
+      output = output * i;
+    }
+    return output;
   }
 }
