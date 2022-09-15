@@ -1,114 +1,182 @@
 package io.github.haappi.psuedoCode;
 
-import static io.github.haappi.psuedoCode.Common.*;
+import javafx.fxml.FXML;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.fxml.FXML;
-import javax.swing.*;
+
+import static io.github.haappi.psuedoCode.Common.*;
 
 public class HelloController {
 
-  private String generateFibonacci(int count) {
-    count++;
-    List<Integer> numbers = new ArrayList<>();
-    numbers.add(0);
-    numbers.add(1);
-    for (int i = 2; i < count; i++) {
-      numbers.add(numbers.get(i - 2) + numbers.get(i - 1)); // add the last two numbers together
-    }
-    return arrayToString(numbers);
-  }
+    private final List<Integer> listOfPrimes;
 
-  @FXML
-  protected void doFibonacci() {
-    Integer inputDialog =
-        parseJOptionInput(JOptionPane.showInputDialog("How many things "), Integer.class);
-    if (inputDialog == null) {
-      JOptionPane.showMessageDialog(null, "Invalid input");
-      return;
+    public HelloController() {
+        listOfPrimes = List.of(2, 3, 5, 7, 11);
     }
-    System.out.println(generateFibonacci(inputDialog));
-  }
 
-  @FXML
-  protected void doMultiples() {
-    Integer instances =
-        parseJOptionInput(JOptionPane.showInputDialog("How many instances? "), Integer.class);
-    Integer y =
-        parseJOptionInput(
-            JOptionPane.showInputDialog("What # do you want to find the multiple for? "),
-            Integer.class);
-
-    if (instances == null || y == null) {
-      JOptionPane.showMessageDialog(null, "Invalid input");
-      return;
+    /**
+     * This function is totally useless. Go away<br>
+     * <p>
+     * 1. <span color="green">Print x multiples of y</span><br>
+     * 2. <span color="red">Print substrings of a string</span><br>
+     * 3. <span color="red">Roll x die y times and print out the max, min, and average</span><br>
+     * 4. <span color="green">Expand a number</span><br>
+     * 5. <span color="green">Calculate if a number is Prime</span><br>
+     * 6. <span color="green">Print x # of primes</span><br>
+     * 7. <span color="red">Prime factoriztion of a number</span><br>
+     * 8. <span color="red">Reduce a #</span><br>
+     * 9. <span color="green">Fibonacci</span><br>
+     * 10. <span color="red">Pairs of factors</span><br>
+     * 11. <span color="red">calculate the factorial of a number</span><br>
+     * 12. <span color="red">list of strong numbers</span><br>
+     * 13. <span color="red">list of armstrong numbers</span><br>
+     * 14. <span color="red">list of narcissistic numbers (same as above)</span><br>
+     * 15. <span color="red">Heron's method for calcualating a square root</span><br>
+     * 16. <span color="red">Caculate PI using an ininfite series</span><br>
+     */
+    private void absolutelyUselessFunction() {
+        throw new RuntimeException("bruh");
     }
-    System.out.println(generateMultiples(instances, y));
-  }
 
-  private String generateMultiples(int count, int multiple) {
-    count++;
-    List<Integer> numbers = new ArrayList<>();
-    for (int i = 0; i < count; i++) {
-      numbers.add(i * multiple);
+    private String generateFibonacci(int count) {
+        count++;
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1); //todo just check this over
+        numbers.add(1);
+        for (int i = 2; i < count; i++) {
+            numbers.add(numbers.get(i - 2) + numbers.get(i - 1)); // add the last two numbers together
+        }
+        return arrayToString(numbers);
     }
-    return arrayToString(numbers);
-  }
 
-  @FXML
-  protected void expandANumberThing() {
-    Integer input =
-        parseJOptionInput(
-            JOptionPane.showInputDialog("What number do you want to expand? "), Integer.class);
-    if (input == null) {
-      JOptionPane.showMessageDialog(null, "Invalid input");
-      return;
+    @FXML
+    protected void getFactorial() {
+        Integer inputDialog =
+                parseJOptionInput(JOptionPane.showInputDialog("What number do you want to find the factorial for? "), Integer.class);
+        if (inputDialog == null) {
+            JOptionPane.showMessageDialog(null, "Invalid input");
+            return;
+        }
+        System.out.println(factorial(inputDialog));
     }
-    System.out.println(expandANumber(input));
-  }
 
-  private String expandANumber(int number) {
-    String numberString = String.valueOf(number);
-    String newString = "";
-    for (int i = 0; i < numberString.length(); i++) {
-      newString =
-          newString + numberString.charAt(i) + getZeros(numberString.length() - i - 1) + ", ";
-    }
-    return formatStringWithSeparator(
-        newString, " + ", ", "); // fixme the last number is just yeeted out of existence
-  }
+    @FXML
+    protected void isNumberStrong() {
+        Integer inputDialog =
+                parseJOptionInput(JOptionPane.showInputDialog("What number do you want to find the factorial for? "), Integer.class);
+        if (inputDialog == null) {
+            JOptionPane.showMessageDialog(null, "Invalid input");
+            return;
+        }
+        Long factorial = factorial(inputDialog);
 
-  private String getZeros(int count) {
-    String zeros = "";
-    for (int i = 0; i < count; i++) {
-      zeros += "0";
+        if (factorial == Long.parseLong(String.valueOf(inputDialog))) {
+            System.out.println("is a facty boi");
+        } else {
+            System.out.println("you no is a facty bo"); // isnt a factorial in this case
+        }
     }
-    return zeros;
-  }
 
-  @FXML
-  protected void getXPrimes() {
-    Integer input =
-        parseJOptionInput(
-            JOptionPane.showInputDialog("How many primes do you want? "), Integer.class);
-    if (input == null) {
-      JOptionPane.showMessageDialog(null, "Invalid input");
-      return;
+    @FXML
+    protected void doFibonacci() {
+        Integer inputDialog =
+                parseJOptionInput(JOptionPane.showInputDialog("How many numbers do you want to go til? "), Integer.class);
+        if (inputDialog == null) {
+            JOptionPane.showMessageDialog(null, "Invalid input");
+            return;
+        }
+        System.out.println(generateFibonacci(inputDialog));
     }
-    System.out.println(getFirstXPrimes(input));
-  }
 
-  private String getFirstXPrimes(int count) {
-    List<Integer> primes = new ArrayList<>();
-    int i = 1;
-    while (primes.size() < count) {
-      if (isPrime(i)) {
-        primes.add(i);
-      }
-      i++;
+    @FXML
+    protected void doMultiples() {
+        Integer instances =
+                parseJOptionInput(JOptionPane.showInputDialog("How many instances? "), Integer.class);
+        Integer y =
+                parseJOptionInput(
+                        JOptionPane.showInputDialog("What # do you want to find the multiple for? "),
+                        Integer.class);
+
+        if (instances == null || y == null) {
+            JOptionPane.showMessageDialog(null, "Invalid input");
+            return;
+        }
+        System.out.println(generateMultiples(instances, y));
     }
-    System.out.println(primes); // fixme this is also removing a number for some reason
-    return arrayToString(primes);
-  }
+
+    private String generateMultiples(int count, int multiple) {
+        count++;
+        List<Integer> numbers = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            numbers.add(i * multiple);
+        }
+        return arrayToString(numbers);
+    }
+
+    @FXML
+    protected void expandANumberThing() {
+        Integer input =
+                parseJOptionInput(
+                        JOptionPane.showInputDialog("What number do you want to expand? "), Integer.class);
+        if (input == null) {
+            JOptionPane.showMessageDialog(null, "Invalid input");
+            return;
+        }
+        System.out.println(expandANumber(input));
+    }
+
+    private String expandANumber(int number) {
+        String numberString = String.valueOf(number);
+        String newString = "";
+        for (int i = 0; i < numberString.length(); i++) {
+            newString =
+                    newString + numberString.charAt(i) + getZeros(numberString.length() - i - 1) + ", ";
+        }
+        return formatStringWithSeparator(
+                newString, " + ", ", "); // fixme the last number is just yeeted out of existence
+    }
+
+    private String getZeros(int count) {
+        String zeros = "";
+        for (int i = 0; i < count; i++) {
+            zeros += "0";
+        }
+        return zeros;
+    }
+
+//  private String doPrimeFactorization(int numberToFactor) {
+//    boolean isNumberPrime = isPrime(numberToFactor);
+//    if (isNumberPrime) {
+//      return String.valueOf(numberToFactor);
+//    }
+//
+//
+//  }
+
+    @FXML
+    protected void getXPrimes() {
+        Integer input =
+                parseJOptionInput(
+                        JOptionPane.showInputDialog("How many primes do you want? "), Integer.class);
+        if (input == null) {
+            JOptionPane.showMessageDialog(null, "Invalid input");
+            return;
+        }
+        System.out.println(getFirstXPrimes(input));
+    }
+
+    private String getFirstXPrimes(int count) {
+        List<Integer> primes = new ArrayList<>();
+        int i = 1;
+        while (primes.size() < count) {
+            if (isPrime(i)) {
+                primes.add(i);
+            }
+            i++;
+        }
+        System.out.println(primes); // fixme this is also removing a number for some reason
+        return arrayToString(primes);
+    }
 }
