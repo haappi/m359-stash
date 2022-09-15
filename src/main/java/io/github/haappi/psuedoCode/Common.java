@@ -107,15 +107,17 @@ public class Common {
   /**
    * Gets the factorial of the given {@link java.lang.Integer}
    * @param number An {@link java.lang.Integer} to find the factorial of.
-   * @return An {@link java.lang.Integer}, returning the factorial.
+   * @return An {@link java.lang.Long}, returning the factorial.
    */
-  public static @Nullable Integer factorial(Integer number) {
+  public static @Nullable Long factorial(Integer number) {
     if (number < 0) {
       return null;
     }
-    int output = 1;
-    for (int i = number; i != 1; i--) {
-      output = output * i;
+    long output = 1L;
+    int iteration = number;
+    while (iteration != 1) {
+      output*= iteration;
+      iteration--;
     }
     return output;
   }
