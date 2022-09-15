@@ -40,11 +40,11 @@ public class Common {
 
   /**
    * Parses a string to the type specified. Pass a variable from that class type. <br>
-   * May return null if the type couldn't be cast to the specified type
+   * May return <span color="orange">null</span> if the type couldn't be cast to the specified type
    *
-   * @param input The string to parse
-   * @param clazz The class type to parse to
-   * @param <T> The type to parse to
+   * @param input The {@link java.lang.String} to parse
+   * @param clazz The {@link java.lang.Class} type to parse to
+   * @param <T>   The type to parse to
    * @return The parsed value
    */
   @SuppressWarnings("unchecked")
@@ -66,7 +66,7 @@ public class Common {
       } else if (clazz == Byte.class) {
         return (T) Byte.valueOf(input);
       } else if (clazz == Boolean.class) {
-        return (T) Boolean.valueOf(input);
+        return (T) Boolean.valueOf(input.toLowerCase());
       } else if (clazz == String.class) {
         return (T) input;
       } else {
