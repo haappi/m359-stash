@@ -1,11 +1,12 @@
 package io.github.haappi.psuedoCode;
 
-import static io.github.haappi.psuedoCode.Common.*;
+import javafx.fxml.FXML;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.fxml.FXML;
-import javax.swing.*;
+
+import static io.github.haappi.psuedoCode.Common.*;
 
 public class HelloController {
 
@@ -19,8 +20,8 @@ public class HelloController {
    * This function is totally useless. Go away<br>
    *
    * <p>1. <span color="green">Print x multiples of y</span><br>
-   * 2. <span color="red">Print substrings of a string</span><br>
-   * 3. <span color="red">Roll x die y times and print out the max, min, and average</span><br>
+   * 2. <span color="green">Print substrings of a string</span><br>
+   * 3. <span color="green">Roll x die y times and print out the max, min, and average</span><br>
    * 4. <span color="green">Expand a number</span><br>
    * 5. <span color="green">Calculate if a number is Prime</span><br>
    * 6. <span color="green">Print x # of primes</span><br>
@@ -32,7 +33,7 @@ public class HelloController {
    * 12. <span color="red">list of strong numbers</span><br>
    * 13. <span color="red">list of armstrong numbers</span><br>
    * 14. <span color="red">list of narcissistic numbers (same as above)</span><br>
-   * 15. <span color="red">Heron's method for calcualating a square root</span><br>
+   * 15. <span color="yellow">Heron's method for calcualating a square root</span><br>
    * 16. <span color="red">Caculate PI using an ininfite series</span><br>
    */
   private void absolutelyUselessFunction() {
@@ -182,5 +183,99 @@ public class HelloController {
     }
     System.out.println(primes); // fixme this is also removing a number for some reason
     return arrayToString(primes);
+  }
+
+  @FXML
+  protected void subStringer() {
+    String input = JOptionPane.showInputDialog("What string do you want to sub string? ");
+    System.out.println(printSubStringsOf(input));
+  }
+
+  private String printSubStringsOf(String string) {
+    String newString = ""; // fixme last character not being added
+    for (int i = 0; i < string.length(); i++) {
+      for (int j = i + 1; j <= string.length(); j++) {
+        newString += string.substring(i, j) + ", ";
+      }
+    }
+    return formatStringWithSeparator(newString, ", ", ", ");
+  }
+
+  @FXML
+  protected void diceRoller() {
+    Integer numberOfDie =
+            parseJOptionInput(
+                    JOptionPane.showInputDialog("How many dice do you want to roll? "), Integer.class);
+
+    Integer numberOfTimes =
+            parseJOptionInput(
+                    JOptionPane.showInputDialog("How many times do you want to roll? "), Integer.class);
+
+    Integer numberOfSides =
+            parseJOptionInput(
+                    JOptionPane.showInputDialog("How many sides do you want the dice to have? Ignore for 6"),
+                    Integer.class);
+
+    if (numberOfDie == null || numberOfTimes == null) {
+      JOptionPane.showMessageDialog(null, "Invalid input");
+      return;
+    }
+    if (numberOfSides == null) {
+      numberOfSides = 6;
+    }
+    System.out.println(rollXDiceYTimes(numberOfDie, numberOfTimes, numberOfSides));
+  }
+
+  private String rollXDiceYTimes(int numberOfDice, int numberOfTimes, int diceSides) {
+    int average = 0;
+    int min = 0;
+    int max = 0;
+
+    for (int i = 0; i < numberOfTimes; i++) {
+      int roll = rollNumberOfDice(numberOfDice, diceSides);
+      average += roll;
+      if (roll > max) {
+        max = roll;
+      }
+      if (roll < min) {
+        min = roll;
+      }
+    }
+    average = average / numberOfTimes;
+    return "Average: " + average + ", Min: " + min + ", Max: " + max;
+  }
+
+  private int rollNumberOfDice(int numberOfDice, int diceSides) {
+    int total = 0;
+    for (int i = 0; i < numberOfDice; i++) {
+      total += rollDice(diceSides);
+    }
+    return total;
+  }
+
+  private int rollDice(int diceSides) {
+    return (int) (Math.random() * diceSides) + 1;
+  }
+
+  @FXML
+  protected void heronSquare() {
+    Integer input =
+            parseJOptionInput(
+                    JOptionPane.showInputDialog("What is the nunber you want to find the sqrt of? "), Integer.class);
+    if (input == null) {
+      JOptionPane.showMessageDialog(null, "Invalid input");
+      return;
+    }
+
+    System.out.println(getSquareRootOf(input));
+    System.out.println(Math.sqrt(input));
+  }
+
+  private double getSquareRootOf(double guess) {
+    double newGuess = guess;
+    for (int i = 0; i < 50; i++) {
+      newGuess = heronsMethodForSquare(newGuess); // fixme this is not working. always yeilds 6.48...
+    }
+    return newGuess;
   }
 }

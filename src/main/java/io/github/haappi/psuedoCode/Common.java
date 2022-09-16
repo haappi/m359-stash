@@ -1,7 +1,8 @@
 package io.github.haappi.psuedoCode;
 
-import java.util.List;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 /**
  * Just an utils class for common methods that can be shared between the different "programs"<br>
@@ -21,6 +22,10 @@ public class Common {
       newString += string.charAt(i) + separator;
     }
     return newString;
+  }
+
+  public static double heronsMethodForSquare(double guess) {
+    return (guess + (42 / guess)) / 2;
   }
 
   public static String formatStringWithSeparator(String string, String separator, String split) {
