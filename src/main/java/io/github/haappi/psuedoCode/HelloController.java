@@ -1,12 +1,11 @@
 package io.github.haappi.psuedoCode;
 
-import javafx.fxml.FXML;
+import static io.github.haappi.psuedoCode.Common.*;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static io.github.haappi.psuedoCode.Common.*;
+import javafx.fxml.FXML;
+import javax.swing.*;
 
 public class HelloController {
 
@@ -204,17 +203,18 @@ public class HelloController {
   @FXML
   protected void diceRoller() {
     Integer numberOfDie =
-            parseJOptionInput(
-                    JOptionPane.showInputDialog("How many dice do you want to roll? "), Integer.class);
+        parseJOptionInput(
+            JOptionPane.showInputDialog("How many dice do you want to roll? "), Integer.class);
 
     Integer numberOfTimes =
-            parseJOptionInput(
-                    JOptionPane.showInputDialog("How many times do you want to roll? "), Integer.class);
+        parseJOptionInput(
+            JOptionPane.showInputDialog("How many times do you want to roll? "), Integer.class);
 
     Integer numberOfSides =
-            parseJOptionInput(
-                    JOptionPane.showInputDialog("How many sides do you want the dice to have? Ignore for 6"),
-                    Integer.class);
+        parseJOptionInput(
+            JOptionPane.showInputDialog(
+                "How many sides do you want the dice to have? Ignore for 6"),
+            Integer.class);
 
     if (numberOfDie == null || numberOfTimes == null) {
       JOptionPane.showMessageDialog(null, "Invalid input");
@@ -260,8 +260,9 @@ public class HelloController {
   @FXML
   protected void heronSquare() {
     Integer input =
-            parseJOptionInput(
-                    JOptionPane.showInputDialog("What is the nunber you want to find the sqrt of? "), Integer.class);
+        parseJOptionInput(
+            JOptionPane.showInputDialog("What is the nunber you want to find the sqrt of? "),
+            Integer.class);
     if (input == null) {
       JOptionPane.showMessageDialog(null, "Invalid input");
       return;
@@ -274,7 +275,8 @@ public class HelloController {
   private double getSquareRootOf(double guess) {
     double newGuess = guess;
     for (int i = 0; i < 50; i++) {
-      newGuess = heronsMethodForSquare(newGuess); // fixme this is not working. always yeilds 6.48...
+      newGuess =
+          heronsMethodForSquare(newGuess); // fixme this is not working. always yeilds 6.48...
     }
     return newGuess;
   }

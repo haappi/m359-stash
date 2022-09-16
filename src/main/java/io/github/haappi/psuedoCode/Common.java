@@ -1,8 +1,7 @@
 package io.github.haappi.psuedoCode;
 
-import org.jetbrains.annotations.Nullable;
-
 import java.util.List;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Just an utils class for common methods that can be shared between the different "programs"<br>
