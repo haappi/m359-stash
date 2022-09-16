@@ -162,7 +162,6 @@ public class HelloController {
   @FXML
   protected void getPi() {
     System.out.println(calcuatePi());
-
   }
 
   @FXML
@@ -285,6 +284,4 @@ public class HelloController {
     } while (x != round((x + (guess / x)) / 2, 5));
     return x;
   }
-
-
 }

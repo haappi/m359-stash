@@ -142,5 +142,4 @@ public class Common {
     }
     return pi * 4; // multiply by 4 to get pi (Leibniz formula)
   }
-
 }
