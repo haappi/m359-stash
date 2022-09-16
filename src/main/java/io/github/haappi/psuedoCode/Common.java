@@ -23,8 +23,13 @@ public class Common {
     return newString;
   }
 
-  public static double heronsMethodForSquare(double guess) {
-    return (guess + (42 / guess)) / 2;
+  public static double round(double number, int places) {
+    places = (int) Math.pow(10, places);
+    return Math.floor(number * places) / places;
+  }
+
+  public static double round(double number) {
+    return round(number, 2);
   }
 
   public static String formatStringWithSeparator(String string, String separator, String split) {
@@ -125,4 +130,17 @@ public class Common {
     }
     return output;
   }
+
+  public static double calcuatePi() {
+    int denominator = 1;
+    int numerator = 1;
+    double pi = 0;
+    for (int i = 0; i < 100000; i++) {
+      pi += (double) numerator / denominator; // add the fraction
+      denominator += 2; // add two to the denominator as per the formula
+      numerator *= -1; // flip the sign
+    }
+    return pi * 4; // multiply by 4 to get pi (Leibniz formula)
+  }
+
 }

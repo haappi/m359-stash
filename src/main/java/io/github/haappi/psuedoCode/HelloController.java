@@ -32,8 +32,8 @@ public class HelloController {
    * 12. <span color="red">list of strong numbers</span><br>
    * 13. <span color="red">list of armstrong numbers</span><br>
    * 14. <span color="red">list of narcissistic numbers (same as above)</span><br>
-   * 15. <span color="yellow">Heron's method for calcualating a square root</span><br>
-   * 16. <span color="red">Caculate PI using an ininfite series</span><br>
+   * 15. <span color="green">Heron's method for calcualating a square root</span><br>
+   * 16. <span color="green">Caculate PI using an ininfite series</span><br>
    */
   private void absolutelyUselessFunction() {
     throw new RuntimeException("bruh");
@@ -160,6 +160,12 @@ public class HelloController {
   //  }
 
   @FXML
+  protected void getPi() {
+    System.out.println(calcuatePi());
+
+  }
+
+  @FXML
   protected void getXPrimes() {
     Integer input =
         parseJOptionInput(
@@ -273,11 +279,12 @@ public class HelloController {
   }
 
   private double getSquareRootOf(double guess) {
-    double newGuess = guess;
-    for (int i = 0; i < 50; i++) {
-      newGuess =
-          heronsMethodForSquare(newGuess); // fixme this is not working. always yeilds 6.48...
-    }
-    return newGuess;
+    double x = 1D;
+    do {
+      x = round((x + (guess / x)) / 2, 5);
+    } while (x != round((x + (guess / x)) / 2, 5));
+    return x;
   }
+
+
 }
