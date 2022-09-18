@@ -37,9 +37,10 @@ if it does, then it is an armstrong number
 Heron's method for calculating a square root
 a lot of looping
 - take the output & use it in the next calculation
+- efficitvely using a lot of recursive calls.
 loop like, 10 ish times?
 
-calucuatying if a number is prime
+calucuatying if a number is prime-+
 ignore all numbers less than or equal to 1
 - just return false for them
 loop through all numbers from 2 to the number divided by 2
@@ -50,6 +51,42 @@ a lot of looping!
 
 getting x prime numbers
 use the above functiopn to calucate if the given number is prime or not
-- if it is, add it to an array
+- if it is, add it to an array (maybe)
 loop through x times and return the array as a string
 returns a len of x prime numbers
+
+expanding a number
+convert the number to a string
+loop through the string
+- for each digit, add a 0 to the end of the string times the length of the string - 1 - the index of the digit
+
+calculating pi:
+use a formula (like Leibniz's formula)
+- loop through a bunch of times
+- like a lot lot, it needs to be accurate (so around 1k times)
+- add the result to a counter & multiply by 4 (because thats what the formula does)
+
+getting a factorial of a number
+make a loop that goes from 1 to the number
+- multiply the counter by the result of the previous loop
+- subtract the number by 1 each time
+return
+
+reduce a fraction
+get the GCF (but denominator for this case) of the numerator & denominator
+divide the numerator & denominator by the GCF
+return the result
+
+factor pairs for a number
+loop through all numbers from 1 to the number
+if the number is cleanly divisible by the number, then it is a factor pair (modulous 0)
+append it to a string
+return
+
+rolling a dice
+see how many; sides they want, times, and # of dice
+loop through the number of times
+- loop through the number of dice
+- add a random number between 1 and the number of sides to a counter
+do the average and min yada yada
+return

@@ -1,23 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.psuedoCode.HelloController">
+<?import javafx.scene.text.Text?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.psuedoCode.HelloController">
     <children>
-        <MenuButton layoutX="251.0" layoutY="188.0" mnemonicParsing="false" text="booton">
+        <MenuButton fx:id="selector" layoutX="412.0" layoutY="188.0" mnemonicParsing="false" prefWidth="72.0"
+                    text="booton">
             <items>
-                <MenuItem mnemonicParsing="false" onAction="#doFibonacci" text="Fibonacci" />
-                <MenuItem mnemonicParsing="false" onAction="#doMultiples" text="Multiples of input" />
-                <MenuItem mnemonicParsing="false" onAction="#expandANumberThing" text="Expand a Number" />
-                <MenuItem mnemonicParsing="false" onAction="#getXPrimes" text="Get X Primes" />
-                <MenuItem mnemonicParsing="false" onAction="#getFactorial" text="Factorial of a Number" />
-                <MenuItem mnemonicParsing="false" onAction="#subStringer" text="SubString" />
-                <MenuItem mnemonicParsing="false" onAction="#diceRoller" text="Dice Roll Thing" />
-                <MenuItem mnemonicParsing="false" onAction="#heronSquare" text="Herons boi" />
-            <MenuItem mnemonicParsing="false" onAction="#getPi" text="PI's go brr" />
+                <MenuItem mnemonicParsing="false" onAction="#doMultiples" text="Print x multiples of Y"/>
+                <MenuItem mnemonicParsing="false" onAction="#doFibonacci" text="Fibonacci"/>
+                <MenuItem mnemonicParsing="false" onAction="#expandANumberThing" text="Expand a Number"/>
+                <MenuItem mnemonicParsing="false" onAction="#getXPrimes" text="Get X Primes"/>
+                <MenuItem mnemonicParsing="false" onAction="#getFactorial" text="Factorial of a Number"/>
+                <MenuItem mnemonicParsing="false" onAction="#subStringer" text="SubString"/>
+                <MenuItem mnemonicParsing="false" onAction="#diceRoller" text="Dice Roll Thing"/>
+                <MenuItem mnemonicParsing="false" onAction="#heronSquare" text="Herons boi"/>
+                <MenuItem mnemonicParsing="false" onAction="#getPi" text="PI's go brr"/>
+                <MenuItem mnemonicParsing="false" onAction="#primeNumberThing" text="Is number prime?"/>
+                <MenuItem mnemonicParsing="false" onAction="#primeFactorANumber" text="Prime factor a number"/>
+                <MenuItem mnemonicParsing="false" onAction="#simplfyFraction" text="Simplify a Fraction"/>
+                <MenuItem mnemonicParsing="false" onAction="#factorPairing" text="Pairs of factors"/>
+                <MenuItem mnemonicParsing="false" onAction="#getStrongNumbers" text="Get strong numbers"/>
+                <MenuItem mnemonicParsing="false" onAction="#getArmstrongNumbers" text="Get Armstrong numbers"/>
             </items>
         </MenuButton>
+        <TextField fx:id="inputThing" layoutX="226.0" layoutY="188.0" onAction="#inputSlapped"/>
+        <Text fx:id="output" layoutX="289.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"/>
     </children>
 </AnchorPane>
