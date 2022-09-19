@@ -17,10 +17,10 @@ public class Common {
 
     private Common() {
         throw new UnsupportedOperationException("This class cannot be instantiated");
+
     }
     // an hashmap is used to store the factorials, so that they can be reused if needed (saving time)
     // a hashmap is just a dictionary, everythings assigned to a key, and you can get the value by using the key (think of an actual dictionary)
-
     /**
      * Calculates the greatest common factor of two numbers.
      *
@@ -201,9 +201,6 @@ public class Common {
         if (number <= 1) { // 1 & I'm starting at 2, so I need to check this case.
             return false;
         }
-        if (number > 5) {
-            number /= 2;
-        }
         for (int i = 2; i < number; i++) { // only need to check up to half the number
             if (number % i == 0) {
                 return false;
@@ -276,10 +273,10 @@ public class Common {
 
         do {
             if (canBeDividedCleanly(number, x)) {
-                factorPairs += String.format("%d,%d : ", x, y);
+                y = number / x;
+                factorPairs += String.format("%d, %d : ", x, y);
             }
             x++;
-            y--;
         } while (x <= y);
 
         return factorPairs.substring(0, factorPairs.length() - 2);
