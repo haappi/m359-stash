@@ -13,8 +13,6 @@ import java.util.List;
 import static io.github.haappi.psuedoCode.Common.*;
 
 public class HelloController {
-
-    private final List<Integer> listOfPrimes;
     @FXML
     protected MenuButton selector;
     @FXML
@@ -22,29 +20,25 @@ public class HelloController {
     @FXML
     protected Text output;
 
-    public HelloController() {
-        listOfPrimes = List.of(2, 3, 5, 7, 11);
-    }
-
     /**
      * This function is totally useless. Go away<br>
      *
-     * <p>1. <span color="green">Print x multiples of y</span><br>
-     * 2. <span color="green">Print substrings of a string</span><br>
+     * <p>1. <span color="red">Print x multiples of y</span><br>
+     * 2. <span color="red">Print substrings of a string</span><br>
      * 3. <span color="red">Roll x die y times and print out the max, min, and average</span><br>
-     * 4. <span color="green">Expand a number</span><br>
-     * 5. <span color="green">Calculate if a number is Prime</span><br>
-     * 6. <span color="green">Print x # of primes</span><br>
-     * 7. <span color="green">Prime factoriztion of a number</span><br>
-     * 8. <span color="green">>Reduce a #</span><br>
-     * 9. <span color="green">Fibonacci</span><br>
-     * 10. <span color="green">>Pairs of factors</span><br>
-     * 11. <span color="green">>calculate the factorial of a number</span><br>
-     * 12. <span color="green">>list of strong numbers</span><br>
-     * 13. <span color="green">>list of armstrong numbers</span><br>
-     * 14. <span color="green">>list of narcissistic numbers (same as above)</span><br>
-     * 15. <span color="green">Heron's method for calcualating a square root</span><br>
-     * 16. <span color="green">Caculate PI using an ininfite series</span><br>
+     * 4. <span color="red">Expand a number</span><br>
+     * 5. <span color="red">Calculate if a number is Prime</span><br>
+     * 6. <span color="red">Print x # of primes</span><br>
+     * 7. <span color="red">Prime factoriztion of a number</span><br>
+     * 8. <span color="red">>Reduce a #</span><br>
+     * 9. <span color="red">Fibonacci</span><br>
+     * 10. <span color="red">>Pairs of factors</span><br>
+     * 11. <span color="red">>calculate the factorial of a number</span><br>
+     * 12. <span color="red">>list of strong numbers</span><br>
+     * 13. <span color="red">>list of armstrong numbers</span><br>
+     * 14. <span color="red">>list of narcissistic numbers (same as above)</span><br>
+     * 15. <span color="red">Heron's method for calcualating a square root</span><br>
+     * 16. <span color="red">Caculate PI using an ininfite series</span><br>
      */
     private void absolutelyUselessFunction() {
         throw new RuntimeException("bruh");
@@ -71,26 +65,7 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        System.out.println(factorial(inputDialog));
-    }
-
-    @FXML
-    protected void isNumberStrong() {
-        Integer inputDialog =
-                parseJOptionInput(
-                        JOptionPane.showInputDialog("What number do you want to find the factorial for? "),
-                        Integer.class);
-        if (inputDialog == null) {
-            JOptionPane.showMessageDialog(null, "Invalid input");
-            return;
-        }
-        Long factorial = factorial(inputDialog);
-
-        if (factorial == Long.parseLong(String.valueOf(inputDialog))) {
-            System.out.println("is a facty boi");
-        } else {
-            System.out.println("you no is a facty bo"); // isnt a factorial in this case
-        }
+        this.output.setText(String.valueOf(factorial(inputDialog)));
     }
 
     @FXML
@@ -102,7 +77,7 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        System.out.println(generateFibonacci(inputDialog));
+        this.output.setText(generateFibonacci(inputDialog));
     }
 
     @FXML
@@ -118,7 +93,7 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        System.out.println(generateMultiples(instances, y));
+        this.output.setText(generateMultiples(instances, y));
     }
 
     private String generateMultiples(int count, int multiple) {
@@ -139,7 +114,7 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        System.out.println(expandANumber(input));
+        this.output.setText(expandANumber(input));
     }
 
     private String expandANumber(int number) {
@@ -149,7 +124,7 @@ public class HelloController {
             newString += numberString.charAt(i) + getZeros(numberString.length() - i - 1) + ",";
         }
         return formatStringWithSeparator(
-                newString, " + ", ","); // fixme the last number is just yeeted out of existence
+                newString, " + ", ",");
     }
 
     private String getZeros(int count) {
@@ -169,7 +144,7 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        System.out.println(calculatePi(input));
+        this.output.setText(String.valueOf(calculatePi(input)));
     }
 
     @FXML
@@ -185,7 +160,7 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Too many primes");
             return;
         }
-        System.out.println(getFirstXPrimes(input));
+        this.output.setText(getFirstXPrimes(input));
     }
 
     private String getFirstXPrimes(int count) {
@@ -197,18 +172,18 @@ public class HelloController {
             }
             i++;
         }
-        System.out.println(primes); // fixme this is also removing a number for some reason
+        this.output.setText(String.valueOf(primes));
         return arrayToString(primes);
     }
 
     @FXML
     protected void subStringer() {
         String input = JOptionPane.showInputDialog("What string do you want to sub string? ");
-        System.out.println(printSubStringsOf(input));
+        this.output.setText(printSubStringsOf(input));
     }
 
     private String printSubStringsOf(String string) {
-        String newString = ""; // fixme last character not being added
+        String newString = "";
         for (int i = 0; i < string.length(); i++) {
             for (int j = i + 1; j <= string.length(); j++) {
                 newString += string.substring(i, j) + ", ";
@@ -240,38 +215,7 @@ public class HelloController {
         if (numberOfSides == null) {
             numberOfSides = 6;
         }
-        System.out.println(rollADice(numberOfDie, numberOfTimes, numberOfSides));
-    }
-
-    private String rollXDiceYTimes(int numberOfDice, int numberOfTimes, int diceSides) {
-        int average = 0;
-        int min = 0;
-        int max = 0;
-
-        for (int i = 0; i < numberOfTimes; i++) {
-            int roll = rollNumberOfDice(numberOfDice, diceSides);
-            average += roll;
-            if (roll > max) {
-                max = roll;
-            }
-            if (roll < min) {
-                min = roll;
-            }
-        }
-        average = average / numberOfTimes;
-        return "Average: " + average + ", Min: " + min + ", Max: " + max;
-    }
-
-    private int rollNumberOfDice(int numberOfDice, int diceSides) {
-        int total = 0;
-        for (int i = 0; i < numberOfDice; i++) {
-            total += rollDice(diceSides);
-        }
-        return total;
-    }
-
-    private int rollDice(int diceSides) {
-        return (int) (Math.random() * diceSides) + 1;
+        this.output.setText(rollADice(numberOfDie, numberOfSides, numberOfTimes));
     }
 
     @FXML
@@ -285,7 +229,7 @@ public class HelloController {
             return;
         }
 
-        System.out.println(getSquareRootOf(input));
+        this.output.setText(String.valueOf(getSquareRootOf(input)));
     }
 
     private double getSquareRootOf(double guess) {
@@ -311,7 +255,7 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        System.out.println(isPrime(input));
+        this.output.setText(String.valueOf(isPrime(input)));
     }
 
     @FXML
@@ -324,7 +268,7 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        System.out.println(primeFactorization(input));
+        this.output.setText(primeFactorization(input));
     }
 
 
@@ -342,7 +286,7 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        System.out.println(reduceFraction(numerator, denominator));
+        this.output.setText(reduceFraction(numerator, denominator));
     }
 
     @FXML
@@ -354,32 +298,26 @@ public class HelloController {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        System.out.println(getFactorPairsFor(input));
+        this.output.setText(getFactorPairsFor(input));
     }
 
     @FXML
     protected void getStrongNumbers() {
         Integer input =
                 parseJOptionInput(
-                        JOptionPane.showInputDialog("How many strong numbers do you want? "), Integer.class);
+                        JOptionPane.showInputDialog("Up-to what number do you want? "), Integer.class);
         if (input == null) {
             JOptionPane.showMessageDialog(null, "Invalid input");
             return;
         }
-        if (input > 15) {
-            JOptionPane.showMessageDialog(null, "I'm not here to burn my computer.");
-            return;
-        }
+
         String output = "";
-        while (output.split(", ").length - 1 < input) {
-            System.out.println(output);
-            for (int i = 0; i < 1000000; i++) {
-                if (isStrongNumber(i)) {
-                    output += i + ", ";
-                }
+        for (int i = 0; i < input; i++) {
+            if (isStrongNumber(i)) {
+                output += i + ", ";
             }
         }
-        System.out.println(output);
+        this.output.setText(output);
     }
 
     @FXML
@@ -396,12 +334,15 @@ public class HelloController {
             return;
         }
         String output = "";
-        while (output.split(", ").length < input) {
-            int random = (int) (Math.random() * 1000000);
-            if (isArmstrongNumber(random)) {
-                output += random + ", ";
+        for (int i = 0; i < 10000000; i++) {
+            if (isArmstrongNumber(i)) {
+                output += i + ", ";
+                if (output.split(", ").length >= input) {
+                    break;
+                }
             }
         }
-        System.out.println(output);
+
+        this.output.setText(output);
     }
 }

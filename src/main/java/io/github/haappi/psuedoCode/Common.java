@@ -2,6 +2,7 @@ package io.github.haappi.psuedoCode;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -12,9 +13,13 @@ import java.util.List;
  */
 public class Common {
 
+    private static final HashMap<Integer, Long> listOfFactorials = new HashMap<>();
+
     private Common() {
         throw new UnsupportedOperationException("This class cannot be instantiated");
     }
+    // an hashmap is used to store the factorials, so that they can be reused if needed (saving time)
+    // a hashmap is just a dictionary, everythings assigned to a key, and you can get the value by using the key (think of an actual dictionary)
 
     /**
      * Calculates the greatest common factor of two numbers.
@@ -68,7 +73,8 @@ public class Common {
      */
     @SuppressWarnings("unused")
     public static int getRandomNumber(int max) {
-        return (int) (Math.random() * max) + 1;
+        int min = 0;
+        return (int) (Math.random() * ((max - min) + 1)) + min;
     }
 
     /**
@@ -291,12 +297,14 @@ public class Common {
         if (number < 0) {
             return null;
         }
-        long output = 1L;
-        int iteration = number;
-        while (iteration != 1) {
-            output *= iteration;
-            iteration--;
+        if (Common.listOfFactorials.containsKey(number)) {
+            return Common.listOfFactorials.get(number);
         }
+        long output = 1L;
+        for (int i = 1; i <= number; i++) {
+            output *= i;
+        }
+        Common.listOfFactorials.put(number, output);
         return output;
     }
 
@@ -391,23 +399,22 @@ public class Common {
         }
 
         int max = 0;
-        int min = 0;
+        int min = numberOfSides;
         int average = 0;
 
         for (int i = 0; i < times; i++) {
-            int total = 0;
             for (int j = 0; j < numberOfDice; j++) {
-                total += getRandomNumber(numberOfSides);
+                int roll = getRandomNumber(numberOfSides);
+                if (roll > max) {
+                    max = roll;
+                }
+                if (roll < min) {
+                    min = roll;
+                }
+                average += roll;
             }
-            if (total > max) {
-                max = total;
-            }
-            if (total < min) {
-                min = total;
-            }
-            average += total;
         }
-        average /= times;
+        average /= (times * numberOfDice);
 
         return String.format("Max: %d, Min: %d, Average: %d", max, min, average);
     }
