@@ -24,8 +24,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'io.github.haappi.template'
-    mainClass = 'io.github.haappi.template.HelloApplication'
+    mainModule = 'io.github.haappi.arraysProject'
+    mainClass = 'io.github.haappi.arraysProject.HelloApplication'
 }
 
 javafx {
