@@ -1,4 +1,4 @@
-package io.github.haappi.template;
+package io.github.haappi.arraysProject;
 
 import java.io.IOException;
 import javafx.application.Application;
