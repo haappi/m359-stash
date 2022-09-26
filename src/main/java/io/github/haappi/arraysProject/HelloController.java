@@ -7,6 +7,8 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
 
+import static io.github.haappi.arraysProject.HelloApplication.validInputTypes;
+
 
 public class HelloController {
 
@@ -14,7 +16,7 @@ public class HelloController {
     protected TextField input;
     @FXML
     protected ListView<String> listOutput;
-    private int currentOperation = 0;
+    private int currentOperation = 2;
 
     /**
      * 1. <span color="yellow">Find number in an array. If number found, print position and how many. You may not use
@@ -63,6 +65,9 @@ public class HelloController {
 
     @FXML
     protected void onKeyPress(KeyEvent inputMethodEvent) {
+        if (validInputTypes.contains(this.currentOperation)) {
+            System.out.println("hi");
+        }
         System.out.println(((TextField) inputMethodEvent.getSource()).getText());
     }
 }

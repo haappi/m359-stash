@@ -1,5 +1,7 @@
 package io.github.haappi.arraysProject;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -217,6 +219,86 @@ public class Utils {
         }
         return array;
     }
+
+    /**
+     * Translates a given {@link String} by a few characters with the provided offset {@link Integer}. <br>
+     *
+     * @param s      The {@link String} to translate.
+     * @param offset The offset to translate the {@link String} by.
+     * @return The translated {@link String}.
+     */
+    public static String translate(String s, int offset) {
+        String output = "";
+        for (char c : s.toCharArray()) {
+            char newChar = (char) (c + offset);
+            if (newChar > 126) {
+                newChar = (char) (newChar - 95);
+            } else if (newChar < 32) {
+                newChar = (char) (newChar + 95);
+            }
+            output += newChar;
+        }
+        return output;
+    }
+
+    /**
+     * Parses a {@link String} to the type specified. Pass a variable from that {@link Class} type.
+     * <br>
+     * May return {@link null} if the type couldn't be cast to the specified type
+     *
+     * @param input The {@link String} to parse
+     * @param clazz The {@link Class} type to parse to
+     * @param <T>   The type to parse to
+     * @return The parsed value, cast to the specified {@link Class}
+     */
+    @SuppressWarnings({"unused", "unchecked"})
+    public @Nullable
+    static <T> T parseInput(String input, Class<T> clazz) {
+        try {
+            if (input == null) {
+                return null;
+            }
+            if (clazz == Integer.class) {
+                return (T) Integer.valueOf(input);
+            } else if (clazz == Double.class) {
+                return (T) Double.valueOf(input);
+            } else if (clazz == Float.class) {
+                return (T) Float.valueOf(input);
+            } else if (clazz == Long.class) {
+                return (T) Long.valueOf(input);
+            } else if (clazz == Short.class) {
+                return (T) Short.valueOf(input);
+            } else if (clazz == Byte.class) {
+                return (T) Byte.valueOf(input);
+            } else if (clazz == Boolean.class) {
+                return (T) Boolean.valueOf(input.toLowerCase());
+            } else if (clazz == String.class) {
+                return (T) input;
+            } else {
+                throw new IllegalArgumentException("Unknown type: " + clazz);
+            }
+        } catch (NumberFormatException e) {
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * Parses a {@link String} to a String. This just exists for filler purposes.
+     * <br>
+     * May return {@link null} if the type couldn't be cast to the specified type
+     *
+     * @param input The {@link String} to parse
+     * @return The parsed value, cast to the specified {@link Class}
+     */
+    @SuppressWarnings({"unused"})
+    public @Nullable
+    static String parseInput(String input) {
+        return parseInput(input, String.class);
+    }
+
 
 // todo pascals triangle
 }
