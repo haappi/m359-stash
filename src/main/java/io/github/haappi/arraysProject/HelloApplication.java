@@ -1,22 +1,37 @@
 package io.github.haappi.arraysProject;
 
-import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class HelloApplication extends Application {
-  @Override
-  public void start(Stage stage) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-    Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-    stage.setTitle("Hello!");
-    stage.setScene(scene);
-    stage.show();
-  }
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.HashMap;
+import java.util.HashSet;
 
-  public static void main(String[] args) {
-    launch();
-  }
+public class HelloApplication extends Application {
+    public static final HashMap<String, String> dictionary = new HashMap<>(); // This is basically a literal dictionary. It has a value paired to every "definition" (key). Duplicate keys are not allowed (Just overwrites it).
+    public static final HashSet<String> dictionarySet = new HashSet<>(); // A HashSet is basically a Set, which is a Collection that doesn't allow duplicates. It's faster than a List, but ordering of items isn't saved.
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        for (String line : Files.readAllLines(Utils.getResourcePath("dictionary.txt"))) {
+            String[] split = line.split(":");
+            if (split.length == 2) {
+                dictionary.put(split[0], split[1]); // Name : Definition
+                dictionarySet.add(split[0]); // Name
+            }
+        }
+
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+    }
 }

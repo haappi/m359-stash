@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="io.github.haappi.arraysProject.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.arraysProject.HelloController">
+    <children>
+        <MenuButton layoutX="421.0" layoutY="188.0" mnemonicParsing="false" text="MenuButton">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#findElem" text="Find Element in an Array"/>
+                <MenuItem mnemonicParsing="false" onAction="#shuffleAnArray" text="Shuffle an Array"/>
+                <MenuItem mnemonicParsing="false" onAction="#minMaxArray" text="Find min / max / avg of an Array"/>
+            </items>
+        </MenuButton>
+        <TextField fx:id="input" layoutX="226.0" layoutY="188.0" onKeyTyped="#onKeyPress"/>
+        <ListView fx:id="listOutput" layoutX="14.0" layoutY="55.0" prefHeight="266.0" prefWidth="200.0"/>
+    </children>
+</AnchorPane>

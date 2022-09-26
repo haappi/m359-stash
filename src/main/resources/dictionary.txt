@@ -1,0 +1,16 @@
+apple: A red fruit. Rich in Fiber
+banana: A yellow fruit. Rich in potassium
+orange: A orange fruit. Rich in vitamin C
+grape: A purple fruit. Rich in Copper
+watermelon: A green fruit. Rich in vitamin A
+pineapple: A yellow fruit. Rich in vitamin C
+strawberry: A red fruit. Rich in vitamin C
+blueberry: A blue fruit. Rich in vitamin C
+Book: A series of pages, composed of paper. Utilized for reading and storing information.
+pen: A writing utensil, composed of plastic. Utilized for writing.
+pencil: Another writing utensil, mainly composed of wood. Utilized for writing.
+eraser: A writing utensil, composed of rubber. Utilized for erasing.
+notebook: A series of pages, composed of sheets of paper. Utilized for writing and storing information (notes).
+paper: A sheet of material, composed of wood pulp. Utilized for writing and storing information.
+marker: Another writing utensil, composed of plastic. Utilized for writing and drawing on whiteboards.
+whiteboard: A plastic, white surface, utilized for writing and drawing. Can easily be cleaned off.
