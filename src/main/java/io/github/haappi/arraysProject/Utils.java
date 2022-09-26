@@ -163,6 +163,7 @@ public class Utils {
      * @param numberOfTimes The number of times to roll the dice.
      * @return A {@link String} containing the number of each sum.
      */
+    // Add up the sums of the x die. Just do that y-times and return that in the end
     public static String rollDiceThing(int numberOfDice, int numberOfTimes) {
         ArrayList<Integer> rolls = new ArrayList<>();
         for (int i = 0; i < numberOfTimes; i++) {
