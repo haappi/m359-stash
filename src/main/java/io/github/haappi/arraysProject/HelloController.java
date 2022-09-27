@@ -5,6 +5,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
+import javax.swing.*;
+import java.util.ArrayList;
+
 import static io.github.haappi.arraysProject.HelloApplication.validInputTypes;
 import static io.github.haappi.arraysProject.Utils.*;
 
@@ -50,23 +53,24 @@ public class HelloController {
     }
 
     @FXML
-    protected void shuffleAnArray() {
-        int[][] array = generate2DIntArray();
-        printArrayNicely(array);
-        array = thatStupidThing(array);
-        System.out.println();
-        printArrayNicely(array);
-        System.out.println();
-//        ArrayList<String> nrowww = new ArrayList<>();
-//        nrowww.add("b");
-//        nrowww.add("ba");
-//        nrowww.add("a");
-//        nrowww.add("bdef");
-//        nrowww.add("c");
-//
-//        System.out.println(Utils.shuffleAnArray(nrowww));
+    protected void shiftCharacters() {
+        String input = parseInput(JOptionPane.showInputDialog("Enter the string you want to shift"));
+        Integer shiftBy = parseInput(JOptionPane.showInputDialog("How many characters do you want to shift it by?"), Integer.class);
+        System.out.println(translate(input, shiftBy));
+
     }
 
+    @FXML
+    protected void shuffleAnArray() {
+        ArrayList<String> nrowww = new ArrayList<>();
+        nrowww.add("b");
+        nrowww.add("ba");
+        nrowww.add("a");
+        nrowww.add("bdef");
+        nrowww.add("c");
+
+        System.out.println(Utils.shuffleAnArray(nrowww));
+    }
 
     @FXML
     protected void onKeyPress(KeyEvent inputMethodEvent) {

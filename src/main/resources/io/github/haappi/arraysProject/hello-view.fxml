@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
-            fx:controller="io.github.haappi.arraysProject.HelloController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.arraysProject.HelloController">
     <children>
         <MenuButton layoutX="421.0" layoutY="188.0" mnemonicParsing="false" text="MenuButton">
             <items>
-                <MenuItem mnemonicParsing="false" onAction="#findElem" text="Find Element in an Array"/>
-                <MenuItem mnemonicParsing="false" onAction="#shuffleAnArray" text="Shuffle an Array"/>
-                <MenuItem mnemonicParsing="false" onAction="#minMaxArray" text="Find min / max / avg of an Array"/>
+                <MenuItem mnemonicParsing="false" onAction="#findElem" text="Find Element in an Array" />
+                <MenuItem mnemonicParsing="false" onAction="#shuffleAnArray" text="Shuffle an Array" />
+                <MenuItem mnemonicParsing="false" onAction="#minMaxArray" text="Find min / max / avg of an Array" />
+            <MenuItem mnemonicParsing="false" onAction="#shiftCharacters" text="Translate thing" />
             </items>
         </MenuButton>
-        <TextField fx:id="input" layoutX="226.0" layoutY="188.0" onKeyTyped="#onKeyPress"/>
-        <ListView fx:id="listOutput" layoutX="14.0" layoutY="55.0" prefHeight="266.0" prefWidth="200.0"/>
+        <TextField fx:id="input" layoutX="226.0" layoutY="188.0" onKeyTyped="#onKeyPress" />
+        <ListView fx:id="listOutput" layoutX="14.0" layoutY="55.0" prefHeight="266.0" prefWidth="200.0" />
     </children>
 </AnchorPane>

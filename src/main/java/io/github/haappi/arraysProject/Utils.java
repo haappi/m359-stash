@@ -320,34 +320,10 @@ public class Utils {
         return array;
     }
 
-    public static int[][] thatStupidThing(int[][] array) {
-        // get all blocks adjacent to a block or water and not on the edge
-        for (int i = 0; i < array.length; i++) {
-            for (int j = 0; j < array[i].length; j++) {
-                if (i != 0 && i != array.length - 1 && j != 0) {
-                    if (array[i][j] == 0) {
-                        if (array[i - 1][j] == 1 || array[i + 1][j] == 1 || array[i][j - 1] == 1) {
-                            try {
-                                if (array[i][j + 1] == 1) {
-                                    array[i][j] = 2;
-                                }
-                            } catch (Exception ignored) {
-
-                            }
-
-                        }
-                    }
-                }
-            }
-        }
-        return array;
-    }
-
     public static void printArrayNicely(int[][] array) {
         for (int[] ints : array) {
             for (int anInt : ints) {
-//                System.out.print(anInt + " ");
-                System.out.print(anInt == 0 ? ConsoleColors.RED + anInt + " " : anInt == 1 ? ConsoleColors.GREEN + anInt + " " : ConsoleColors.YELLOW + anInt + " ");
+                System.out.print(anInt + " ");
             }
             System.out.println();
         }
