@@ -39,7 +39,7 @@ public class Utils {
      */
     @SuppressWarnings("unused")
     public static int getRandomNumber(int min, int max) {
-        return (int) (Math.random() * ((max - min) + min)) + min;
+        return (int) (Math.random() * ((max - min) + min + 1)) + min;
     }
 
     /**
@@ -121,9 +121,9 @@ public class Utils {
         int[] copy = new int[array.length + 1];
         System.arraycopy(array, 0, copy, 0, array.length); // Java provides a method to copy arrays. This is probably just a big for loop.
         copy[position] = element;
-        for (int i = position + 1; i < copy.length; i++) {
-            copy[i] = array[i - 1]; // the intelij suggestion scares me.
-        }
+        // the intelij suggestion scares me.
+        if (copy.length - (position + 1) >= 0)
+            System.arraycopy(array, position + 1 - 1, copy, position + 1, copy.length - (position + 1));
         return copy;
     }
 
@@ -297,6 +297,60 @@ public class Utils {
     public @Nullable
     static String parseInput(String input) {
         return parseInput(input, String.class);
+    }
+
+    public static int[][] generate2DIntArray() {
+        // 0 = empty
+        // 1 = filled
+        int[][] array = new int[10][10];
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (i != 0) {
+                    // check the one under to see if its filled or not
+                    if (array[i - 1][j] == 0) {
+                        array[i][j] = getRandomNumber(0, 5) > 1 ? 0 : 1;
+                    } else {
+                        array[i][j] = 1;
+                    }
+                } else {
+                    array[i][j] = getRandomNumber(0, 5) > 1 ? 0 : 1;
+                }
+            }
+        }
+        return array;
+    }
+
+    public static int[][] thatStupidThing(int[][] array) {
+        // get all blocks adjacent to a block or water and not on the edge
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                if (i != 0 && i != array.length - 1 && j != 0) {
+                    if (array[i][j] == 0) {
+                        if (array[i - 1][j] == 1 || array[i + 1][j] == 1 || array[i][j - 1] == 1) {
+                            try {
+                                if (array[i][j + 1] == 1) {
+                                    array[i][j] = 2;
+                                }
+                            } catch (Exception ignored) {
+
+                            }
+
+                        }
+                    }
+                }
+            }
+        }
+        return array;
+    }
+
+    public static void printArrayNicely(int[][] array) {
+        for (int[] ints : array) {
+            for (int anInt : ints) {
+//                System.out.print(anInt + " ");
+                System.out.print(anInt == 0 ? ConsoleColors.RED + anInt + " " : anInt == 1 ? ConsoleColors.GREEN + anInt + " " : ConsoleColors.YELLOW + anInt + " ");
+            }
+            System.out.println();
+        }
     }
 
 
