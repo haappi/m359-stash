@@ -16,6 +16,8 @@
                 <MenuItem mnemonicParsing="false" onAction="#shiftCharacters" text="Translate thing"/>
                 <MenuItem mnemonicParsing="false" onAction="#arrayOfWords" text="Array of words"/>
                 <MenuItem mnemonicParsing="false" onAction="#pascal" text="Generate Pascals home"/>
+                <MenuItem mnemonicParsing="false" onAction="#diceRoll" text="Roll a dice omg!"/>
+                <MenuItem mnemonicParsing="false" onAction="#addRemove" text="Add/Remove at location"/>
             </items>
         </MenuButton>
         <TextField fx:id="input" layoutX="226.0" layoutY="188.0" onAction="#nextStep" onKeyTyped="#onKeyPress"/>

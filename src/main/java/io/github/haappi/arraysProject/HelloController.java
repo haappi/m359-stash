@@ -1,6 +1,5 @@
 package io.github.haappi.arraysProject;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -24,8 +23,8 @@ public class HelloController {
     protected TextField input;
     @FXML
     protected ListView<String> listOutput;
-    private final Object phaseThreeInput = null;
-    private final Object phaseFourInput = null;
+    private Object phaseThreeInput = null;
+    private Object phaseFourInput = null;
     private int currentOperation = 2;
     private int phase = 0;
     private Object phaseOneInput = null;
@@ -35,8 +34,8 @@ public class HelloController {
      * 1. <span color="green">Find number in an array. If number found, print position and how many. You may not use
      * indexOf. Loops and conditionals only </span><br>
      * 2. <span color="green">Find max, min, average of a group of numbers in an array.</span><br>
-     * 3. <span color="red">Add or replaces items in an array at any given location</span><br>
-     * 4. <span color="red">Roll x dice y times and display how many of each sum occurs.</span><br>
+     * 3. <span color="green">Add or replaces items in an array at any given location</span><br>
+     * 4. <span color="green">Roll x dice y times and display how many of each sum occurs.</span><br>
      * 5. <span color="green">Shuffle an array 2 ways</span><br>
      * 6. <span color="green">Create a new array that translates the letters of the alphabet by a number.</span><br>
      * <span color="green">a. Be sure to create the original array efficiently. Char may be useful instead of String.</span><br>
@@ -54,7 +53,21 @@ public class HelloController {
     @FXML
     protected void initialize() {
         System.out.println(Utils.rollDiceThing(6, 5));
-        System.out.println(getPascalsTriangle(15));
+    }
+
+    @FXML
+    protected void diceRoll() {
+        handleTextField(4, "How many dice do you want to roll?");
+    }
+
+    @FXML
+    protected void addRemove() {
+        int[] array = new int[10];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = getRandomNumber(1, 6);
+        }
+        this.phaseOneInput = array;
+        handleTextField(3, "add|replace;index;value");
     }
 
     @FXML
@@ -117,13 +130,53 @@ public class HelloController {
                 case 7:
                     handlePascal(content);
                     break;
+                case 3:
+                    handleAddingRemoving(content);
+                    break;
             }
         }
     }
 
+    private void handleAddingRemoving(String content) {
+        String[] split = content.split(";");
+        if (split.length != 3) {
+            output.setText("Invalid input");
+            return;
+        }
+        String operation = split[0];
+        int index;
+        int value;
+        try {
+            index = Integer.parseInt(split[1]);
+            value = Integer.parseInt(split[2]);
+        } catch (NumberFormatException e) {
+            output.setText("NaN (Not a number)!");
+            return;
+        }
+
+        int[] array = (int[]) this.phaseOneInput;
+        if (operation.equalsIgnoreCase("add")) {
+            array = Utils.addElementToArrayAtAGivenPosition(array, index, value);
+            output.setText(null);
+        } else if (operation.equalsIgnoreCase("replace")) {
+            if (index >= array.length) {
+                output.setText("Index out of bounds");
+                return;
+            }
+            array = Utils.replaceElementInArray(array, index, value);
+            output.setText(null);
+        } else {
+            handleTextField(3, "add|replace;index;value");
+            output.setText("Invalid input");
+            return;
+        }
+        this.phaseOneInput = array;
+        output.setText(output.getText() + "\n" + beautifyArray(array));
+    }
+
     private void handlePascal(String current) {
         Integer input = parseInput(current, Integer.class);
-        input = input == null ? 4 : input; // if input is null, set it to 4
+        input = input == null ? 2 : input; // if input is null, set it to 2
         output.setText(getPascalsTriangle(input));
     }
 
@@ -155,14 +208,24 @@ public class HelloController {
         }
     }
 
-    public void nextStep(ActionEvent actionEvent) { // I am whatsoever not proud of this method.
+    public void nextStep() { // I am whatsoever not proud of this method.
         if (currentOperation == 6) {
             if (phase == 0) {
                 phaseOneInput = parseInput(input.getText());
                 handleTextField("Enter the number you want to shift by");
+                phase++;
             } else if (phase == 1) {
                 phaseTwoInput = parseInput(input.getText(), Integer.class);
                 output.setText(translate((String) phaseOneInput, phaseTwoInput == null ? 0 : (Integer) phaseTwoInput));
+            }
+        } else if (currentOperation == 4) {
+            if (phase == 0) {
+                phaseOneInput = parseInput(input.getText(), Integer.class);
+                handleTextField("How many times do you want to roll the dice?");
+                phase++;
+            } else if (phase == 1) {
+                phaseTwoInput = parseInput(input.getText(), Integer.class);
+                output.setText(Utils.rollDiceThing((Integer) phaseOneInput, phaseTwoInput == null ? 1 : (Integer) phaseTwoInput));
             }
         }
     }
