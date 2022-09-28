@@ -1,13 +1,13 @@
 package io.github.haappi.arraysProject;
 
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
+@SuppressWarnings({"unused"})
 public class Utils {
     private Utils() {
         throw new RuntimeException("This class may not be instantiated.");
@@ -52,12 +52,26 @@ public class Utils {
         int originalSize = arrayList.size();
         ArrayList<E> copy = (ArrayList<E>) arrayList.clone();
         for (int i = 0; i < originalSize; i++) {
-            int indexOne = getRandomNumber(0, originalSize);
-            int indexTwo = getRandomNumber(0, originalSize);
+            int indexOne = getRandomNumber(0, originalSize - 1);
+            int indexTwo = getRandomNumber(0, originalSize - 1);
             E elementOne = copy.get(indexOne);
             E elementTwo = copy.get(indexTwo);
             copy.set(indexOne, elementTwo);
             copy.set(indexTwo, elementOne); // This can be condensed into one line. ArrayList.set() returns the element that was replaced.
+        }
+        return copy;
+    }
+
+    /**
+     * Flips an array.
+     *
+     * @param arrayList The {@link List} to flip.
+     * @return The flipped array.
+     */
+    public static <E> ArrayList<E> flipAnArray(ArrayList<E> arrayList) {
+        ArrayList<E> copy = new ArrayList<>();
+        for (int i = 0; i < arrayList.size(); i++) {
+            copy.add(arrayList.get(arrayList.size() - 1 - i));
         }
         return copy;
     }
@@ -96,7 +110,7 @@ public class Utils {
             avg += array[i];
         }
         avg /= array.length;
-        return "Min: " + min + ", Max: " + max + ", Avg: " + avg;
+        return "Original array: " + beautifyArray(array) + "\nMin: " + min + "\nMax: " + max + "\nAverage: " + avg;
     }
 
     /**
@@ -169,19 +183,16 @@ public class Utils {
     public static String rollDiceThing(int numberOfDice, int numberOfTimes) {
         ArrayList<Integer> rolls = new ArrayList<>();
         for (int i = 0; i < numberOfTimes; i++) {
-            rolls.add(getRandomNumber(1, numberOfDice));
+            rolls.add(getRandomNumber(numberOfDice, numberOfDice * 6));
         }
-        String output = "";
-        for (int i = 0; i < numberOfDice; i++) {
-            int count = 0;
-            for (int roll : rolls) {
-                if (roll == i + 1) {
-                    count++;
-                }
-            }
-            output += "Number of " + (i + 1) + "'s: " + count + "\n";
+        HashSet<String> output = new HashSet<>();
+        for (Integer roll : rolls) {
+            output.add("Count of " + roll + ": " + countOf(rolls, roll));
         }
-        return output;
+        ArrayList<String> outputList = new ArrayList<>(output);
+        outputList.sort(Comparator.comparingInt(o -> Integer.parseInt(o.split(" ")[2].split(":")[0])));
+        // https://stackoverflow.com/a/54342426
+        return beautifyArray(outputList, "\n");
     }
 
     /**
@@ -223,13 +234,13 @@ public class Utils {
     /**
      * Translates a given {@link String} by a few characters with the provided offset {@link Integer}. <br>
      *
-     * @param s      The {@link String} to translate.
+     * @param string The {@link String} to translate.
      * @param offset The offset to translate the {@link String} by.
      * @return The translated {@link String}.
      */
-    public static String translate(String s, int offset) {
+    public static String translate(String string, int offset) {
         String output = "";
-        for (char c : s.toCharArray()) {
+        for (char c : string.toCharArray()) {
             char newChar = (char) (c + offset);
             if (newChar > 126) {
                 newChar = (char) (newChar - 95);
@@ -238,7 +249,7 @@ public class Utils {
             }
             output += newChar;
         }
-        return output;
+        return string + " -> " + output;
     }
 
     /**
@@ -320,13 +331,70 @@ public class Utils {
         return array;
     }
 
-    public static void printArrayNicely(int[][] array) {
-        for (int[] ints : array) {
-            for (int anInt : ints) {
-                System.out.print(anInt + " ");
-            }
-            System.out.println();
+    /**
+     * Returns a {@link String} formatted with separators for each element in the provided {@link List}.
+     *
+     * @param array The {@link List} to format.
+     * @return The formatted {@link String}.
+     */
+    public static <E> String beautifyArray(List<E> array) {
+        return beautifyArray(array, ", ");
+    }
+
+    /**
+     * Returns a {@link String} formatted with separators for each element in the provided {@link List}.
+     *
+     * @param array     The {@link List} to format.
+     * @param separator The separator to use.
+     * @return The formatted {@link String}.
+     */
+    public static <E> String beautifyArray(List<E> array, String separator) {
+        String output = "";
+        for (E e : array) {
+            output += e + separator;
         }
+        return output.substring(0, output.length() - separator.length());
+    }
+
+    /**
+     * Makes a primitive int array looks nice
+     *
+     * @param array The array to beautify
+     * @return The beautified array
+     */
+    public static String beautifyArray(int[] array) {
+        ArrayList<Integer> integerArray = new ArrayList<>();
+        for (int i : array) {
+            integerArray.add(i);
+        }
+        return beautifyArray(integerArray, ", ");
+    }
+
+    /**
+     * Gets the {@link String} representation from a {@link KeyEvent}.
+     * <br>
+     *
+     * @param event The {@link KeyEvent} to get the {@link String} representation from.
+     * @return The {@link String} representation of the {@link KeyEvent}.
+     */
+    public static String getStringFrom(KeyEvent event) {
+        return ((TextField) event.getSource()).getText();
+    }
+
+    /**
+     * Gets the count of the provided Object in the provided {@link List}.
+     *
+     * @param list   The {@link List} to search in.
+     * @param object The Object to search for.
+     * @return The count of the provided Object in the provided {@link List}.
+     */
+    public static <E> int countOf(List<E> list, Object object) {
+        int output = 0;
+        for (Object e : list) {
+            if (e.equals(object))
+                output++;
+        }
+        return output;
     }
 
 
