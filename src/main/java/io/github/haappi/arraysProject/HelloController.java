@@ -18,8 +18,8 @@ import static io.github.haappi.arraysProject.Utils.*;
 
 public class HelloController {
 
-    private final Object phaseThreeInput = null;
-    private final Object phaseFourInput = null;
+    private Object phaseThreeInput = null;
+    private Object phaseFourInput = null;
     @FXML
     protected Text output;
     @FXML
