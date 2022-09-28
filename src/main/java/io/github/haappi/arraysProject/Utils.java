@@ -462,11 +462,7 @@ public class Utils {
      */
 
     public static String getPascalsTriangleRowSpacing(int row) {
-        String output = "";
-        for (int i = 0; i < row; i++) {
-            output += " ";
-        }
-        return output;
+        return " ".repeat(Math.max(0, row));
     }
 
 
