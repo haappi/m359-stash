@@ -9,6 +9,8 @@ import java.util.*;
 
 @SuppressWarnings({"unused"})
 public class Utils {
+    private static final HashMap<Integer, Long> listOfFactorials = new HashMap<>();
+
     private Utils() {
         throw new RuntimeException("This class may not be instantiated.");
     }
@@ -393,6 +395,76 @@ public class Utils {
         for (Object e : list) {
             if (e.equals(object))
                 output++;
+        }
+        return output;
+    }
+
+    /**
+     * Gets the factorial of the given {@link Integer}
+     *
+     * @param number An {@link Integer} to find the factorial of.
+     * @return An {@link Long}, returning the factorial.
+     */
+    @SuppressWarnings("unused")
+    public static @Nullable Long factorial(Integer number) {
+        if (number < 0) {
+            return null;
+        }
+        if (Utils.listOfFactorials.containsKey(number)) {
+            return Utils.listOfFactorials.get(number);
+        }
+        long output = 1L;
+        for (int i = 1; i <= number; i++) {
+            output *= i;
+        }
+        Utils.listOfFactorials.put(number, output);
+        return output;
+    }
+
+    /**
+     * Somehow get a row of Pascal's Triangle
+     *
+     * @param row The row to get
+     * @return The row's numbers.
+     */
+    public static String getPascalsTriangleRow(int row) {
+        String output = "";
+        for (int i = 0; i <= row; i++) {
+            output += Utils.factorial(row) / (Utils.factorial(i) * Utils.factorial(row - i)) + " ";
+            // https://ptri1.tripod.com/#:~:text=A%20number%20in%20the%20triangle,-------
+            // the formula is n! / r! * (n - r)!
+            // you still factorial the numbers inside
+            // where n is the # row and r is the element in the row
+        }
+        return output;
+    }
+
+    /**
+     * Constructs a Pascal Triangle until the row specified
+     *
+     * @param row The row to stop at
+     * @return The Pascal Triangle
+     */
+    public static String getPascalsTriangle(int row) {
+        String output = "";
+        for (int i = 0; i <= row; i++) {
+            output += getPascalsTriangleRowSpacing(row - i) + getPascalsTriangleRow(i) + getPascalsTriangleRowSpacing(row - i) + "\n";
+            // this has to be row - i because the top iof the triangle needs the most amoubnt of spaces
+        }
+        return output;
+    }
+
+    /**
+     * Gets spacing for the Pascal Triangle row
+     *
+     * @param row The row to get spacing for
+     * @return The spacing
+     */
+
+    public static String getPascalsTriangleRowSpacing(int row) {
+        String output = "";
+        for (int i = 0; i < row; i++) {
+            output += " ";
         }
         return output;
     }

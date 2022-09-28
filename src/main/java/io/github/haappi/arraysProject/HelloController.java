@@ -54,6 +54,7 @@ public class HelloController {
     @FXML
     protected void initialize() {
         System.out.println(Utils.rollDiceThing(6, 5));
+        System.out.println(getPascalsTriangle(5));
     }
 
     @FXML
