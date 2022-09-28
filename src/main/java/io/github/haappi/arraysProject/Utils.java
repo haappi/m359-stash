@@ -460,7 +460,6 @@ public class Utils {
      * @param row The row to get spacing for
      * @return The spacing
      */
-
     public static String getPascalsTriangleRowSpacing(int row) {
         return " ".repeat(Math.max(0, row));
     }

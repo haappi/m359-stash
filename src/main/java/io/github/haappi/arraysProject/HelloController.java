@@ -18,14 +18,14 @@ import static io.github.haappi.arraysProject.Utils.*;
 
 public class HelloController {
 
-    private Object phaseThreeInput = null;
-    private Object phaseFourInput = null;
     @FXML
     protected Text output;
     @FXML
     protected TextField input;
     @FXML
     protected ListView<String> listOutput;
+    private final Object phaseThreeInput = null;
+    private final Object phaseFourInput = null;
     private int currentOperation = 2;
     private int phase = 0;
     private Object phaseOneInput = null;
@@ -40,7 +40,7 @@ public class HelloController {
      * 5. <span color="green">Shuffle an array 2 ways</span><br>
      * 6. <span color="green">Create a new array that translates the letters of the alphabet by a number.</span><br>
      * <span color="green">a. Be sure to create the original array efficiently. Char may be useful instead of String.</span><br>
-     * 7. <span color="red">Pascals triangle any row. </span><br>
+     * 7. <span color="green">Pascals triangle any row. </span><br>
      * 8. <span color="green">Start with an array of words. User can type any group of letters and just the words either with
      * the letters, beginning with the letters, or ending with the letters are displayed.</span><br>
      * <span color="green">a. Extension to qualify for a possible A—will change the list as you type in a textfield like
@@ -54,7 +54,7 @@ public class HelloController {
     @FXML
     protected void initialize() {
         System.out.println(Utils.rollDiceThing(6, 5));
-        System.out.println(getPascalsTriangle(5));
+        System.out.println(getPascalsTriangle(15));
     }
 
     @FXML
@@ -80,6 +80,11 @@ public class HelloController {
     @FXML
     protected void shiftCharacters() {
         handleTextField(6, "Enter the string you want to shift");
+    }
+
+    @FXML
+    protected void pascal() {
+        handleTextField(7, "Enter the number of rows you want to find.");
     }
 
     @FXML
@@ -109,8 +114,17 @@ public class HelloController {
                 case 1:
                     handleFindingElement(content);
                     break;
+                case 7:
+                    handlePascal(content);
+                    break;
             }
         }
+    }
+
+    private void handlePascal(String current) {
+        Integer input = parseInput(current, Integer.class);
+        input = input == null ? 4 : input; // if input is null, set it to 4
+        output.setText(getPascalsTriangle(input));
     }
 
     private void handleFindingElement(String current) {
