@@ -28,15 +28,6 @@ public class HelloController {
     private Object phaseOneInput = null;
     private Object phaseTwoInput = null;
 
-    @FXML
-    protected void initialize() {
-        ArrayList<Integer> ints = new ArrayList<>();
-        for (int i = 0; i < 10; i++) {
-            ints.add(Utils.getRandomNumber(1, 10));
-        }
-        System.out.println(Utils.waterThing(ints));
-        System.out.println(ints);
-    }
 
     @FXML
     protected void diceRoll() {
@@ -71,6 +62,17 @@ public class HelloController {
             array[i] = getRandomNumber(1, 100);
         }
         output.setText(Utils.minMaxArray(array));
+    }
+
+    @FXML
+    protected void waterDaPlants() {
+        currentOperation = 9;
+        ArrayList<Integer> ints = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            ints.add(Utils.getRandomNumber(1, 10));
+        }
+        output.setText(Utils.waterThing(ints));
+        output.setText(output.getText() + "\n" + ints);
     }
 
     @FXML

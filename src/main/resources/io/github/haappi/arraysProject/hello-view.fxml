@@ -4,8 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
             fx:controller="io.github.haappi.arraysProject.HelloController">
     <children>
         <MenuButton layoutX="432.0" layoutY="188.0" mnemonicParsing="false" text="MenuButton">
@@ -18,6 +17,7 @@
                 <MenuItem mnemonicParsing="false" onAction="#pascal" text="Generate Pascals home"/>
                 <MenuItem mnemonicParsing="false" onAction="#diceRoll" text="Roll a dice omg!"/>
                 <MenuItem mnemonicParsing="false" onAction="#addRemove" text="Add/Remove at location"/>
+                <MenuItem mnemonicParsing="false" onAction="#waterDaPlants" text="Water thing"/>
             </items>
         </MenuButton>
         <TextField fx:id="input" layoutX="226.0" layoutY="188.0" onAction="#nextStep" onKeyTyped="#onKeyPress"/>
