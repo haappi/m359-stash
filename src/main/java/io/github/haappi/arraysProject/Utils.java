@@ -23,13 +23,13 @@ public class Utils {
      * @return A String containing of the count and position of the element in the array.
      */
     public static String getCountAndPositionOf(int object, int[] array) {
-        String outputString = "";
+        StringBuilder outputString = new StringBuilder();
         for (int i = 0; i < array.length - 1; i++) {
             if (array[i] == object) {
-                outputString += object + " found at position " + i + ".\n";
+                outputString.append(object).append(" found at position ").append(i).append(".\n");
             }
         }
-        return outputString;
+        return outputString.toString();
     }
 
     /**
@@ -41,7 +41,7 @@ public class Utils {
      */
     @SuppressWarnings("unused")
     public static int getRandomNumber(int min, int max) {
-        return (int) (Math.random() * ((max - min) + min + 1)) + min;
+        return (int) (Math.random() * ((max - min) + min)) + min;
     }
 
     /**
@@ -85,11 +85,11 @@ public class Utils {
      * @return A nicely formatted string of the array.
      */
     public static <E> String printNicely(List<E> list) {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (E elem : list) {
-            output += elem.toString() + ", ";
+            output.append(elem.toString()).append(", ");
         }
-        return output;
+        return output.toString();
     }
 
     /**
@@ -103,12 +103,8 @@ public class Utils {
         int max = array[0];
         int avg = 0;
         for (int i = 0; i < array.length; i++) {
-            if (array[i] < min) {
-                min = array[i];
-            }
-            if (array[i] > max) {
-                max = array[i];
-            }
+            min = Math.min(min, array[i]);
+            max = Math.max(max, array[i]);
             avg += array[i];
         }
         avg /= array.length;
@@ -241,7 +237,7 @@ public class Utils {
      * @return The translated {@link String}.
      */
     public static String translate(String string, int offset) {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (char c : string.toCharArray()) {
             char newChar = (char) (c + offset);
             if (newChar > 126) {
@@ -249,7 +245,7 @@ public class Utils {
             } else if (newChar < 32) {
                 newChar = (char) (newChar + 95);
             }
-            output += newChar;
+            output.append(newChar);
         }
         return string + " -> " + output;
     }
@@ -351,9 +347,9 @@ public class Utils {
      * @return The formatted {@link String}.
      */
     public static <E> String beautifyArray(List<E> array, String separator) {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (E e : array) {
-            output += e + separator;
+            output.append(e).append(separator);
         }
         return output.substring(0, output.length() - separator.length());
     }
@@ -428,15 +424,15 @@ public class Utils {
      * @return The row's numbers.
      */
     public static String getPascalsTriangleRow(int row) {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (int i = 0; i <= row; i++) {
-            output += Utils.factorial(row) / (Utils.factorial(i) * Utils.factorial(row - i)) + " ";
+            output.append(Utils.factorial(row) / (Utils.factorial(i) * Utils.factorial(row - i))).append(" ");
             // https://ptri1.tripod.com/#:~:text=A%20number%20in%20the%20triangle,-------
             // the formula is n! / r! * (n - r)!
             // you still factorial the numbers inside
             // where n is the # row and r is the element in the row
         }
-        return output;
+        return output.toString();
     }
 
     /**
@@ -446,12 +442,12 @@ public class Utils {
      * @return The Pascal Triangle
      */
     public static String getPascalsTriangle(int row) {
-        String output = "";
+        StringBuilder output = new StringBuilder();
         for (int i = 0; i <= row; i++) {
-            output += getPascalsTriangleRowSpacing(row - i) + getPascalsTriangleRow(i) + getPascalsTriangleRowSpacing(row - i) + "\n";
+            output.append(getPascalsTriangleRowSpacing(row - i)).append(getPascalsTriangleRow(i)).append(getPascalsTriangleRowSpacing(row - i)).append("\n");
             // this has to be row - i because the top iof the triangle needs the most amoubnt of spaces
         }
-        return output;
+        return output.toString();
     }
 
     /**
@@ -464,6 +460,95 @@ public class Utils {
         return " ".repeat(Math.max(0, row));
     }
 
+    public static String waterThing(ArrayList<Integer> arrayList) {
+        int waterUnits = 0;
+        for (int i = 0; i < arrayList.size(); i++) {
+            int current = arrayList.get(i);
+            int left = 0;
+            int right = 0;
+            for (int j = i; j >= 0; j--) {
+                left = Math.max(left, arrayList.get(j));
+            }
+            for (int j = i; j < arrayList.size(); j++) {
+                right = Math.max(right, arrayList.get(j));
+            }
+            waterUnits += Math.min(left, right) - current; // each iteration, add the difference between the min of the left and right and the current
+            // left wall
+            // right wall*
+        }
+        return waterUnits + "";
+    }
 
-// todo pascals triangle
+    /**
+     * Returns the maximum value in the provided {@link List}.
+     *
+     * @param list The {@link List} to search in.
+     * @return The maximum value in the provided {@link List}.
+     */
+    public static Integer getMaxElement(List<Integer> list) {
+        Integer max = list.get(0);
+        for (Integer e : list) {
+            if (e != null && e > max) {
+                max = e;
+            }
+        }
+        return max;
+    }
+
+    /**
+     * Returns the maximum value in the provided {@link List}.
+     *
+     * @param list  The {@link List} to search in.
+     * @param start The starting {@link Integer} to search from.
+     * @param end   The ending {@link Integer} to search to.
+     * @return The maximum value in the provided {@link List}.
+     */
+    public static Integer getMaxElement(List<Integer> list, int start, int end) {
+        Integer max = list.get(0);
+        for (Integer e : list) {
+            if (e != null && e > max) {
+                max = e;
+            }
+        }
+        return max;
+    }
+
+    /**
+     * Returns the index of the maximum value in the provided {@link List}.
+     *
+     * @param list The {@link List} to search in.
+     * @return The index of the maximum value in the provided {@link List}.
+     */
+    public static Integer getMaxIndex(List<Integer> list) {
+        Integer element = getMaxElement(list);
+        return list.indexOf(element);
+    }
+
+    /**
+     * Returns the minimum value in the provided {@link List}.
+     *
+     * @param list The {@link List} to search in.
+     * @return The minimum value in the provided {@link List}.
+     */
+    public static Integer getMinElement(List<Integer> list) {
+        Integer min = list.get(0);
+        for (Integer e : list) {
+            if (e != null && e < min) {
+                min = e;
+            }
+        }
+        return min;
+    }
+
+    /**
+     * Returns the index of the minimum value in the provided {@link List}.
+     *
+     * @param list The {@link List} to search in.
+     * @return The index of the minimum value in the provided {@link List}.
+     */
+    public static Integer getMinIndex(List<Integer> list) {
+        Integer element = getMinElement(list);
+        return list.indexOf(element);
+    }
+
 }

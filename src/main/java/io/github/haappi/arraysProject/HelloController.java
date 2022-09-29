@@ -23,36 +23,19 @@ public class HelloController {
     protected TextField input;
     @FXML
     protected ListView<String> listOutput;
-    private Object phaseThreeInput = null;
-    private Object phaseFourInput = null;
     private int currentOperation = 2;
     private int phase = 0;
     private Object phaseOneInput = null;
     private Object phaseTwoInput = null;
 
-    /**
-     * 1. <span color="green">Find number in an array. If number found, print position and how many. You may not use
-     * indexOf. Loops and conditionals only </span><br>
-     * 2. <span color="green">Find max, min, average of a group of numbers in an array.</span><br>
-     * 3. <span color="green">Add or replaces items in an array at any given location</span><br>
-     * 4. <span color="green">Roll x dice y times and display how many of each sum occurs.</span><br>
-     * 5. <span color="green">Shuffle an array 2 ways</span><br>
-     * 6. <span color="green">Create a new array that translates the letters of the alphabet by a number.</span><br>
-     * <span color="green">a. Be sure to create the original array efficiently. Char may be useful instead of String.</span><br>
-     * 7. <span color="green">Pascals triangle any row. </span><br>
-     * 8. <span color="green">Start with an array of words. User can type any group of letters and just the words either with
-     * the letters, beginning with the letters, or ending with the letters are displayed.</span><br>
-     * <span color="green">a. Extension to qualify for a possible A—will change the list as you type in a textfield like
-     * your phone does. </span><br>
-     * 9. <span color="red">Water thins</span>
-     */
-    private void anotherUselessMethod() throws Exception {
-        throw new Exception("have fun debugging this");
-    }
-
     @FXML
     protected void initialize() {
-        System.out.println(Utils.rollDiceThing(6, 5));
+        ArrayList<Integer> ints = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            ints.add(Utils.getRandomNumber(1, 10));
+        }
+        System.out.println(Utils.waterThing(ints));
+        System.out.println(ints);
     }
 
     @FXML
@@ -118,21 +101,11 @@ public class HelloController {
         if (validInputTypes.contains(this.currentOperation)) {
             String content = getStringFrom(inputMethodEvent);
             switch (this.currentOperation) {
-                case 5:
-                    handleArrayShuffle(content);
-                    break;
-                case 8:
-                    handleArrayOfWords(content);
-                    break;
-                case 1:
-                    handleFindingElement(content);
-                    break;
-                case 7:
-                    handlePascal(content);
-                    break;
-                case 3:
-                    handleAddingRemoving(content);
-                    break;
+                case 5 -> handleArrayShuffle(content);
+                case 8 -> handleArrayOfWords(content);
+                case 1 -> handleFindingElement(content);
+                case 7 -> handlePascal(content);
+                case 3 -> handleAddingRemoving(content);
             }
         }
     }
