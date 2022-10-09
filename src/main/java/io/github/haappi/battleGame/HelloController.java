@@ -31,7 +31,8 @@ public class HelloController {
 //    }
 //
 //    ((Node)(event.getSource())).getScene().getWindow().
-    HelloApplication.stage.setScene(scene); // https://stackoverflow.com/a/43179228
+    HelloApplication.getInstance().setStageScene(scene); // https://stackoverflow.com/a/43179228
+    HelloApplication.getInstance().setSceneTitle(String.valueOf(System.currentTimeMillis()));
     // ^^ Or I can just do scuffed stuff like this.
 
 

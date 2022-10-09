@@ -7,15 +7,32 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class HelloApplication extends Application {
-  public static Stage stage;
+  private static HelloApplication singleton;
+  public static HelloApplication getInstance() {
+    return singleton;
+  }
+  private Stage stage;
   @Override
   public void start(Stage stage) throws IOException {
+    singleton = this;
     FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load(), 320, 240);
     stage.setTitle("Hello!");
     stage.setScene(scene);
     stage.show();
-    HelloApplication.stage = stage;
+    this.stage = stage;
+  }
+
+  public void setStageScene(Scene scene) {
+    stage.setScene(scene);
+  }
+
+  public void setSceneTitle(String newTitle) {
+    stage.setTitle(newTitle);
+  }
+
+  public Scene getStageScene() {
+    return stage.getScene();
   }
 
   public static void main(String[] args) {
