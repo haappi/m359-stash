@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1203bf94-d441-4a5d-ad6a-db75928ac889" name="Changes" comment="Add comments and make it look prettier">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="1203bf94-d441-4a5d-ad6a-db75928ac889" name="Changes" comment="Add gson as a dependency">
+      <change afterPath="$PROJECT_DIR$/save-files/test;test;1665418620226.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/SaveInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/SaveInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/StartMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/StartMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/battleGame/start-menu.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/battleGame/start-menu.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,18 +113,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "show.migrate.to.gradle.popup": "false"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Happy\Desktop\Projects\Java\FiveChallenges\save-files" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.HelloApplication (2)">
     <configuration name="HelloApplication (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="io.github.haappi.arraysProject.HelloApplication" />
@@ -269,7 +276,8 @@
       <workItem from="1665163019602" duration="1306000" />
       <workItem from="1665268064547" duration="12000" />
       <workItem from="1665344859896" duration="4657000" />
-      <workItem from="1665370160124" duration="1994000" />
+      <workItem from="1665370160124" duration="2446000" />
+      <workItem from="1665415175605" duration="3614000" />
     </task>
     <task id="LOCAL-00001" summary="blah blah blah blahhh">
       <created>1661278738047</created>
@@ -439,7 +447,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665371357067</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="whooaaaaaa">
+      <created>1665372192102</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1665372192102</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Add gson as a dependency">
+      <created>1665422790940</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1665422790940</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -459,8 +481,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="blah blah blah blahhh" />
-    <MESSAGE value="fix project name yada yada" />
     <MESSAGE value="wottt" />
     <MESSAGE value="base things" />
     <MESSAGE value="s m h -_-" />
@@ -484,6 +504,8 @@
     <MESSAGE value="Make the stupid class a singleton" />
     <MESSAGE value="very cool" />
     <MESSAGE value="Add comments and make it look prettier" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add comments and make it look prettier" />
+    <MESSAGE value="whooaaaaaa" />
+    <MESSAGE value="Add gson as a dependency" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add gson as a dependency" />
   </component>
 </project>
