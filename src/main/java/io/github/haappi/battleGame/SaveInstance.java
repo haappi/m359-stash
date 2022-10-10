@@ -30,7 +30,12 @@ public class SaveInstance {
     }
 
     public String getLastModifiedString() {
-        return String.format("%tA %tB %td %tY", lastModified, lastModified, lastModified, lastModified);
+        return String.format("%tA %<tB %<td %<tY", lastModified);
+        // https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#syntax
+        // https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#dt
+        // String.format can format timestamps. The 't' is to specify that it's a timestamp. The 'A' is stolen from the
+        // JavaDocs for "Locale-specific full name of the day of the week, e.g. "Sunday", "Monday"".
+        // The '<' is to prevent me from having to pass 4 parameters to String.format. It basically uses the previous parameter for formatting.
     }
 
     @Override
@@ -39,7 +44,7 @@ public class SaveInstance {
                 "name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", path='" + path + '\'' +
-                ", lastModified=" + lastModified +
+                ", lastModified=" + getLastModifiedString() +
                 '}';
     }
 }
