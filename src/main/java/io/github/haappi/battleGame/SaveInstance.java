@@ -30,7 +30,7 @@ public class SaveInstance {
     }
 
     public String getLastModifiedString() {
-        return String.format("%tA %<tB %<td %<tY", lastModified);
+        return String.format("%tA %<tB %<td, %<tY. %<tI:%<tM:%<tS %<tp", lastModified);
         // https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#syntax
         // https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#dt
         // String.format can format timestamps. The 't' is to specify that it's a timestamp. The 'A' is stolen from the
@@ -40,11 +40,13 @@ public class SaveInstance {
 
     @Override
     public String toString() {
-        return "SaveInstance{" +
-                "name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", path='" + path + '\'' +
-                ", lastModified=" + getLastModifiedString() +
-                '}';
+        return this.name;
+    }
+
+    public String getDetails() {
+        return String.format("Name: %s\n" +
+                "Description: %s\n" +
+                "File Path: %s\n" +
+                "Last Modified: %s", this.name, this.description, this.path, this.getLastModifiedString());
     }
 }
