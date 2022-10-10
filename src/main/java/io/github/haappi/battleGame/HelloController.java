@@ -32,6 +32,8 @@ public class HelloController {
 //
 //    ((Node)(event.getSource())).getScene().getWindow().
     HelloApplication.getInstance().setStageScene(scene); // https://stackoverflow.com/a/43179228
+    // A singleton is a class that can have only one object (an instance of the class) at a time.
+    // Trying to instantiate another object of the singleton class will result in a reference to the existing object.
     HelloApplication.getInstance().setSceneTitle(String.valueOf(System.currentTimeMillis()));
     // ^^ Or I can just do scuffed stuff like this.
 
