@@ -49,6 +49,6 @@ public class SaveInstance {
         return String.format("Name: %s\n" +
                 "Description: %s\n" +
                 "File Path: %s\n" +
-                "Last Modified: %s", information.getOrDefault("name", "Empty"), information.getOrDefault("description", "Empty"), SaveInstance.getLastModifiedString(this.lastModified));
+                "Last Modified: %s", information.getOrDefault("name", "Empty"), information.getOrDefault("description", "Empty"), this.path != null ? this.path : "new-save-file", SaveInstance.getLastModifiedString(this.lastModified));
     }
 }

@@ -2,6 +2,8 @@ package io.github.haappi.battleGame;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -18,7 +20,9 @@ public class StartMenuController {
 
     @FXML
     public void initialize() throws IOException {
-        saveFiles.getItems().addAll(getSaveInstances());
+        saveFiles.getItems().add(new SaveInstance());
+        // todo make loading logic
+//        saveFiles.getItems().addAll(getSaveInstances());
     }
 
     private List<SaveInstance> getSaveInstances() throws IOException {
@@ -46,10 +50,20 @@ public class StartMenuController {
 
     @FXML
     protected void loadSaveFile(ActionEvent actionEvent) {
-//        SaveInstance selectedItem = saveFiles.getSelectionModel().getSelectedItem();
-//        if (selectedItem != null) {
-//            saveInformation.setText(selectedItem.toString());
-//        }
+        SaveInstance selectedItem = saveFiles.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            saveInformation.setText("Loading " + selectedItem.toString() + "!");
+        } else {
+            saveInformation.setText("Select a save file.");
+        }
+    }
+
+    private void saveFileLoader(SaveInstance saveFile) {
+        if (saveFile.getPath().equals("new-save-file")) {
+            // it's a new save file
+        } else {
+            // read the json in and construct the classes that way
+        }
     }
 
     @FXML
