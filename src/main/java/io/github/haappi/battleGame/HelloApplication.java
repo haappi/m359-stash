@@ -1,6 +1,9 @@
 package io.github.haappi.battleGame;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import com.google.gson.Gson;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -8,8 +11,13 @@ import javafx.stage.Stage;
 
 public class HelloApplication extends Application {
   private static HelloApplication singleton;
+  private final Gson gsonInstance = new Gson();
   public static HelloApplication getInstance() {
     return singleton;
+  }
+
+  public Gson getGsonInstance() {
+    return gsonInstance;
   }
   private Stage stage;
   @Override

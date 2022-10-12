@@ -1,24 +1,26 @@
 package io.github.haappi.battleGame;
 
+import com.google.gson.Gson;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class SaveInstance {
-    private final String name;
-    private final String description;
+
+    private Map<String, String> information = new HashMap<>();
     private final String path;
     private final Long lastModified;
 
-    public SaveInstance(String name, String description, String path, Long lastModified) {
-        this.name = name;
-        this.description = description;
+    public SaveInstance(String data, String path, Long lastModified) {
         this.path = path;
         this.lastModified = lastModified;
+
+        this.information = (Map<String, String>) Utils.getMapFromString(Utils.getSaveInformation(data, lastModified, HelloApplication.getInstance().getGsonInstance()), lastModified, new Gson());
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getDescription() {
-        return description;
+    public SaveInstance() {
+        this.path = null;
+        this.lastModified = 0L;
     }
 
     public String getPath() {
@@ -29,7 +31,7 @@ public class SaveInstance {
         return lastModified;
     }
 
-    public String getLastModifiedString() {
+    public static String getLastModifiedString(Long lastModified) {
         return String.format("%tA %<tB %<td, %<tY. %<tI:%<tM:%<tS %<tp", lastModified);
         // https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#syntax
         // https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Formatter.html#dt
@@ -40,13 +42,13 @@ public class SaveInstance {
 
     @Override
     public String toString() {
-        return this.name;
+        return information.getOrDefault("name", "Empty");
     }
 
     public String getDetails() {
         return String.format("Name: %s\n" +
                 "Description: %s\n" +
                 "File Path: %s\n" +
-                "Last Modified: %s", this.name, this.description, this.path, this.getLastModifiedString());
+                "Last Modified: %s", information.getOrDefault("name", "Empty"), information.getOrDefault("description", "Empty"), SaveInstance.getLastModifiedString(this.lastModified));
     }
 }

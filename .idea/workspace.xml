@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1203bf94-d441-4a5d-ad6a-db75928ac889" name="Changes" comment="Add gson as a dependency">
+    <list default="true" id="1203bf94-d441-4a5d-ad6a-db75928ac889" name="Changes" comment="Ooops">
       <change afterPath="$PROJECT_DIR$/save-files/test;test;1665418620226.json" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/SaveInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/SaveInstance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/StartMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/battleGame/StartMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -277,7 +276,11 @@
       <workItem from="1665268064547" duration="12000" />
       <workItem from="1665344859896" duration="4657000" />
       <workItem from="1665370160124" duration="2446000" />
-      <workItem from="1665415175605" duration="3614000" />
+      <workItem from="1665415175605" duration="5137000" />
+      <workItem from="1665426178231" duration="1731000" />
+      <workItem from="1665432993133" duration="624000" />
+      <workItem from="1665450532780" duration="750000" />
+      <workItem from="1665508107458" duration="600000" />
     </task>
     <task id="LOCAL-00001" summary="blah blah blah blahhh">
       <created>1661278738047</created>
@@ -461,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665422790940</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Ooops">
+      <created>1665423097601</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1665423097601</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,7 +491,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="wottt" />
     <MESSAGE value="base things" />
     <MESSAGE value="s m h -_-" />
     <MESSAGE value="static stuff" />
@@ -506,6 +515,7 @@
     <MESSAGE value="Add comments and make it look prettier" />
     <MESSAGE value="whooaaaaaa" />
     <MESSAGE value="Add gson as a dependency" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add gson as a dependency" />
+    <MESSAGE value="Ooops" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ooops" />
   </component>
 </project>

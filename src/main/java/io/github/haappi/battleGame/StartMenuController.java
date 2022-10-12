@@ -6,6 +6,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 public class StartMenuController {
@@ -13,14 +17,31 @@ public class StartMenuController {
     @FXML protected ListView<SaveInstance> saveFiles;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         saveFiles.getItems().addAll(getSaveInstances());
     }
 
-    private List<SaveInstance> getSaveInstances() {
-        // todo get all the saves from the directory specified.
-//        return null;
-        return List.of(new SaveInstance("save1", "example save", "/usr/bin/ls", System.currentTimeMillis()));
+    private List<SaveInstance> getSaveInstances() throws IOException {
+        File directory = new File("save-files");
+        System.out.println(directory.getAbsolutePath());
+        if (!directory.exists()) {
+            directory.mkdirs(); // create the directory if it doesn't exist
+        }
+        File[] files = directory.listFiles();
+        ArrayList<SaveInstance> saveInstances = new ArrayList<>();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile() && file.getName().endsWith(".json")) {
+                    String fileRead = Utils.listToString(Files.readAllLines(file.toPath()));
+                    saveInstances.add(new SaveInstance(fileRead, file.getPath(), file.lastModified()));
+                }
+            }
+        }
+
+        while (saveInstances.size() != 3) {
+            saveInstances.add(new SaveInstance());
+        }
+        return saveInstances;
     }
 
     @FXML

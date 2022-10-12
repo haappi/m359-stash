@@ -1,0 +1,12 @@
+{
+  "info": {
+    "name": "Test",
+    "description": "Test"
+  },
+  "data": {
+    "test": {
+      "test": "test"
+    }
+  }
+
+}
