@@ -2,11 +2,11 @@ package io.github.haappi.battleGame.Classes;
 
 public class BasePotion {
     private final String name;
+    private final int shopPrice;
     private int baseHealDamageThing;
     private int level;
     private int manaCost;
     private int duration;
-    private final int shopPrice;
 
     public BasePotion(PotionBuilder builder) {
         this.name = builder.name;

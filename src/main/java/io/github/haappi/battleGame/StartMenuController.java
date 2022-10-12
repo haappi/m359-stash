@@ -2,8 +2,6 @@ package io.github.haappi.battleGame;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -15,8 +13,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StartMenuController {
-    @FXML protected Text saveInformation;
-    @FXML protected ListView<SaveInstance> saveFiles;
+    @FXML
+    protected Text saveInformation;
+    @FXML
+    protected ListView<SaveInstance> saveFiles;
 
     @FXML
     public void initialize() throws IOException {
@@ -52,7 +52,7 @@ public class StartMenuController {
     protected void loadSaveFile(ActionEvent actionEvent) {
         SaveInstance selectedItem = saveFiles.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            saveInformation.setText("Loading " + selectedItem.toString() + "!");
+            saveInformation.setText("Loading " + selectedItem + "!");
         } else {
             saveInformation.setText("Select a save file.");
         }

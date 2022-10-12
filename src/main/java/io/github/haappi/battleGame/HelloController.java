@@ -3,23 +3,19 @@ package io.github.haappi.battleGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 public class HelloController {
-  @FXML private Label welcomeText;
+    @FXML
+    private Label welcomeText;
 
-  @FXML
-  protected void onHelloButtonClick(ActionEvent event) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("another.fxml"));
-    Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+    @FXML
+    protected void onHelloButtonClick(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("another.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
 //    Stage stage = new Stage();
 //    stage.setTitle("aaaaa");
 //    stage.setScene(scene);
@@ -31,12 +27,12 @@ public class HelloController {
 //    }
 //
 //    ((Node)(event.getSource())).getScene().getWindow().
-    HelloApplication.getInstance().setStageScene(scene); // https://stackoverflow.com/a/43179228
-    // A singleton is a class that can have only one object (an instance of the class) at a time.
-    // Trying to instantiate another object of the singleton class will result in a reference to the existing object.
-    HelloApplication.getInstance().setSceneTitle(String.valueOf(System.currentTimeMillis()));
-    // ^^ Or I can just do scuffed stuff like this.
+        HelloApplication.getInstance().setStageScene(scene); // https://stackoverflow.com/a/43179228
+        // A singleton is a class that can have only one object (an instance of the class) at a time.
+        // Trying to instantiate another object of the singleton class will result in a reference to the existing object.
+        HelloApplication.getInstance().setSceneTitle(String.valueOf(System.currentTimeMillis()));
+        // ^^ Or I can just do scuffed stuff like this.
 
 
-  }
+    }
 }

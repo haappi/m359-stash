@@ -1,8 +1,9 @@
 package io.github.haappi.battleGame;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 import java.util.Map;
-import com.google.gson.Gson;
 
 public class Utils {
     private Utils() {
