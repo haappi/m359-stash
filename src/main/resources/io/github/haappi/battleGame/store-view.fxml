@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.battleGame.StoreController">
+   <children>
+      <ListView fx:id="storeItems" layoutX="64.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
+      <Text fx:id="currentlyShopping" layoutX="65.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are currently shopping: Weapons" />
+      <MenuButton layoutX="264.0" layoutY="100.0" mnemonicParsing="false" text="Change Shopping For">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Weapons" />
+          <MenuItem mnemonicParsing="false" text="Potions" />
+            <MenuItem mnemonicParsing="false" text="Food" />
+            <MenuItem mnemonicParsing="false" text="Spells" />
+        </items>
+      </MenuButton>
+   </children>
+</AnchorPane>
