@@ -14,6 +14,7 @@ public class Player {
     private int speed;
     private int currentMana;
     private int maxMana;
+    private int luck;
     private double fatigueLevel;
 
     public Player(PlayerBuilder builder) {
@@ -26,6 +27,7 @@ public class Player {
         this.currentMana = builder.currentMana;
         this.maxMana = builder.maxMana;
         this.fatigueLevel = builder.fatigueLevel;
+        this.luck = builder.luck;
     }
 
     public Player(String name, double currentHealth, double maxHealth, double attack, double defense, int speed, int currentMana, int maxMana, double fatigueLevel) {
@@ -48,6 +50,14 @@ public class Player {
                 "Speed: " + speed + "\n" +
                 "Mana: " + currentMana + "/" + maxMana + "\n" +
                 "Fatigue: " + fatigueLevel;
+    }
+
+    public int getLuck() {
+        return luck;
+    }
+
+    public void setLuck(int luck) {
+        this.luck = luck;
     }
 
     public Player(String data) {
@@ -149,6 +159,7 @@ public class Player {
         private int currentMana;
         private int maxMana;
         private int fatigueLevel;
+        private int luck;
 
         public PlayerBuilder(String name) {
             this.name = name;
@@ -157,6 +168,11 @@ public class Player {
         public PlayerBuilder setMaxHealth(double maxHealth) {
             this.currentHealth = maxHealth;
             this.maxHealth = maxHealth;
+            return this;
+        }
+
+        public PlayerBuilder setLuck(int luck) {
+            this.luck = luck;
             return this;
         }
 

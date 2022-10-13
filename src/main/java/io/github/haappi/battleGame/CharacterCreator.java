@@ -24,23 +24,116 @@ public class CharacterCreator {
     protected Text textPointAmount;
     @FXML protected Text pointAmount;
 
+    private final int MINIMUM_HEALTH = 20;
+    private final int MINIMUM_ATTACK = 5;
+    private final int MINIMUM_DEFENSE = 5;
+    private final int MINIMUM_SPEED = 2;
+    private final int MINIMUM_MANA = 10;
+    private final int MINIMUM_LUCK = 2;
+
+    private String selectedStat = "Health";
+
+
     @FXML
     protected void initialize() {
         pointAmount.setText(pointsLeft.toString());
-        textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
-        statsView.getItems().add("Health: 20");
-        statsView.getItems().add("Attack: 5");
-        statsView.getItems().add("Defense: 5");
-        statsView.getItems().add("Speed: 2");
-        statsView.getItems().add("Mana: 10");
-        statsView.getItems().add("Luck: 2");
+        textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft)); // todo fix this overlapping weirdly
+        // prolly just change the final x position of it
+        statsView.getItems().add("Health: " + MINIMUM_HEALTH);
+        statsView.getItems().add("Attack: " + MINIMUM_ATTACK);
+        statsView.getItems().add("Defense: " + MINIMUM_DEFENSE);
+        statsView.getItems().add("Speed: " + MINIMUM_SPEED);
+        statsView.getItems().add("Mana: " + MINIMUM_MANA);
+        statsView.getItems().add("Luck: " + MINIMUM_LUCK);
         statsView.getSelectionModel().select(selectedIndex);
     }
 
     @FXML protected void increase(ActionEvent actionEvent) {
+        if (pointsLeft > 0) {
+            pointsLeft--;
+            pointAmount.setText(pointsLeft.toString());
+            textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
+            switch (selectedStat) {
+                case "Health":
+                    int currentAmount = Integer.parseInt(statsView.getItems().get(0).split(": ")[1]);
+                    statsView.getItems().set(0, "Health: " + (currentAmount + 1));
+                    break;
+                case "Attack":
+                    currentAmount = Integer.parseInt(statsView.getItems().get(1).split(": ")[1]);
+                    statsView.getItems().set(1, "Attack: " + (currentAmount + 1));
+                    break;
+                case "Defense":
+                    currentAmount = Integer.parseInt(statsView.getItems().get(2).split(": ")[1]);
+                    statsView.getItems().set(2, "Defense: " + (currentAmount + 1));
+                    break;
+                case "Speed":
+                    currentAmount = Integer.parseInt(statsView.getItems().get(3).split(": ")[1]);
+                    statsView.getItems().set(3, "Speed: " + (currentAmount + 1));
+                    break;
+                case "Mana":
+                    currentAmount = Integer.parseInt(statsView.getItems().get(4).split(": ")[1]);
+                    statsView.getItems().set(4, "Mana: " + (currentAmount + 1));
+                    break;
+                case "Luck":
+                    currentAmount = Integer.parseInt(statsView.getItems().get(5).split(": ")[1]);
+                    statsView.getItems().set(5, "Luck: " + (currentAmount + 1));
+                    break;
+            }
+        }
     }
 
     @FXML protected void decrease(ActionEvent actionEvent) {
+        switch (selectedStat.toLowerCase()) {
+            case "health" -> { // todo refactor this later to use a common method
+                    if (MINIMUM_HEALTH < Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1])) {
+                    statsView.getItems().set(selectedIndex, "Health: " + (Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]) - 1));
+                    pointsLeft++;
+                    pointAmount.setText(pointsLeft.toString());
+                    textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
+                }
+            }
+            case "attack" -> {
+                if (MINIMUM_ATTACK < Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1])) {
+                    statsView.getItems().set(selectedIndex, "Attack: " + (Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]) - 1));
+                    pointsLeft++;
+                    pointAmount.setText(pointsLeft.toString());
+                    textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
+                }
+            }
+            case "defense" -> {
+                if (MINIMUM_DEFENSE < Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1])) {
+                    statsView.getItems().set(selectedIndex, "Defense: " + (Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]) - 1));
+                    pointsLeft++;
+                    pointAmount.setText(pointsLeft.toString());
+                    textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
+                }
+            }
+            case "speed" -> {
+                if (MINIMUM_SPEED < Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1])) {
+                    statsView.getItems().set(selectedIndex, "Speed: " + (Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]) - 1));
+                    pointsLeft++;
+                    pointAmount.setText(pointsLeft.toString());
+                    textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
+                }
+            }
+            case "mana" -> {
+                if (MINIMUM_MANA < Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1])) {
+                    statsView.getItems().set(selectedIndex, "Mana: " + (Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]) - 1));
+                    pointsLeft++;
+                    pointAmount.setText(pointsLeft.toString());
+                    textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
+                }
+            }
+            case "luck" -> {
+                if (MINIMUM_LUCK < Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1])) {
+                    statsView.getItems().set(selectedIndex, "Luck: " + (Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]) - 1));
+                    pointsLeft++;
+                    pointAmount.setText(pointsLeft.toString());
+                    textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
+                }
+            }
+        }
+
     }
 
     @FXML protected void finished(ActionEvent actionEvent) {
@@ -51,9 +144,10 @@ public class CharacterCreator {
     }
 
     @FXML protected void onStatChange(MouseEvent mouseEvent) {
-        ListView<String> source = (ListView<String>) mouseEvent.getSource();
-        String string = source.getSelectionModel().getSelectedItem();
-        System.out.println(string);
+        ListView<?> source = (ListView<?>) mouseEvent.getSource();
+        String string = (String) source.getSelectionModel().getSelectedItem();
+        selectedStat = string.split(":")[0];
+        selectedIndex = source.getSelectionModel().getSelectedIndex();
     }
 
 }
