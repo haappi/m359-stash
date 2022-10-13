@@ -1,10 +1,12 @@
 package io.github.haappi.battleGame.Classes;
 
+import io.github.haappi.battleGame.InventoryItem;
+
 /**
  * @author haappi
  * Base class that represents an item that can be held by a player
  */
-public class HoldableItem {
+public class HoldableItem extends InventoryItem {
     private String name;
     private int count;
 

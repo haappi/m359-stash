@@ -1,19 +1,20 @@
 package io.github.haappi.battleGame.Classes;
 
+import io.github.haappi.battleGame.InventoryItem;
+
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Player {
-    private final ArrayList<Objects> inventory = new ArrayList<>();
+    private final ArrayList<InventoryItem> inventory = new ArrayList<>();
     private String name;
-    private int currentHealth;
-    private int maxHealth;
-    private int attack;
-    private int defense;
+    private double currentHealth;
+    private double maxHealth;
+    private double attack;
+    private double defense;
     private int speed;
     private int currentMana;
     private int maxMana;
-    private int fatigueLevel;
+    private double fatigueLevel;
 
     public Player(PlayerBuilder builder) {
         this.name = builder.name;
@@ -27,6 +28,41 @@ public class Player {
         this.fatigueLevel = builder.fatigueLevel;
     }
 
+    public Player(String name, double currentHealth, double maxHealth, double attack, double defense, int speed, int currentMana, int maxMana, double fatigueLevel) {
+        this.name = name;
+        this.currentHealth = currentHealth;
+        this.maxHealth = maxHealth;
+        this.attack = attack;
+        this.defense = defense;
+        this.speed = speed;
+        this.currentMana = currentMana;
+        this.maxMana = maxMana;
+        this.fatigueLevel = fatigueLevel;
+    }
+
+    public String getPlayerDataAsString() {
+        return "Name: " + name + "\n" +
+                "Health: " + currentHealth + "/" + maxHealth + "\n" +
+                "Attack: " + attack + "\n" +
+                "Defense: " + defense + "\n" +
+                "Speed: " + speed + "\n" +
+                "Mana: " + currentMana + "/" + maxMana + "\n" +
+                "Fatigue: " + fatigueLevel;
+    }
+
+    public Player(String data) {
+        String[] splitData = data.split(";");
+        this.name = splitData[0];
+        this.currentHealth = Double.parseDouble(splitData[1]);
+        this.maxHealth = Double.parseDouble(splitData[2]);
+        this.attack = Double.parseDouble(splitData[3]);
+        this.defense = Double.parseDouble(splitData[4]);
+        this.speed = Integer.parseInt(splitData[5]);
+        this.currentMana = Integer.parseInt(splitData[6]);
+        this.maxMana = Integer.parseInt(splitData[7]);
+        this.fatigueLevel = Double.parseDouble(splitData[8]);
+    }
+
     public String getName() {
         return name;
     }
@@ -35,7 +71,7 @@ public class Player {
         this.name = name;
     }
 
-    public int getCurrentHealth() {
+    public double getCurrentHealth() {
         return currentHealth;
     }
 
@@ -43,7 +79,7 @@ public class Player {
         this.currentHealth = currentHealth;
     }
 
-    public int getMaxHealth() {
+    public double getMaxHealth() {
         return maxHealth;
     }
 
@@ -51,7 +87,7 @@ public class Player {
         this.maxHealth = maxHealth;
     }
 
-    public int getAttack() {
+    public double getAttack() {
         return attack;
     }
 
@@ -59,7 +95,7 @@ public class Player {
         this.attack = attack;
     }
 
-    public int getDefense() {
+    public double getDefense() {
         return defense;
     }
 
@@ -91,7 +127,7 @@ public class Player {
         this.maxMana = maxMana;
     }
 
-    public int getFatigueLevel() {
+    public double getFatigueLevel() {
         return fatigueLevel;
     }
 
@@ -99,16 +135,16 @@ public class Player {
         this.fatigueLevel = fatigueLevel;
     }
 
-    public ArrayList<Objects> getInventory() {
+    public ArrayList<InventoryItem> getInventory() {
         return inventory;
     }
 
     public static class PlayerBuilder {
         private final String name;
-        private int currentHealth;
-        private int maxHealth;
-        private int attack;
-        private int defense;
+        private double currentHealth;
+        private double maxHealth;
+        private double attack;
+        private double defense;
         private int speed;
         private int currentMana;
         private int maxMana;
@@ -118,22 +154,18 @@ public class Player {
             this.name = name;
         }
 
-        public PlayerBuilder setCurrentHealth(int currentHealth) {
-            this.currentHealth = currentHealth;
-            return this;
-        }
-
-        public PlayerBuilder setMaxHealth(int maxHealth) {
+        public PlayerBuilder setMaxHealth(double maxHealth) {
+            this.currentHealth = maxHealth;
             this.maxHealth = maxHealth;
             return this;
         }
 
-        public PlayerBuilder setAttack(int attack) {
+        public PlayerBuilder setAttack(double attack) {
             this.attack = attack;
             return this;
         }
 
-        public PlayerBuilder setDefense(int defense) {
+        public PlayerBuilder setDefense(double defense) {
             this.defense = defense;
             return this;
         }
