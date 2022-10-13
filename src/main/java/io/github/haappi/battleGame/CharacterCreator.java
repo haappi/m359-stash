@@ -55,27 +55,27 @@ public class CharacterCreator {
             textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
             switch (selectedStat) {
                 case "Health":
-                    int currentAmount = Integer.parseInt(statsView.getItems().get(0).split(": ")[1]);
+                    int currentAmount = Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]);
                     statsView.getItems().set(0, "Health: " + (currentAmount + 1));
                     break;
                 case "Attack":
-                    currentAmount = Integer.parseInt(statsView.getItems().get(1).split(": ")[1]);
+                    currentAmount = Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]);
                     statsView.getItems().set(1, "Attack: " + (currentAmount + 1));
                     break;
                 case "Defense":
-                    currentAmount = Integer.parseInt(statsView.getItems().get(2).split(": ")[1]);
+                    currentAmount = Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]);
                     statsView.getItems().set(2, "Defense: " + (currentAmount + 1));
                     break;
                 case "Speed":
-                    currentAmount = Integer.parseInt(statsView.getItems().get(3).split(": ")[1]);
+                    currentAmount = Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]);
                     statsView.getItems().set(3, "Speed: " + (currentAmount + 1));
                     break;
                 case "Mana":
-                    currentAmount = Integer.parseInt(statsView.getItems().get(4).split(": ")[1]);
+                    currentAmount = Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]);
                     statsView.getItems().set(4, "Mana: " + (currentAmount + 1));
                     break;
                 case "Luck":
-                    currentAmount = Integer.parseInt(statsView.getItems().get(5).split(": ")[1]);
+                    currentAmount = Integer.parseInt(statsView.getItems().get(selectedIndex).split(": ")[1]);
                     statsView.getItems().set(5, "Luck: " + (currentAmount + 1));
                     break;
             }
@@ -149,5 +149,6 @@ public class CharacterCreator {
         selectedStat = string.split(":")[0];
         selectedIndex = source.getSelectionModel().getSelectedIndex();
     }
+    // todo add the change class type thing and have final hardcoded stats // buffs and nerdfs for ther class
 
 }
