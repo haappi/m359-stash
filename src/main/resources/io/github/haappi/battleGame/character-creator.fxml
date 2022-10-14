@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.battleGame.CharacterCreator">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.battleGame.CharacterCreator">
    <children>
       <MenuButton fx:id="changePlayerType" layoutX="237.0" layoutY="219.0" mnemonicParsing="false" text="Class Type">
         <items>
@@ -19,7 +19,7 @@
           <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Assassin" />
             <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Mage" />
             <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Archer" />
-            <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Berserker " />
+            <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Berserker" />
             <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Ranger" />
         </items>
          <tooltip>
@@ -34,7 +34,7 @@
             <Font size="17.0" />
          </font></Text>
       <Button layoutX="489.0" layoutY="147.0" mnemonicParsing="false" onAction="#finished" text="Done!" />
-      <TextField fx:id="charNameMaker" layoutX="237.0" layoutY="188.0" onAction="#charNameMaker" promptText="Name of your character" />
+      <TextField fx:id="charNameMaker" layoutX="237.0" layoutY="188.0" onKeyTyped="#charNameMaker" promptText="Name of your character" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="25.0" layoutX="231.0" layoutY="28.0" stroke="#f4f4f4" strokeType="INSIDE" width="26.0" />
       <Text fx:id="pointAmount" fill="#e043a0" layoutX="234.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="26.0">
          <font>

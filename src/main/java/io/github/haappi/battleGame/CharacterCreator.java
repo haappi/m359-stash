@@ -1,5 +1,6 @@
 package io.github.haappi.battleGame;
 
+import io.github.haappi.battleGame.Classes.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -8,6 +9,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+
+import java.util.Locale;
+import java.util.Objects;
 
 public class CharacterCreator {
     @FXML protected Text specificClassInformation;
@@ -31,6 +35,7 @@ public class CharacterCreator {
 
     private String selectedStat = "Health";
     private String selectedClass = "Fighter";
+    private double multiplier = 0.15;
 
 
     @FXML
@@ -102,11 +107,34 @@ public class CharacterCreator {
     }
 
     @FXML protected void finished(ActionEvent actionEvent) {
-        // pass the class to the PersonBuilder with all the stats.
+        Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder(this.characterName).setClazz(this.selectedClass);
+        System.out.println(this.characterName);
+        System.out.println(this.selectedClass);
+        for (String thing : this.statsView.getItems()) {
+            playerBuilder = this.builder(playerBuilder, thing);
+        }
+        Player player = new Player(playerBuilder);
+        System.out.println(player.getPlayerDataAsString());
+    }
+
+    private Player.PlayerBuilder builder(Player.PlayerBuilder current, String stat) {
+        String statName = stat.split(": ")[0];
+        int statAmount = Integer.parseInt(stat.split(": ")[1]);
+
+        switch (statName.toLowerCase()) {
+            case "health" -> current = current.setMaxHealth(statAmount + (statAmount * multiplier));
+            case "attack" -> current = current.setAttack(statAmount + (statAmount * multiplier));
+            case "defense" -> current = current.setDefense(statAmount + (statAmount * multiplier));
+            case "speed" -> current = current.setSpeed((int) (statAmount + (statAmount * multiplier)));
+            case "mana" -> current = current.setMaxMana((int) (statAmount + (statAmount * multiplier)));
+            case "luck" -> current = current.setLuck((int) (statAmount + (statAmount * multiplier)));
+        }
+        return current;
     }
 
     @FXML protected void charNameMaker() {
-        characterName = charNameMaker.getText() != null ? charNameMaker.getText() : "Timmy";
+        characterName = !Objects.equals(charNameMaker.getText(), "") ? charNameMaker.getText() : "Timmy";
+        this.basicInformation.setText(String.format("Name: %s. Class: %s", this.characterName, this.selectedClass));
     }
 
     @FXML protected void onStatChange(MouseEvent mouseEvent) {
@@ -133,7 +161,7 @@ public class CharacterCreator {
             }
             case "assassin" -> {
                 specificClassInformation.setText("Assassins are fast and have high attack, but have low defense and health.");
-                selectedStat = "Assassin";
+                selectedClass = "Assassin";
             }
             case "berserker" -> {
                 specificClassInformation.setText("Berserkers are strong and have high defense, but have low speed and mana.");
@@ -144,6 +172,20 @@ public class CharacterCreator {
                 selectedClass = "Archer";
             }
         }
+        this.basicInformation.setText(String.format("Name: %s. Class: %s", this.characterName, this.selectedClass));
+        int length = (int) (this.specificClassInformation.getLayoutX() / 2);
+        String setText = specificClassInformation.getText();
+        StringBuilder sb = new StringBuilder();
+        int currentIndex = 0;
+        for (char character : setText.toCharArray()) {
+            if (currentIndex >= length) {
+                sb.append("\n");
+                currentIndex = 0;
+            }
+            sb.append(character);
+            currentIndex++;
+        }
+        specificClassInformation.setText(sb.toString());
     }
     // todo add the change class type thing and have final hardcoded stats // buffs and nerdfs for ther class
 
