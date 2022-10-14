@@ -35,7 +35,7 @@ public class CharacterCreator {
 
     private String selectedStat = "Health";
     private String selectedClass = "Fighter";
-    private double multiplier = 0.15;
+    private double multiplier = 0.15; // todo randomize this on program startup between .13 - .62
 
 
     @FXML
@@ -106,7 +106,7 @@ public class CharacterCreator {
         }
     }
 
-    @FXML protected void finished(ActionEvent actionEvent) {
+    @FXML protected void finished() {
         Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder(this.characterName).setClazz(this.selectedClass);
         System.out.println(this.characterName);
         System.out.println(this.selectedClass);
