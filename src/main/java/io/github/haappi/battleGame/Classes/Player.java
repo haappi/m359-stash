@@ -16,10 +16,11 @@ public class Player {
     private int maxMana;
     private int luck;
     private double fatigueLevel;
+    private final String clazz;
 
     public Player(PlayerBuilder builder) {
         this.name = builder.name;
-        this.currentHealth = builder.currentHealth;
+        this.currentHealth = builder.maxHealth;
         this.maxHealth = builder.maxHealth;
         this.attack = builder.attack;
         this.defense = builder.defense;
@@ -28,9 +29,10 @@ public class Player {
         this.maxMana = builder.maxMana;
         this.fatigueLevel = builder.fatigueLevel;
         this.luck = builder.luck;
+        this.clazz = builder.clazz;
     }
 
-    public Player(String name, double currentHealth, double maxHealth, double attack, double defense, int speed, int currentMana, int maxMana, double fatigueLevel) {
+    public Player(String name, double currentHealth, double maxHealth, double attack, double defense, int speed, int currentMana, int maxMana, double fatigueLevel, String clazz) {
         this.name = name;
         this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;
@@ -40,6 +42,7 @@ public class Player {
         this.currentMana = currentMana;
         this.maxMana = maxMana;
         this.fatigueLevel = fatigueLevel;
+        this.clazz = clazz;
     }
 
     public String getPlayerDataAsString() {
@@ -49,7 +52,8 @@ public class Player {
                 "Defense: " + defense + "\n" +
                 "Speed: " + speed + "\n" +
                 "Mana: " + currentMana + "/" + maxMana + "\n" +
-                "Fatigue: " + fatigueLevel;
+                "Fatigue: " + fatigueLevel + "\n" +
+                "Class: " + clazz + "\n";
     }
 
     public int getLuck() {
@@ -71,6 +75,7 @@ public class Player {
         this.currentMana = Integer.parseInt(splitData[6]);
         this.maxMana = Integer.parseInt(splitData[7]);
         this.fatigueLevel = Double.parseDouble(splitData[8]);
+        this.clazz = splitData[9];
     }
 
     public String getName() {
@@ -151,7 +156,6 @@ public class Player {
 
     public static class PlayerBuilder {
         private final String name;
-        private double currentHealth;
         private double maxHealth;
         private double attack;
         private double defense;
@@ -160,13 +164,17 @@ public class Player {
         private int maxMana;
         private int fatigueLevel;
         private int luck;
+        private String clazz;
+
+        public void setClazz(String clazz) {
+            this.clazz = clazz;
+        }
 
         public PlayerBuilder(String name) {
             this.name = name;
         }
 
         public PlayerBuilder setMaxHealth(double maxHealth) {
-            this.currentHealth = maxHealth;
             this.maxHealth = maxHealth;
             return this;
         }
