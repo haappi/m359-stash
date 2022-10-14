@@ -25,21 +25,20 @@ public class Player {
         this.attack = builder.attack;
         this.defense = builder.defense;
         this.speed = builder.speed;
-        this.currentMana = builder.currentMana;
+        this.currentMana = builder.maxMana;
         this.maxMana = builder.maxMana;
         this.fatigueLevel = builder.fatigueLevel;
         this.luck = builder.luck;
         this.clazz = builder.clazz;
     }
 
-    public Player(String name, double currentHealth, double maxHealth, double attack, double defense, int speed, int currentMana, int maxMana, double fatigueLevel, String clazz) {
+    public Player(String name, double currentHealth, double maxHealth, double attack, double defense, int speed, int maxMana, double fatigueLevel, String clazz) {
         this.name = name;
         this.currentHealth = currentHealth;
         this.maxHealth = maxHealth;
         this.attack = attack;
         this.defense = defense;
         this.speed = speed;
-        this.currentMana = currentMana;
         this.maxMana = maxMana;
         this.fatigueLevel = fatigueLevel;
         this.clazz = clazz;
@@ -160,14 +159,14 @@ public class Player {
         private double attack;
         private double defense;
         private int speed;
-        private int currentMana;
         private int maxMana;
         private int fatigueLevel;
         private int luck;
         private String clazz;
 
-        public void setClazz(String clazz) {
+        public PlayerBuilder setClazz(String clazz) {
             this.clazz = clazz;
+            return this;
         }
 
         public PlayerBuilder(String name) {
@@ -196,11 +195,6 @@ public class Player {
 
         public PlayerBuilder setSpeed(int speed) {
             this.speed = speed;
-            return this;
-        }
-
-        public PlayerBuilder setCurrentMana(int currentMana) {
-            this.currentMana = currentMana;
             return this;
         }
 
