@@ -1,6 +1,6 @@
 haappi's code stash
 ==========
-.. image:: https://github.com/haappi/schoolStuff/actions/workflows/format.yml/badge.svg
+.. image:: https://github.com/haappi/schoolStuff/actions/workflows/format.yml/badge.svg?branch=battle-game
    :target: https://github.com/haappi/schoolStuff/actions/workflows/format.yml
 Most of my assignments are stashed in here because I'm too lazy to carry around a flash drive.
 This class is M359, AP Computer Science A, 2022.
