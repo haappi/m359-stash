@@ -7,5 +7,6 @@ import javafx.scene.text.Text;
 public class StoreController {
     @FXML
     protected ListView storeItems;
-    @FXML protected Text currentlyShopping;
+    @FXML
+    protected Text currentlyShopping;
 }

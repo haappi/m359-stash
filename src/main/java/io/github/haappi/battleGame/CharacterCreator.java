@@ -1,6 +1,6 @@
 package io.github.haappi.battleGame;
 
-import javafx.collections.FXCollections;
+import io.github.haappi.battleGame.Classes.Player;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,26 +11,33 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.util.Objects;
+
 public class CharacterCreator {
-    @FXML protected Text specificClassInformation;
-    @FXML protected TextField charNameMaker;
-    @FXML protected Text basicInformation;
-    @FXML protected MenuButton changePlayerType;
-    @FXML protected ListView<String> statsView;
+    private final double multiplier = ((double) (int) (Math.random() * 100)) / 100;
+    @FXML
+    protected Text specificClassInformation;
+    @FXML
+    protected TextField charNameMaker;
+    @FXML
+    protected Text basicInformation;
+    @FXML
+    protected MenuButton changePlayerType;
+    @FXML
+    protected ListView<String> statsView;
+    @FXML
+    protected Text textPointAmount;
+    @FXML
+    protected Text pointAmount;
     private Integer selectedIndex = 0;
     private Integer pointsLeft = 12;
     private String characterName = "Timmy";
-    @FXML
-    protected Text textPointAmount;
-    @FXML protected Text pointAmount;
-
     private int MINIMUM_HEALTH = 20; // these need to be changed for the different classes
     private int MINIMUM_ATTACK = 5;
     private int MINIMUM_DEFENSE = 5;
     private int MINIMUM_SPEED = 2;
     private int MINIMUM_MANA = 10;
     private int MINIMUM_LUCK = 2;
-
     private String selectedStat = "Health";
     private String selectedClass = "Fighter";
 
@@ -49,7 +56,8 @@ public class CharacterCreator {
         statsView.getSelectionModel().select(selectedIndex);
     }
 
-    @FXML protected void increase() {
+    @FXML
+    protected void increase() {
         if (pointsLeft > 0) {
             pointsLeft--;
             pointAmount.setText(pointsLeft.toString());
@@ -83,7 +91,8 @@ public class CharacterCreator {
         }
     }
 
-    @FXML protected void decrease() {
+    @FXML
+    protected void decrease() {
         switch (selectedStat.toLowerCase()) {
             case "health" -> decreaseFromStat("Health", selectedIndex, MINIMUM_HEALTH);
             case "attack" -> decreaseFromStat("Attack", selectedIndex, MINIMUM_ATTACK);
@@ -103,22 +112,48 @@ public class CharacterCreator {
         }
     }
 
-    @FXML protected void finished(ActionEvent actionEvent) {
-        // pass the class to the PersonBuilder with all the stats.
+    @FXML
+    protected void finished() {
+        Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder(this.characterName).setClazz(this.selectedClass);
+        for (String thing : this.statsView.getItems()) {
+            playerBuilder = this.builder(playerBuilder, thing);
+        }
+        Player player = new Player(playerBuilder);
+        System.out.println(player.getPlayerDataAsString());
     }
 
-    @FXML protected void charNameMaker() {
-        characterName = charNameMaker.getText() != null ? charNameMaker.getText() : "Timmy";
+    private Player.PlayerBuilder builder(Player.PlayerBuilder current, String stat) {
+        String statName = stat.split(": ")[0];
+        int statAmount = Integer.parseInt(stat.split(": ")[1]);
+
+        switch (statName.toLowerCase()) {
+            case "health" -> current = current.setMaxHealth(statAmount + (statAmount * multiplier));
+            case "attack" -> current = current.setAttack(statAmount + (statAmount * multiplier));
+            case "defense" -> current = current.setDefense(statAmount + (statAmount * multiplier));
+            case "speed" -> current = current.setSpeed((int) (statAmount + (statAmount * multiplier)));
+            case "mana" -> current = current.setMaxMana((int) (statAmount + (statAmount * multiplier)));
+            case "luck" -> current = current.setLuck((int) (statAmount + (statAmount * multiplier)));
+        }
+        return current;
     }
 
-    @FXML protected void onStatChange(MouseEvent mouseEvent) {
+    @FXML
+    protected void charNameMaker() {
+        System.out.println(charNameMaker.getText());
+        characterName = !Objects.equals(charNameMaker.getText(), "") ? charNameMaker.getText() : "Timmy"; // object equals is just equals but doesn't behave weirdly with null
+        this.basicInformation.setText(String.format("Name: %s. Class: %s", this.characterName, this.selectedClass));
+    }
+
+    @FXML
+    protected void onStatChange(MouseEvent mouseEvent) {
         ListView<?> source = (ListView<?>) mouseEvent.getSource();
         String string = (String) source.getSelectionModel().getSelectedItem();
         selectedStat = string.split(":")[0];
         selectedIndex = source.getSelectionModel().getSelectedIndex();
     }
 
-    @FXML protected void onClassChange(ActionEvent actionEvent) {
+    @FXML
+    protected void onClassChange(ActionEvent actionEvent) {
         String selected = ((MenuItem) actionEvent.getSource()).getText().toLowerCase();
         switch (selected) {
             case "ranger" -> { // todo change the minimums for each class dynamically
@@ -138,7 +173,7 @@ public class CharacterCreator {
             }
             case "assassin" -> {
                 specificClassInformation.setText("Assassins are fast and have high attack, but have low defense and health.");
-                selectedStat = "Assassin";
+                selectedClass = "Assassin";
                 changeMinimumStats(13, 5, 2, 5, 10, 3);
             }
             case "berserker" -> {
@@ -152,6 +187,20 @@ public class CharacterCreator {
                 changeMinimumStats(12, 3, 3, 5, 10, 3);
             }
         }
+        this.basicInformation.setText(String.format("Name: %s. Class: %s", this.characterName, this.selectedClass));
+        int length = (int) (this.specificClassInformation.getLayoutX() / 2);
+        String setText = specificClassInformation.getText();
+        StringBuilder sb = new StringBuilder();
+        int currentIndex = 0;
+        for (char character : setText.toCharArray()) {
+            if (currentIndex >= length) {
+                sb.append("\n");
+                currentIndex = 0;
+            }
+            sb.append(character);
+            currentIndex++;
+        }
+        specificClassInformation.setText(sb.toString());
     }
 
     private void changeMinimumStats(int health, int attack, int defense, int speed, int mana, int luck) {

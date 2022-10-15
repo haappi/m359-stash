@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Player {
     private final ArrayList<InventoryItem> inventory = new ArrayList<>();
+    private final String clazz;
     private String name;
     private double currentHealth;
     private double maxHealth;
@@ -16,7 +17,6 @@ public class Player {
     private int maxMana;
     private int luck;
     private double fatigueLevel;
-    private final String clazz;
 
     public Player(PlayerBuilder builder) {
         this.name = builder.name;
@@ -44,6 +44,20 @@ public class Player {
         this.clazz = clazz;
     }
 
+    public Player(String data) {
+        String[] splitData = data.split(";");
+        this.name = splitData[0];
+        this.currentHealth = Double.parseDouble(splitData[1]);
+        this.maxHealth = Double.parseDouble(splitData[2]);
+        this.attack = Double.parseDouble(splitData[3]);
+        this.defense = Double.parseDouble(splitData[4]);
+        this.speed = Integer.parseInt(splitData[5]);
+        this.currentMana = Integer.parseInt(splitData[6]);
+        this.maxMana = Integer.parseInt(splitData[7]);
+        this.fatigueLevel = Double.parseDouble(splitData[8]);
+        this.clazz = splitData[9];
+    }
+
     public String getPlayerDataAsString() {
         return "Name: " + name + "\n" +
                 "Health: " + currentHealth + "/" + maxHealth + "\n" +
@@ -61,20 +75,6 @@ public class Player {
 
     public void setLuck(int luck) {
         this.luck = luck;
-    }
-
-    public Player(String data) {
-        String[] splitData = data.split(";");
-        this.name = splitData[0];
-        this.currentHealth = Double.parseDouble(splitData[1]);
-        this.maxHealth = Double.parseDouble(splitData[2]);
-        this.attack = Double.parseDouble(splitData[3]);
-        this.defense = Double.parseDouble(splitData[4]);
-        this.speed = Integer.parseInt(splitData[5]);
-        this.currentMana = Integer.parseInt(splitData[6]);
-        this.maxMana = Integer.parseInt(splitData[7]);
-        this.fatigueLevel = Double.parseDouble(splitData[8]);
-        this.clazz = splitData[9];
     }
 
     public String getName() {
@@ -164,13 +164,13 @@ public class Player {
         private int luck;
         private String clazz;
 
+        public PlayerBuilder(String name) {
+            this.name = name;
+        }
+
         public PlayerBuilder setClazz(String clazz) {
             this.clazz = clazz;
             return this;
-        }
-
-        public PlayerBuilder(String name) {
-            this.name = name;
         }
 
         public PlayerBuilder setMaxHealth(double maxHealth) {
