@@ -1,6 +1,7 @@
 package io.github.haappi.battleGame;
 
-import io.github.haappi.battleGame.Classes.Player;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -9,9 +10,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
-
-import java.util.Locale;
-import java.util.Objects;
 
 public class CharacterCreator {
     @FXML protected Text specificClassInformation;
@@ -35,7 +33,6 @@ public class CharacterCreator {
 
     private String selectedStat = "Health";
     private String selectedClass = "Fighter";
-    private double multiplier = 0.15; // todo randomize this on program startup between .13 - .62
 
 
     @FXML
@@ -52,7 +49,7 @@ public class CharacterCreator {
         statsView.getSelectionModel().select(selectedIndex);
     }
 
-    @FXML protected void increase(ActionEvent actionEvent) {
+    @FXML protected void increase() {
         if (pointsLeft > 0) {
             pointsLeft--;
             pointAmount.setText(pointsLeft.toString());
@@ -106,35 +103,12 @@ public class CharacterCreator {
         }
     }
 
-    @FXML protected void finished() {
-        Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder(this.characterName).setClazz(this.selectedClass);
-        System.out.println(this.characterName);
-        System.out.println(this.selectedClass);
-        for (String thing : this.statsView.getItems()) {
-            playerBuilder = this.builder(playerBuilder, thing);
-        }
-        Player player = new Player(playerBuilder);
-        System.out.println(player.getPlayerDataAsString());
-    }
-
-    private Player.PlayerBuilder builder(Player.PlayerBuilder current, String stat) {
-        String statName = stat.split(": ")[0];
-        int statAmount = Integer.parseInt(stat.split(": ")[1]);
-
-        switch (statName.toLowerCase()) {
-            case "health" -> current = current.setMaxHealth(statAmount + (statAmount * multiplier));
-            case "attack" -> current = current.setAttack(statAmount + (statAmount * multiplier));
-            case "defense" -> current = current.setDefense(statAmount + (statAmount * multiplier));
-            case "speed" -> current = current.setSpeed((int) (statAmount + (statAmount * multiplier)));
-            case "mana" -> current = current.setMaxMana((int) (statAmount + (statAmount * multiplier)));
-            case "luck" -> current = current.setLuck((int) (statAmount + (statAmount * multiplier)));
-        }
-        return current;
+    @FXML protected void finished(ActionEvent actionEvent) {
+        // pass the class to the PersonBuilder with all the stats.
     }
 
     @FXML protected void charNameMaker() {
-        characterName = !Objects.equals(charNameMaker.getText(), "") ? charNameMaker.getText() : "Timmy";
-        this.basicInformation.setText(String.format("Name: %s. Class: %s", this.characterName, this.selectedClass));
+        characterName = charNameMaker.getText() != null ? charNameMaker.getText() : "Timmy";
     }
 
     @FXML protected void onStatChange(MouseEvent mouseEvent) {
@@ -150,43 +124,53 @@ public class CharacterCreator {
             case "ranger" -> { // todo change the minimums for each class dynamically
                 specificClassInformation.setText("Rangers are fast, but have low defense and health.");
                 selectedClass = "Ranger";
+                changeMinimumStats(13, 3, 3, 5, 10, 3);
             }
             case "mage" -> {
-                specificClassInformation.setText("Mages are powerful and have high mana and luck, but have low defense and health.");
+                specificClassInformation.setText("Mages are powerful, have high mana and luck, but have low defense and health.");
                 selectedClass = "Mage";
+                changeMinimumStats(12, 3, 3, 3, 17, 5);
             }
             case "fighter" -> {
                 specificClassInformation.setText("Fighters are strong and have high defense, but have low speed and mana.");
                 selectedClass = "Fighter";
+                changeMinimumStats(20, 5, 5, 1, 7, 2);
             }
             case "assassin" -> {
                 specificClassInformation.setText("Assassins are fast and have high attack, but have low defense and health.");
-                selectedClass = "Assassin";
+                selectedStat = "Assassin";
+                changeMinimumStats(13, 5, 2, 5, 10, 3);
             }
             case "berserker" -> {
                 specificClassInformation.setText("Berserkers are strong and have high defense, but have low speed and mana.");
                 selectedClass = "Berserker";
+                changeMinimumStats(20, 5, 5, 1, 6, 2);
             }
             case "archer" -> {
                 specificClassInformation.setText("Archers are fast and agile, but have low defense and health.");
                 selectedClass = "Archer";
+                changeMinimumStats(12, 3, 3, 5, 10, 3);
             }
         }
-        this.basicInformation.setText(String.format("Name: %s. Class: %s", this.characterName, this.selectedClass));
-        int length = (int) (this.specificClassInformation.getLayoutX() / 2);
-        String setText = specificClassInformation.getText();
-        StringBuilder sb = new StringBuilder();
-        int currentIndex = 0;
-        for (char character : setText.toCharArray()) {
-            if (currentIndex >= length) {
-                sb.append("\n");
-                currentIndex = 0;
-            }
-            sb.append(character);
-            currentIndex++;
-        }
-        specificClassInformation.setText(sb.toString());
     }
-    // todo add the change class type thing and have final hardcoded stats // buffs and nerdfs for ther class
 
+    private void changeMinimumStats(int health, int attack, int defense, int speed, int mana, int luck) {
+        MINIMUM_HEALTH = health;
+        MINIMUM_ATTACK = attack;
+        MINIMUM_DEFENSE = defense;
+        MINIMUM_SPEED = speed;
+        MINIMUM_MANA = mana;
+        MINIMUM_LUCK = luck;
+        pointsLeft = 12;
+        pointAmount.setText(pointsLeft.toString());
+        textPointAmount.setText(String.format("You have %s points remaining.", pointsLeft));
+
+        ObservableList<String> stats = statsView.getItems();
+        stats.set(0, "Health: " + health);
+        stats.set(1, "Attack: " + attack);
+        stats.set(2, "Defense: " + defense);
+        stats.set(3, "Speed: " + speed);
+        stats.set(4, "Mana: " + mana);
+        stats.set(5, "Luck: " + luck);
+    }
 }
