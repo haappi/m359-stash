@@ -32,7 +32,7 @@ public class CharacterCreator {
     private Integer selectedIndex = 0;
     private Integer pointsLeft = 12;
     private String characterName = "Timmy";
-    private int MINIMUM_HEALTH = 20; // these need to be changed for the different classes
+    private int MINIMUM_HEALTH = 20;
     private int MINIMUM_ATTACK = 5;
     private int MINIMUM_DEFENSE = 5;
     private int MINIMUM_SPEED = 2;
@@ -114,12 +114,13 @@ public class CharacterCreator {
 
     @FXML
     protected void finished() {
-        Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder(this.characterName).setClazz(this.selectedClass);
+        Player.PlayerBuilder playerBuilder = new Player.PlayerBuilder(this.characterName).setClass(this.selectedClass);
         for (String thing : this.statsView.getItems()) {
             playerBuilder = this.builder(playerBuilder, thing);
         }
         Player player = new Player(playerBuilder);
-        System.out.println(player.getPlayerDataAsString());
+        HelloApplication.getInstance().setPlayer(player);
+        HelloApplication.getInstance().setStageScene("another.fxml");
     }
 
     private Player.PlayerBuilder builder(Player.PlayerBuilder current, String stat) {
@@ -139,7 +140,6 @@ public class CharacterCreator {
 
     @FXML
     protected void charNameMaker() {
-        System.out.println(charNameMaker.getText());
         characterName = !Objects.equals(charNameMaker.getText(), "") ? charNameMaker.getText() : "Timmy"; // object equals is just equals but doesn't behave weirdly with null
         this.basicInformation.setText(String.format("Name: %s. Class: %s", this.characterName, this.selectedClass));
     }
@@ -156,7 +156,7 @@ public class CharacterCreator {
     protected void onClassChange(ActionEvent actionEvent) {
         String selected = ((MenuItem) actionEvent.getSource()).getText().toLowerCase();
         switch (selected) {
-            case "ranger" -> { // todo change the minimums for each class dynamically
+            case "ranger" -> {
                 specificClassInformation.setText("Rangers are fast, but have low defense and health.");
                 selectedClass = "Ranger";
                 changeMinimumStats(13, 3, 3, 5, 10, 3);

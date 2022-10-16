@@ -168,7 +168,7 @@ public class Player {
             this.name = name;
         }
 
-        public PlayerBuilder setClazz(String clazz) {
+        public PlayerBuilder setClass(String clazz) {
             this.clazz = clazz;
             return this;
         }

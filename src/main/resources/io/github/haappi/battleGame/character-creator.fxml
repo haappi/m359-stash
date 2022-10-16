@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.battleGame.CharacterCreator">
-   <children>
-      <MenuButton fx:id="changePlayerType" layoutX="237.0" layoutY="219.0" mnemonicParsing="false" text="Class Type">
-        <items>
-          <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Fighter" />
-          <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Assassin" />
-            <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Mage" />
-            <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Archer" />
-            <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Berserker" />
-            <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Ranger" />
-        </items>
-         <tooltip>
-            <Tooltip text="The type is the class your character excels in. Class have different buffs and nerfs" />
-         </tooltip>
-      </MenuButton>
-      <Text fx:id="basicInformation" fill="#904bc4" layoutX="67.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name: Bob. Class: Mage" />
-      <Button layoutX="399.0" layoutY="172.0" mnemonicParsing="false" onAction="#increase" prefHeight="33.0" prefWidth="35.0" text="⬆" />
-      <Button layoutX="399.0" layoutY="215.0" mnemonicParsing="false" onAction="#decrease" prefHeight="33.0" prefWidth="35.0" text="⬇" />
-      <Text fx:id="textPointAmount" layoutX="161.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have 10 points remaining to spend" wrappingWidth="300.703125">
-         <font>
-            <Font size="17.0" />
-         </font></Text>
-      <Button layoutX="489.0" layoutY="147.0" mnemonicParsing="false" onAction="#finished" text="Done!" />
-      <TextField fx:id="charNameMaker" layoutX="237.0" layoutY="188.0" onKeyTyped="#charNameMaker" promptText="Name of your character" />
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="25.0" layoutX="231.0" layoutY="28.0" stroke="#f4f4f4" strokeType="INSIDE" width="26.0" />
-      <Text fx:id="pointAmount" fill="#e043a0" layoutX="234.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" wrappingWidth="26.0">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Text>
-      <ListView fx:id="statsView" layoutX="31.0" layoutY="115.0" onMouseClicked="#onStatChange" prefHeight="200.0" prefWidth="200.0" />
-      <Text fx:id="specificClassInformation" fill="#904bc4" layoutX="67.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mage: Specalizes in" />
-   </children>
+<?import javafx.scene.text.*?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/11.0.1" fx:controller="io.github.haappi.battleGame.CharacterCreator">
+    <children>
+        <MenuButton fx:id="changePlayerType" layoutX="237.0" layoutY="219.0" mnemonicParsing="false" text="Class Type">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Fighter"/>
+                <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Assassin"/>
+                <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Mage"/>
+                <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Archer"/>
+                <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Berserker"/>
+                <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Ranger"/>
+            </items>
+            <tooltip>
+                <Tooltip text="The type is the class your character excels in. Class have different buffs and nerfs"/>
+            </tooltip>
+        </MenuButton>
+        <Text fx:id="basicInformation" fill="#904bc4" layoutX="67.0" layoutY="95.0" strokeType="OUTSIDE"
+              strokeWidth="0.0" text="Name: Bob. Class: Mage"/>
+        <Button layoutX="399.0" layoutY="172.0" mnemonicParsing="false" onAction="#increase" prefHeight="33.0"
+                prefWidth="35.0" text="⬆"/>
+        <Button layoutX="399.0" layoutY="215.0" mnemonicParsing="false" onAction="#decrease" prefHeight="33.0"
+                prefWidth="35.0" text="⬇"/>
+        <Text fx:id="textPointAmount" layoutX="161.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="You have 10 points remaining to spend" wrappingWidth="300.703125">
+            <font>
+                <Font size="17.0"/>
+            </font>
+        </Text>
+        <Button layoutX="489.0" layoutY="147.0" mnemonicParsing="false" onAction="#finished" text="Done!"/>
+        <TextField fx:id="charNameMaker" layoutX="237.0" layoutY="188.0" onKeyTyped="#charNameMaker"
+                   promptText="Name of your character"/>
+        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#f4f4f4" height="25.0" layoutX="231.0" layoutY="28.0"
+                   stroke="#f4f4f4" strokeType="INSIDE" width="26.0"/>
+        <Text fx:id="pointAmount" fill="#e043a0" layoutX="234.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="10" wrappingWidth="26.0">
+            <font>
+                <Font size="17.0"/>
+            </font>
+        </Text>
+        <ListView fx:id="statsView" layoutX="31.0" layoutY="115.0" onMouseClicked="#onStatChange" prefHeight="200.0"
+                  prefWidth="200.0"/>
+        <Text fx:id="specificClassInformation" fill="#904bc4" layoutX="67.0" layoutY="339.0" strokeType="OUTSIDE"
+              strokeWidth="0.0" text="Mage: Specalizes in"/>
+    </children>
 </AnchorPane>
