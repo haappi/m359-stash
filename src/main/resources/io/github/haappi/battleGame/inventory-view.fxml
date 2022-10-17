@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
-
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.battleGame.InventoryView">
-   <children>
-      <ListView layoutX="125.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-      <MenuButton layoutX="395.0" layoutY="144.0" mnemonicParsing="false" text="Sort">
-        <items>
-          <MenuItem mnemonicParsing="false" text="Quantity" />
-          <MenuItem mnemonicParsing="false" text="Price" />
-        </items>
-      </MenuButton>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.battleGame.InventoryView">
+    <children>
+        <ListView layoutX="125.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0"/>
+        <MenuButton layoutX="395.0" layoutY="144.0" mnemonicParsing="false" text="Sort">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Quantity"/>
+                <MenuItem mnemonicParsing="false" text="Price"/>
+            </items>
+        </MenuButton>
+    </children>
 </AnchorPane>

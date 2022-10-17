@@ -1,6 +1,6 @@
 package io.github.haappi.battleGame.Classes;
 
-public class Weapons extends HoldableItem{
+public class Weapons extends HoldableItem {
     private int durability;
     private int damage;
     private int range;
@@ -19,6 +19,7 @@ public class Weapons extends HoldableItem{
         this.weight = weight;
         this.description = description;
     }
+
     public Weapons(String name) {
         super(name, 1);
     }

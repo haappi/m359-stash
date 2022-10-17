@@ -6,7 +6,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 
 import java.util.List;
-import java.util.Objects;
 
 public class StoreController {
     public Text recent;

@@ -1,36 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane prefHeight="446.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.battleGame.BattleView">
-   <children>
-      <Button layoutX="238.0" layoutY="114.0" mnemonicParsing="false" onAction="#attack" text="Attack">
-         <tooltip>
-            <Tooltip text="Attacks the opponent with your chosen weapon, or fist." />
-         </tooltip>
-      </Button>
-      <Button layoutX="238.0" layoutY="187.0" mnemonicParsing="false" onAction="#openInventory" text="Open Inventory">
-         <tooltip>
-            <Tooltip text="Opens your inventory" />
-         </tooltip>
-      </Button>
-      <Button layoutX="238.0" layoutY="151.0" mnemonicParsing="false" onAction="#useItem" text="Use Item" />
-      <Text fx:id="opponentStats" layoutX="465.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Opponent Stats" />
-      <Button layoutX="238.0" layoutY="223.0" mnemonicParsing="false" onAction="#defend" text="Increase Shields">
-         <tooltip>
-            <Tooltip text="Increases your defenses" />
-         </tooltip>
-      </Button>
-      <Button layoutX="238.0" layoutY="258.0" mnemonicParsing="false" onAction="#zoomZoomAway" text="Flee">
-         <tooltip>
-            <Tooltip text="Attempts to run away if your fatigue level is less than the monsters." />
-         </tooltip>
-      </Button>
-      <Text fx:id="yourStats" layoutX="106.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your stats" />
-      <Text fx:id="battleLengthTime" layoutX="430.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Battle has been going on for:" />
-      <Text layoutX="276.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Actions" />
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="446.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.battleGame.BattleView">
+    <children>
+        <Button layoutX="238.0" layoutY="114.0" mnemonicParsing="false" onAction="#attack" text="Attack">
+            <tooltip>
+                <Tooltip text="Attacks the opponent with your chosen weapon, or fist."/>
+            </tooltip>
+        </Button>
+        <Button layoutX="238.0" layoutY="187.0" mnemonicParsing="false" onAction="#openInventory" text="Open Inventory">
+            <tooltip>
+                <Tooltip text="Opens your inventory"/>
+            </tooltip>
+        </Button>
+        <Button layoutX="238.0" layoutY="151.0" mnemonicParsing="false" onAction="#useItem" text="Use Item"/>
+        <Text fx:id="opponentStats" layoutX="465.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Opponent Stats"/>
+        <Button layoutX="238.0" layoutY="223.0" mnemonicParsing="false" onAction="#defend" text="Increase Shields">
+            <tooltip>
+                <Tooltip text="Increases your defenses"/>
+            </tooltip>
+        </Button>
+        <Button layoutX="238.0" layoutY="258.0" mnemonicParsing="false" onAction="#zoomZoomAway" text="Flee">
+            <tooltip>
+                <Tooltip text="Attempts to run away if your fatigue level is less than the monsters."/>
+            </tooltip>
+        </Button>
+        <Text fx:id="yourStats" layoutX="106.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Your stats"/>
+        <Text fx:id="battleLengthTime" layoutX="430.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Battle has been going on for:"/>
+        <Text layoutX="276.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Actions"/>
+    </children>
 </AnchorPane>

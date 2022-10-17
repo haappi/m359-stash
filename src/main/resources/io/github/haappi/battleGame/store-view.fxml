@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.battleGame.StoreController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.battleGame.StoreController">
     <children>
-        <ListView fx:id="storeItems" layoutX="64.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0" />
-        <Text fx:id="currentlyShopping" layoutX="65.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You are currently shopping: Weapons" />
+        <ListView fx:id="storeItems" layoutX="64.0" layoutY="100.0" prefHeight="200.0" prefWidth="200.0"/>
+        <Text fx:id="currentlyShopping" layoutX="65.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="You are currently shopping: Weapons"/>
         <MenuButton layoutX="276.0" layoutY="100.0" mnemonicParsing="false" text="Shopping For:">
             <items>
-                <MenuItem mnemonicParsing="false" text="Weapons" />
-                <MenuItem mnemonicParsing="false" text="Potions" />
-                <MenuItem mnemonicParsing="false" text="Food" />
-                <MenuItem mnemonicParsing="false" text="Spells" />
+                <MenuItem mnemonicParsing="false" text="Weapons"/>
+                <MenuItem mnemonicParsing="false" text="Potions"/>
+                <MenuItem mnemonicParsing="false" text="Food"/>
+                <MenuItem mnemonicParsing="false" text="Spells"/>
             </items>
         </MenuButton>
-      <Button layoutX="380.0" layoutY="175.0" mnemonicParsing="false" text="Buy 1x Selected Item" />
-      <Button layoutX="396.0" layoutY="232.0" mnemonicParsing="false" text="View Inventory" />
-      <Button layoutX="523.0" layoutY="2.0" mnemonicParsing="false" text="Main Menu" />
-      <Text fx:id="recent" layoutX="281.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Operations" />
-      <Text fx:id="bankBal" layoutX="432.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have 0 coins" />
+        <Button layoutX="380.0" layoutY="175.0" mnemonicParsing="false" text="Buy 1x Selected Item"/>
+        <Button layoutX="396.0" layoutY="232.0" mnemonicParsing="false" text="View Inventory"/>
+        <Button layoutX="523.0" layoutY="2.0" mnemonicParsing="false" text="Main Menu"/>
+        <Text fx:id="recent" layoutX="281.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Recent Operations"/>
+        <Text fx:id="bankBal" layoutX="432.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="You have 0 coins"/>
     </children>
 </AnchorPane>

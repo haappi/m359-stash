@@ -11,12 +11,15 @@ public class EquipItems {
     private final ArrayList<HoldableItem> pickedItems = new ArrayList<>();
     @FXML
     protected ListView<HoldableItem> inventoryItems;
-    @FXML protected ListView<HoldableItem> selectedItems;
+    @FXML
+    protected ListView<HoldableItem> selectedItems;
 
 
-    @FXML protected void onItemAdded(MouseEvent mouseEvent) {
+    @FXML
+    protected void onItemAdded(MouseEvent mouseEvent) {
     }
 
-    @FXML protected void onItemRemoved(MouseEvent mouseEvent) {
+    @FXML
+    protected void onItemRemoved(MouseEvent mouseEvent) {
     }
 }
