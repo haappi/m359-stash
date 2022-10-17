@@ -9,7 +9,6 @@
     <children>
         <MenuButton fx:id="changePlayerType" layoutX="237.0" layoutY="219.0" mnemonicParsing="false" text="Class Type">
             <items>
-                <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Fighter"/>
                 <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Assassin"/>
                 <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Mage"/>
                 <MenuItem mnemonicParsing="false" onAction="#onClassChange" text="Archer"/>

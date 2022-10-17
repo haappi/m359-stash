@@ -39,7 +39,7 @@ public class CharacterCreator {
     private int MINIMUM_MANA = 10;
     private int MINIMUM_LUCK = 2;
     private String selectedStat = "Health";
-    private String selectedClass = "Fighter";
+    private String selectedClass = "Ranger";
 
 
     @FXML
@@ -165,11 +165,6 @@ public class CharacterCreator {
                 specificClassInformation.setText("Mages are powerful, have high mana and luck, but have low defense and health.");
                 selectedClass = "Mage";
                 changeMinimumStats(12, 3, 3, 3, 17, 5);
-            }
-            case "fighter" -> {
-                specificClassInformation.setText("Fighters are strong and have high defense, but have low speed and mana.");
-                selectedClass = "Fighter";
-                changeMinimumStats(20, 5, 5, 1, 7, 2);
             }
             case "assassin" -> {
                 specificClassInformation.setText("Assassins are fast and have high attack, but have low defense and health.");
