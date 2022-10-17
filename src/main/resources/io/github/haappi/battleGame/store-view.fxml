@@ -22,5 +22,7 @@
       <Button layoutX="380.0" layoutY="175.0" mnemonicParsing="false" text="Buy 1x Selected Item" />
       <Button layoutX="396.0" layoutY="232.0" mnemonicParsing="false" text="View Inventory" />
       <Button layoutX="523.0" layoutY="2.0" mnemonicParsing="false" text="Main Menu" />
+      <Text fx:id="recent" layoutX="281.0" layoutY="262.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Operations" />
+      <Text fx:id="bankBal" layoutX="432.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have 0 coins" />
     </children>
 </AnchorPane>
