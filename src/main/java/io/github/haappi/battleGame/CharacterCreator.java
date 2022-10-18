@@ -120,7 +120,7 @@ public class CharacterCreator {
         }
         Player player = new Player(playerBuilder);
         HelloApplication.getInstance().setPlayer(player);
-        HelloApplication.getInstance().setStageScene("another.fxml");
+        HelloApplication.getInstance().setStageScene("main-menu");
     }
 
     private Player.PlayerBuilder builder(Player.PlayerBuilder current, String stat) {
