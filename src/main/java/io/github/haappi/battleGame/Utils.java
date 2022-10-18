@@ -2,6 +2,8 @@ package io.github.haappi.battleGame;
 
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -30,5 +32,21 @@ public class Utils {
             sb.append(e.toString()).append("\n");
         }
         return sb.toString();
+    }
+
+    public static List<String> playerStatsToList(String stats) {
+        ArrayList<String> newStats = new ArrayList<>(Arrays.asList(stats.split("\n")));
+        newStats.remove(0); // PLAYER: \n
+        newStats.remove(0); // \n
+        for (String stat : newStats) {
+            if (stat.toLowerCase().startsWith("fatigue")) {
+                newStats.set(newStats.indexOf(stat), "Fatigue: " + doubleAsPercent(Double.parseDouble(stat.split(": ")[1])));
+            }
+        }
+        return newStats;
+    }
+
+    public static String doubleAsPercent(double value) {
+        return "" + value * 100 + "%";
     }
 }
