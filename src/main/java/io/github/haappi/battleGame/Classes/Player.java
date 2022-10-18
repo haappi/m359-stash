@@ -59,7 +59,7 @@ public class Player {
     }
 
     public String getPlayerDataAsString() {
-        return "Name: " + name + "\n" +
+        return "PLAYER:\n\nName: " + name + "\n" +
                 "Health: " + currentHealth + "/" + maxHealth + "\n" +
                 "Attack: " + attack + "\n" +
                 "Defense: " + defense + "\n" +
