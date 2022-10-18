@@ -69,6 +69,48 @@ public class Player {
                 "Class: " + clazz + "\n";
     }
 
+    public <T> T getStat(StatType statType) {
+        switch (statType) {
+            case SPEED -> {
+                return (T) Integer.valueOf(this.speed);
+            }
+            case LUCK -> {
+                return (T) Integer.valueOf(this.luck);
+            }
+            case NAME -> {
+                return (T) String.valueOf(this.name);
+            }
+            case CLASS -> {
+                return (T) String.valueOf(this.clazz);
+            }
+            case CURRENT_HEALTH -> {
+                return (T) Double.valueOf(this.currentHealth);
+            }
+            case MAX_HEALTH -> {
+                return (T) Double.valueOf(this.maxHealth);
+            }
+            case ATTACK -> {
+                return (T) Double.valueOf(this.attack);
+            }
+            case DEFENSE -> {
+                return (T) Double.valueOf(this.defense);
+            }
+            case MAX_MANA -> {
+                return (T) Integer.valueOf(this.maxMana);
+            }
+            case CURRENT_MANA -> {
+                return (T) Integer.valueOf(this.currentMana);
+            }
+            case FATIGUE_LEVEL -> {
+                return (T) Double.valueOf(this.fatigueLevel);
+            }
+            default -> {
+                return null;
+            }
+        }
+
+    }
+
     public int getLuck() {
         return luck;
     }
