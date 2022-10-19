@@ -24,7 +24,8 @@ public class StoreController {
     @FXML
     protected void initialize() {
         List<InventoryItem> storeItemss = storeItems.getItems();
-        storeItemss.add(new Weapons("Sword", 0.00));
+        storeItemss.add(new Weapons.WeaponBuilder("Iron Sword", 10.00).setDamage(10).build());
+        storeItemss.add(new Weapons.WeaponBuilder("Wooden Sword", 5).setDamage(2).build());
         System.out.println(storeItemss);
 
     }
