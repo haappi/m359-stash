@@ -1,6 +1,7 @@
 package io.github.haappi.battleGame.Classes;
 
 import io.github.haappi.battleGame.InventoryItem;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * @author haappi
@@ -8,11 +9,11 @@ import io.github.haappi.battleGame.InventoryItem;
  */
 public class HoldableItem extends InventoryItem {
     private String name;
-    private int count;
+    private final Double price;
 
-    public HoldableItem(String name, int count) {
+    public HoldableItem(String name, Double price) {
         this.name = name;
-        this.count = count;
+        this.price = price;
     }
 
     public String getName() {
@@ -23,34 +24,14 @@ public class HoldableItem extends InventoryItem {
         this.name = name;
     }
 
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
-    }
-
-    public void addCount(int count) {
-        this.count += count;
-    }
-
-    public void removeCount(int count) {
-        this.count -= count;
-    }
-
-    public void removeCount() {
-        this.count--;
-    }
-
-    public void addCount() {
-        this.count++;
+    public @Nullable Double getPrice() {
+        return this.price;
     }
 
     public String toString() {
         return "HoldableItem{" +
                 "name='" + name + '\'' +
-                ", count=" + count +
+                ", price=" + this.price +
                 '}';
     }
 

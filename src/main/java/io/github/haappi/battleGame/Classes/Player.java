@@ -17,6 +17,15 @@ public class Player {
     private int maxMana;
     private int luck;
     private double fatigueLevel;
+    private double bankBalance;
+
+    public double getBankBalance() {
+        return bankBalance;
+    }
+
+    public void setBankBalance(double bankBalance) {
+        this.bankBalance = bankBalance;
+    }
 
     public Player(PlayerBuilder builder) {
         this.name = builder.name;
