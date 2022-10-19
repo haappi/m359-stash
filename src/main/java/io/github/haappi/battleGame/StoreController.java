@@ -56,6 +56,7 @@ public class StoreController {
             } else {
                 recent.setText("You don't have enough money to buy this item");
             }
+            // fixme this still "buying" the item w/o subtracting money
             player.getInventory().add(item);
             storeItems.getItems().remove(item);
         }
