@@ -35,6 +35,8 @@ public class StoreController {
 
 
     @FXML protected void openInventory(ActionEvent actionEvent) {
+        InventoryView.previousClassFXML = "store-view.fxml";
+        HelloApplication.getInstance().setStageScene("inventory-view.fxml");
     }
 
     @FXML protected void mainMenu(ActionEvent actionEvent) {
@@ -56,9 +58,6 @@ public class StoreController {
             } else {
                 recent.setText("You don't have enough money to buy this item");
             }
-            // fixme this still "buying" the item w/o subtracting money
-            player.getInventory().add(item);
-            storeItems.getItems().remove(item);
         }
     }
 }

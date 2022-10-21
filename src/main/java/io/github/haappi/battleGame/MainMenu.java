@@ -31,5 +31,6 @@ public class MainMenu {
     }
 
     @FXML protected void openInventory(ActionEvent actionEvent) {
+        HelloApplication.getInstance().setStageScene("inventory-view");
     }
 }
