@@ -42,6 +42,7 @@ public class BattleView {
     @FXML
     protected void defend(ActionEvent actionEvent) {
         this.playerInstance.setDefense(this.playerInstance.getDefense() * getRandomDouble(0, 0.3));
+        getTextViewThing(recentActions, "Your defense is now " + this.playerInstance.getDefense() + "!");
     }
 
     @FXML

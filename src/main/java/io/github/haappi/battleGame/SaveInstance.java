@@ -6,6 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SaveInstance {
+    /* load save files by making the user input a directory they want to load an instance from
+    read files from the directory. each file will be saved with the class they're associated with
+    skip the character creator as a whole and load battles with a very long and tedious process of looping through every single line in the `battles.txt` text file
+
+     */
 
     private final String path;
     private final Long lastModified;
