@@ -1,6 +1,7 @@
 package io.github.haappi.battleGame;
 
 import com.google.gson.Gson;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,4 +50,57 @@ public class Utils {
     public static String doubleAsPercent(double value) {
         return "" + value * 100 + "%";
     }
+
+    public static double getRandomDouble(double min, double max) {
+        return Math.random() * (max - min) + min;
+    }
+
+    public static boolean getRandomBoolean() {
+        return Math.random() < 0.5;
+    }
+
+    public static double randomlySomething(double stat) {
+        return getRandomBoolean() ? stat * getRandomDouble(0.2, 0.4) : stat * getRandomDouble(0.2, 0.4) * -1;
+    }
+
+    public static int randomlySomething(int stat) {
+        return getRandomBoolean() ? stat * (int) getRandomDouble(0.2, 0.4) : stat * (int) getRandomDouble(0.2, 0.4) * -1;
+    }
+
+    public static int getRandomInteger(int min, int max) {
+        return (int) (Math.random() * (max - min) + min);
+    }
+
+    public static <T> T getRandomElement(List<T> list) {
+        return list.get(getRandomInteger(0, list.size()));
+    }
+
+    public static double getAddtionalMultiplier(String opponentType) {
+        return switch (opponentType.toLowerCase()) {
+            case "ogre" -> 0.07;
+            case "zombie" -> 0.02;
+            case "spider" -> 0.12;
+            case "rat" -> 0.16;
+            case "goblin" -> 0.04;
+            case "witch" -> 0.15;
+            default -> 0.00;
+        };
+    }
+
+    public static String getTextViewThing(String text, String newText) {
+        String current = "";
+        if (text.split("\n").length > 5) {
+            current = text.substring(text.indexOf("\n") + 1);
+        }
+        return current + "\n" + newText;
+    }
+
+    public static void getTextViewThing(Text text, String newText) {
+        String current = "";
+        if (text.getText().split("\n").length > 5) {
+            current = text.getText().substring(text.getText().indexOf("\n") + 1);
+        }
+        text.setText(current + "\n" + newText);
+    }
+
 }

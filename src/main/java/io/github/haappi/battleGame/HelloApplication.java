@@ -8,9 +8,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HelloApplication extends Application {
     private static HelloApplication singleton;
+    private final ArrayList<String> opponentNames = new ArrayList<>(List.of("Ogre", "Zombie", "Spider", "Rat", "Goblin", "Witch"));
     private final Gson gsonInstance = new Gson();
     private final int width = 640;
     private final int height = 480;
@@ -27,6 +30,10 @@ public class HelloApplication extends Application {
 
     public Gson getGsonInstance() {
         return gsonInstance;
+    }
+
+    public ArrayList<String> getOpponentNames() {
+        return opponentNames;
     }
 
     @Override

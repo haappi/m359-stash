@@ -8,8 +8,8 @@ import org.jetbrains.annotations.Nullable;
  * Base class that represents an item that can be held by a player
  */
 public class HoldableItem extends InventoryItem {
-    private String name;
     private final Double price;
+    private String name;
 
     public HoldableItem(String name, Double price) {
         this.name = name;
@@ -33,6 +33,10 @@ public class HoldableItem extends InventoryItem {
                 "name='" + name + '\'' +
                 ", price=" + this.price +
                 '}';
+    }
+
+    public double getAttack() {
+        return 0;
     }
 
 

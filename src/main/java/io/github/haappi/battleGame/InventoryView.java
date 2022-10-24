@@ -7,9 +7,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 public class InventoryView {
-    @FXML protected static String previousClassFXML = "main-menu.fxml";
-    @FXML protected Text itemInformation;
-    @FXML protected ListView<InventoryItem> inventoryItems;
+    @FXML
+    protected static String previousClassFXML = "main-menu.fxml";
+    @FXML
+    protected Text itemInformation;
+    @FXML
+    protected ListView<InventoryItem> inventoryItems;
 
     @FXML
     public void initialize() {
@@ -18,15 +21,18 @@ public class InventoryView {
         }
     }
 
-    @FXML protected void sortButton(ActionEvent actionEvent) {
+    @FXML
+    protected void sortButton(ActionEvent actionEvent) {
         // todo sort the inventory items by the type specified
     }
 
-    @FXML protected void goBackToOldMenu() {
+    @FXML
+    protected void goBackToOldMenu() {
         HelloApplication.getInstance().setStageScene(previousClassFXML);
     }
 
-    @FXML protected void onItemHover(MouseEvent mouseEvent) {
+    @FXML
+    protected void onItemHover(MouseEvent mouseEvent) {
         InventoryItem item = inventoryItems.getSelectionModel().getSelectedItem();
         if (item == null) {
             return;

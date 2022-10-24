@@ -1,14 +1,13 @@
 package io.github.haappi.battleGame.Classes;
 
 public class Weapons extends HoldableItem {
-    private int durability;
-    private int damage;
-    private int range;
-    private int speed;
-    private int weight;
-    private Double price;
-    private String name;
-    private String description;
+    private final int durability;
+    private final int damage;
+    private final int speed;
+    private final int weight;
+    private final Double price;
+    private final String name;
+    private final String description;
 
     private Weapons(WeaponBuilder builder) {
         super(builder.name, builder.price);
@@ -16,7 +15,6 @@ public class Weapons extends HoldableItem {
         this.price = builder.price;
         this.durability = builder.durability;
         this.damage = builder.damage;
-        this.range = builder.range;
         this.speed = builder.speed;
         this.weight = builder.weight;
         this.description = builder.description;
@@ -26,12 +24,21 @@ public class Weapons extends HoldableItem {
         return this.name + ": " + this.price;
     }
 
+    public String getInformation() {
+        return "Name: " + this.name + "\n" +
+                "Price: " + this.price + "\n" +
+                "Durability: " + this.durability + "\n" +
+                "Damage: " + this.damage + "\n" +
+                "Speed: " + this.speed + "\n" +
+                "Weight: " + this.weight + "\n" +
+                "Description: " + this.description + "\n";
+    }
+
     @SuppressWarnings("unused")
     public static class WeaponBuilder {
         private final String name;
         private int durability;
         private int damage;
-        private int range;
         private int speed;
         private int weight;
         private double price;
@@ -58,11 +65,6 @@ public class Weapons extends HoldableItem {
 
         public WeaponBuilder setDamage(Integer damage) {
             this.damage = damage;
-            return this;
-        }
-
-        public WeaponBuilder setRange(Integer range) {
-            this.range = range;
             return this;
         }
 

@@ -18,14 +18,8 @@ public class Player {
     private int luck;
     private double fatigueLevel;
     private double bankBalance;
-
-    public double getBankBalance() {
-        return bankBalance;
-    }
-
-    public void setBankBalance(double bankBalance) {
-        this.bankBalance = bankBalance;
-    }
+    private HoldableItem heldItem;
+    private Weapons heldWeapon;
 
     public Player(PlayerBuilder builder) {
         this.name = builder.name;
@@ -36,10 +30,11 @@ public class Player {
         this.speed = builder.speed;
         this.currentMana = builder.maxMana;
         this.maxMana = builder.maxMana;
-        this.fatigueLevel = builder.fatigueLevel;
+        this.fatigueLevel = 0;
         this.luck = builder.luck;
         this.clazz = builder.clazz;
     }
+
 
     public Player(String name, double currentHealth, double maxHealth, double attack, double defense, int speed, int maxMana, double fatigueLevel, String clazz) {
         this.name = name;
@@ -65,6 +60,30 @@ public class Player {
         this.maxMana = Integer.parseInt(splitData[7]);
         this.fatigueLevel = Double.parseDouble(splitData[8]);
         this.clazz = splitData[9];
+    }
+
+    public HoldableItem getHeldItem() {
+        return heldItem;
+    }
+
+    public void setHeldItem(HoldableItem heldItem) {
+        this.heldItem = heldItem;
+    }
+
+    public Weapons getHeldWeapon() {
+        return heldWeapon;
+    }
+
+    public void setHeldWeapon(Weapons heldWeapon) {
+        this.heldWeapon = heldWeapon;
+    }
+
+    public double getBankBalance() {
+        return bankBalance;
+    }
+
+    public void setBankBalance(double bankBalance) {
+        this.bankBalance = bankBalance;
     }
 
     public String getPlayerDataAsString() {
@@ -153,7 +172,7 @@ public class Player {
     }
 
     public double getAttack() {
-        return attack;
+        return heldWeapon == null ? attack : attack + heldWeapon.getAttack();
     }
 
     public void setAttack(int attack) {
@@ -164,7 +183,7 @@ public class Player {
         return defense;
     }
 
-    public void setDefense(int defense) {
+    public void setDefense(double defense) {
         this.defense = defense;
     }
 
@@ -211,7 +230,6 @@ public class Player {
         private double defense;
         private int speed;
         private int maxMana;
-        private int fatigueLevel;
         private int luck;
         private String clazz;
 
@@ -251,11 +269,6 @@ public class Player {
 
         public PlayerBuilder setMaxMana(int maxMana) {
             this.maxMana = maxMana;
-            return this;
-        }
-
-        public PlayerBuilder setFatigueLevel(int fatigueLevel) {
-            this.fatigueLevel = fatigueLevel;
             return this;
         }
 

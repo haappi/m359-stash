@@ -33,6 +33,7 @@
               text="Your stats"/>
         <Text fx:id="battleLengthTime" layoutX="430.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0"
               text="Battle has been going on for:"/>
-        <Text layoutX="276.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Actions"/>
+        <Text fx:id="recentActions" layoutX="276.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0"
+              text="Recent Actions"/>
     </children>
 </AnchorPane>

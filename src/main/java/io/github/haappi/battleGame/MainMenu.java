@@ -15,22 +15,28 @@ public class MainMenu {
         statView.getItems().addAll(Utils.playerStatsToList(HelloApplication.getInstance().getPlayer().getPlayerDataAsString()));
     }
 
-    @FXML protected void openShop() {
+    @FXML
+    protected void openShop() {
         HelloApplication.getInstance().setStageScene("store-view");
     }
 
-    @FXML protected void goToBattle(ActionEvent actionEvent) {
+    @FXML
+    protected void goToBattle(ActionEvent actionEvent) {
+        HelloApplication.getInstance().setStageScene("battle-view");
     }
 
-    @FXML protected void quitGame(ActionEvent actionEvent) {
-        Platform.exit(); // https://stackoverflow.com/questions/12153622/how-to-close-a-javafx-application-on-window-close
+    @FXML
+    protected void quitGame(ActionEvent actionEvent) {
         // save all plater data and what not bfore actually closing the applcaition
+        Platform.exit(); // https://stackoverflow.com/questions/12153622/how-to-close-a-javafx-application-on-window-close
     }
 
-    @FXML protected void viewBattleHistory(ActionEvent actionEvent) {
+    @FXML
+    protected void viewBattleHistory(ActionEvent actionEvent) {
     }
 
-    @FXML protected void openInventory(ActionEvent actionEvent) {
+    @FXML
+    protected void openInventory(ActionEvent actionEvent) {
         HelloApplication.getInstance().setStageScene("inventory-view");
     }
 }
