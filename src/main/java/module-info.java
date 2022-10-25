@@ -10,6 +10,5 @@ module io.github.haappi.battleGame {
 
     exports io.github.haappi.battleGame;
     exports io.github.haappi.battleGame.Classes;
-    exports io.github.haappi.battleGame.Classes.Abilities;
 
 }

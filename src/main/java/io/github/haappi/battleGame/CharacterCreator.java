@@ -15,6 +15,8 @@ import java.util.Objects;
 
 public class CharacterCreator {
     private final double multiplier = ((double) (int) (Math.random() * 100)) / 100;
+    // todo ability to click on pictures
+    // todo ability to import save files
     @FXML
     protected Text specificClassInformation;
     @FXML

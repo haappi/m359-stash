@@ -1,6 +1,8 @@
 package io.github.haappi.battleGame;
 
 import com.google.gson.Gson;
+import io.github.haappi.battleGame.Classes.Opponent;
+import io.github.haappi.battleGame.Classes.Player;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -63,6 +65,35 @@ public class Utils {
         return getRandomBoolean() ? stat * getRandomDouble(0.2, 0.4) : stat * getRandomDouble(0.2, 0.4) * -1;
     }
 
+    public static double reduceByFatigue(double stat, double fatigueLevel) {
+        return stat - (stat * fatigueLevel);
+    }
+
+    public static void increaseFatigue(Player player) {
+        if (getRandomBoolean()) {
+            player.setFatigueLevel(player.getFatigueLevel() + getRandomDouble(0.01, 0.2));
+        }
+    }
+
+    public static void increaseFatigue(Opponent opponent) {
+        if (getRandomBoolean()) {
+            opponent.setFatigueLevel(opponent.getFatigueLevel() + getRandomDouble(0.01, 0.2));
+        }
+    }
+
+//    public static double weakenStuff(Player player, Opponent opponent, String type) {
+//        switch (type.toLowerCase()) {
+//            case "attack":
+//                return reduceByFatigue(opponent.getAttack(), player.getFatigueLevel());
+//            case "defense":
+//                return reduceByFatigue(opponent.getDefense(), player.getFatigueLevel());
+//            case "speed":
+//                return reduceByFatigue(opponent.getSpeed(), player.getFatigueLevel());
+//            default:
+//                return 0;
+//        }
+//    }
+
     public static int randomlySomething(int stat) {
         return getRandomBoolean() ? stat * (int) getRandomDouble(0.2, 0.4) : stat * (int) getRandomDouble(0.2, 0.4) * -1;
     }
@@ -101,6 +132,19 @@ public class Utils {
             current = text.getText().substring(text.getText().indexOf("\n") + 1);
         }
         text.setText(current + "\n" + newText);
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+
+    public static double round(double value) {
+        return round(value, 2);
     }
 
 }
