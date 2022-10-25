@@ -43,6 +43,10 @@ public class BattleData {
         this.battleLength = (endTime - startTime) / 1000;
     }
 
+    public BattleData(String data) {
+        // construct a battle data class with string data
+    }
+
     public boolean isDidPlayerWin() {
         return didPlayerWin;
     }
@@ -101,5 +105,9 @@ public class BattleData {
 
     public ArrayList<InventoryItem> getEnemyItemsUsed() {
         return enemyItemsUsed;
+    }
+
+    public String toString() {
+        // todo add all battle stats in here
     }
 }

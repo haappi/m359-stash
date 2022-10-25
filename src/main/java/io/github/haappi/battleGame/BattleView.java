@@ -47,6 +47,10 @@ public class BattleView {
         opponentInstance.setFatigueLevel(round(opponentInstance.getFatigueLevel()));
 
         opponentStats.setText(opponentInstance.getOpponentDataAsString());
+
+        if (playerInstance.getCurrentHealth() <= 0.00 || opponentInstance.getHealth() <= 0.00) {
+            recentActions.setText("looks like something happened");
+        }
     }
 
     @FXML
@@ -78,10 +82,10 @@ public class BattleView {
 
     @FXML
     protected void zoomZoomAway(ActionEvent actionEvent) {
-        if (playerInstance.getSpeed() * playerInstance.getFatigueLevel() > opponentInstance.getSpeed() * opponentInstance.getFatigueLevel()) {
+        if (reduceByFatigue(playerInstance.getSpeed(), playerInstance.getFatigueLevel()) > reduceByFatigue(opponentInstance.getSpeed(), opponentInstance.getFatigueLevel())) {
             HelloApplication.getInstance().setStageScene("main-menu");
         } else {
-            getTextViewThing(recentActions, "You can't outrun your opponent!");
+            getTextViewThing(recentActions, "You can't outrun your opponent! Tire them out or run faster!");
         }
         updateStatsLocally();
     }

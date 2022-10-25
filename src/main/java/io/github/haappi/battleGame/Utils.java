@@ -104,7 +104,7 @@ public class Utils {
     }
 
     public static String getTextViewThing(String text, String newText) {
-        String current = "";
+        String current = text;
         if (text.split("\n").length > 5) {
             current = text.substring(text.indexOf("\n") + 1);
         }
@@ -112,7 +112,7 @@ public class Utils {
     }
 
     public static void getTextViewThing(Text text, String newText) {
-        String current = "";
+        String current = text.getText();
         if (text.getText().split("\n").length > 5) {
             current = text.getText().substring(text.getText().indexOf("\n") + 1);
         }

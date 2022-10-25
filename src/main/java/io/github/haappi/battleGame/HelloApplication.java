@@ -13,6 +13,7 @@ import java.util.List;
 public class HelloApplication extends Application {
     private static HelloApplication singleton;
     private final ArrayList<String> opponentNames = new ArrayList<>(List.of("Ogre", "Zombie", "Spider", "Rat", "Goblin", "Witch"));
+    private final ArrayList<BattleData> battleData = new ArrayList<>();
     private final int width = 640;
     private final int height = 480;
     private Player playerReference;
@@ -28,6 +29,14 @@ public class HelloApplication extends Application {
 
     public ArrayList<String> getOpponentNames() {
         return opponentNames;
+    }
+
+    public ArrayList<BattleData> getBattleData() {
+        return this.battleData;
+    }
+
+    public void addBattleToData(BattleData battleData) {
+        this.battleData.add(battleData);
     }
 
     @Override

@@ -41,7 +41,7 @@ public class CharacterCreator {
     private int MINIMUM_MANA = 10;
     private int MINIMUM_LUCK = 2;
     private String selectedStat = "Health";
-    private String selectedClass = "Ranger";
+    private String selectedClass = "Assassin";
 
 
     @FXML
@@ -56,6 +56,9 @@ public class CharacterCreator {
         statsView.getItems().add("Mana: " + MINIMUM_MANA);
         statsView.getItems().add("Luck: " + MINIMUM_LUCK);
         statsView.getSelectionModel().select(selectedIndex);
+
+        specificClassInformation.setText("Assassins are fast and have high attack, but have low defense and health.");
+        changeMinimumStats(13, 5, 2, 5, 10, 3);
     }
 
     @FXML
