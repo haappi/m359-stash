@@ -1,6 +1,5 @@
 package io.github.haappi.battleGame;
 
-import com.google.gson.Gson;
 import io.github.haappi.battleGame.Classes.Opponent;
 import io.github.haappi.battleGame.Classes.Player;
 import javafx.scene.text.Text;
@@ -13,20 +12,6 @@ import java.util.Map;
 public class Utils {
     private Utils() {
         throw new IllegalStateException("Utility class");
-    }
-
-    public static String getSaveInformation(String jsonInformation, Long lastModified, Gson gson) {
-        String noQuotes = jsonInformation.replaceAll("^\"|\"$", "");
-        Map<?, ?> map = gson.fromJson(jsonInformation.replaceAll("^\"|\"$", ""), Map.class);
-        return "Name: " + map.get("name") + "\n" +
-                "Description: " + map.get("description") + "\n" +
-                "Last Modified: " + SaveInstance.getLastModifiedString(lastModified) + "\n";
-    }
-
-    public static Map<?, ?> getMapFromString(String jsonInformation, Long lastModified, Gson gson) {
-        Map<String, String> map = gson.fromJson(jsonInformation, Map.class);
-        map.put("last_modified", String.valueOf(lastModified));
-        return map;
     }
 
     public static <E> String listToString(List<E> list) {

@@ -1,6 +1,5 @@
 package io.github.haappi.battleGame;
 
-import com.google.gson.Gson;
 import io.github.haappi.battleGame.Classes.Player;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +13,6 @@ import java.util.List;
 public class HelloApplication extends Application {
     private static HelloApplication singleton;
     private final ArrayList<String> opponentNames = new ArrayList<>(List.of("Ogre", "Zombie", "Spider", "Rat", "Goblin", "Witch"));
-    private final Gson gsonInstance = new Gson();
     private final int width = 640;
     private final int height = 480;
     private Player playerReference;
@@ -26,10 +24,6 @@ public class HelloApplication extends Application {
 
     public static void main(String[] args) {
         launch();
-    }
-
-    public Gson getGsonInstance() {
-        return gsonInstance;
     }
 
     public ArrayList<String> getOpponentNames() {

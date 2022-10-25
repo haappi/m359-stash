@@ -1,7 +1,5 @@
 package io.github.haappi.battleGame;
 
-import com.google.gson.Gson;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +18,6 @@ public class SaveInstance {
         this.path = path;
         this.lastModified = lastModified;
 
-        this.information = (Map<String, String>) Utils.getMapFromString(Utils.getSaveInformation(data, lastModified, HelloApplication.getInstance().getGsonInstance()), lastModified, new Gson());
     }
 
     public SaveInstance() {
