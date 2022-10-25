@@ -159,7 +159,7 @@ public class Player {
         return currentHealth;
     }
 
-    public void setCurrentHealth(int currentHealth) {
+    public void setCurrentHealth(double currentHealth) {
         this.currentHealth = currentHealth;
     }
 
@@ -167,7 +167,7 @@ public class Player {
         return maxHealth;
     }
 
-    public void setMaxHealth(int maxHealth) {
+    public void setMaxHealth(double maxHealth) {
         this.maxHealth = maxHealth;
     }
 
@@ -175,7 +175,7 @@ public class Player {
         return heldWeapon == null ? attack : attack + heldWeapon.getAttack();
     }
 
-    public void setAttack(int attack) {
+    public void setAttack(double attack) {
         this.attack = attack;
     }
 
@@ -215,7 +215,7 @@ public class Player {
         return fatigueLevel;
     }
 
-    public void setFatigueLevel(int fatigueLevel) {
+    public void setFatigueLevel(double fatigueLevel) {
         this.fatigueLevel = fatigueLevel;
     }
 

@@ -9,15 +9,14 @@ public class Opponent {
     private final String name;
     private final String type;
     private final ArrayList<InventoryItem> inventoryItems = new ArrayList<>();
-    private final double maxHealth;
-    private final double attack;
-    private final double defense;
     private final int speed;
     private final int luck;
-    private final double fatigueLevel;
+    private double maxHealth;
+    private double attack;
+    private double defense;
+    private double fatigueLevel;
     private double health;
     private HoldableItem heldItem;
-
     public Opponent(OpponentBuilder builder) {
         this.name = builder.name;
         this.type = builder.type;
@@ -30,7 +29,6 @@ public class Opponent {
         this.fatigueLevel = 0;
         this.luck = builder.luck;
     }
-
     public Opponent(String data) {
         String[] splitData = data.split(";");
         this.name = splitData[0];
@@ -68,12 +66,24 @@ public class Opponent {
         return maxHealth;
     }
 
+    public void setMaxHealth(double maxHealth) {
+        this.maxHealth = maxHealth;
+    }
+
     public double getAttack() {
         return attack;
     }
 
+    public void setAttack(double attack) {
+        this.attack = attack;
+    }
+
     public double getDefense() {
         return defense;
+    }
+
+    public void setDefense(double defense) {
+        this.defense = defense;
     }
 
     public int getSpeed() {
@@ -88,8 +98,16 @@ public class Opponent {
         return fatigueLevel;
     }
 
+    public void setFatigueLevel(double fatigueLevel) {
+        this.fatigueLevel = fatigueLevel;
+    }
+
     public ArrayList<InventoryItem> getInventoryItems() {
         return inventoryItems;
+    }
+
+    public String getOpponentDataAsString() {
+        return "OPPONENT:\n\nName: " + this.name + "\nType: " + this.type + "\nHealth: " + this.health + "\nMax Health: " + this.maxHealth + "\nAttack: " + this.attack + "\nDefense: " + this.defense + "\nSpeed: " + this.speed + "\nLuck: " + this.luck + "\nFatigue Level: " + this.fatigueLevel;
     }
 
     public static class OpponentBuilder {

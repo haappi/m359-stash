@@ -1,13 +1,15 @@
 package io.github.haappi.battleGame.Classes;
 
+import io.github.haappi.battleGame.Utils;
+
 public class Weapons extends HoldableItem {
-    private final int durability;
     private final int damage;
     private final int speed;
     private final int weight;
     private final Double price;
     private final String name;
     private final String description;
+    private int durability;
 
     private Weapons(WeaponBuilder builder) {
         super(builder.name, builder.price);
@@ -18,6 +20,23 @@ public class Weapons extends HoldableItem {
         this.speed = builder.speed;
         this.weight = builder.weight;
         this.description = builder.description;
+    }
+
+    /**
+     * Uses the weapon once. Reduces the durability by 1.
+     *
+     * @return A {@link Boolean} indicating whether the attack was successful or not.
+     */
+    public boolean useWeapon() {
+        if (this.durability > 0) {
+            this.durability--;
+            return true;
+        }
+        return false;
+    }
+
+    public void handleCalc(Opponent opponent, Player player) {
+        opponent.setHealth(opponent.getHealth() - Utils.reduceByFatigue(player.getAttack(), player.getFatigueLevel()));
     }
 
     public String toString() {
