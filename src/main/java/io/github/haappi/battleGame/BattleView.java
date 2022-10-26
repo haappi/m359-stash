@@ -49,17 +49,23 @@ public class BattleView {
         opponentStats.setText(opponentInstance.getOpponentDataAsString());
 
         if (playerInstance.getCurrentHealth() <= 0.00 || opponentInstance.getHealth() <= 0.00) {
-            recentActions.setText("looks like something happened");
+            battleLength = System.currentTimeMillis() - battleLength;
+            battleLengthTime.setText("Battle length: " + battleLength + "ms");
+            recentActions.setText("Battle ended!");
         }
     }
 
     @FXML
     protected void attack(ActionEvent actionEvent) {
-        opponentInstance.setHealth(opponentInstance.getHealth() - reduceByFatigue(playerInstance.getAttack(), playerInstance.getFatigueLevel()));
-        getTextViewThing(recentActions, "You attacked " + opponentInstance.getName() + " for " + reduceByFatigue(playerInstance.getAttack(), playerInstance.getFatigueLevel()) + " damage.");
+        double amount = round(reduceByFatigue(playerInstance.getAttack(), playerInstance.getFatigueLevel()));
+        opponentInstance.setHealth(opponentInstance.getHealth() - amount);
+        setTextString(recentActions, "You attacked " + opponentInstance.getName() + " for " + amount + " damage.");
+        opponentHealthDepleted += amount;
+        playerDamageDealt += amount;
+        opponentDamageTaken += amount;
         increaseFatigue(playerInstance);
-        opponentTurn();
         updateStatsLocally();
+        opponentTurn();
     }
 
     @FXML
@@ -85,7 +91,7 @@ public class BattleView {
         if (reduceByFatigue(playerInstance.getSpeed(), playerInstance.getFatigueLevel()) > reduceByFatigue(opponentInstance.getSpeed(), opponentInstance.getFatigueLevel())) {
             HelloApplication.getInstance().setStageScene("main-menu");
         } else {
-            getTextViewThing(recentActions, "You can't outrun your opponent! Tire them out or run faster!");
+            setTextString(recentActions, "You can't outrun your opponent! Tire them out or run faster!");
         }
         updateStatsLocally();
     }
@@ -93,16 +99,17 @@ public class BattleView {
     private void opponentTurn() {
         switch (getRandomInteger(0, 2)) {
             case 0:
-                playerInstance.setCurrentHealth(playerInstance.getCurrentHealth() - reduceByFatigue(opponentInstance.getAttack(), opponentInstance.getFatigueLevel()));
-                getTextViewThing(recentActions, opponentInstance.getName() + " attacked you for " + reduceByFatigue(opponentInstance.getAttack(), opponentInstance.getFatigueLevel()) + " damage.");
+                double amount = round(reduceByFatigue(opponentInstance.getAttack(), opponentInstance.getFatigueLevel()));
+                playerInstance.setCurrentHealth(playerInstance.getCurrentHealth() - amount);
+                setTextString(recentActions, opponentInstance.getName() + " attacked you for " + amount + " damage.");
                 increaseFatigue(opponentInstance);
                 break;
             case 1:
-                opponentInstance.setDefense(opponentInstance.getDefense() * getRandomDouble(0, 0.3));
-                getTextViewThing(recentActions, opponentInstance.getName() + " defended.");
+                opponentInstance.setDefense(round(opponentInstance.getDefense() * getRandomDouble(0, 0.3)));
+                setTextString(recentActions, opponentInstance.getName() + " defended.");
                 break;
             case 2:
         }
-
+        updateStatsLocally();
     }
 }

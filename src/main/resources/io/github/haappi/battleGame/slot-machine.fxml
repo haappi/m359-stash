@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.battleGame.SlotMachine">
+   <children>
+      <Text layoutX="268.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="[x] [x] [x]" />
+      <Text layoutX="448.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="You have 10 coins" />
+      <TextField layoutX="347.0" layoutY="167.0" promptText="Bet Amount" />
+      <Button layoutX="347.0" layoutY="208.0" mnemonicParsing="false" text="Bet" />
+      <Button layoutX="509.0" layoutY="14.0" mnemonicParsing="false" text="Main Menu" />
+   </children>
+</AnchorPane>

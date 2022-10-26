@@ -7,7 +7,6 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class Utils {
     private Utils() {
@@ -103,7 +102,7 @@ public class Utils {
         };
     }
 
-    public static String getTextViewThing(String text, String newText) {
+    public static String setTextString(String text, String newText) {
         String current = text;
         if (text.split("\n").length > 5) {
             current = text.substring(text.indexOf("\n") + 1);
@@ -111,7 +110,7 @@ public class Utils {
         return current + "\n" + newText;
     }
 
-    public static void getTextViewThing(Text text, String newText) {
+    public static void setTextString(Text text, String newText) {
         String current = text.getText();
         if (text.getText().split("\n").length > 5) {
             current = text.getText().substring(text.getText().indexOf("\n") + 1);
