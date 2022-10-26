@@ -3,6 +3,7 @@ package io.github.haappi.TicTacToe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class HelloController {
@@ -44,6 +45,7 @@ public class HelloController {
         board[x][y] = player1Turn ? 1 : -1;
         button.setText(player1Turn ? "X" : "O");
         button.setDisable(true);
+        button.setTextFill(player1Turn ? Color.RED : Color.BLUE);
         player1Turn = !player1Turn;
         gameStatus.setText(player1Turn ? "Player 1's turn" : "Player 2's turn");
 
