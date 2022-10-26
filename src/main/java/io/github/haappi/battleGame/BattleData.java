@@ -108,6 +108,7 @@ public class BattleData {
     }
 
     public String toString() {
+        return "hi";
         // todo add all battle stats in here
     }
 }
