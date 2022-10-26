@@ -10,7 +10,7 @@ public class HelloController {
     @FXML
     protected Text gameStatus;
 
-    private boolean player1Turn = true; // true = player 1, false = player 2
+    private boolean player1Turn = true; // true = Player X, false = Player O
 
     @FXML
     private Button one, two, three, four, five, six, seven, eight, nine;
@@ -47,7 +47,7 @@ public class HelloController {
         button.setDisable(true);
         button.setTextFill(player1Turn ? Color.RED : Color.BLUE);
         player1Turn = !player1Turn;
-        gameStatus.setText(player1Turn ? "Player 1's turn" : "Player 2's turn");
+        gameStatus.setText(player1Turn ? "Player X's turn" : "Player O's turn");
 
         printBoardNicely();
     }
@@ -120,10 +120,10 @@ public class HelloController {
         for (int[] intArray : board) {
             int sum = sum(intArray);
             if (sum == 3) {
-                gameStatus.setText("Player 1 wins!");
+                gameStatus.setText("Player X wins!");
                 disableButtons();
             } else if (sum == -3) {
-                gameStatus.setText("Player 2 wins!");
+                gameStatus.setText("Player O wins!");
                 disableButtons();
             }
         }
@@ -132,10 +132,10 @@ public class HelloController {
         for (int i = 0; i < 3; i++) {
             int sum = board[0][i] + board[1][i] + board[2][i];
             if (sum == 3) {
-                gameStatus.setText("Player 1 wins!");
+                gameStatus.setText("Player X wins!");
                 disableButtons();
             } else if (sum == -3) {
-                gameStatus.setText("Player 2 wins!");
+                gameStatus.setText("Player O wins!");
                 disableButtons();
             }
         }
@@ -143,19 +143,19 @@ public class HelloController {
         // check diagonal
         int sum = board[0][0] + board[1][1] + board[2][2];
         if (sum == 3) {
-            gameStatus.setText("Player 1 wins!");
+            gameStatus.setText("Player X wins!");
             disableButtons();
         } else if (sum == -3) {
-            gameStatus.setText("Player 2 wins!");
+            gameStatus.setText("Player O wins!");
             disableButtons();
         }
 
         sum = board[0][2] + board[1][1] + board[2][0];
         if (sum == 3) {
-            gameStatus.setText("Player 1 wins!");
+            gameStatus.setText("Player X wins!");
             disableButtons();
         } else if (sum == -3) {
-            gameStatus.setText("Player 2 wins!");
+            gameStatus.setText("Player O wins!");
             disableButtons();
         }
 
