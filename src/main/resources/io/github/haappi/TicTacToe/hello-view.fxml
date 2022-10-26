@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="io.github.haappi.TicTacToe.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.TicTacToe.HelloController">
+   <children>
+      <Button fx:id="one" layoutX="256.0" layoutY="132.0" mnemonicParsing="false" onAction="#one" text="_" />
+      <Button fx:id="two" layoutX="290.0" layoutY="132.0" mnemonicParsing="false" onAction="#two" text="_" />
+      <Button fx:id="three" layoutX="323.0" layoutY="132.0" mnemonicParsing="false" onAction="#three" text="_" />
+      <Button fx:id="four" layoutX="256.0" layoutY="168.0" mnemonicParsing="false" onAction="#four" text="_" />
+      <Button fx:id="five" layoutX="290.0" layoutY="168.0" mnemonicParsing="false" onAction="#five" text="_" />
+      <Button fx:id="six" layoutX="323.0" layoutY="168.0" mnemonicParsing="false" onAction="#six" text="_" />
+      <Button fx:id="seven" layoutX="256.0" layoutY="200.0" mnemonicParsing="false" onAction="#seven" text="_" />
+      <Button fx:id="eight" layoutX="290.0" layoutY="200.0" mnemonicParsing="false" onAction="#eight" text="_" />
+      <Button fx:id="nine" layoutX="323.0" layoutY="200.0" mnemonicParsing="false" onAction="#nine" text="_" />
+      <Text fx:id="gameStatus" layoutX="271.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="It's X's turn" />
+      <TextField layoutX="385.0" layoutY="132.0" onAction="#nameInputted" promptText="Input" />
+   </children>
+</AnchorPane>
