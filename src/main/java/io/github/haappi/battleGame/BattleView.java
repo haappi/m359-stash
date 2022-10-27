@@ -3,6 +3,7 @@ package io.github.haappi.battleGame;
 import io.github.haappi.battleGame.Classes.Opponent;
 import io.github.haappi.battleGame.Classes.Player;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.text.Text;
 
@@ -111,5 +112,8 @@ public class BattleView {
             case 2:
         }
         updateStatsLocally();
+    }
+
+    public void inventoryItemsRequested(Event event) {
     }
 }

@@ -17,7 +17,7 @@ public class Player {
     private int maxMana;
     private int luck;
     private double fatigueLevel;
-    private double bankBalance;
+    private double bankBalance = 50.0;
     private HoldableItem heldItem;
     private Weapons heldWeapon;
 
@@ -84,6 +84,10 @@ public class Player {
 
     public void setBankBalance(double bankBalance) {
         this.bankBalance = bankBalance;
+    }
+
+    public void addToBankBalance(double amount) {
+        this.bankBalance += amount;
     }
 
     public String getPlayerDataAsString() {

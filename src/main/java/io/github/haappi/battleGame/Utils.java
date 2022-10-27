@@ -83,7 +83,7 @@ public class Utils {
     }
 
     public static int getRandomInteger(int min, int max) {
-        return (int) (Math.random() * (max - min) + min);
+        return min + (int) (Math.random() * ((max - min) + 1));
     }
 
     public static <T> T getRandomElement(List<T> list) {

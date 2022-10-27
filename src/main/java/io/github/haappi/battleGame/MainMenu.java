@@ -39,4 +39,8 @@ public class MainMenu {
     protected void openInventory(ActionEvent actionEvent) {
         HelloApplication.getInstance().setStageScene("inventory-view");
     }
+
+    public void openCasino(ActionEvent actionEvent) {
+        HelloApplication.getInstance().setStageScene("tic-tac-toe");
+    }
 }
