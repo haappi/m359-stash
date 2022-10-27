@@ -38,9 +38,9 @@ public class TicTacToe {
     private void lookAtWinStuff() {
         int win = checkWin();
         if (win == 1) { // Player won
-            playerInstance.addToBankBalance(betAmount * 2); // todo fix this adding weird
+            playerInstance.addToBankBalance(betAmount * 1.25); // todo fix this adding weird
         } else if (win == -1) { // Computer won
-            playerInstance.addToBankBalance(-betAmount * 0.25);
+            playerInstance.addToBankBalance(-betAmount * 0.50);
         } else if (win == 0) { // Draw
             playerInstance.setBankBalance(playerInstance.getBankBalance() - (betAmount / 2));
         }
