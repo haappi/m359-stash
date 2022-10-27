@@ -7,15 +7,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 public class HelloController {
+    private final int[][] board = new int[3][3];
     @FXML
     protected Text gameStatus;
-
     private boolean player1Turn = true; // true = Player X, false = Player O
-
     @FXML
     private Button one, two, three, four, five, six, seven, eight, nine;
-
-    private int[][] board = new int[3][3];
 
     @FXML
     protected void initialize() {
@@ -28,13 +25,6 @@ public class HelloController {
         seven.setId("2_0");
         eight.setId("2_1");
         nine.setId("2_2");
-    }
-
-    @FXML
-    protected void one(ActionEvent actionEvent) {
-        Button button = (Button) actionEvent.getSource();
-        setButtonStuff(button);
-        checkWin();
     }
 
 
@@ -52,57 +42,9 @@ public class HelloController {
         printBoardNicely();
     }
 
-    @FXML
-    protected void two(ActionEvent actionEvent) {
-        Button button = (Button) actionEvent.getSource();
-        setButtonStuff(button);
-        checkWin();
-    }
 
     @FXML
-    protected void three(ActionEvent actionEvent) {
-        Button button = (Button) actionEvent.getSource();
-        setButtonStuff(button);
-        checkWin();
-    }
-
-    @FXML
-    protected void four(ActionEvent actionEvent) {
-        Button button = (Button) actionEvent.getSource();
-        setButtonStuff(button);
-        checkWin();
-    }
-
-    @FXML
-    protected void five(ActionEvent actionEvent) {
-        Button button = (Button) actionEvent.getSource();
-        setButtonStuff(button);
-        checkWin();
-    }
-
-    @FXML
-    protected void six(ActionEvent actionEvent) {
-        Button button = (Button) actionEvent.getSource();
-        setButtonStuff(button);
-        checkWin();
-    }
-
-    @FXML
-    protected void seven(ActionEvent actionEvent) {
-        Button button = (Button) actionEvent.getSource();
-        setButtonStuff(button);
-        checkWin();
-    }
-
-    @FXML
-    protected void eight(ActionEvent actionEvent) {
-        Button button = (Button) actionEvent.getSource();
-        setButtonStuff(button);
-        checkWin();
-    }
-
-    @FXML
-    protected void nine(ActionEvent actionEvent) {
+    protected void buttonPushed(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
         setButtonStuff(button);
         checkWin();

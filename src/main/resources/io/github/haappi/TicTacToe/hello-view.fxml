@@ -3,19 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
             prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
             fx:controller="io.github.haappi.TicTacToe.HelloController">
     <children>
-        <Button fx:id="one" layoutX="256.0" layoutY="132.0" mnemonicParsing="false" onAction="#one" text="_"/>
-        <Button fx:id="two" layoutX="290.0" layoutY="132.0" mnemonicParsing="false" onAction="#two" text="_"/>
-        <Button fx:id="three" layoutX="323.0" layoutY="132.0" mnemonicParsing="false" onAction="#three" text="_"/>
-        <Button fx:id="four" layoutX="256.0" layoutY="168.0" mnemonicParsing="false" onAction="#four" text="_"/>
-        <Button fx:id="five" layoutX="290.0" layoutY="168.0" mnemonicParsing="false" onAction="#five" text="_"/>
-        <Button fx:id="six" layoutX="323.0" layoutY="168.0" mnemonicParsing="false" onAction="#six" text="_"/>
-        <Button fx:id="seven" layoutX="256.0" layoutY="200.0" mnemonicParsing="false" onAction="#seven" text="_"/>
-        <Button fx:id="eight" layoutX="290.0" layoutY="200.0" mnemonicParsing="false" onAction="#eight" text="_"/>
-        <Button fx:id="nine" layoutX="323.0" layoutY="200.0" mnemonicParsing="false" onAction="#nine" text="_"/>
+        <Button fx:id="one" layoutX="256.0" layoutY="132.0" mnemonicParsing="false" onAction="#buttonPushed" text="_"/>
+        <Button fx:id="two" layoutX="290.0" layoutY="132.0" mnemonicParsing="false" onAction="#buttonPushed" text="_"/>
+        <Button fx:id="three" layoutX="323.0" layoutY="132.0" mnemonicParsing="false" onAction="#buttonPushed"
+                text="_"/>
+        <Button fx:id="four" layoutX="256.0" layoutY="168.0" mnemonicParsing="false" onAction="#buttonPushed" text="_"/>
+        <Button fx:id="five" layoutX="290.0" layoutY="168.0" mnemonicParsing="false" onAction="#buttonPushed" text="_"/>
+        <Button fx:id="six" layoutX="323.0" layoutY="168.0" mnemonicParsing="false" onAction="#buttonPushed" text="_"/>
+        <Button fx:id="seven" layoutX="256.0" layoutY="200.0" mnemonicParsing="false" onAction="#buttonPushed"
+                text="_"/>
+        <Button fx:id="eight" layoutX="290.0" layoutY="200.0" mnemonicParsing="false" onAction="#buttonPushed"
+                text="_"/>
+        <Button fx:id="nine" layoutX="323.0" layoutY="200.0" mnemonicParsing="false" onAction="#buttonPushed" text="_"/>
         <Text fx:id="gameStatus" layoutX="271.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0"
               text="It's X's turn"/>
         <TextField layoutX="385.0" layoutY="132.0" onAction="#nameInputted" promptText="Input"/>
