@@ -11,10 +11,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class CharacterCreator {
     private final double multiplier = ((double) (int) (Math.random() * 100)) / 100;
+    @FXML
+    protected Text saveStatus;
+    @FXML
+    protected TextField saveFileInput;
     // todo ability to click on pictures
     // todo ability to import save files
     @FXML
@@ -221,5 +231,35 @@ public class CharacterCreator {
         stats.set(3, "Speed: " + speed);
         stats.set(4, "Mana: " + mana);
         stats.set(5, "Luck: " + luck);
+    }
+
+    public void loadSave() throws IOException {
+        File file = new File(saveFileInput.getText());
+        if (!file.exists()) {
+            saveStatus.setText("File does not exist.");
+        }
+        String content;
+        try {
+            content = new String(Files.readAllBytes(file.toPath())); // reads the entire file into a string
+        } catch (AccessDeniedException e) {
+            saveStatus.setText("File does not exist.");
+            return;
+        }
+        ArrayList<String> data = new ArrayList<>(List.of(content.split(": ")));
+        ArrayList<String> betterData = new ArrayList<>();
+
+        for (String each : data) {
+            betterData.add(each.split("\n")[0]);
+        }
+        betterData.remove(0);
+        System.out.println(betterData);
+
+        String[] stringArray = new String[betterData.size()];
+        for (int i = 0; i < betterData.size(); i++) {
+            stringArray[i] = betterData.get(i);
+        }
+        HelloApplication.getInstance().setPlayer(new Player(stringArray));
+        HelloApplication.getInstance().setStageScene("main-menu");
+
     }
 }

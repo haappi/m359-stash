@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,25 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        File file = new File("src/main/resources/battle-data.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        String content = new String(Files.readAllBytes(file.toPath())); // reads the entire file into a string
+        for (String line : content.split("\n\n")) {
+            ArrayList<String> data = new ArrayList<>(List.of(line.split(": ")));
+            data.remove(0);
+            for (String thing : data) {
+                data.set(data.indexOf(thing), thing.split("\n")[0]);
+            }
+            String[] stringArray = new String[data.size()];
+            for (int i = 0; i < data.size(); i++) {
+                stringArray[i] = data.get(i);
+            }
+            this.battleData.add(new BattleData(stringArray));
+        }
+        System.out.println(this.battleData);
+
         singleton = this;
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("character-creator.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), width, height);

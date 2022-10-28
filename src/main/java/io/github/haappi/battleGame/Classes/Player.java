@@ -4,6 +4,8 @@ import io.github.haappi.battleGame.InventoryItem;
 
 import java.util.ArrayList;
 
+import static io.github.haappi.battleGame.Utils.round;
+
 public class Player {
     private final ArrayList<InventoryItem> inventory = new ArrayList<>();
     private final String clazz;
@@ -35,7 +37,6 @@ public class Player {
         this.clazz = builder.clazz;
     }
 
-
     public Player(String name, double currentHealth, double maxHealth, double attack, double defense, int speed, int maxMana, double fatigueLevel, String clazz) {
         this.name = name;
         this.currentHealth = currentHealth;
@@ -48,18 +49,22 @@ public class Player {
         this.clazz = clazz;
     }
 
-    public Player(String data) {
-        String[] splitData = data.split(";");
-        this.name = splitData[0];
-        this.currentHealth = Double.parseDouble(splitData[1]);
-        this.maxHealth = Double.parseDouble(splitData[2]);
-        this.attack = Double.parseDouble(splitData[3]);
-        this.defense = Double.parseDouble(splitData[4]);
-        this.speed = Integer.parseInt(splitData[5]);
-        this.currentMana = Integer.parseInt(splitData[6]);
-        this.maxMana = Integer.parseInt(splitData[7]);
-        this.fatigueLevel = Double.parseDouble(splitData[8]);
-        this.clazz = splitData[9];
+
+    public Player(String[] data) {
+        this.name = data[0];
+        this.currentHealth = Double.parseDouble(data[1].split("/")[0]);
+        this.maxHealth = Double.parseDouble(data[1].split("/")[0]);
+        this.attack = Double.parseDouble(data[2]);
+        this.defense = Double.parseDouble(data[3]);
+        this.speed = Integer.parseInt(data[4].split("/")[0]);
+        this.currentMana = Integer.parseInt(data[4].split("/")[0]);
+        this.maxMana = Integer.parseInt(data[5].split("/")[0]);
+        this.fatigueLevel = Double.parseDouble(data[6]);
+        this.clazz = data[7];
+    }
+
+    public String getClazz() {
+        return clazz;
     }
 
     public HoldableItem getHeldItem() {
@@ -91,11 +96,11 @@ public class Player {
     }
 
     public String getPlayerDataAsString() {
-        return "PLAYER:\n\nName: " + name + "\n" +
-                "Health: " + currentHealth + "/" + maxHealth + "\n" +
-                "Attack: " + attack + "\n" +
-                "Defense: " + defense + "\n" +
-                "Speed: " + speed + "\n" +
+        return "Name: " + name + "\n" +
+                "Health: " + round(currentHealth) + "/" + round(maxHealth) + "\n" +
+                "Attack: " + round(attack) + "\n" +
+                "Defense: " + round(defense) + "\n" +
+                "Speed: " + round(speed) + "\n" +
                 "Mana: " + currentMana + "/" + maxMana + "\n" +
                 "Fatigue: " + fatigueLevel + "\n" +
                 "Class: " + clazz + "\n";

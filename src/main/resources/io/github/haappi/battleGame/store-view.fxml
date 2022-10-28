@@ -10,8 +10,8 @@
                   prefHeight="200.0" prefWidth="200.0"/>
         <Text fx:id="currentlyShopping" layoutX="65.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0"
               text="You are currently shopping: Weapons"/>
-        <MenuButton fx:id="shoppingForWhat" layoutX="276.0" layoutY="100.0" mnemonicParsing="false"
-                    text="Shopping For:">
+        <MenuButton fx:id="shoppingForWhat" layoutX="276.0" layoutY="100.0" mnemonicParsing="false" text="Shopping For:"
+                    visible="false">
             <items>
                 <MenuItem fx:id="weapons" mnemonicParsing="false" onAction="#changeShoppingFor" text="Weapons"/>
                 <MenuItem fx:id="potions" mnemonicParsing="false" onAction="#changeShoppingFor" text="Potions"/>

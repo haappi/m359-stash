@@ -17,18 +17,20 @@ public class Opponent {
     private double fatigueLevel;
     private double health;
     private HoldableItem heldItem;
+
     public Opponent(OpponentBuilder builder) {
         this.name = builder.name;
         this.type = builder.type;
         double additionalMulti = Utils.getAddtionalMultiplier(this.type);
-        this.health = builder.maxHealth * additionalMulti;
-        this.maxHealth = builder.maxHealth * additionalMulti;
-        this.attack = builder.attack * additionalMulti;
-        this.defense = builder.defense * additionalMulti;
-        this.speed = builder.speed * (int) additionalMulti;
+        this.health = builder.maxHealth + (builder.maxHealth * additionalMulti);
+        this.maxHealth = builder.maxHealth + (builder.maxHealth * additionalMulti);
+        this.attack = builder.attack + (builder.attack * additionalMulti);
+        this.defense = builder.defense + (builder.defense * additionalMulti);
+        this.speed = builder.speed + (builder.speed * (int) additionalMulti);
         this.fatigueLevel = 0;
         this.luck = builder.luck;
     }
+
     public Opponent(String data) {
         String[] splitData = data.split(";");
         this.name = splitData[0];
@@ -107,7 +109,7 @@ public class Opponent {
     }
 
     public String getOpponentDataAsString() {
-        return "OPPONENT:\n\nName: " + this.name + "\nType: " + this.type + "\nHealth: " + this.health + "\nMax Health: " + this.maxHealth + "\nAttack: " + this.attack + "\nDefense: " + this.defense + "\nSpeed: " + this.speed + "\nLuck: " + this.luck + "\nFatigue Level: " + this.fatigueLevel;
+        return "OPPONENT:\n\nName: " + this.name + "\nType: " + this.type + "\nHealth: " + this.health + "/" + this.maxHealth + "\nAttack: " + this.attack + "\nDefense: " + this.defense + "\nSpeed: " + this.speed + "\nLuck: " + this.luck + "\nFatigue: " + this.fatigueLevel;
     }
 
     public static class OpponentBuilder {
@@ -125,27 +127,27 @@ public class Opponent {
         }
 
         public OpponentBuilder setHealth(double health) {
-            this.maxHealth = maxHealth;
+            this.maxHealth = health > 0 ? health : 1;
             return this;
         }
 
         public OpponentBuilder setAttack(double attack) {
-            this.attack = attack;
+            this.attack = attack > 0 ? attack : 1;
             return this;
         }
 
         public OpponentBuilder setDefense(double defense) {
-            this.defense = defense;
+            this.defense = defense > 0 ? defense : 1;
             return this;
         }
 
         public OpponentBuilder setSpeed(int speed) {
-            this.speed = speed;
+            this.speed = speed > 0 ? speed : 1;
             return this;
         }
 
         public OpponentBuilder setLuck(int luck) {
-            this.luck = luck;
+            this.luck = luck > 0 ? luck : 1;
             return this;
         }
 

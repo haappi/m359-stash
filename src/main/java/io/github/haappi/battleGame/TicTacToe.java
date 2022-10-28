@@ -14,31 +14,30 @@ import java.util.List;
 
 public class TicTacToe {
     private final int[][] board = new int[3][3];
-    @FXML protected TextField betAmountInput;
-    @FXML protected Button resetGameButton;
-
-    @FXML protected Text balance, gameState;
-    private Double betAmount;
-    Player playerInstance = HelloApplication.getInstance().getPlayer();
-
-    private boolean player1Turn = true; // true = Player X, false = Player O
-
-
+    private final ArrayList<Button> buttons = new ArrayList<>();
+    @FXML
+    protected TextField betAmountInput;
+    @FXML
+    protected Button resetGameButton;
+    @FXML
+    protected Text balance, gameState;
     @FXML
     protected Button one, two, three, four, five, six, seven, eight, nine;
-    private final ArrayList<Button> buttons = new ArrayList<>();
+    Player playerInstance = HelloApplication.getInstance().getPlayer();
+    private Double betAmount;
+    private boolean player1Turn = true; // true = Player X, false = Player O
 
-    @FXML protected void gamePress(ActionEvent actionEvent) {
+    @FXML
+    protected void gamePress(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
         setButtonStuff(button);
-        lookAtWinStuff();
         scuffedComputerTurn();
     }
 
     private void lookAtWinStuff() {
         int win = checkWin();
         if (win == 1) { // Player won
-            playerInstance.addToBankBalance(betAmount * 1.25); // todo fix this adding weird
+            playerInstance.addToBankBalance(betAmount * 1.25);
         } else if (win == -1) { // Computer won
             playerInstance.addToBankBalance(-betAmount * 0.50);
         } else if (win == 0) { // Draw
@@ -53,7 +52,12 @@ public class TicTacToe {
         if (button.getText().equals("_")) {
             setButtonStuff(button);
         } else {
-            scuffedComputerTurn();
+            for (Button _button : buttons) {
+                if (_button.getText().equals("_")) {
+                    scuffedComputerTurn();
+                    return;
+                }
+            }
         }
         lookAtWinStuff();
     }
@@ -172,11 +176,13 @@ public class TicTacToe {
     }
 
 
-    @FXML protected void mainMenu(ActionEvent actionEvent) {
+    @FXML
+    protected void mainMenu() { // you lose your bet but idc
         HelloApplication.getInstance().setStageScene("main-menu");
     }
 
-    @FXML protected void betAmount(ActionEvent actionEvent) {
+    @FXML
+    protected void betAmount(ActionEvent actionEvent) {
         TextField button = (TextField) actionEvent.getSource();
         try {
             betAmount = Double.parseDouble(button.getText());
@@ -190,7 +196,7 @@ public class TicTacToe {
                 } else {
                     playerInstance.setBankBalance(playerInstance.getBankBalance() - betAmount);
                     balance.setText("Balance: " + playerInstance.getBankBalance());
-                    gameState.setText("You just put down " + betAmount + " on the game. Your turn.");
+                    gameState.setText("You just put down " + betAmount + " on the game. \nYour turn.");
                     button.setDisable(true);
                     setAllButtons(false);
 
@@ -209,7 +215,7 @@ public class TicTacToe {
         return sum;
     }
 
-    public void resetGame(ActionEvent actionEvent) {
+    public void resetGame() {
         for (Button button : buttons) {
             if (!button.isDisable()) {
                 return;

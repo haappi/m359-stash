@@ -12,7 +12,7 @@ public class SaveInstance {
 
     private final String path;
     private final Long lastModified;
-    private Map<String, String> information = new HashMap<>();
+    private final Map<String, String> information = new HashMap<>();
 
     public SaveInstance(String data, String path, Long lastModified) {
         this.path = path;

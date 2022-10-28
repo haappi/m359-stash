@@ -46,7 +46,7 @@ public class Utils {
     }
 
     public static double randomlySomething(double stat) {
-        return getRandomBoolean() ? stat * getRandomDouble(0.2, 0.4) : stat * getRandomDouble(0.2, 0.4) * -1;
+        return getRandomBoolean() ? stat + (stat * getRandomDouble(0.2, 0.4)) : stat + (stat * getRandomDouble(0.2, 0.4)) * -1;
     }
 
     public static double reduceByFatigue(double stat, double fatigueLevel) {
@@ -87,7 +87,7 @@ public class Utils {
     }
 
     public static <T> T getRandomElement(List<T> list) {
-        return list.get(getRandomInteger(0, list.size()));
+        return list.get(getRandomInteger(0, list.size() - 1));
     }
 
     public static double getAddtionalMultiplier(String opponentType) {
@@ -100,6 +100,20 @@ public class Utils {
             case "witch" -> 0.15;
             default -> 0.00;
         };
+    }
+
+    public static double calculateUpgradePrice(String stat, double currentStat) {
+        return switch (stat.toLowerCase()) {
+            case "attack" -> round(currentStat * 1.8);
+            case "defense" -> round(currentStat * 1.2);
+            case "speed" -> round(currentStat * 1.1);
+            case "health" -> round(currentStat * 1.5);
+            default -> 0.00;
+        };
+    }
+
+    public static double getDamageAfterDefense(double damage, double defense) {
+        return damage - (damage * (defense * 0.10));
     }
 
     public static String setTextString(String text, String newText) {

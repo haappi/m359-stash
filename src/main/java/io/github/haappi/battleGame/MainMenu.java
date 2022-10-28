@@ -5,6 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 public class MainMenu {
     @FXML
     protected ListView<String> statView;
@@ -26,13 +29,23 @@ public class MainMenu {
     }
 
     @FXML
-    protected void quitGame(ActionEvent actionEvent) {
-        // save all plater data and what not bfore actually closing the applcaition
+    protected void quitGame(ActionEvent actionEvent) throws FileNotFoundException {
+        try (PrintWriter out = new PrintWriter("src/main/resources/battle-data.txt")) {
+            for (BattleData battleData : HelloApplication.getInstance().getBattleData()) {
+                out.println(battleData);
+            }
+        }
+
+        try (PrintWriter out = new PrintWriter("src/main/resources/player-data.txt")) {
+            out.println(HelloApplication.getInstance().getPlayer().getPlayerDataAsString());
+        }
+
         Platform.exit(); // https://stackoverflow.com/questions/12153622/how-to-close-a-javafx-application-on-window-close
     }
 
     @FXML
     protected void viewBattleHistory(ActionEvent actionEvent) {
+        HelloApplication.getInstance().setStageScene("battle-stats");
     }
 
     @FXML
@@ -42,5 +55,10 @@ public class MainMenu {
 
     public void openCasino(ActionEvent actionEvent) {
         HelloApplication.getInstance().setStageScene("tic-tac-toe");
+    }
+
+    @FXML
+    protected void upgradeMenu(ActionEvent actionEvent) {
+        HelloApplication.getInstance().setStageScene("perm-upgrades");
     }
 }
