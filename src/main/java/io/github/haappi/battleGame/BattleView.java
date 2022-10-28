@@ -168,7 +168,9 @@ public class BattleView {
                 }
             } else {
                 setTextString(recentActions, "You equipped " + item + ".");
-                invItems.getItems().add(playerInstance.getHeldItem());
+                if (playerInstance.getHeldItem() != null) {
+                    invItems.getItems().add(playerInstance.getHeldItem());
+                }
                 playerInstance.setHeldItem((HoldableItem) item);
             }
             invItems.getItems().remove(item);

@@ -58,7 +58,9 @@ public class HelloApplication extends Application {
             for (int i = 0; i < data.size(); i++) {
                 stringArray[i] = data.get(i);
             }
-            this.battleData.add(new BattleData(stringArray));
+            if (stringArray.length > 0) {
+                this.battleData.add(new BattleData(stringArray));
+            }
         }
         System.out.println(this.battleData);
 

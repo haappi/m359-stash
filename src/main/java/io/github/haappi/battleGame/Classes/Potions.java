@@ -32,6 +32,10 @@ public class Potions extends HoldableItem {
         return name;
     }
 
+    public String toString() {
+        return this.name + " " + this.amountGiven;
+    }
+
     @Nullable
     @Override
     public Double getPrice() {

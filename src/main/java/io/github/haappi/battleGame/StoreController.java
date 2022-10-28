@@ -1,6 +1,7 @@
 package io.github.haappi.battleGame;
 
 import io.github.haappi.battleGame.Classes.Player;
+import io.github.haappi.battleGame.Classes.Potions;
 import io.github.haappi.battleGame.Classes.Weapons;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,11 +35,17 @@ public class StoreController {
         items.add(new Weapons.WeaponBuilder("Iron Sword", 10).setDamage(4).build());
         items.add(new Weapons.WeaponBuilder("Steel Sword", 15).setDamage(6).build());
         items.add(new Weapons.WeaponBuilder("Diamond Sword", 20).setDamage(8).build());
+        items.add(new Potions.PotionBuilder("Health Potion", 30.00).setAmountGiven(20.00).setStatGiven("health").build());
+        items.add(new Potions.PotionBuilder("Attack Potion", 30.00).setAmountGiven(10.00).setStatGiven("attack").build());
+        items.add(new Potions.PotionBuilder("Defense Potion", 30.00).setAmountGiven(15.00).setStatGiven("defense").build());
+        items.add(new Potions.PotionBuilder("Speed Potion", 30.00).setAmountGiven(5.00).setStatGiven("speed").build());
+//        items.add(new Potions.PotionBuilder("Mana Potion", 30.00).setAmountGiven(13.00).setStatGiven("mana").build());
         return items;
     }
 
     @FXML
     protected void initialize() {
+        this.bankBal.setText(String.valueOf(HelloApplication.getInstance().getPlayer().getBankBalance()));
         List<InventoryItem> storeItemss = storeItems.getItems();
         storeItemss.addAll(StoreController.getStoreItems());
     }
@@ -79,6 +86,18 @@ public class StoreController {
                 player.getInventory().add(weapon);
                 bankBal.setText("Bank Balance: " + player.getBankBalance());
                 recent.setText("You bought a " + weapon.getName());
+            } else {
+                recent.setText("You don't have enough money to buy this item");
+            }
+        }
+
+        if (item instanceof Potions potions) {
+            Player player = HelloApplication.getInstance().getPlayer();
+            if (player.getBankBalance() >= potions.getPrice()) {
+                player.setBankBalance(player.getBankBalance() - potions.getPrice());
+                player.getInventory().add(potions);
+                bankBal.setText("Bank Balance: " + player.getBankBalance());
+                recent.setText("You bought a " + potions.getName());
             } else {
                 recent.setText("You don't have enough money to buy this item");
             }
