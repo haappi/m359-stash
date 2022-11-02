@@ -1,4 +1,4 @@
-package io.github.haappi.arraysProject;
+package io.github.haappi.wordSearchTemplate;
 
 import java.io.IOException;
 import javafx.application.Application;

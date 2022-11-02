@@ -1,4 +1,4 @@
-package io.github.haappi.arraysProject;
+package io.github.haappi.wordSearchTemplate;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
