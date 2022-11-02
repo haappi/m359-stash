@@ -31,7 +31,11 @@ public class HelloController {
       @Override
       public void handle(ActionEvent event) {
         System.out.println(event);
-        ((Button) event.getSource()).setText("jfsudjhfusd");
+        Button button = (Button) event.getSource();
+        button.setText("jfsudjhfusd");
+        int row = GridPane.getRowIndex(button);
+        int collum = GridPane.getColumnIndex(button);
+        System.out.println(row + ", " + collum);
       }
     };
 
