@@ -56,13 +56,13 @@ public class HelloController {
 
     for (int i = 0; i < texts.length; i++) {
       for (int j = 0; j < texts[i].length; j++) {
-        Text button = new Text(Utils.alphabet[Utils.getRandInt(0, 25)]);
-        texts[i][j] = button;
+        Text text = new Text(Utils.alphabet[Utils.getRandInt(0, 25)]);
+        texts[i][j] = text;
 
-        button.setOnMouseDragEntered(eventt -> button.setFill(Color.RED));
+        text.setOnMouseDragEntered(eventt -> text.setFill(Color.RED));
         // basically the same as setting the onAction for the button, but only for a drag, and doesn't require me to create a whole variable for it
         // used this to get the specific event i should be using: https://stackoverflow.com/questions/60012383/mousedragged-detection-for-multiple-nodes-while-holding-the-button-javafx
-        searchBoard.add(button, j, i);
+        searchBoard.add(text, j, i);
       }
     }
 
