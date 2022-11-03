@@ -4,14 +4,17 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
-import javax.swing.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+
+import java.util.ArrayList;
 
 public class HelloController {
-  Button[][] buttons; // todo make sure to set the size of it later (new Button[x][x])
+  Text[][] texts; // todo make sure to set the size of it later (new Button[x][x])
 
   @FXML
   protected GridPane searchBoard;
@@ -22,10 +25,22 @@ public class HelloController {
   public Button buttonn;
 
   @FXML
+  protected void initialize() {
+    searchBoard.setOnDragDetected(
+            event -> {
+              if (event.getButton() == MouseButton.PRIMARY) {
+                event.consume();
+                searchBoard.startFullDrag();
+              }
+            });
+  }
+
+  @FXML
   protected void handleClickMe(ActionEvent event) {
     searchBoard.setGridLinesVisible(true);
 
-    buttons = new Button[5][5];
+    texts = new Text[5][5];
+
 
     EventHandler<ActionEvent> z = new EventHandler<ActionEvent>() {
       @Override
@@ -39,26 +54,35 @@ public class HelloController {
       }
     };
 
-    for (int i = 0; i < buttons.length; i++) {
-      for (int j = 0; j < buttons[i].length; j++) {
-        Button button = new Button();
-        button.setText(i + ", " + j);
-        buttons[i][j] = button;
-        button.setOnAction(z);
-        button.setPrefSize(50, 50);
-        button.setMaxSize(100, 100);
-        button.setMinSize(25, 25);
+    for (int i = 0; i < texts.length; i++) {
+      for (int j = 0; j < texts[i].length; j++) {
+        Text button = new Text(Utils.alphabet[Utils.getRandInt(0, 25)]);
+        texts[i][j] = button;
 
-//        button.hoverProperty().addListener(((observable, oldValue, newValue) -> {
-//          System.out.println(button.getText());
-//          // https://stackoverflow.com/questions/53831807/javafx-show-a-pane-on-mouse-hover
-//        }));
-        // to highlight the characters- https://stackoverflow.com/questions/60012383/mousedragged-detection-for-multiple-nodes-while-holding-the-button-javafx
+        button.setOnMouseDragEntered(eventt -> button.setFill(Color.RED));
+        // basically the same as setting the onAction for the button, but only for a drag, and doesn't require me to create a whole variable for it
+        // used this to get the specific event i should be using: https://stackoverflow.com/questions/60012383/mousedragged-detection-for-multiple-nodes-while-holding-the-button-javafx
         searchBoard.add(button, j, i);
       }
     }
 
-
+    anchorPane.setOnMouseDragExited( // I can add events to the AnchorPane also, and seeing whenever I released the drag button
+            eventt -> { // i made this on my own. no complaints
+              eventt.consume(); // this is to make sure that the event doesn't get passed to the other nodes (gridpane)
+              ArrayList<Text> clicked = new ArrayList<>();
+              for (int i = 0; i < texts.length; i++) {
+                for (int j = 0; j < texts[i].length; j++) {
+                  if (texts[i][j].getFill() == Color.RED) {
+                    clicked.add(texts[i][j]);
+                  }
+                  texts[i][j].setFill(Color.BLACK);
+                }
+              }
+              clicked.forEach(rect -> rect.setText("bobster"));
+            });
+    // todo
+      // make it so it DOESN'T change color, but actually has a proper highlighting thing (maybe with css)
+      // make it check on the fly that if the current drrag is valid or not. if it isn't, ignore.
 
   }
 
