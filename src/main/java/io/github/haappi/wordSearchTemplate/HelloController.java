@@ -82,6 +82,7 @@ public class HelloController {
             });
     // todo
       // make it so it DOESN'T change color, but actually has a proper highlighting thing (maybe with css)
+    // https://stackoverflow.com/questions/9128535/highlighting-strings-in-javafx-textarea
       // make it check on the fly that if the current drrag is valid or not. if it isn't, ignore.
 
   }
