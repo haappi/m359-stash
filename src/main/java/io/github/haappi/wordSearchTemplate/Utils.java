@@ -13,6 +13,11 @@ public class Utils {
     }
 
     public static ArrayList<String> getWordBankFromFileAsArray(String fileName) throws IOException {
+        fileName = Paths.get("filename").toString();
+        if (!Files.exists(Paths.get(fileName))) {
+            Files.createFile(Paths.get(fileName));
+            return null;
+        }
         ArrayList<String> words = new ArrayList<>();
         for (String line : Files.readAllLines(Paths.get(fileName))) {
             words.add(line.toUpperCase());

@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelloController {
@@ -25,7 +26,11 @@ public class HelloController {
   public Button buttonn;
 
   @FXML
-  protected void initialize() {
+  protected void initialize() throws IOException {
+    System.out.println(Utils.getWordBankFromFileAsArray("devtree.txt"));
+
+    searchBoard.setHgap(20);
+    searchBoard.setVgap(20);
     searchBoard.setOnDragDetected(
             event -> {
               if (event.getButton() == MouseButton.PRIMARY) {
@@ -37,7 +42,7 @@ public class HelloController {
 
   @FXML
   protected void handleClickMe(ActionEvent event) {
-    searchBoard.setGridLinesVisible(true);
+//    searchBoard.setGridLinesVisible(true);
 
     texts = new Text[5][5];
 
@@ -57,9 +62,16 @@ public class HelloController {
     for (int i = 0; i < texts.length; i++) {
       for (int j = 0; j < texts[i].length; j++) {
         Text text = new Text(Utils.alphabet[Utils.getRandInt(0, 25)]);
+
         texts[i][j] = text;
 
-        text.setOnMouseDragEntered(eventt -> text.setFill(Color.RED));
+        text.setOnMouseDragEntered(eventt -> {
+          text.setFill(Color.RED);
+          // https://stackoverflow.com/questions/29453467/javafx-setting-background-color-for-text-controls
+//          text.setStyle("-fx-highlight-fill: #ADFF2F; -fx-highlight-text-fill: #B22222; -fx-font-size: 18px;");
+
+        });
+//        text.setStrikethrough(true);
         // basically the same as setting the onAction for the button, but only for a drag, and doesn't require me to create a whole variable for it
         // used this to get the specific event i should be using: https://stackoverflow.com/questions/60012383/mousedragged-detection-for-multiple-nodes-while-holding-the-button-javafx
         searchBoard.add(text, j, i);
