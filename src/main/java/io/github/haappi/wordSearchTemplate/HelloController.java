@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelloController {
+  // todo columns go up <-> down. rows go left <-> right
   Text[][] texts; // todo make sure to set the size of it later (new Button[x][x])
 
   @FXML
@@ -27,7 +28,7 @@ public class HelloController {
 
   @FXML
   protected void initialize() throws IOException {
-    System.out.println(Utils.getWordBankFromFileAsArray("devtree.txt"));
+    System.out.println(Utils.getWordBankFromFileAsArray("ok.txt"));
 
     searchBoard.setHgap(20);
     searchBoard.setVgap(20);
@@ -40,28 +41,64 @@ public class HelloController {
             });
   }
 
+  private Text[][] populateArray(Text[][] textArray, ArrayList<String> words) {
+    ArrayList<String> wordsClone = new ArrayList<>(words);
+    String randomWord = words.get(Utils.getRandInt(0, wordsClone.size() - 1));
+    wordsClone.remove(randomWord);
+    while (true) {
+      int direction = Utils.getRandInt(0, 7);
+      int randomRow = Utils.getRandInt(0, textArray.length - 1);
+      int randomColumn = Utils.getRandInt(0, textArray[randomRow].length - 1);
+//      if (textArray[randomRow][randomColumn].getText().equals("")) {
+      if (true) {
+        System.out.println("woo");
+        textArray[randomRow][randomColumn].setText("a");
+        break;
+      } else {
+
+      }
+    }
+    return textArray;
+  }
+
+  private boolean populateArrayWithWord(int col, int row, int direction, String word) throws Exception {
+    if (direction < 0 || direction > 7) {
+      throw new Exception("have fun debugging this you moron");
+    }
+    /*
+    one - up
+    two - up right
+    three - right
+    four - bottom right
+    five - bottom
+    six - bottom left
+    seven - left
+    eight - up left
+     */
+    int lengthOfWord = word.length();
+    switch (direction) {
+      case 0 -> {
+
+      }
+    }
+    // todo return true if it works, else return false to add it back to the words array
+  }
+
   @FXML
-  protected void handleClickMe(ActionEvent event) {
+  protected void handleClickMe(ActionEvent event) throws IOException {
 //    searchBoard.setGridLinesVisible(true);
 
     texts = new Text[5][5];
+    ArrayList<String> listOfWords = Utils.getWordBankFromFileAsArray("ok.txt");
+    if (listOfWords == null) {
+      return; // no words were loaded. either from file not existing or read issues
+    }
 
-
-    EventHandler<ActionEvent> z = new EventHandler<ActionEvent>() {
-      @Override
-      public void handle(ActionEvent event) {
-        System.out.println(event);
-        Button button = (Button) event.getSource();
-        button.setText("jfsudjhfusd");
-        int row = GridPane.getRowIndex(button);
-        int collum = GridPane.getColumnIndex(button);
-        System.out.println(row + ", " + collum);
-      }
-    };
 
     for (int i = 0; i < texts.length; i++) {
       for (int j = 0; j < texts[i].length; j++) {
         Text text = new Text(Utils.alphabet[Utils.getRandInt(0, 25)]);
+//        Text text = new Text();
 
         texts[i][j] = text;
 
@@ -76,7 +113,9 @@ public class HelloController {
         // used this to get the specific event i should be using: https://stackoverflow.com/questions/60012383/mousedragged-detection-for-multiple-nodes-while-holding-the-button-javafx
         searchBoard.add(text, j, i);
       }
+
     }
+    populateArray(texts, listOfWords);
 
     anchorPane.setOnMouseDragExited( // I can add events to the AnchorPane also, and seeing whenever I released the drag button
             eventt -> { // i made this on my own. no complaints
