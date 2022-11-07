@@ -21,9 +21,9 @@ public class HelloController {
 
     @FXML
     protected void handleClickMe() {
-        listOWords = new Text[15][15];
+        listOWords = new Text[4][4];
 //        ArrayList<String> listOfWords = Utils.getWordBankFromFileAsArray("ok.txt");
-        ArrayList<String> listOfWords = new ArrayList<>(List.of("cat", "bat", "banana"));
+        ArrayList<String> listOfWords = new ArrayList<>(List.of("cat", "bat"));
         if (listOfWords == null) {
             return; // no words were loaded. either from file not existing or read issues
         }
@@ -34,6 +34,7 @@ public class HelloController {
                 Text text = new Text("*");
 
                 listOWords[i][j] = text;
+                text.setFill(Color.GRAY);
 
                 text.setOnMouseDragEntered(event -> {
                     text.setFill(Color.RED); // https://stackoverflow.com/questions/29453467/javafx-setting-background-color-for-text-controls
@@ -42,7 +43,7 @@ public class HelloController {
 
                 });
                 // text.setStrikethrough(true);
-                // basically the same as setting the onAction for the button, but only for a drag, an d doesn't require me to create a whole variable for it
+                // basically the same as setting the onAction for the button, but only for a drag, and doesn't require me to create a whole variable for it
                 // used this to get the specific event i should be using: https://stackoverflow.com/questions/60012383/mousedragged-detection-for-multiple-nodes-while-holding-the-button-javafx
                 searchBoard.add(text, j, i);
             }
