@@ -16,7 +16,7 @@ public class Utils {
         return (int) (Math.random() * (max - min + 1) + min);
     }
 
-    public static ArrayList<String> getWordBankFromFileAsArray(String fileName, boolean addResourcesPath) {
+    public static ArrayList<String> readFromFileAsArray(String fileName, boolean addResourcesPath) {
         try {
             fileName = Paths.get(fileName).toString();
 
@@ -38,8 +38,8 @@ public class Utils {
 
     }
 
-    public static ArrayList<String> getWordBankFromFileAsArray(String fileName) {
-        return getWordBankFromFileAsArray(fileName, true);
+    public static ArrayList<String> readFromFileAsArray(String fileName) {
+        return readFromFileAsArray(fileName, true);
     }
 
     public static Text[][] fillBoardRadnomly(Text[][] board) {
