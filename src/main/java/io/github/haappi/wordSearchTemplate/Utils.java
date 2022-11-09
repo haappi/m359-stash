@@ -57,11 +57,11 @@ public class Utils {
         for (String word : words) {
             int row = getRandInt(0, board.length - 1);
             int col = getRandInt(0, board[row].length - 1);
-            int direction = getRandInt(2, 2);
+            int direction = getRandInt(0, 7);
             while (!canWordBeAdded(direction, row, col, board, word, gridPane)) {
                 row = getRandInt(0, board.length - 1);
                 col = getRandInt(0, board[row].length - 1);
-                direction = getRandInt(2, 2);
+                direction = getRandInt(0, 7);
             }
             addWordToBoard(direction, row, col, board, word);
         }
@@ -103,34 +103,34 @@ public class Utils {
 //                    break;
 //            }
             switch (direction) {
-                case 0:
-                    row--;
-                    break;
-                case 1:
-                    row--;
-                    col++;
-                    break;
-                case 2:
-                    col++;
-                    break;
-                case 3:
-                    row++;
-                    col++;
-                    break;
-                case 4:
-                    row++;
-                    break;
-                case 5:
-                    row++;
+                case 0 -> {
                     col--;
-                    break;
-                case 6:
+                }
+                case 1 -> {
                     col--;
-                    break;
-                case 7:
+                    row++;
+                }
+                case 2 -> {
+                    row++;
+                }
+                case 3 -> {
+                    col++;
+                    row++;
+                }
+                case 4 -> {
+                    col++;
+                }
+                case 5 -> {
+                    col++;
                     row--;
+                }
+                case 6 -> {
+                    row--;
+                }
+                case 7 -> {
                     col--;
-                    break;
+                    row--;
+                }
             }
         }
         return board;
@@ -138,88 +138,96 @@ public class Utils {
 
     public static boolean canWordBeAdded(int direction, int row, int col, Text[][] board, String word, GridPane gridPane) {
         int stringLength = word.length();
+        int counter = 0;
         switch (direction) {
             case 0 -> { // up
                 if (col - stringLength < 0) {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (!board[row][col + i].getText().equalsIgnoreCase("*") && !board[row][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
-                        return false;
+                    if (board[row][col - i].getText().equalsIgnoreCase("*") || board[row][col - i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                        counter++;
                     }
                 }
-            } // fixme literally fix all of these damn cases
+                return counter == stringLength;
+            }
             case 1 -> { // up right
-                if (col + stringLength > board[row].length || row - stringLength < 0) {
+                if (col - stringLength < 0 || row + stringLength > board.length - 1) {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (!board[row - i][col + i].getText().equalsIgnoreCase("*") && !board[row - i][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
-                        return false;
+                    if (board[row + i][col - i].getText().equalsIgnoreCase("*") || board[row + i][col - i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                        counter++;
                     }
                 }
+                return counter == stringLength;
             }
             case 2 -> { // right
-                if (row + stringLength > board.length) {
+                if (row + stringLength > board.length - 1) {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (!board[row - i][col].getText().equalsIgnoreCase("*") && !board[row - i][col].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
-                        return false;
+                    if (board[row + i][col].getText().equalsIgnoreCase("*") || board[row + i][col].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                        counter++;
                     }
                 }
+                return counter == stringLength;
             }
             case 3 -> { // down right
-                if (col + stringLength > board[row].length || row + stringLength > board.length) {
+                if (col + stringLength > board[row].length - 1 || row + stringLength > board.length - 1) {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (!board[row + i][col + i].getText().equalsIgnoreCase("*") && !board[row + i][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
-                        return false;
+                    if (board[row + i][col + i].getText().equalsIgnoreCase("*") || board[row + i][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                        counter++;
                     }
                 }
+                return counter == stringLength;
             }
             case 4 -> { // down
-                if (col + stringLength > board[row].length) {
+                if (col + stringLength > board[row].length - 1) {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (!board[row][col + i].getText().equalsIgnoreCase("*") && !board[row][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
-                        return false;
+                    if (board[row][col + i].getText().equalsIgnoreCase("*") || board[row][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                        counter++;
                     }
                 }
+                return counter == stringLength;
             }
             case 5 -> { // down left
-                if (col - stringLength < 0 || row + stringLength > board.length) {
+                if (col + stringLength > board[row].length - 1 || row - stringLength < 0) {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (!board[row + i][col - i].getText().equalsIgnoreCase("*") && !board[row + i][col - i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
-                        return false;
+                    if (board[row - i][col + i].getText().equalsIgnoreCase("*") || board[row - i][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                        counter++;
                     }
                 }
+                return counter == stringLength;
             }
             case 6 -> { // left
                 if (row - stringLength < 0) {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (!board[row + i][col].getText().equalsIgnoreCase("*") && !board[row + i][col].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
-                        return false;
+                    if (board[row - i][col].getText().equalsIgnoreCase("*") || board[row - i][col].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                        counter++;
                     }
                 }
+                return counter == stringLength;
             }
             case 7 -> { // up left
                 if (col - stringLength < 0 || row - stringLength < 0) {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (!board[row - i][col - i].getText().equalsIgnoreCase("*") && !board[row - i][col - i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
-                        return false;
+                    if (board[row - i][col - i].getText().equalsIgnoreCase("*") || board[row - i][col - i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                        counter++;
                     }
                 }
+                return counter == stringLength;
             }
-
         }
         return true;
     }

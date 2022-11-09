@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
@@ -21,9 +22,9 @@ public class HelloController {
 
     @FXML
     protected void handleClickMe() {
-        listOWords = new Text[15][15];
+        listOWords = new Text[4][4]; //fixme ([3][3]) this doesn't work for 3 letter words.
 //        ArrayList<String> listOfWords = Utils.getWordBankFromFileAsArray("ok.txt");
-        ArrayList<String> listOfWords = new ArrayList<>(List.of("cat", "bat", "banana"));
+        ArrayList<String> listOfWords = new ArrayList<>(List.of("cat", "bat"));
         if (listOfWords == null) {
             return; // no words were loaded. either from file not existing or read issues
         }
@@ -32,10 +33,12 @@ public class HelloController {
             for (int j = 0; j < listOWords[i].length; j++) {
 //              Text text = new Text(Utils.alphabet[Utils.getRandInt(0, 25)]);
                 Text text = new Text("*");
+                text.setFont(Font.font(20));
 
                 listOWords[i][j] = text;
 
                 text.setOnMouseDragEntered(event -> {
+                    System.out.println("a"); // fixme this borked somehow.
                     text.setFill(Color.RED); // https://stackoverflow.com/questions/29453467/javafx-setting-background-color-for-text-controls
                     clickedLetters.add(new ClickedLetter(text));
 //                    text.setStyle("-fx-highlight-fill: #ADFF2F; -fx-highlight-text-fill: #B22222; -fx-font-size: 18px;");
