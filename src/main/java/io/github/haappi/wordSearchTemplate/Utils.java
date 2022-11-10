@@ -71,65 +71,35 @@ public class Utils {
         for (int i = 0; i < word.length(); i++) {
             board[row][col].setText(String.valueOf(word.charAt(i)));
             board[row][col].setTextFill(Color.DARKRED);
-//            switch (direction) {
-//                case 0:
-//                    col--;
-//                    break;
-//                case 1:
-//                    col--;
-//                    row++;
-//                    break;
-//                case 2:
-//                    row++;
-//                    break;
-//                case 3:
-//                    col++;
-//                    row++;
-//                    break;
-//                case 4:
-//                    col++;
-//                    break;
-//                case 5:
-//                    col++;
-//                    row--;
-//                    break;
-//                case 6:
-//                    row--;
-//                    break;
-//                case 7:
-//                    col--;
-//                    row--;
-//                    break;
-//            }
             switch (direction) {
-                case 0 -> {
+                case 0:
                     col--;
-                }
-                case 1 -> {
+                    break;
+                case 1:
                     col--;
                     row++;
-                }
-                case 2 -> {
+                    break;
+                case 2:
                     row++;
-                }
-                case 3 -> {
+                    break;
+                case 3:
                     col++;
                     row++;
-                }
-                case 4 -> {
+                    break;
+                case 4:
                     col++;
-                }
-                case 5 -> {
+                    break;
+                case 5:
                     col++;
                     row--;
-                }
-                case 6 -> {
+                    break;
+                case 6:
                     row--;
-                }
-                case 7 -> {
+                    break;
+                case 7:
                     col--;
                     row--;
-                }
+                    break;
             }
         }
         return board;
