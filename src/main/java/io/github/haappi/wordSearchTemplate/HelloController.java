@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import static io.github.haappi.wordSearchTemplate.Utils.fillBoardWithWords;
 
@@ -54,14 +55,17 @@ public class HelloController {
                 label.setAlignment(Pos.CENTER);
                 label.setContentDisplay(ContentDisplay.CENTER);
 
-                label.setOnMouseDragged(event -> {
+                label.setOnMouseDragEntered (event -> {
+                    System.out.println(((Label) event.getSource()).getText());
                     boolean isAlreadyClicked = false;
-                    for (ClickedLetter clickedLetter : clickedLetters) {
+                    Iterator<ClickedLetter> iterator = clickedLetters.iterator();
+                    while (iterator.hasNext()) {
+                        ClickedLetter clickedLetter = iterator.next();
                         if (clickedLetter.getLabel().equals(label)) {
-                            System.out.println("hi");
-                            this.searchBoard.getChildren().remove(clickedLetter.getRectangle());
-                            clickedLetters.remove(clickedLetter); // fixme fix the concurrent array modification error here.
-                            isAlreadyClicked = true;
+                            System.out.println(label.getText());
+//                            this.searchBoard.getChildren().remove(clickedLetter.getRectangle());
+//                            iterator.remove(); // fixme fix the concurrent array modification error here.
+//                            isAlreadyClicked = true;
                         }
                     }
                     if (isAlreadyClicked) {
