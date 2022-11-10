@@ -7,7 +7,7 @@ jobs:
   formatting:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: axel-op/googlejavaformat-action@v3
         with:
-          args: "--skip-javadoc-formatting --aosp"
+          args: "--skip-javadoc-formatting --aosp --replace --length 120"
