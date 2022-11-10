@@ -41,10 +41,6 @@ public class HelloController {
     @FXML
     protected void handleClickMe() {
         listOWords = new Text[25][25]; //fixme ([3][3]) this doesn't work for 3 letter words.
-//        ArrayList<String> listOfWords = new ArrayList<>(List.of("cat", "bat"));
-        if (listOfPossibleWords == null) {
-            return; // no words were loaded. either from file not existing or read issues
-        }
 
         for (int i = 0; i < listOWords.length; i++) {
             for (int j = 0; j < listOWords[i].length; j++) {
@@ -54,9 +50,21 @@ public class HelloController {
 
 
                 text.setOnMouseDragEntered(event -> {
-                    clickedLetters.add(new ClickedLetter(text));
-                    text.setFill(Color.RED); // https://stackoverflow.com/questions/29453467/javafx-setting-background-color-for-text-controls
-//                    text.setStyle("-fx-highlight-fill: #ADFF2F; -fx-highlight-text-fill: #B22222; -fx-font-size: 18px;");
+                    boolean isAlreadyClicked = false;
+                    for (ClickedLetter clickedLetter : clickedLetters) {
+                        if (clickedLetter.getText().equals(text)) {
+                            isAlreadyClicked = true;
+                        }
+                    }
+                    if (isAlreadyClicked) {
+                        return;
+                    }
+                    // todo make a way so that the user can't click on a letter that is not next to the last clicked letter.
+                    // todo also a way that i can dynamically change the line in the 8 directions.
+                    clickedLetters.add(new ClickedLetter(text)); // this has to be before the line after as i save the color while initializing it.
+//                    text.setFill(Color.RED); // https://stackoverflow.com/questions/29453467/javafx-setting-background-color-for-text-controls
+//                    text.setStroke(Color.RED);
+//                    text.setStyle("-fx-highlight-fill: lightgray; -fx-highlight-text-fill: firebrick; -fx-font-size: 20px;");
 
                 });
                 listOWords[i][j] = text;
@@ -75,6 +83,7 @@ public class HelloController {
                     StringBuilder sb = new StringBuilder();
                     clickedLetters.forEach(clickedLetter -> {
                         sb.append(clickedLetter.getText().getText().toUpperCase());
+                        this.searchBoard.getChildren().remove(clickedLetter.getRectangle());
                     });
                     String word = sb.toString();
                     String reversed = sb.reverse().toString();
