@@ -56,10 +56,13 @@ public class HelloController {
                 label.setAlignment(Pos.CENTER);
                 label.setContentDisplay(ContentDisplay.CENTER);
 
-                label.setOnMouseDragEntered(event -> {
+                label.setOnMouseDragged(event -> {
                     boolean isAlreadyClicked = false;
                     for (ClickedLetter clickedLetter : clickedLetters) {
                         if (clickedLetter.getLabel().equals(label)) {
+                            System.out.println("hi");
+                            this.searchBoard.getChildren().remove(clickedLetter.getRectangle());
+                            clickedLetters.remove(clickedLetter); // fixme fix the concurrent array modification error here.
                             isAlreadyClicked = true;
                         }
                     }
