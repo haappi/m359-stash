@@ -68,10 +68,10 @@ public class HelloController {
                     }
                     // todo make a way so that the user can't click on a letter that is not next to the last clicked letter.
                     // todo also a way that i can dynamically change the line in the 8 directions.
-                    clickedLetters.add(new ClickedLetter(label)); // this has to be before the line after as i save the color while initializing it.
-//                    text.setFill(Color.RED); // https://stackoverflow.com/questions/29453467/javafx-setting-background-color-for-text-controls
-//                    text.setStroke(Color.RED);
-//                    text.setStyle("-fx-highlight-fill: lightgray; -fx-highlight-text-fill: firebrick; -fx-font-size: 20px;");
+                    clickedLetters.add(new ClickedLetter(label, clickedLetters.size())); // this has to be before the line after as i save the color while initializing it.
+                    if (clickedLetters.size() > 2) {
+                        clickedLetters.get(clickedLetters.size() - 2).getRectangle().setStyle("-fx-background-color: red; -fx-background-radius: 0 0 0 0;");
+                    }
 
                 });
                 listOWords[i][j] = label;
