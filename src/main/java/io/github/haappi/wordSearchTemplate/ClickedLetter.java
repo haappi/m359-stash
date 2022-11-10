@@ -1,11 +1,15 @@
 package io.github.haappi.wordSearchTemplate;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 
 public class ClickedLetter {
@@ -24,9 +28,16 @@ public class ClickedLetter {
         this.row = GridPane.getRowIndex(this.label);
         this.column = GridPane.getColumnIndex(this.label);
         this.oldColor = this.label.getTextFill();
-        this.rectangle = new Rectangle(this.label.getLayoutX(), this.label.getLayoutY(), 19, 19);
-        rectangle.setFill(Color.RED);
+        this.rectangle = new Rectangle(label.getLayoutX(), label.getLayoutY(), label.getPrefWidth(), label.getPrefHeight());
+        rectangle.setFill(Color.GOLD);
         rectangle.setOpacity(0.2);
+//        rectangle.setStyle("-fx-fill: red; -fx-background-radius: 500 500 0 0;");
+        rectangle.setArcHeight(30);
+        rectangle.setArcWidth(30); // todo refactor this to only make two corners rounded. leave others in line intact.
+
+//        rectangle.setTextAlignment(TextAlignment.CENTER);
+//        rectangle.setAlignment(Pos.CENTER);
+//        rectangle.setContentDisplay(ContentDisplay.CENTER);
 
         GridPane gridPane = (GridPane) this.label.getParent(); // Gets what the Text is associated with.
         gridPane.add(rectangle, column, row); // Adds the rectangle to the gridPane.

@@ -49,6 +49,7 @@ public class HelloController {
             for (int j = 0; j < listOWords[i].length; j++) {
 //              Text text = new Text(Utils.alphabet[Utils.getRandInt(0, 25)]);
                 Label label = new Label("*");
+
                 label.setPrefSize(30, 30);
                 label.setFont(Font.font(20));
                 label.setTextAlignment(TextAlignment.CENTER);
