@@ -1,5 +1,6 @@
 package io.github.haappi.wordSearchTemplate;
 
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -35,14 +36,13 @@ public class Utils {
             e.printStackTrace();
             return null;
         }
-
     }
 
     public static ArrayList<String> readFromFileAsArray(String fileName) {
         return readFromFileAsArray(fileName, true);
     }
 
-    public static Text[][] fillBoardRadnomly(Text[][] board) {
+    public static Label[][] fillBoardRadnomly(Label[][] board) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (board[i][j].getText().equalsIgnoreCase("*")) {
@@ -53,7 +53,7 @@ public class Utils {
         return board;
     }
 
-    public static Text[][] fillBoardWithWords(Text[][] board, ArrayList<String> words, GridPane gridPane) {
+    public static Label[][] fillBoardWithWords(Label[][] board, ArrayList<String> words, GridPane gridPane) {
         for (String word : words) {
             int row = getRandInt(0, board.length - 1);
             int col = getRandInt(0, board[row].length - 1);
@@ -68,10 +68,10 @@ public class Utils {
         return board;
     }
 
-    public static Text[][] addWordToBoard(int direction, int row, int col, Text[][] board, String word) {
+    public static Label[][] addWordToBoard(int direction, int row, int col, Label[][] board, String word) {
         for (int i = 0; i < word.length(); i++) {
             board[row][col].setText(String.valueOf(word.charAt(i)));
-            board[row][col].setFill(Color.DARKRED);
+            board[row][col].setTextFill(Color.DARKRED);
 //            switch (direction) {
 //                case 0:
 //                    col--;
@@ -136,7 +136,7 @@ public class Utils {
         return board;
     }
 
-    public static boolean canWordBeAdded(int direction, int row, int col, Text[][] board, String word, GridPane gridPane) {
+    public static boolean canWordBeAdded(int direction, int row, int col, Label[][] board, String word, GridPane gridPane) {
         int stringLength = word.length();
         int counter = 0;
         switch (direction) {
