@@ -22,7 +22,10 @@ public class HelloApplication extends Application {
          * words are loadwed from a file
          * timer to see how elapsed time
          *
-
+         * timer feature
+           keep track of that information into a textfile
+               (name, score, difficulty)
+               this persists over restarts of the program
          */
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 600);
