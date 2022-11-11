@@ -56,6 +56,9 @@ public class HelloController {
                 label.setContentDisplay(ContentDisplay.CENTER);
 
                 label.setOnMouseDragEntered (event -> {
+                    // https://stackoverflow.com/questions/53831807/javafx-show-a-pane-on-mouse-hover
+                    // maybe end up doing this instead of the drag stuff.
+                    // - see if lmb is held down and yeah..
                     System.out.println(((Label) event.getSource()).getText());
                     boolean isAlreadyClicked = false;
                     Iterator<ClickedLetter> iterator = clickedLetters.iterator();
