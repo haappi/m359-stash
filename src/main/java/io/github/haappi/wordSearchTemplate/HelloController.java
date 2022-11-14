@@ -27,13 +27,13 @@ public class HelloController {
 
     @FXML
     protected void initialize() {
-        searchBoard.setOnDragDetected(
-                event -> {
-                    if (event.getButton() == MouseButton.PRIMARY) {
-                        event.consume();
-                        searchBoard.startFullDrag();
-                    }
-                });
+//        searchBoard.setOnDragDetected(
+//                event -> {
+//                    if (event.getButton() == MouseButton.PRIMARY) {
+////                        event.consume();
+//                        searchBoard.startFullDrag();
+//                    }
+//                });
         ArrayList<String> words = Utils.readFromFileAsArray("ok.txt");
         words.replaceAll(String::toUpperCase); // Calls toUpperCase on each String in the array.
         listOfPossibleWords.addAll(words);
@@ -54,34 +54,37 @@ public class HelloController {
                 label.setTextAlignment(TextAlignment.CENTER);
                 label.setAlignment(Pos.CENTER);
                 label.setContentDisplay(ContentDisplay.CENTER);
-
-                label.setOnMouseDragEntered (event -> {
-                    // https://stackoverflow.com/questions/53831807/javafx-show-a-pane-on-mouse-hover
-                    // maybe end up doing this instead of the drag stuff.
-                    // - see if lmb is held down and yeah..
-                    System.out.println(((Label) event.getSource()).getText());
-                    boolean isAlreadyClicked = false;
-                    Iterator<ClickedLetter> iterator = clickedLetters.iterator();
-                    while (iterator.hasNext()) {
-                        ClickedLetter clickedLetter = iterator.next();
-                        if (clickedLetter.getLabel().equals(label)) {
-                            System.out.println(label.getText());
-//                            this.searchBoard.getChildren().remove(clickedLetter.getRectangle());
-//                            iterator.remove(); // fixme fix the concurrent array modification error here.
-//                            isAlreadyClicked = true;
-                        }
-                    }
-                    if (isAlreadyClicked) {
-                        return;
-                    }
-                    // todo make a way so that the user can't click on a letter that is not next to the last clicked letter.
-                    // todo also a way that i can dynamically change the line in the 8 directions.
-                    clickedLetters.add(new ClickedLetter(label, clickedLetters.size())); // this has to be before the line after as i save the color while initializing it.
-                    if (clickedLetters.size() > 2) {
-                        clickedLetters.get(clickedLetters.size() - 2).getRectangle().setStyle("-fx-background-color: red; -fx-background-radius: 0 0 0 0;");
-                    }
-
+                label.setOnMouseEntered(event -> {
+                    System.out.println(event.getButton());
                 });
+
+//                label.setOnMouseDragEntered (event -> {
+//                    // https://stackoverflow.com/questions/53831807/javafx-show-a-pane-on-mouse-hover
+//                    // maybe end up doing this instead of the drag stuff.
+//                    // - see if lmb is held down and yeah..
+////                    System.out.println(((Label) event.getSource()).getText());
+//                    boolean isAlreadyClicked = false;
+//                    Iterator<ClickedLetter> iterator = clickedLetters.iterator();
+//                    while (iterator.hasNext()) {
+//                        ClickedLetter clickedLetter = iterator.next();
+//                        if (clickedLetter.getLabel().equals(label)) {
+//                            System.out.println(label.getText());
+////                            this.searchBoard.getChildren().remove(clickedLetter.getRectangle());
+////                            iterator.remove(); // fixme fix the concurrent array modification error here.
+////                            isAlreadyClicked = true;
+//                        }
+//                    }
+//                    if (isAlreadyClicked) {
+//                        return;
+//                    }
+//                    // todo make a way so that the user can't click on a letter that is not next to the last clicked letter.
+//                    // todo also a way that i can dynamically change the line in the 8 directions.
+//                    clickedLetters.add(new ClickedLetter(label, clickedLetters.size())); // this has to be before the line after as i save the color while initializing it.
+//                    if (clickedLetters.size() > 2) {
+//                        clickedLetters.get(clickedLetters.size() - 2).getRectangle().setStyle("-fx-background-color: red; -fx-background-radius: 0 0 0 0;");
+//                    }
+//
+//                });
                 listOWords[i][j] = label;
                 // basically the same as setting the onAction for the button, but only for a drag, an d doesn't require me to create a whole variable for it
                 // used this to get the specific event i should be using: https://stackoverflow.com/questions/60012383/mousedragged-detection-for-multiple-nodes-while-holding-the-button-javafx
