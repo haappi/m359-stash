@@ -5,6 +5,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 
+import static io.github.haappi.wordSearchTemplate.Utils.setRectangleStyle;
+
 
 public class ClickedLetter {
     private final Label label;
@@ -13,23 +15,61 @@ public class ClickedLetter {
     private final Paint oldColor;
     private final Region rectangle;
 
-    public ClickedLetter(Label label, int positionInArray) {
+    public ClickedLetter(Label label, int positionInArray, int direction) {
         this.label = label;
         this.row = GridPane.getRowIndex(this.label);
         this.column = GridPane.getColumnIndex(this.label);
         this.oldColor = this.label.getTextFill();
         this.rectangle = new Region();
         rectangle.setPrefSize(label.getPrefWidth(), label.getPrefHeight());
-//        rectangle.setFill(Color.GOLD);
         rectangle.setOpacity(0.2);
-        if (positionInArray == 0) {
-            // top left, top right, bottom right, bottom left
-            rectangle.setStyle("-fx-background-color: red; -fx-background-radius: 20 0 0 20;");
-        } else {
-            rectangle.setStyle("-fx-background-color: red; -fx-background-radius: 0 20 20 0;");
+        setRectangleStyle(rectangle, 0, 0, 0, 0);
+        switch (direction) {// todo fix the diagonals not attaching correctly.
+            case 0: // down
+                if (positionInArray == 0) {
+                    setRectangleStyle(rectangle, 20, 20, 0, 0);
+                }
+                break;
+            case 1: // up
+                if (positionInArray == 0) {
+                    setRectangleStyle(rectangle, 0, 0, 20, 20);
+                }
+                break;
+            case 2: // right
+                if (positionInArray == 0) {
+                    setRectangleStyle(rectangle, 20, 0, 0, 20);
+                }
+                break;
+            case 3: // left
+                if (positionInArray == 0) {
+                    setRectangleStyle(rectangle, 0, 20, 20, 0);
+                }
+                break;
+            case 4: // down right
+                if (positionInArray == 0) {
+                    setRectangleStyle(rectangle, 20, 0, 0, 20);
+                }
+                rectangle.setRotate(45);
+                break;
+            case 5: // down left
+                if (positionInArray == 0) {
+                    setRectangleStyle(rectangle, 20, 20, 0, 0);
+                }
+                rectangle.setRotate(45);
+                break;
+            case 6: // up right
+                if (positionInArray == 0) {
+                    setRectangleStyle(rectangle, 20, 0, 0, 20);
+                }
+                rectangle.setRotate(-45);
+                break;
+            case 7: // up left
+                if (positionInArray == 0) {
+                    setRectangleStyle(rectangle, 0, 0, 20, 20);
+                }
+                rectangle.setRotate(-45);
+                break;
         }
-//        rectangle.setArcHeight(30);
-//        rectangle.setArcWidth(30); // todo refactor this to only make two corners rounded. leave others in line intact.
 
 //        rectangle.setTextAlignment(TextAlignment.CENTER);
 //        rectangle.setAlignment(Pos.CENTER);
@@ -59,4 +99,7 @@ public class ClickedLetter {
         return this.oldColor;
     }
 
+    public String toString() {
+        return this.label.getText();
+    }
 }

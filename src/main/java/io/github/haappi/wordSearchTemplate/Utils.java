@@ -2,6 +2,7 @@ package io.github.haappi.wordSearchTemplate;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
@@ -51,6 +52,113 @@ public class Utils {
         }
         return board;
     }
+
+    public static Integer estimateDirection(ArrayList<ClickedLetter> letters) {
+        if (letters.size() < 2) {
+            return null;
+        }
+        ClickedLetter first = letters.get(0);
+        ClickedLetter last = letters.get(letters.size() - 1);
+
+        if (first.getColumn() == last.getColumn() && first.getRow() < last.getRow()) {
+            return 0; // down
+        } else if (first.getColumn() == last.getColumn() && first.getRow() > last.getRow()) {
+            return 1; // up
+        } else if (first.getRow() == last.getRow() && first.getColumn() < last.getColumn()) {
+            return 2; // right
+        } else if (first.getRow() == last.getRow() && first.getColumn() > last.getColumn()) {
+            return 3; // left
+        } else if (first.getRow() < last.getRow() && first.getColumn() < last.getColumn()) {
+            return 4; // down right
+        } else if (first.getRow() < last.getRow() && first.getColumn() > last.getColumn()) {
+            return 5; // down left
+        } else if (first.getRow() > last.getRow() && first.getColumn() < last.getColumn()) {
+            return 6; // up right
+        } else if (first.getRow() > last.getRow() && first.getColumn() > last.getColumn()) {
+            return 7; // up left
+        }
+        return null;
+    }
+
+    /**
+     * Edits a {@link Region} in-place with the border shenanigans.
+     *
+     * @param region       The region to edit.
+     * @param top_left     The top left curve thingy. Set to 0 for sharp.
+     * @param top_right    The top right curve thingy. Set to 0 for sharp.
+     * @param bottom_right The bottom right curve thingy. Set to 0 for sharp.
+     * @param bottom_left  The bottom left curve thingy. Set to 0 for sharp.
+     */
+    public static void setRectangleStyle(Region region, int top_left, int top_right, int bottom_right, int bottom_left) {
+        region.setStyle("-fx-background-color: red; -fx-background-radius: " + top_left + " " + top_right + " " + bottom_right + " " + bottom_left + ";");
+    }
+
+    public static void fixBoard(ArrayList<ClickedLetter> letters, Label[][] board, GridPane searchBoard) {
+        Integer direction = estimateDirection(letters);
+        if (direction == null) {
+            return;
+        }
+        ClickedLetter first = letters.get(0);
+        ClickedLetter last = letters.get(letters.size() - 1);
+
+        int firstRow = first.getRow();
+        int firstColumn = first.getColumn();
+        int lastRow = last.getRow();
+        int lastColumn = last.getColumn();
+
+        letters.forEach(letter -> searchBoard.getChildren().remove(letter.getRectangle()));
+        first = null;
+        last = null;
+        letters.clear(); // todo fix this somehow not selecting the first, original letter
+
+//        copy.add(new ClickedLetter(board[first.getRow()][firstColumn], copy.size(), direction));
+        switch (direction) {
+            /*
+            The >= | <= is to make sure that the first and last letter are included in the cursor.
+             */
+            case 0: // down
+                for (int i = firstRow; i <= lastRow; i++) {
+                    letters.add(new ClickedLetter(board[i][firstColumn], letters.size(), direction));
+                }
+                break;
+            case 1: // up
+                for (int i = firstRow; i >= lastRow; i--) {
+                    letters.add(new ClickedLetter(board[i][firstColumn], letters.size(), direction));
+                }
+                break;
+            case 2: // right
+                for (int i = firstColumn; i <= lastColumn; i++) {
+                    letters.add(new ClickedLetter(board[firstRow][i], letters.size(), direction));
+                }
+                break;
+            case 3: // left
+                for (int i = firstColumn; i >= lastColumn; i--) {
+                    letters.add(new ClickedLetter(board[firstRow][i], letters.size(), direction));
+                }
+                break;
+            case 4: // down right
+                for (int i = firstRow, j = firstColumn; i <= lastRow && j <= lastColumn; i++, j++) {
+                    letters.add(new ClickedLetter(board[i][j], letters.size(), direction));
+                }
+                break;
+            case 5: // down left
+                for (int i = firstRow, j = firstColumn; i <= lastRow && j >= lastColumn; i++, j--) {
+                    letters.add(new ClickedLetter(board[i][j], letters.size(), direction));
+                }
+                break;
+            case 6: // up right
+                for (int i = firstRow, j = firstColumn; i >= lastRow && j <= lastColumn; i--, j++) {
+                    letters.add(new ClickedLetter(board[i][j], letters.size(), direction));
+                }
+                break;
+            case 7: // up left
+                for (int i = firstRow, j = firstColumn; i >= lastRow && j >= lastColumn; i--, j--) {
+                    letters.add(new ClickedLetter(board[i][j], letters.size(), direction));
+                }
+                break;
+        }
+    }
+
 
     public static Label[][] fillBoardWithWords(Label[][] board, ArrayList<String> words, GridPane gridPane) {
         for (String word : words) {
@@ -105,6 +213,20 @@ public class Utils {
         return board;
     }
 
+    /**
+     * I made javadocs for fun. <br>
+     * 9 0 1 <br>
+     * 8 * 2 <br>
+     * 7 6 5 <br>
+     *
+     * @param direction
+     * @param row
+     * @param col
+     * @param board
+     * @param word
+     * @param gridPane
+     * @return
+     */
     public static boolean canWordBeAdded(int direction, int row, int col, Label[][] board, String word, GridPane gridPane) {
         int stringLength = word.length();
         int counter = 0;
