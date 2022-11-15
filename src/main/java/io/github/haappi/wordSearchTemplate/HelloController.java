@@ -14,8 +14,7 @@ import javafx.scene.text.TextAlignment;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import static io.github.haappi.wordSearchTemplate.Utils.fillBoardWithWords;
-import static io.github.haappi.wordSearchTemplate.Utils.fixBoard;
+import static io.github.haappi.wordSearchTemplate.Utils.*;
 
 public class HelloController {
     private final ArrayList<String> listOfPossibleWords = new ArrayList<>();
@@ -73,7 +72,8 @@ public class HelloController {
                     clickedLetters.add(currentLetter); // this has to be before the line after as i save the color while initializing it.
                     fixBoard(clickedLetters, listOWords, searchBoard);
                     if (clickedLetters.size() > 2) {
-                        clickedLetters.get(clickedLetters.size() - 2).getRectangle().setStyle("-fx-background-color: red; -fx-background-radius: 0 0 0 0;");
+                        doEndRectangleFormatting(clickedLetters.get(clickedLetters.size() - 1).getRectangle(), estimateDirection(clickedLetters));
+//                        clickedLetters.get(clickedLetters.size() - 2).getRectangle().setStyle("-fx-background-color: red; -fx-background-radius: 0 0 0 0;");
                     }
                 });
                 listOWords[i][j] = label;

@@ -322,4 +322,21 @@ public class Utils {
         }
         return true;
     }
+
+    public static void doEndRectangleFormatting(Region region, Integer direction) {
+        if (direction == null) {
+            return;
+        }
+        switch (direction) {
+            case 0 -> setRectangleStyle(region, 0, 0, 20, 20);
+            case 1 -> setRectangleStyle(region, 20, 20, 0, 0);
+            case 2 -> setRectangleStyle(region, 0, 20, 20, 0);
+            case 3 -> setRectangleStyle(region, 20, 0, 0, 20);
+            case 4 -> setRectangleStyle(region, 0, 0, 20, 20);
+            case 5 -> setRectangleStyle(region, 0, 0, 20, 20);
+            case 6 -> setRectangleStyle(region, 20, 20, 0, 0);
+            case 7 -> setRectangleStyle(region, 20, 20, 0, 0);
+
+        }
+    }
 }
