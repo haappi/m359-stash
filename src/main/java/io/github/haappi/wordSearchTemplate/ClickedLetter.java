@@ -77,6 +77,7 @@ public class ClickedLetter {
 
         GridPane gridPane = (GridPane) this.label.getParent(); // Gets what the Text is associated with.
         gridPane.add(rectangle, column, row); // Adds the rectangle to the gridPane.
+        // todo add another rectangle in the thingabob
     }
 
     public Region getRectangle() {
