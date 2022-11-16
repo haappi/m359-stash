@@ -20,6 +20,9 @@ public class Word {
     }
 
     public String toString() {
-        return this.word;
+           return "Word{" +
+                    "word='" + word + '\'' +
+                    ", positions=" + positions +
+                    '}';
     }
 }

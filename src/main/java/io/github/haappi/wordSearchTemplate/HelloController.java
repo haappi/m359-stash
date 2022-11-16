@@ -1,5 +1,6 @@
 package io.github.haappi.wordSearchTemplate;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.ContentDisplay;
@@ -7,15 +8,21 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.Random;
 
 import static io.github.haappi.wordSearchTemplate.Utils.*;
 
 public class HelloController {
     private final ArrayList<String> listOfPossibleWords = new ArrayList<>();
+    public Label timeElap;
+    public GridPane wordBank;
     private ArrayList<Word> hintWords = new ArrayList<>();
     @FXML
     protected GridPane searchBoard;
@@ -31,7 +38,6 @@ public class HelloController {
         searchBoard.setOnDragDetected(
                 event -> {
                     if (event.getButton() == MouseButton.PRIMARY) {
-//                        event.consume();
                         searchBoard.startFullDrag();
                     }
                 });
@@ -77,6 +83,13 @@ public class HelloController {
 
         }
         hintWords = fillBoardWithWords(listOWords, listOfPossibleWords, searchBoard);
+        listOfPossibleWords.forEach(word -> {
+            Text label = new Text(word.toLowerCase().substring(0, 1).toUpperCase() + word.toLowerCase().substring(1));
+            label.setFont(Font.font(17));
+            label.setTextAlignment(TextAlignment.CENTER);
+            wordBank.add(label, 0, wordBank.getChildren().size());
+            label.setFill(Color.RED);
+        });
         Utils.fillBoardRadnomly(listOWords);
 
         anchorPane.setOnMouseDragExited( // I can add events to the AnchorPane also, and seeing whenever I released the drag button
@@ -102,6 +115,12 @@ public class HelloController {
                             dictionary.remove(reversed);
 
                             hintWords.removeIf(word1 -> word1.getWord().equals(word) || word1.getWord().equals(reversed)); // basically remove, but with a one-liner checker.
+                            wordBank.getChildren().forEach(node -> {
+                                if (((Text) node).getText().equals(word.toLowerCase().substring(0, 1).toUpperCase() + word.toLowerCase().substring(1))) {
+                                    ((Text) node).setStrikethrough(true);
+                                    ((Text) node).setFill(Color.GREEN);
+                                }
+                            });
                         });
                     } else if (dictionary.containsKey(word) || dictionary.containsKey(reversed)) {
                         dictionary.remove(word);
@@ -113,5 +132,29 @@ public class HelloController {
                     clickedLetters.clear();
                 }
             );
+    }
+
+    public void hintButton() {
+        if (hintWords.size() == 0) {
+            return;
+        }
+        Word word = hintWords.get(Utils.getRandInt(0, hintWords.size()));
+        hintWords.remove(word);
+        String wordString = word.getWord();
+        for (Map.Entry<Integer, Integer> entry : word.getPositions().entrySet()) {
+            searchBoard.getChildren().forEach(node -> {
+                if (GridPane.getRowIndex(node) == entry.getKey() && GridPane.getColumnIndex(node) == entry.getValue()) {
+                    ((Label) node).setTextFill(Color.WHITE);
+                    node.setStyle("-fx-background-color: black");
+                }
+            });
+        }
+
+        wordBank.getChildren().forEach(nodee -> {
+            if (((Text) nodee).getText().equals(wordString.toLowerCase().substring(0, 1).toUpperCase() + wordString.toLowerCase().substring(1))) {
+                ((Text) nodee).setStrikethrough(true);
+                ((Text) nodee).setFill(Color.BLACK);
+            }
+        });
     }
 }
