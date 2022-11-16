@@ -16,6 +16,7 @@ import static io.github.haappi.wordSearchTemplate.Utils.*;
 
 public class HelloController {
     private final ArrayList<String> listOfPossibleWords = new ArrayList<>();
+    private ArrayList<Word> hintWords = new ArrayList<>();
     @FXML
     protected GridPane searchBoard;
     @FXML
@@ -75,7 +76,7 @@ public class HelloController {
             }
 
         }
-        fillBoardWithWords(listOWords, listOfPossibleWords, searchBoard);
+        hintWords = fillBoardWithWords(listOWords, listOfPossibleWords, searchBoard);
         Utils.fillBoardRadnomly(listOWords);
 
         anchorPane.setOnMouseDragExited( // I can add events to the AnchorPane also, and seeing whenever I released the drag button
@@ -99,6 +100,8 @@ public class HelloController {
                             listOfPossibleWords.remove(reversed);
                             dictionary.remove(word);
                             dictionary.remove(reversed);
+
+                            hintWords.removeIf(word1 -> word1.getWord().equals(word) || word1.getWord().equals(reversed)); // basically remove, but with a one-liner checker.
                         });
                     } else if (dictionary.containsKey(word) || dictionary.containsKey(reversed)) {
                         dictionary.remove(word);

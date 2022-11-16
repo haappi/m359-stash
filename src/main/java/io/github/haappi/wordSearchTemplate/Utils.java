@@ -10,6 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Utils {
     public static final HashMap<String, String> dictionary = new HashMap<>();
@@ -164,8 +165,8 @@ public class Utils {
         }
     }
 
-
-    public static Label[][] fillBoardWithWords(Label[][] board, ArrayList<String> words, GridPane gridPane) {
+    public static ArrayList<Word> fillBoardWithWords(Label[][] board, ArrayList<String> words, GridPane gridPane) {
+        ArrayList<Word> wordsArrayList = new ArrayList<>();
         for (String word : words) {
             int row = getRandInt(0, board.length - 1);
             int col = getRandInt(0, board[row].length - 1);
@@ -175,47 +176,41 @@ public class Utils {
                 col = getRandInt(0, board[row].length - 1);
                 direction = getRandInt(0, 7);
             }
-            addWordToBoard(direction, row, col, board, word);
+            wordsArrayList.add(new Word(addWordToBoard(direction, row, col, board, word), word));
         }
-        return board;
+        return wordsArrayList;
     }
 
-    public static Label[][] addWordToBoard(int direction, int row, int col, Label[][] board, String word) {
+    public static HashMap<Integer, Integer> addWordToBoard(int direction, int row, int col, Label[][] board, String word) {
+        HashMap<Integer, Integer> rowCol = new HashMap<>();
         for (int i = 0; i < word.length(); i++) {
+            rowCol.put(row, col);
             board[row][col].setText(String.valueOf(word.charAt(i)));
             board[row][col].setTextFill(Color.DARKRED);
             switch (direction) {
-                case 0:
-                    col--;
-                    break;
-                case 1:
+                case 0 -> col--;
+                case 1 -> {
                     col--;
                     row++;
-                    break;
-                case 2:
-                    row++;
-                    break;
-                case 3:
+                }
+                case 2 -> row++;
+                case 3 -> {
                     col++;
                     row++;
-                    break;
-                case 4:
-                    col++;
-                    break;
-                case 5:
+                }
+                case 4 -> col++;
+                case 5 -> {
                     col++;
                     row--;
-                    break;
-                case 6:
-                    row--;
-                    break;
-                case 7:
+                }
+                case 6 -> row--;
+                case 7 -> {
                     col--;
                     row--;
-                    break;
+                }
             }
         }
-        return board;
+        return rowCol;
     }
 
     /**
