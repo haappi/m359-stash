@@ -5,14 +5,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import static io.github.haappi.wordSearchTemplate.Utils.*;
 
@@ -45,7 +43,7 @@ public class HelloController {
 
     @FXML
     protected void handleClickMe() {
-        listOWords = new Label[25][25]; //fixme ([3][3]) this doesn't work for 3 letter words.
+        listOWords = new Label[25][25];
 
         for (int i = 0; i < listOWords.length; i++) {
             for (int j = 0; j < listOWords[i].length; j++) {
@@ -58,11 +56,6 @@ public class HelloController {
                 label.setContentDisplay(ContentDisplay.CENTER);
 
                 label.setOnMouseDragOver(event -> {
-                    // https://stackoverflow.com/questions/53831807/javafx-show-a-pane-on-mouse-hover
-                    // maybe end up doing this instead of the drag stuff.
-                    // - see if lmb is held down and yeah..
-//                    System.out.println(((Label) event.getSource()).getText());
-                    Iterator<ClickedLetter> iterator = clickedLetters.iterator();
                     if ((currentLetter != null ? currentLetter.getLabel() : null) == label) {
                         return;
                     }
@@ -72,8 +65,7 @@ public class HelloController {
                     clickedLetters.add(currentLetter); // this has to be before the line after as i save the color while initializing it.
                     fixBoard(clickedLetters, listOWords, searchBoard);
                     if (clickedLetters.size() > 2) {
-                        doEndRectangleFormatting(clickedLetters.get(clickedLetters.size() - 1).getRectangle(), estimateDirection(clickedLetters));
-//                        clickedLetters.get(clickedLetters.size() - 2).getRectangle().setStyle("-fx-background-color: red; -fx-background-radius: 0 0 0 0;");
+                        doEndRectangleFormatting(clickedLetters.get(clickedLetters.size() - 1).getRegion(), estimateDirection(clickedLetters));
                     }
                 });
                 listOWords[i][j] = label;
@@ -91,7 +83,7 @@ public class HelloController {
                     StringBuilder sb = new StringBuilder();
                     clickedLetters.forEach(clickedLetter -> {
                         sb.append(clickedLetter.getLabel().getText().toUpperCase());
-                        this.searchBoard.getChildren().remove(clickedLetter.getRectangle());
+                        this.searchBoard.getChildren().remove(clickedLetter.getRegion());
                     });
                     String word = sb.toString();
                     String reversed = sb.reverse().toString();
@@ -100,8 +92,12 @@ public class HelloController {
                     } else {
                         clickedLetters.forEach(clickedLetter -> clickedLetter.getLabel().setTextFill(clickedLetter.getOldColor()));
                     }
+                    if (dictionary.containsKey(word)) {
+                        // do something with it, and give points
+                    }
                     System.out.println(clickedLetters);
                     clickedLetters.clear();
-                });
+                }
+            );
     }
 }

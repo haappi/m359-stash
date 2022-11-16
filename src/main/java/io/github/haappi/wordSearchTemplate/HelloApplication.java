@@ -6,14 +6,21 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HelloApplication extends Application {
+
     public static void main(String[] args) {
         launch();
     }
 
     @Override
     public void start(Stage stage) throws IOException {
+        ArrayList<String> dictionary = Utils.readFromFileAsArray("words_alpha.txt");
+        dictionary.replaceAll(String::toUpperCase); // Calls toUpperCase on each String in the array.
+        for (String word : dictionary) {
+            Utils.dictionary.put(word, word);
+        }
         /* todo's
          * make grid work with drag and drop
          * make validation on the fly with dragging

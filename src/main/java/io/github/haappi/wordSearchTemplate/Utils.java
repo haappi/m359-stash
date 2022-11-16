@@ -9,8 +9,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Utils {
+    public static final HashMap<String, String> dictionary = new HashMap<>();
     public static String[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
     public static int getRandInt(int min, int max) {
@@ -106,7 +108,7 @@ public class Utils {
         int lastRow = last.getRow();
         int lastColumn = last.getColumn();
 
-        letters.forEach(letter -> searchBoard.getChildren().remove(letter.getRectangle()));
+        letters.forEach(letter -> searchBoard.getChildren().remove(letter.getRegion()));
         first = null;
         last = null;
         letters.clear(); // todo fix this somehow not selecting the first, original letter
@@ -332,9 +334,9 @@ public class Utils {
             case 1 -> setRectangleStyle(region, 20, 20, 0, 0);
             case 2 -> setRectangleStyle(region, 0, 20, 20, 0);
             case 3 -> setRectangleStyle(region, 20, 0, 0, 20);
-            case 4 -> setRectangleStyle(region, 0, 0, 20, 20);
+            case 4 -> setRectangleStyle(region, 0, 20, 20, 0);
             case 5 -> setRectangleStyle(region, 0, 0, 20, 20);
-            case 6 -> setRectangleStyle(region, 20, 20, 0, 0);
+            case 6 -> setRectangleStyle(region, 0, 20, 20, 0);
             case 7 -> setRectangleStyle(region, 20, 20, 0, 0);
 
         }
