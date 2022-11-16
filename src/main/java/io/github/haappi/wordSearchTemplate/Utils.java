@@ -13,6 +13,8 @@ import java.util.HashMap;
 
 public class Utils {
     public static final HashMap<String, String> dictionary = new HashMap<>();
+    public static final HashMap<String, String> permDictionary = new HashMap<>();
+
     public static String[] alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
     public static int getRandInt(int min, int max) {
@@ -86,13 +88,14 @@ public class Utils {
      * Edits a {@link Region} in-place with the border shenanigans.
      *
      * @param region       The region to edit.
+     * @param color
      * @param top_left     The top left curve thingy. Set to 0 for sharp.
      * @param top_right    The top right curve thingy. Set to 0 for sharp.
      * @param bottom_right The bottom right curve thingy. Set to 0 for sharp.
      * @param bottom_left  The bottom left curve thingy. Set to 0 for sharp.
      */
-    public static void setRectangleStyle(Region region, int top_left, int top_right, int bottom_right, int bottom_left) {
-        region.setStyle("-fx-background-color: red; -fx-background-radius: " + top_left + " " + top_right + " " + bottom_right + " " + bottom_left + ";");
+    public static void setRectangleStyle(Region region, String color, int top_left, int top_right, int bottom_right, int bottom_left) {
+        region.setStyle("-fx-background-color: " + color +  "; -fx-background-radius: " + top_left + " " + top_right + " " + bottom_right + " " + bottom_left + ";");
     }
 
     public static void fixBoard(ArrayList<ClickedLetter> letters, Label[][] board, GridPane searchBoard) {
@@ -330,14 +333,14 @@ public class Utils {
             return;
         }
         switch (direction) {
-            case 0 -> setRectangleStyle(region, 0, 0, 20, 20);
-            case 1 -> setRectangleStyle(region, 20, 20, 0, 0);
-            case 2 -> setRectangleStyle(region, 0, 20, 20, 0);
-            case 3 -> setRectangleStyle(region, 20, 0, 0, 20);
-            case 4 -> setRectangleStyle(region, 0, 20, 20, 0);
-            case 5 -> setRectangleStyle(region, 0, 0, 20, 20);
-            case 6 -> setRectangleStyle(region, 0, 20, 20, 0);
-            case 7 -> setRectangleStyle(region, 20, 20, 0, 0);
+            case 0 -> setRectangleStyle(region, "red", 0, 0, 20, 20);
+            case 1 -> setRectangleStyle(region, "red", 20, 20, 0, 0);
+            case 2 -> setRectangleStyle(region, "red", 0, 20, 20, 0);
+            case 3 -> setRectangleStyle(region, "red", 20, 0, 0, 20);
+            case 4 -> setRectangleStyle(region, "red", 0, 20, 20, 0);
+            case 5 -> setRectangleStyle(region, "red", 0, 0, 20, 20);
+            case 6 -> setRectangleStyle(region, "red", 0, 20, 20, 0);
+            case 7 -> setRectangleStyle(region, "red", 20, 20, 0, 0);
 
         }
     }

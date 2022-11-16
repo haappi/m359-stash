@@ -1,9 +1,13 @@
 package io.github.haappi.wordSearchTemplate;
 
+import javafx.collections.ObservableList;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
+
+import java.util.ArrayList;
 
 import static io.github.haappi.wordSearchTemplate.Utils.setRectangleStyle;
 
@@ -15,64 +19,71 @@ public class ClickedLetter {
     private final Paint oldColor;
     private final Region region;
 
-    public ClickedLetter(Label label, int positionInArray, int direction) {
+    public ClickedLetter(Label label, int positionInArray, int direction, String color) {
         this.label = label;
         this.row = GridPane.getRowIndex(this.label);
         this.column = GridPane.getColumnIndex(this.label);
         this.oldColor = this.label.getTextFill();
         this.region = new Region();
+        GridPane gridPane = (GridPane) this.label.getParent(); // Gets what the Text is associated with.
+
         region.setPrefSize(label.getPrefWidth(), label.getPrefHeight());
-        region.setOpacity(0.2);
-        setRectangleStyle(region, 0, 0, 0, 0);
+        region.setOpacity(0.4);
+        setRectangleStyle(region, color, 0, 0, 0, 0);
         switch (direction) {
             case 0: // down
                 if (positionInArray == 0) {
-                    setRectangleStyle(region, 20, 20, 0, 0);
+                    setRectangleStyle(region, color, 20, 20, 0, 0);
                 }
                 break;
             case 1: // up
                 if (positionInArray == 0) {
-                    setRectangleStyle(region, 0, 0, 20, 20);
+                    setRectangleStyle(region, color, 0, 0, 20, 20);
                 }
                 break;
             case 2: // right
                 if (positionInArray == 0) {
-                    setRectangleStyle(region, 20, 0, 0, 20);
+                    setRectangleStyle(region, color, 20, 0, 0, 20);
                 }
                 break;
             case 3: // left
                 if (positionInArray == 0) {
-                    setRectangleStyle(region, 0, 20, 20, 0);
+                    setRectangleStyle(region, color, 0, 20, 20, 0);
                 }
                 break;
             case 4: // down right
                 if (positionInArray == 0) {
-                    setRectangleStyle(region, 20, 0, 0, 20);
+                    setRectangleStyle(region, color, 20, 0, 0, 20);
                 }
                 region.setRotate(45);
                 break;
             case 5: // down left
                 if (positionInArray == 0) {
-                    setRectangleStyle(region, 20, 20, 0, 0);
+                    setRectangleStyle(region, color, 20, 20, 0, 0);
                 }
                 region.setRotate(45);
                 break;
             case 6: // up right
                 if (positionInArray == 0) {
-                    setRectangleStyle(region, 20, 0, 0, 20);
+                    setRectangleStyle(region, color, 20, 0, 0, 20);
                 }
                 region.setRotate(-45);
                 break;
             case 7: // up left
                 if (positionInArray == 0) {
-                    setRectangleStyle(region, 0, 0, 20, 20);
+                    setRectangleStyle(region, color, 0, 0, 20, 20);
                 }
                 region.setRotate(-45);
                 break;
         }
 
-        GridPane gridPane = (GridPane) this.label.getParent(); // Gets what the Text is associated with.
+        gridPane.getChildren().remove(this.label);
         gridPane.add(region, column, row); // Adds the region to the gridPane.
+        gridPane.add(this.label, column, row); // Adds the label to the gridPane.
+    }
+
+    public ClickedLetter(Label label, int positionInArray, int direction) {
+        this(label, positionInArray, direction, "red");
     }
 
     public Region getRegion() {

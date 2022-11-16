@@ -20,6 +20,7 @@ public class HelloApplication extends Application {
         dictionary.replaceAll(String::toUpperCase); // Calls toUpperCase on each String in the array.
         for (String word : dictionary) {
             Utils.dictionary.put(word, word);
+            Utils.permDictionary.put(word, word);
         }
         /* todo's
          * make grid work with drag and drop
