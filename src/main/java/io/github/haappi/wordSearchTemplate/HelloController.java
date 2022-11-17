@@ -2,6 +2,7 @@ package io.github.haappi.wordSearchTemplate;
 
 import static io.github.haappi.wordSearchTemplate.Utils.*;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.ContentDisplay;
@@ -15,10 +16,18 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 public class HelloController {
     private final ArrayList<String> listOfPossibleWords = new ArrayList<>();
-    public Label timeElap;
+    private static final Timer timer = new Timer();
+
+    public static void cancel_timer() {
+        timer.cancel();
+    }
+    public Text timeElap;
     public GridPane wordBank;
     private ArrayList<Word> hintWords = new ArrayList<>();
     @FXML protected GridPane searchBoard;
@@ -181,7 +190,27 @@ public class HelloController {
                     }
                     clickedLetters.clear();
                 });
+        timer.schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        String currentTime = timeElap.getText();
+                        int minutes = Integer.parseInt(currentTime.split(":")[0]);
+                        int seconds = Integer.parseInt(currentTime.split(":")[1]);
+                        seconds++;
+                        if (seconds == 60) {
+                            seconds = 0;
+                            minutes++;
+                        }
+                        timeElap.setText(
+                                String.format("%02d:%02d", minutes, seconds)
+                        );
+                    }
+                },
+                1L,
+                1000L); // every second
     }
+
 
     public void hintButton() {
         if (hintWords.size() == 0) {
