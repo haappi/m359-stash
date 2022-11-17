@@ -1,16 +1,11 @@
 package io.github.haappi.wordSearchTemplate;
 
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
+import static io.github.haappi.wordSearchTemplate.Utils.setRectangleStyle;
+
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
-
-import java.util.ArrayList;
-
-import static io.github.haappi.wordSearchTemplate.Utils.setRectangleStyle;
-
 
 public class ClickedLetter {
     private final Label label;
@@ -25,7 +20,8 @@ public class ClickedLetter {
         this.column = GridPane.getColumnIndex(this.label);
         this.oldColor = this.label.getTextFill();
         this.region = new Region();
-        GridPane gridPane = (GridPane) this.label.getParent(); // Gets what the Text is associated with.
+        GridPane gridPane =
+                (GridPane) this.label.getParent(); // Gets what the Text is associated with.
 
         region.setPrefSize(label.getPrefWidth(), label.getPrefHeight());
         region.setOpacity(0.4);
