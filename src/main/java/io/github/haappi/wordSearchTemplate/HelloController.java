@@ -133,8 +133,7 @@ public class HelloController {
                                         // todo somehow apply correct formatting to the
                                         // first & last letter
                                         //
-                                        // doEndRectangleFormatting(clickedLetter.getRegion(),
-                                        // direction);
+                                         doEndRectangleFormatting(clickedLetter.getRegion(), direction);
                                     }
                                     listOfPossibleWords.remove(word);
                                     listOfPossibleWords.remove(reversed);
