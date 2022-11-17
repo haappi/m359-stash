@@ -68,7 +68,7 @@ public class HelloController {
                             // directions.
                             clickedLetters.add(
                                     currentLetter); // this has to be before the line after as i
-                                                    // save the color while initializing it.
+                            // save the color while initializing it.
                             fixBoard(clickedLetters, listOWords, searchBoard);
                             if (clickedLetters.size() > 2) {
                                 doEndRectangleFormatting(
@@ -98,89 +98,89 @@ public class HelloController {
                 });
         Utils.fillBoardRadnomly(listOWords);
 
-        anchorPane
-                .setOnMouseDragExited( // I can add events to the AnchorPane also, and seeing
-                                       // whenever I released the drag button
-                        eventt -> { // i made this on my own. no complaints
-                            StringBuilder sb = new StringBuilder();
-                            Integer direction = estimateDirection(clickedLetters);
-                            clickedLetters.forEach(
-                                    clickedLetter -> {
-                                        sb.append(clickedLetter.getLabel().getText().toUpperCase());
-                                        this.searchBoard
-                                                .getChildren()
-                                                .remove(clickedLetter.getRegion());
-                                    });
-                            String word = sb.toString();
-                            String reversed = sb.reverse().toString();
-                            if (listOfPossibleWords.contains(word)
-                                    || listOfPossibleWords.contains(reversed)) {
-                                clickedLetters.forEach(
-                                        clickedLetter -> {
-                                            new ClickedLetter(
-                                                    clickedLetter.getLabel(),
-                                                    clickedLetters.size(),
-                                                    direction,
-                                                    "pink");
-                                            if (clickedLetters.get(clickedLetters.size() - 1)
-                                                    == clickedLetter) {
-                                                // todo somehow apply correct formatting to the
-                                                // first & last letter
-                                                //
-                                                // doEndRectangleFormatting(clickedLetter.getRegion(), direction);
-                                            }
-                                            listOfPossibleWords.remove(word);
-                                            listOfPossibleWords.remove(reversed);
-                                            dictionary.remove(word);
-                                            dictionary.remove(reversed);
+        anchorPane.setOnMouseDragExited( // I can add events to the AnchorPane also, and seeing
+                // whenever I released the drag button
+                eventt -> { // i made this on my own. no complaints
+                    StringBuilder sb = new StringBuilder();
+                    Integer direction = estimateDirection(clickedLetters);
+                    clickedLetters.forEach(
+                            clickedLetter -> {
+                                sb.append(clickedLetter.getLabel().getText().toUpperCase());
+                                this.searchBoard.getChildren().remove(clickedLetter.getRegion());
+                            });
+                    String word = sb.toString();
+                    String reversed = sb.reverse().toString();
+                    if (listOfPossibleWords.contains(word)
+                            || listOfPossibleWords.contains(reversed)) {
+                        clickedLetters.forEach(
+                                clickedLetter -> {
+                                    new ClickedLetter(
+                                            clickedLetter.getLabel(),
+                                            clickedLetters.size(),
+                                            direction,
+                                            "pink");
+                                    if (clickedLetters.get(clickedLetters.size() - 1)
+                                            == clickedLetter) {
+                                        // todo somehow apply correct formatting to the
+                                        // first & last letter
+                                        //
+                                        // doEndRectangleFormatting(clickedLetter.getRegion(),
+                                        // direction);
+                                    }
+                                    listOfPossibleWords.remove(word);
+                                    listOfPossibleWords.remove(reversed);
+                                    dictionary.remove(word);
+                                    dictionary.remove(reversed);
 
-                                            hintWords.removeIf(
-                                                    word1 ->
-                                                            word1.getWord().equals(word)
-                                                                    || word1.getWord()
-                                                                            .equals(
-                                                                                    reversed)); // basically remove, but with a one-liner checker.
-                                            wordBank.getChildren()
-                                                    .forEach(
-                                                            node -> {
-                                                                if (((Text) node)
-                                                                        .getText()
-                                                                        .equals(
-                                                                                word.toLowerCase()
-                                                                                                .substring(
-                                                                                                        0,
-                                                                                                        1)
-                                                                                                .toUpperCase()
-                                                                                        + word.toLowerCase()
-                                                                                                .substring(
-                                                                                                        1))) {
-                                                                    ((Text) node)
-                                                                            .setStrikethrough(true);
-                                                                    ((Text) node)
-                                                                            .setFill(Color.GREEN);
-                                                                }
-                                                            });
-                                        });
-                            } else if (dictionary.containsKey(word)
-                                    || dictionary.containsKey(reversed)) {
-                                dictionary.remove(word);
-                                dictionary.remove(reversed);
-                                clickedLetters.forEach(
-                                        clickedLetter ->
-                                                new ClickedLetter(
-                                                        clickedLetter.getLabel(),
-                                                        clickedLetters.size(),
-                                                        direction,
-                                                        "black"));
-                            } else {
-                                clickedLetters.forEach(
-                                        clickedLetter ->
-                                                clickedLetter
-                                                        .getLabel()
-                                                        .setTextFill(clickedLetter.getOldColor()));
-                            }
-                            clickedLetters.clear();
-                        });
+                                    hintWords.removeIf(
+                                            word1 ->
+                                                    word1.getWord().equals(word)
+                                                            || word1.getWord()
+                                                                    .equals(
+                                                                            reversed)); // basically
+                                                                                        // remove,
+                                                                                        // but with
+                                                                                        // a
+                                                                                        // one-liner
+                                                                                        // checker.
+                                    wordBank.getChildren()
+                                            .forEach(
+                                                    node -> {
+                                                        if (((Text) node)
+                                                                .getText()
+                                                                .equals(
+                                                                        word.toLowerCase()
+                                                                                        .substring(
+                                                                                                0,
+                                                                                                1)
+                                                                                        .toUpperCase()
+                                                                                + word.toLowerCase()
+                                                                                        .substring(
+                                                                                                1))) {
+                                                            ((Text) node).setStrikethrough(true);
+                                                            ((Text) node).setFill(Color.GREEN);
+                                                        }
+                                                    });
+                                });
+                    } else if (dictionary.containsKey(word) || dictionary.containsKey(reversed)) {
+                        dictionary.remove(word);
+                        dictionary.remove(reversed);
+                        clickedLetters.forEach(
+                                clickedLetter ->
+                                        new ClickedLetter(
+                                                clickedLetter.getLabel(),
+                                                clickedLetters.size(),
+                                                direction,
+                                                "black"));
+                    } else {
+                        clickedLetters.forEach(
+                                clickedLetter ->
+                                        clickedLetter
+                                                .getLabel()
+                                                .setTextFill(clickedLetter.getOldColor()));
+                    }
+                    clickedLetters.clear();
+                });
     }
 
     public void hintButton() {
