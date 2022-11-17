@@ -141,9 +141,11 @@ public class HelloController {
         Word word = hintWords.get(Utils.getRandInt(0, hintWords.size()));
         hintWords.remove(word);
         String wordString = word.getWord();
-        for (Map.Entry<Integer, Integer> entry : word.getPositions().entrySet()) {
+        for (String entry : word.getPositions()) {
+            int row = Integer.parseInt(entry.split(";")[0]);
+            int col = Integer.parseInt(entry.split(";")[1]);
             searchBoard.getChildren().forEach(node -> {
-                if (GridPane.getRowIndex(node) == entry.getKey() && GridPane.getColumnIndex(node) == entry.getValue()) {
+                if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col) {
                     ((Label) node).setTextFill(Color.WHITE);
                     node.setStyle("-fx-background-color: black");
                 }

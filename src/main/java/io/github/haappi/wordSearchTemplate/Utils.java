@@ -176,15 +176,15 @@ public class Utils {
                 col = getRandInt(0, board[row].length - 1);
                 direction = getRandInt(0, 7);
             }
-            wordsArrayList.add(new Word(addWordToBoard(direction, row, col, board, word), word));
+            wordsArrayList.add(new Word(addWordToBoard(direction, row, col, board, word).split("\\."), word));
         }
         return wordsArrayList;
     }
 
-    public static HashMap<Integer, Integer> addWordToBoard(int direction, int row, int col, Label[][] board, String word) {
-        HashMap<Integer, Integer> rowCol = new HashMap<>();
+    public static String addWordToBoard(int direction, int row, int col, Label[][] board, String word) {
+        StringBuilder wordAdded = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
-            rowCol.put(row, col);
+            wordAdded.append(row).append(";").append(col).append(".");
             board[row][col].setText(String.valueOf(word.charAt(i)));
             board[row][col].setTextFill(Color.DARKRED);
             switch (direction) {
@@ -210,7 +210,7 @@ public class Utils {
                 }
             }
         }
-        return rowCol;
+        return wordAdded.toString();
     }
 
     /**
