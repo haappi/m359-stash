@@ -37,9 +37,10 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-        stage.setOnCloseRequest(event -> {
-            HelloController.cancel_timer();
-            // also save stuff like high scores in here.
-        });
+        stage.setOnCloseRequest(
+                event -> {
+                    HelloController.cancel_timer();
+                    // also save stuff like high scores in here.
+                });
     }
 }

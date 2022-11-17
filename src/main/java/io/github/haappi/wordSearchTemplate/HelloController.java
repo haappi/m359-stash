@@ -2,7 +2,6 @@ package io.github.haappi.wordSearchTemplate;
 
 import static io.github.haappi.wordSearchTemplate.Utils.*;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.ContentDisplay;
@@ -18,7 +17,6 @@ import javafx.scene.text.TextAlignment;
 import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 
 public class HelloController {
     private final ArrayList<String> listOfPossibleWords = new ArrayList<>();
@@ -27,6 +25,7 @@ public class HelloController {
     public static void cancel_timer() {
         timer.cancel();
     }
+
     public Text timeElap;
     public GridPane wordBank;
     private ArrayList<Word> hintWords = new ArrayList<>();
@@ -133,7 +132,8 @@ public class HelloController {
                                         // todo somehow apply correct formatting to the
                                         // first & last letter
                                         //
-                                         doEndRectangleFormatting(clickedLetter.getRegion(), direction);
+                                        doEndRectangleFormatting(
+                                                clickedLetter.getRegion(), direction);
                                     }
                                     listOfPossibleWords.remove(word);
                                     listOfPossibleWords.remove(reversed);
@@ -144,13 +144,12 @@ public class HelloController {
                                             word1 ->
                                                     word1.getWord().equals(word)
                                                             || word1.getWord()
-                                                                    .equals(
-                                                                            reversed)); // basically
-                                                                                        // remove,
-                                                                                        // but with
-                                                                                        // a
-                                                                                        // one-liner
-                                                                                        // checker.
+                                                                    .equals(reversed)); // basically
+                                    // remove,
+                                    // but with
+                                    // a
+                                    // one-liner
+                                    // checker.
                                     wordBank.getChildren()
                                             .forEach(
                                                     node -> {
@@ -201,15 +200,12 @@ public class HelloController {
                             seconds = 0;
                             minutes++;
                         }
-                        timeElap.setText(
-                                String.format("%02d:%02d", minutes, seconds)
-                        );
+                        timeElap.setText(String.format("%02d:%02d", minutes, seconds));
                     }
                 },
                 1L,
                 1000L); // every second
     }
-
 
     public void hintButton() {
         if (hintWords.size() == 0) {
