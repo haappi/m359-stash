@@ -1,11 +1,11 @@
 package io.github.haappi.wordSearchTemplate;
 
+import static io.github.haappi.wordSearchTemplate.Utils.setRectangleStyle;
+
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
-
-import static io.github.haappi.wordSearchTemplate.Utils.setRectangleStyle;
 
 public class ClickedLetter {
     private final Label label;

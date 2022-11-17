@@ -1,5 +1,7 @@
 package io.github.haappi.wordSearchTemplate;
 
+import static io.github.haappi.wordSearchTemplate.Utils.*;
+
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.ContentDisplay;
@@ -16,17 +18,13 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static io.github.haappi.wordSearchTemplate.Utils.*;
-
 public class HelloController {
     private static final Timer timer = new Timer();
     private final ArrayList<String> listOfPossibleWords = new ArrayList<>();
     public Text timeElap;
     public GridPane wordBank;
-    @FXML
-    protected GridPane searchBoard;
-    @FXML
-    protected AnchorPane anchorPane;
+    @FXML protected GridPane searchBoard;
+    @FXML protected AnchorPane anchorPane;
     Label[][] listOWords;
     ArrayList<ClickedLetter> clickedLetters = new ArrayList<>();
     private ArrayList<Word> hintWords = new ArrayList<>();
@@ -144,7 +142,7 @@ public class HelloController {
                                             word1 ->
                                                     word1.getWord().equals(word)
                                                             || word1.getWord()
-                                                            .equals(reversed)); // basically
+                                                                    .equals(reversed)); // basically
                                     // remove,
                                     // but with
                                     // a
@@ -157,13 +155,13 @@ public class HelloController {
                                                                 .getText()
                                                                 .equals(
                                                                         word.toLowerCase()
-                                                                                .substring(
-                                                                                        0,
-                                                                                        1)
-                                                                                .toUpperCase()
+                                                                                        .substring(
+                                                                                                0,
+                                                                                                1)
+                                                                                        .toUpperCase()
                                                                                 + word.toLowerCase()
-                                                                                .substring(
-                                                                                        1))) {
+                                                                                        .substring(
+                                                                                                1))) {
                                                             ((Text) node).setStrikethrough(true);
                                                             ((Text) node).setFill(Color.GREEN);
                                                         }
