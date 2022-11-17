@@ -2,7 +2,6 @@ package io.github.haappi.wordSearchTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class Word {
     private final String word;
@@ -22,9 +21,6 @@ public class Word {
     }
 
     public String toString() {
-           return "Word{" +
-                    "word='" + word + '\'' +
-                    ", positions=" + positions +
-                    '}';
+        return "Word{" + "word='" + word + '\'' + ", positions=" + positions + '}';
     }
 }

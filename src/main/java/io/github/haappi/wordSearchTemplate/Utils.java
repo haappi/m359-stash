@@ -10,7 +10,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Utils {
     public static final HashMap<String, String> dictionary = new HashMap<>();
@@ -95,11 +94,29 @@ public class Utils {
      * @param bottom_right The bottom right curve thingy. Set to 0 for sharp.
      * @param bottom_left  The bottom left curve thingy. Set to 0 for sharp.
      */
-    public static void setRectangleStyle(Region region, String color, int top_left, int top_right, int bottom_right, int bottom_left) {
-        region.setStyle("-fx-background-color: " + color +  "; -fx-background-radius: " + top_left + " " + top_right + " " + bottom_right + " " + bottom_left + ";");
+    public static void setRectangleStyle(
+            Region region,
+            String color,
+            int top_left,
+            int top_right,
+            int bottom_right,
+            int bottom_left) {
+        region.setStyle(
+                "-fx-background-color: "
+                        + color
+                        + "; -fx-background-radius: "
+                        + top_left
+                        + " "
+                        + top_right
+                        + " "
+                        + bottom_right
+                        + " "
+                        + bottom_left
+                        + ";");
     }
 
-    public static void fixBoard(ArrayList<ClickedLetter> letters, Label[][] board, GridPane searchBoard) {
+    public static void fixBoard(
+            ArrayList<ClickedLetter> letters, Label[][] board, GridPane searchBoard) {
         Integer direction = estimateDirection(letters);
         if (direction == null) {
             return;
@@ -117,19 +134,22 @@ public class Utils {
         last = null;
         letters.clear(); // todo fix this somehow not selecting the first, original letter
 
-//        copy.add(new ClickedLetter(board[first.getRow()][firstColumn], copy.size(), direction));
+        //        copy.add(new ClickedLetter(board[first.getRow()][firstColumn], copy.size(),
+        // direction));
         switch (direction) {
-            /*
-            The >= | <= is to make sure that the first and last letter are included in the cursor.
-             */
+                /*
+                The >= | <= is to make sure that the first and last letter are included in the cursor.
+                 */
             case 0: // down
                 for (int i = firstRow; i <= lastRow; i++) {
-                    letters.add(new ClickedLetter(board[i][firstColumn], letters.size(), direction));
+                    letters.add(
+                            new ClickedLetter(board[i][firstColumn], letters.size(), direction));
                 }
                 break;
             case 1: // up
                 for (int i = firstRow; i >= lastRow; i--) {
-                    letters.add(new ClickedLetter(board[i][firstColumn], letters.size(), direction));
+                    letters.add(
+                            new ClickedLetter(board[i][firstColumn], letters.size(), direction));
                 }
                 break;
             case 2: // right
@@ -165,7 +185,8 @@ public class Utils {
         }
     }
 
-    public static ArrayList<Word> fillBoardWithWords(Label[][] board, ArrayList<String> words, GridPane gridPane) {
+    public static ArrayList<Word> fillBoardWithWords(
+            Label[][] board, ArrayList<String> words, GridPane gridPane) {
         ArrayList<Word> wordsArrayList = new ArrayList<>();
         for (String word : words) {
             int row = getRandInt(0, board.length - 1);
@@ -176,12 +197,14 @@ public class Utils {
                 col = getRandInt(0, board[row].length - 1);
                 direction = getRandInt(0, 7);
             }
-            wordsArrayList.add(new Word(addWordToBoard(direction, row, col, board, word).split("\\."), word));
+            wordsArrayList.add(
+                    new Word(addWordToBoard(direction, row, col, board, word).split("\\."), word));
         }
         return wordsArrayList;
     }
 
-    public static String addWordToBoard(int direction, int row, int col, Label[][] board, String word) {
+    public static String addWordToBoard(
+            int direction, int row, int col, Label[][] board, String word) {
         StringBuilder wordAdded = new StringBuilder();
         for (int i = 0; i < word.length(); i++) {
             wordAdded.append(row).append(";").append(col).append(".");
@@ -227,7 +250,8 @@ public class Utils {
      * @param gridPane
      * @return
      */
-    public static boolean canWordBeAdded(int direction, int row, int col, Label[][] board, String word, GridPane gridPane) {
+    public static boolean canWordBeAdded(
+            int direction, int row, int col, Label[][] board, String word, GridPane gridPane) {
         int stringLength = word.length();
         int counter = 0;
         switch (direction) {
@@ -236,7 +260,10 @@ public class Utils {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (board[row][col - i].getText().equalsIgnoreCase("*") || board[row][col - i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                    if (board[row][col - i].getText().equalsIgnoreCase("*")
+                            || board[row][col - i]
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -247,7 +274,10 @@ public class Utils {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (board[row + i][col - i].getText().equalsIgnoreCase("*") || board[row + i][col - i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                    if (board[row + i][col - i].getText().equalsIgnoreCase("*")
+                            || board[row + i][col - i]
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -258,18 +288,25 @@ public class Utils {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (board[row + i][col].getText().equalsIgnoreCase("*") || board[row + i][col].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                    if (board[row + i][col].getText().equalsIgnoreCase("*")
+                            || board[row + i][col]
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
                 return counter == stringLength;
             }
             case 3 -> { // down right
-                if (col + stringLength > board[row].length - 1 || row + stringLength > board.length - 1) {
+                if (col + stringLength > board[row].length - 1
+                        || row + stringLength > board.length - 1) {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (board[row + i][col + i].getText().equalsIgnoreCase("*") || board[row + i][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                    if (board[row + i][col + i].getText().equalsIgnoreCase("*")
+                            || board[row + i][col + i]
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -280,7 +317,10 @@ public class Utils {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (board[row][col + i].getText().equalsIgnoreCase("*") || board[row][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                    if (board[row][col + i].getText().equalsIgnoreCase("*")
+                            || board[row][col + i]
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -291,7 +331,10 @@ public class Utils {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (board[row - i][col + i].getText().equalsIgnoreCase("*") || board[row - i][col + i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                    if (board[row - i][col + i].getText().equalsIgnoreCase("*")
+                            || board[row - i][col + i]
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -302,7 +345,10 @@ public class Utils {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (board[row - i][col].getText().equalsIgnoreCase("*") || board[row - i][col].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                    if (board[row - i][col].getText().equalsIgnoreCase("*")
+                            || board[row - i][col]
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -313,7 +359,10 @@ public class Utils {
                     return false;
                 }
                 for (int i = 0; i < stringLength; i++) {
-                    if (board[row - i][col - i].getText().equalsIgnoreCase("*") || board[row - i][col - i].getText().equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                    if (board[row - i][col - i].getText().equalsIgnoreCase("*")
+                            || board[row - i][col - i]
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -336,7 +385,6 @@ public class Utils {
             case 5 -> setRectangleStyle(region, "red", 0, 0, 20, 20);
             case 6 -> setRectangleStyle(region, "red", 0, 20, 20, 0);
             case 7 -> setRectangleStyle(region, "red", 20, 20, 0, 0);
-
         }
     }
 }
