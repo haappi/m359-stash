@@ -373,8 +373,8 @@ public class HelloController {
     }
 
     public void diySearch(ActionEvent event) {
-        ((Button) event.getSource()).setText("Check console!");
-        ((Button) event.getSource()).setDisable(true);
+        diy.setText("Check console!");
+        diy.setDisable(true);
         System.out.println("Type 'end' to end the entry.");
         Scanner in = new Scanner(System.in);
         listOfPossibleWords.clear();
