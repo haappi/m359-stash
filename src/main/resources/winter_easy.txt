@@ -1,0 +1,13 @@
+boots
+snow
+freeze
+ice
+cold
+mittens
+jacket
+sled
+snowman
+winter
+snowsuit
+coat
+scarf
