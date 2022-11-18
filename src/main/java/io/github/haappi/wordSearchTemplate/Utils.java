@@ -210,7 +210,7 @@ public class Utils {
         for (int i = 0; i < word.length(); i++) {
             wordAdded.append(row).append(";").append(col).append(".");
             board[row][col].setText(String.valueOf(word.charAt(i)));
-            board[row][col].setTextFill(Color.DARKRED);
+            // board[row][col].setTextFill(Color.DARKRED);
             switch (direction) {
                 case 0 -> col--;
                 case 1 -> {
