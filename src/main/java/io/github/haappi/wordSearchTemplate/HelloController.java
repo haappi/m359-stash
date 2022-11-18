@@ -45,7 +45,7 @@ public class HelloController {
     @FXML protected AnchorPane anchorPane;
     Label[][] listOWords;
     ArrayList<ClickedLetter> clickedLetters = new ArrayList<>();
-    private double score = 0;
+    private int score = 0;
     private long programStartTime;
     private int difficulty = 1;
     private String playerName;
@@ -127,7 +127,17 @@ public class HelloController {
 
         programStartTime = System.currentTimeMillis();
         hintButtonVariable.setVisible(true);
-        listOWords = new Label[25][25];
+        switch (difficulty) {
+            case 1 -> {
+                listOWords = new Label[10][10];
+            }
+            case 2 -> {
+                listOWords = new Label[20][20];
+            }
+            case 3 -> {
+                listOWords = new Label[30][30];
+            }
+        }
 
         for (int i = 0; i < listOWords.length; i++) {
             for (int j = 0; j < listOWords[i].length; j++) {
@@ -215,7 +225,7 @@ public class HelloController {
                                     listOfPossibleWords.remove(reversed);
                                     dictionary.remove(word);
                                     dictionary.remove(reversed);
-                                    score = score + (word.length() * 0.6) - difficulty;
+                                    score = (int) (score + (word.length() * 0.6) - difficulty);
 
                                     hintWords.removeIf(
                                             word1 ->
@@ -267,31 +277,7 @@ public class HelloController {
                     clickedLetters.clear();
 
                     if (listOfPossibleWords.size() == 0) {
-                        Path path = Paths.get("src/main/resources/leaderboard.txt");
-                        timer.cancel();
-
-                        try (BufferedWriter writer =
-                                Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
-                            writer.write("\n");
-                            writer.write(
-                                    playerName
-                                            + " "
-                                            + score
-                                            + " "
-                                            + difficulty
-                                            + " "
-                                            + timeElapsed.getText());
-                        } catch (IOException ioe) {
-                            ioe.printStackTrace();
-                        }
-
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                        alert.setTitle("Game Over");
-                        alert.setHeaderText("You have won!");
-                        alert.setContentText("Your score is: " + score);
-                        alert.showAndWait();
-
-                        HelloApplication.setStageScene("main-menu");
+                        finishGame(playerName, timer, score, difficulty, timeElapsed.getText());
                     }
                 });
         timer.schedule(
@@ -310,7 +296,7 @@ public class HelloController {
                         if (seconds == 10) {
                             hintButtonVariable.setDisable(getRandInt(1, 10) > 8);
                         }
-                        score = (round(score));
+                        score = (int) round(score);
                         scoreLabel.setText(score + "");
                     }
                 },
@@ -324,8 +310,10 @@ public class HelloController {
             return;
         }
         score = score - 6;
-        Word word = hintWords.get(Utils.getRandInt(0, hintWords.size()));
+        Word word = hintWords.get(Utils.getRandInt(0, hintWords.size() - 1));
         hintWords.remove(word);
+        listOfPossibleWords.remove(word.getWord());
+        dictionary.remove(word.getWord());
         String wordString = word.getWord();
         for (String entry : word.getPositions()) {
             int row = Integer.parseInt(entry.split(";")[0]);
@@ -334,6 +322,9 @@ public class HelloController {
                     .getChildren()
                     .forEach(
                             node -> {
+                                if (!(node instanceof Label)) {
+                                    return;
+                                }
                                 if (GridPane.getRowIndex(node) == row
                                         && GridPane.getColumnIndex(node) == col) {
                                     ((Label) node).setTextFill(Color.WHITE);
@@ -354,6 +345,9 @@ public class HelloController {
                                 ((Text) nodee).setFill(Color.BLACK);
                             }
                         });
+        if (listOfPossibleWords.size() == 0) {
+            finishGame(playerName, timer, score, difficulty, timeElapsed.getText());
+        }
     }
 
     public void easySel(ActionEvent actionEvent) {

@@ -1,15 +1,20 @@
 package io.github.haappi.wordSearchTemplate;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Timer;
 
 public class Utils {
     public static final HashMap<String, String> dictionary = new HashMap<>();
@@ -418,5 +423,33 @@ public class Utils {
             }
         }
         return sortedLines;
+    }
+
+    public static void finishGame(String playerName, Timer timer, int score, int difficulty, String playTime) {
+        Path path = Paths.get("src/main/resources/leaderboard.txt");
+        timer.cancel();
+
+        try (BufferedWriter writer =
+                     Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
+            writer.write("\n");
+            writer.write(
+                    playerName
+                            + " "
+                            + score
+                            + " "
+                            + difficulty
+                            + " "
+                            + playTime);
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Over");
+        alert.setHeaderText("You have won!");
+        alert.setContentText("Your score is: " + score);
+        alert.showAndWait();
+
+        HelloApplication.setStageScene("main-menu");
     }
 }

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainMenuController {
     public ListView<String> highScores;
@@ -28,7 +29,7 @@ public class MainMenuController {
         highScores.getItems().clear();
         ArrayList<String> sorted = Utils.sortByScore(lines);
         for (String entry : sorted) {
-            highScores.getItems().add(entry);
+            highScores.getItems().add(entry.toLowerCase());
         }
     }
 }
