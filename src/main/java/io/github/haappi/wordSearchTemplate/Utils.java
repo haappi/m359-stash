@@ -3,7 +3,6 @@ package io.github.haappi.wordSearchTemplate;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 
 import java.io.IOException;
 import java.nio.file.Files;
