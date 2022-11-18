@@ -74,8 +74,7 @@ public class HelloController {
                                 fallRadio,
                                 winterRadio,
                                 diy,
-                                playerNameInput
-                        ));
+                                playerNameInput));
 
         searchBoard.setOnDragDetected(
                 event -> {
@@ -83,7 +82,6 @@ public class HelloController {
                         searchBoard.startFullDrag();
                     }
                 });
-
     }
 
     @FXML
