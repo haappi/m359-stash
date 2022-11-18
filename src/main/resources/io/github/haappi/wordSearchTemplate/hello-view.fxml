@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.wordSearchTemplate.HelloController">
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="980.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.wordSearchTemplate.HelloController">
     <children>
         <GridPane fx:id="searchBoard" layoutX="200.0" layoutY="155.0">
             <!--        <columnConstraints>-->
@@ -33,7 +33,7 @@
                 <Font size="19.0" />
             </font>
         </Text>
-        <RadioButton fx:id="easyRadio" layoutX="477.0" layoutY="58.0" mnemonicParsing="false" onAction="#easySel" text="Easy">
+        <RadioButton fx:id="easyRadio" layoutX="477.0" layoutY="58.0" mnemonicParsing="false" onAction="#easySel" selected="true" text="Easy">
             <font>
                 <Font size="18.0" />
             </font>
@@ -64,6 +64,21 @@
             </font>
         </Text>
         <TextField fx:id="playerNameInput" layoutX="603.0" layoutY="102.0" promptText="Enter Your Name" />
-        <Button layoutX="474.0" layoutY="155.0" mnemonicParsing="false" onAction="#diySearch" text="Make Your Own!" />
+        <Button fx:id="diy" layoutX="758.0" layoutY="161.0" mnemonicParsing="false" onAction="#diySearch" text="Make Your Own!" />
+      <RadioButton fx:id="springRadio" layoutX="767.0" layoutY="58.0" mnemonicParsing="false" onAction="#springSel" selected="true" text="Spring">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="fallRadio" layoutX="767.0" layoutY="87.0" mnemonicParsing="false" onAction="#fallSel" text="Fall">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="winterRadio" layoutX="767.0" layoutY="116.0" mnemonicParsing="false" onAction="#winterSel" prefHeight="0.0" prefWidth="87.0" text="Winter">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </RadioButton>
     </children>
 </AnchorPane>

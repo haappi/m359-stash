@@ -33,6 +33,11 @@ public class HelloController {
     public Text wordSearch;
     public Text scoreLabel;
     public TextField playerNameInput;
+    public RadioButton springRadio;
+    public RadioButton fallRadio;
+    public RadioButton winterRadio;
+    public int typeThing = 1;
+    public Button diy;
     @FXML protected Text timeElapsed;
     @FXML protected GridPane wordBank;
     @FXML protected Button hintButtonVariable;
@@ -64,7 +69,13 @@ public class HelloController {
                                 timeElapsed,
                                 startButton,
                                 wordSearch,
-                                scoreLabel));
+                                scoreLabel,
+                                springRadio,
+                                fallRadio,
+                                winterRadio,
+                                diy,
+                                playerNameInput
+                        ));
 
         searchBoard.setOnDragDetected(
                 event -> {
@@ -72,9 +83,7 @@ public class HelloController {
                         searchBoard.startFullDrag();
                     }
                 });
-        ArrayList<String> words = Utils.readFromFileAsArray("ok.txt");
-        words.replaceAll(String::toUpperCase); // Calls toUpperCase on each String in the array.
-        listOfPossibleWords.addAll(words);
+
     }
 
     @FXML
@@ -82,6 +91,38 @@ public class HelloController {
         for (Node node : stuffToToggle) {
             node.setVisible(!node.isVisible());
         }
+        if (listOfPossibleWords.size() == 0) {
+            String fileName = "";
+            switch (typeThing) {
+                case 1 -> {
+                    fileName += "spring_";
+                }
+                case 2 -> {
+                    fileName += "fall_";
+                }
+                case 3 -> {
+                    fileName += "winter_";
+                }
+            }
+
+            switch (difficulty) {
+                case 1 -> {
+                    fileName += "easy";
+                }
+                case 2 -> {
+                    fileName += "medium";
+                }
+                case 3 -> {
+                    fileName += "hard";
+                }
+            }
+            fileName += ".txt";
+
+            ArrayList<String> words = Utils.readFromFileAsArray(fileName);
+            words.replaceAll(String::toUpperCase); // Calls toUpperCase on each String in the array.
+            listOfPossibleWords.addAll(words);
+        }
+
         playerName = playerNameInput.getText() != null ? playerNameInput.getText() : "Player";
 
         programStartTime = System.currentTimeMillis();
@@ -338,6 +379,8 @@ public class HelloController {
     }
 
     public void diySearch(ActionEvent event) {
+        ((Button) event.getSource()).setText("Check console!");
+        ((Button) event.getSource()).setDisable(true);
         System.out.println("Type 'end' to end the entry.");
         Scanner in = new Scanner(System.in);
         listOfPossibleWords.clear();
@@ -352,5 +395,23 @@ public class HelloController {
             listOfPossibleWords.add(word.toUpperCase());
         }
         ((Button) event.getSource()).setVisible(false);
+    }
+
+    public void springSel(ActionEvent actionEvent) {
+        typeThing = 1;
+        fallRadio.setSelected(false);
+        winterRadio.setSelected(false);
+    }
+
+    public void fallSel(ActionEvent actionEvent) {
+        typeThing = 2;
+        winterRadio.setSelected(false);
+        springRadio.setSelected(false);
+    }
+
+    public void winterSel(ActionEvent actionEvent) {
+        typeThing = 3;
+        springRadio.setSelected(false);
+        fallRadio.setSelected(false);
     }
 }
