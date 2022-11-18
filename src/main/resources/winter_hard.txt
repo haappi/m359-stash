@@ -1,0 +1,17 @@
+cocoa
+heater
+snowfall
+blizzard
+snowman
+blanket
+igloo
+icicles
+ice
+cold
+frostbite
+hibernate
+cozy
+earmuffs
+fireplace
+hockey
+holiday
