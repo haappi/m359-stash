@@ -9,9 +9,24 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelloApplication extends Application {
+    private static Stage stage;
 
     public static void main(String[] args) {
         launch();
+    }
+
+    private static void setStageScene(Scene scene) {
+        stage.setScene(scene);
+    }
+
+    public static void setStageScene(String fileName) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fileName.replace(".fxml", "") + ".fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1280, 980);
+            HelloApplication.setStageScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -32,7 +47,7 @@ public class HelloApplication extends Application {
               this persists over restarts of the program
         */
         FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+                new FXMLLoader(HelloApplication.class.getResource("main-menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 980);
         stage.setTitle("Hello!");
         stage.setScene(scene);
@@ -42,5 +57,6 @@ public class HelloApplication extends Application {
                     HelloController.cancel_timer();
                     // also save stuff like high scores in here.
                 });
+        HelloApplication.stage = stage;
     }
 }

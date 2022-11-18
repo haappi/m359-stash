@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 public class Utils {
@@ -262,8 +263,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row][col - i].getText().equalsIgnoreCase("*")
                             || board[row][col - i]
-                                    .getText()
-                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                            .getText()
+                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -276,8 +277,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row + i][col - i].getText().equalsIgnoreCase("*")
                             || board[row + i][col - i]
-                                    .getText()
-                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                            .getText()
+                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -290,8 +291,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row + i][col].getText().equalsIgnoreCase("*")
                             || board[row + i][col]
-                                    .getText()
-                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                            .getText()
+                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -305,8 +306,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row + i][col + i].getText().equalsIgnoreCase("*")
                             || board[row + i][col + i]
-                                    .getText()
-                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                            .getText()
+                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -319,8 +320,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row][col + i].getText().equalsIgnoreCase("*")
                             || board[row][col + i]
-                                    .getText()
-                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                            .getText()
+                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -333,8 +334,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row - i][col + i].getText().equalsIgnoreCase("*")
                             || board[row - i][col + i]
-                                    .getText()
-                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                            .getText()
+                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -347,8 +348,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row - i][col].getText().equalsIgnoreCase("*")
                             || board[row - i][col]
-                                    .getText()
-                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                            .getText()
+                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -361,8 +362,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row - i][col - i].getText().equalsIgnoreCase("*")
                             || board[row - i][col - i]
-                                    .getText()
-                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                            .getText()
+                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -386,5 +387,38 @@ public class Utils {
             case 6 -> setRectangleStyle(region, "red", 0, 20, 20, 0);
             case 7 -> setRectangleStyle(region, "red", 20, 20, 0, 0);
         }
+    }
+
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+
+    public static double round(double value) {
+        return round(value, 2);
+    }
+
+    public static ArrayList<String> sortByScore(ArrayList<String> lines) {
+        ArrayList<String> sortedLines = new ArrayList<>();
+        ArrayList<Double> scores = new ArrayList<>();
+        for (String line : lines) {
+            String[] split = line.split(" ");
+            scores.add(Double.parseDouble(split[1]));
+        }
+        scores.sort(Collections.reverseOrder());
+        for (Double score : scores) {
+            for (String line : lines) {
+                String[] split = line.split(" ");
+                if (Double.parseDouble(split[1]) == score) {
+                    sortedLines.add(line);
+                }
+            }
+        }
+        return sortedLines;
     }
 }

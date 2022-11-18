@@ -1,11 +1,10 @@
 package io.github.haappi.wordSearchTemplate;
 
-import static io.github.haappi.wordSearchTemplate.Utils.*;
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
+import javafx.scene.Node;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -14,21 +13,45 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
+
+import static io.github.haappi.wordSearchTemplate.Utils.*;
 
 public class HelloController {
     private static final Timer timer = new Timer();
     private final ArrayList<String> listOfPossibleWords = new ArrayList<>();
-    public Text timeElap;
-    public GridPane wordBank;
-    @FXML protected GridPane searchBoard;
-    @FXML protected AnchorPane anchorPane;
+    public RadioButton easyRadio;
+    public RadioButton mediumRadio;
+    public RadioButton hardRadio;
+    public Button startButton;
+    public Text wordSearch;
+    public Text scoreLabel;
+    public TextField playerNameInput;
+    @FXML
+    protected Text timeElapsed;
+    @FXML
+    protected GridPane wordBank;
+    @FXML
+    protected Button hintButtonVariable;
+    @FXML
+    protected GridPane searchBoard;
+    @FXML
+    protected AnchorPane anchorPane;
     Label[][] listOWords;
     ArrayList<ClickedLetter> clickedLetters = new ArrayList<>();
+    private double score = 0;
+    private long programStartTime;
+    private int difficulty = 1;
+    private String playerName;
     private ArrayList<Word> hintWords = new ArrayList<>();
     private ClickedLetter currentLetter;
+    private ArrayList<Node> stuffToToggle;
 
     public static void cancel_timer() {
         timer.cancel();
@@ -36,6 +59,8 @@ public class HelloController {
 
     @FXML
     protected void initialize() {
+        stuffToToggle = new ArrayList<>(List.of(easyRadio, mediumRadio, hardRadio, hintButtonVariable, timeElapsed, startButton, wordSearch, scoreLabel));
+
         searchBoard.setOnDragDetected(
                 event -> {
                     if (event.getButton() == MouseButton.PRIMARY) {
@@ -49,6 +74,13 @@ public class HelloController {
 
     @FXML
     protected void handleClickMe() {
+        for (Node node : stuffToToggle) {
+            node.setVisible(!node.isVisible());
+        }
+        playerName = playerNameInput.getText() != null ? playerNameInput.getText() : "Player";
+
+        programStartTime = System.currentTimeMillis();
+        hintButtonVariable.setVisible(true);
         listOWords = new Label[25][25];
 
         for (int i = 0; i < listOWords.length; i++) {
@@ -137,12 +169,13 @@ public class HelloController {
                                     listOfPossibleWords.remove(reversed);
                                     dictionary.remove(word);
                                     dictionary.remove(reversed);
+                                    score = score + (word.length() * 0.6) - difficulty;
 
                                     hintWords.removeIf(
                                             word1 ->
                                                     word1.getWord().equals(word)
                                                             || word1.getWord()
-                                                                    .equals(reversed)); // basically
+                                                            .equals(reversed)); // basically
                                     // remove,
                                     // but with
                                     // a
@@ -155,13 +188,13 @@ public class HelloController {
                                                                 .getText()
                                                                 .equals(
                                                                         word.toLowerCase()
-                                                                                        .substring(
-                                                                                                0,
-                                                                                                1)
-                                                                                        .toUpperCase()
+                                                                                .substring(
+                                                                                        0,
+                                                                                        1)
+                                                                                .toUpperCase()
                                                                                 + word.toLowerCase()
-                                                                                        .substring(
-                                                                                                1))) {
+                                                                                .substring(
+                                                                                        1))) {
                                                             ((Text) node).setStrikethrough(true);
                                                             ((Text) node).setFill(Color.GREEN);
                                                         }
@@ -177,6 +210,7 @@ public class HelloController {
                                                 clickedLetters.size(),
                                                 direction,
                                                 "black"));
+                        score = score + 2;
                     } else {
                         clickedLetters.forEach(
                                 clickedLetter ->
@@ -185,12 +219,32 @@ public class HelloController {
                                                 .setTextFill(clickedLetter.getOldColor()));
                     }
                     clickedLetters.clear();
+
+                    if (listOfPossibleWords.size() == 0) {
+                        Path path = Paths.get("src/main/resources/leaderboard.txt");
+                        timer.cancel();
+
+                        try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
+                            writer.write("\n");
+                            writer.write(playerName + " " + score + " " + difficulty + " " + timeElapsed.getText());
+                        } catch (IOException ioe) {
+                            ioe.printStackTrace();
+                        }
+
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Game Over");
+                        alert.setHeaderText("You have won!");
+                        alert.setContentText("Your score is: " + score);
+                        alert.showAndWait();
+
+                        HelloApplication.setStageScene("main-menu");
+                    }
                 });
         timer.schedule(
                 new TimerTask() {
                     @Override
                     public void run() {
-                        String currentTime = timeElap.getText();
+                        String currentTime = timeElapsed.getText();
                         int minutes = Integer.parseInt(currentTime.split(":")[0]);
                         int seconds = Integer.parseInt(currentTime.split(":")[1]);
                         seconds++;
@@ -198,17 +252,24 @@ public class HelloController {
                             seconds = 0;
                             minutes++;
                         }
-                        timeElap.setText(String.format("%02d:%02d", minutes, seconds));
+                        timeElapsed.setText(String.format("%02d:%02d", minutes, seconds));
+                        if (seconds == 10) {
+                            hintButtonVariable.setDisable(getRandInt(1, 10) > 8);
+                        }
+                        score = (round(score));
+                        scoreLabel.setText(score + "");
                     }
                 },
                 1L,
                 1000L); // every second
     }
 
-    public void hintButton() {
+    @FXML
+    protected void hintButton() {
         if (hintWords.size() == 0) {
             return;
         }
+        score = score - 6;
         Word word = hintWords.get(Utils.getRandInt(0, hintWords.size()));
         hintWords.remove(word);
         String wordString = word.getWord();
@@ -239,5 +300,44 @@ public class HelloController {
                                 ((Text) nodee).setFill(Color.BLACK);
                             }
                         });
+    }
+
+    public void easySel(ActionEvent actionEvent) {
+        mediumRadio.setSelected(false);
+        hardRadio.setSelected(false);
+        difficulty = 1;
+    }
+
+    public void mediumSel(ActionEvent actionEvent) {
+        easyRadio.setSelected(false);
+        hardRadio.setSelected(false);
+        difficulty = 2;
+    }
+
+    public void hardSel(ActionEvent actionEvent) {
+        easyRadio.setSelected(false);
+        mediumRadio.setSelected(false);
+        difficulty = 3;
+    }
+
+    public void exitGame(ActionEvent event) {
+        HelloApplication.setStageScene("main-menu");
+    }
+
+    public void diySearch(ActionEvent event) {
+        System.out.println("Type 'end' to end the entry.");
+        Scanner in = new Scanner(System.in);
+        listOfPossibleWords.clear();
+        while (in.hasNext()) {
+            String word = in.next();
+            if (word.equals("end")) {
+                break;
+            }
+            if (listOfPossibleWords.contains(word)) {
+                continue;
+            }
+            listOfPossibleWords.add(word.toUpperCase());
+        }
+        ((Button) event.getSource()).setVisible(false);
     }
 }
