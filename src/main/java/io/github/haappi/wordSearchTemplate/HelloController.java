@@ -1,5 +1,7 @@
 package io.github.haappi.wordSearchTemplate;
 
+import static io.github.haappi.wordSearchTemplate.Utils.*;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
@@ -21,8 +23,6 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
-import static io.github.haappi.wordSearchTemplate.Utils.*;
-
 public class HelloController {
     private static final Timer timer = new Timer();
     private final ArrayList<String> listOfPossibleWords = new ArrayList<>();
@@ -33,16 +33,11 @@ public class HelloController {
     public Text wordSearch;
     public Text scoreLabel;
     public TextField playerNameInput;
-    @FXML
-    protected Text timeElapsed;
-    @FXML
-    protected GridPane wordBank;
-    @FXML
-    protected Button hintButtonVariable;
-    @FXML
-    protected GridPane searchBoard;
-    @FXML
-    protected AnchorPane anchorPane;
+    @FXML protected Text timeElapsed;
+    @FXML protected GridPane wordBank;
+    @FXML protected Button hintButtonVariable;
+    @FXML protected GridPane searchBoard;
+    @FXML protected AnchorPane anchorPane;
     Label[][] listOWords;
     ArrayList<ClickedLetter> clickedLetters = new ArrayList<>();
     private double score = 0;
@@ -59,7 +54,17 @@ public class HelloController {
 
     @FXML
     protected void initialize() {
-        stuffToToggle = new ArrayList<>(List.of(easyRadio, mediumRadio, hardRadio, hintButtonVariable, timeElapsed, startButton, wordSearch, scoreLabel));
+        stuffToToggle =
+                new ArrayList<>(
+                        List.of(
+                                easyRadio,
+                                mediumRadio,
+                                hardRadio,
+                                hintButtonVariable,
+                                timeElapsed,
+                                startButton,
+                                wordSearch,
+                                scoreLabel));
 
         searchBoard.setOnDragDetected(
                 event -> {
@@ -175,7 +180,7 @@ public class HelloController {
                                             word1 ->
                                                     word1.getWord().equals(word)
                                                             || word1.getWord()
-                                                            .equals(reversed)); // basically
+                                                                    .equals(reversed)); // basically
                                     // remove,
                                     // but with
                                     // a
@@ -188,13 +193,13 @@ public class HelloController {
                                                                 .getText()
                                                                 .equals(
                                                                         word.toLowerCase()
-                                                                                .substring(
-                                                                                        0,
-                                                                                        1)
-                                                                                .toUpperCase()
+                                                                                        .substring(
+                                                                                                0,
+                                                                                                1)
+                                                                                        .toUpperCase()
                                                                                 + word.toLowerCase()
-                                                                                .substring(
-                                                                                        1))) {
+                                                                                        .substring(
+                                                                                                1))) {
                                                             ((Text) node).setStrikethrough(true);
                                                             ((Text) node).setFill(Color.GREEN);
                                                         }
@@ -224,9 +229,17 @@ public class HelloController {
                         Path path = Paths.get("src/main/resources/leaderboard.txt");
                         timer.cancel();
 
-                        try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
+                        try (BufferedWriter writer =
+                                Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
                             writer.write("\n");
-                            writer.write(playerName + " " + score + " " + difficulty + " " + timeElapsed.getText());
+                            writer.write(
+                                    playerName
+                                            + " "
+                                            + score
+                                            + " "
+                                            + difficulty
+                                            + " "
+                                            + timeElapsed.getText());
                         } catch (IOException ioe) {
                             ioe.printStackTrace();
                         }

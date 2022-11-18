@@ -263,8 +263,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row][col - i].getText().equalsIgnoreCase("*")
                             || board[row][col - i]
-                            .getText()
-                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -277,8 +277,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row + i][col - i].getText().equalsIgnoreCase("*")
                             || board[row + i][col - i]
-                            .getText()
-                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -291,8 +291,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row + i][col].getText().equalsIgnoreCase("*")
                             || board[row + i][col]
-                            .getText()
-                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -306,8 +306,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row + i][col + i].getText().equalsIgnoreCase("*")
                             || board[row + i][col + i]
-                            .getText()
-                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -320,8 +320,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row][col + i].getText().equalsIgnoreCase("*")
                             || board[row][col + i]
-                            .getText()
-                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -334,8 +334,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row - i][col + i].getText().equalsIgnoreCase("*")
                             || board[row - i][col + i]
-                            .getText()
-                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -348,8 +348,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row - i][col].getText().equalsIgnoreCase("*")
                             || board[row - i][col]
-                            .getText()
-                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -362,8 +362,8 @@ public class Utils {
                 for (int i = 0; i < stringLength; i++) {
                     if (board[row - i][col - i].getText().equalsIgnoreCase("*")
                             || board[row - i][col - i]
-                            .getText()
-                            .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
+                                    .getText()
+                                    .equalsIgnoreCase(String.valueOf(word.charAt(i)))) {
                         counter++;
                     }
                 }
@@ -388,7 +388,6 @@ public class Utils {
             case 7 -> setRectangleStyle(region, "red", 20, 20, 0, 0);
         }
     }
-
 
     public static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
