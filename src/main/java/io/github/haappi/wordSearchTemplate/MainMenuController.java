@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class MainMenuController {
     public ListView<String> highScores;

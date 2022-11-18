@@ -425,21 +425,14 @@ public class Utils {
         return sortedLines;
     }
 
-    public static void finishGame(String playerName, Timer timer, int score, int difficulty, String playTime) {
+    public static void finishGame(
+            String playerName, Timer timer, int score, int difficulty, String playTime) {
         Path path = Paths.get("src/main/resources/leaderboard.txt");
         timer.cancel();
 
-        try (BufferedWriter writer =
-                     Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
+        try (BufferedWriter writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
             writer.write("\n");
-            writer.write(
-                    playerName
-                            + " "
-                            + score
-                            + " "
-                            + difficulty
-                            + " "
-                            + playTime);
+            writer.write(playerName + " " + score + " " + difficulty + " " + playTime);
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
