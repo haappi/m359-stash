@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.10'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
     id 'org.beryx.jlink' version '2.24.1'
 }
 
@@ -29,7 +29,7 @@ application {
 }
 
 javafx {
-    version = '17.0.1'
+    version = '18'
     modules = ['javafx.controls', 'javafx.fxml']
 }
 
