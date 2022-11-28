@@ -34,7 +34,7 @@ javafx {
 }
 
 dependencies {
-
+    implementation("redis.clients:jedis:4.3.0")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
@@ -50,6 +50,19 @@ jlink {
         name = 'app'
     }
 }
+
+//jar { // Comment this when running from IDE. Uncomment when packaging jar.
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+//
+//    manifest {
+//        attributes(
+//                'Main-Class': 'io.github.haappi.BoardGame.Launcher',
+//        )
+//    }
+//    from {
+//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+//}
 
 jlinkZip {
     group = 'distribution'
