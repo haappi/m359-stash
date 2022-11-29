@@ -4,7 +4,6 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,7 +48,8 @@ public class Utils {
                 System.out.println("received " + message + " from " + channel);
                 Test clazz = (getObject(message));
                 System.out.println(clazz.getName());
-                System.out.println(HelloApplication.getInstance().getGson().fromJson(message, Test.class));
+                System.out.println(
+                        HelloApplication.getInstance().getGson().fromJson(message, Test.class));
             }
         };
     }
@@ -62,7 +62,8 @@ public class Utils {
      */
     @SuppressWarnings("unchecked")
     public static <T> T getObject(String json) {
-        Map<Object, Object> map = HelloApplication.getInstance().getGson().fromJson(json, Map.class);
+        Map<Object, Object> map =
+                HelloApplication.getInstance().getGson().fromJson(json, Map.class);
 
         switch (ClassTypes.valueOf((String) map.get("classType"))) {
             case TEST -> {
@@ -70,11 +71,9 @@ public class Utils {
             }
         }
         return null;
-
     }
 
     public static <T> T castType(String json, Class<T> tClass) {
         return HelloApplication.getInstance().getGson().fromJson(json, tClass);
     }
-
 }

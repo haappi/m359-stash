@@ -2,6 +2,7 @@ package io.github.haappi.BoardGame;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+
 import redis.clients.jedis.Jedis;
 
 public class HelloController {
