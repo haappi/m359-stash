@@ -1,5 +1,5 @@
 package io.github.haappi.BoardGame;
-import redis.clients.jedis.Jedis;
+
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
 
@@ -13,7 +13,13 @@ import java.util.HashMap;
 public class Utils {
 
     public static JedisPool initJedis(HashMap<String, String> config) {
-        return new JedisPool(String.format("redis://%s:%s@%s:%s", config.get("USER"), config.get("PASS"), config.get("IP"), config.get("PORT")));
+        return new JedisPool(
+                String.format(
+                        "redis://%s:%s@%s:%s",
+                        config.get("USER"),
+                        config.get("PASS"),
+                        config.get("IP"),
+                        config.get("PORT")));
     }
 
     public static HashMap<String, String> loadConfig() throws IOException {
@@ -39,24 +45,25 @@ public class Utils {
             // https://codedestine.com/redis-jedis-pub-sub-java/
             @Override
             public void onMessage(String channel, String message) {
-                System.out.println("Channel " + channel + " has sent a message : " + message );
-                if(channel.equals("C1")) {
+                System.out.println("Channel " + channel + " has sent a message : " + message);
+                if (channel.equals("C1")) {
                     unsubscribe(channel);
                 }
             }
 
             @Override
             public void onSubscribe(String channel, int subscribedChannels) {
-                System.out.println("Client is Subscribed to channel : "+ channel);
-                System.out.println("Client is Subscribed to "+ subscribedChannels + " no. of channels");
+                System.out.println("Client is Subscribed to channel : " + channel);
+                System.out.println(
+                        "Client is Subscribed to " + subscribedChannels + " no. of channels");
             }
 
             @Override
             public void onUnsubscribe(String channel, int subscribedChannels) {
-                System.out.println("Client is Unsubscribed from channel : "+ channel);
-                System.out.println("Client is Subscribed to "+ subscribedChannels + " no. of channels");
+                System.out.println("Client is Unsubscribed from channel : " + channel);
+                System.out.println(
+                        "Client is Subscribed to " + subscribedChannels + " no. of channels");
             }
-
         };
     }
 }
