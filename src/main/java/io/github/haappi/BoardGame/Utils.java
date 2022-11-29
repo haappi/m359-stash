@@ -4,11 +4,13 @@ import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Utils {
 
@@ -42,28 +44,31 @@ public class Utils {
 
     public static JedisPubSub getListener() {
         return new JedisPubSub() {
-            // https://codedestine.com/redis-jedis-pub-sub-java/
             @Override
             public void onMessage(String channel, String message) {
-                System.out.println("Channel " + channel + " has sent a message : " + message);
-                if (channel.equals("C1")) {
-                    unsubscribe(channel);
-                }
-            }
-
-            @Override
-            public void onSubscribe(String channel, int subscribedChannels) {
-                System.out.println("Client is Subscribed to channel : " + channel);
-                System.out.println(
-                        "Client is Subscribed to " + subscribedChannels + " no. of channels");
-            }
-
-            @Override
-            public void onUnsubscribe(String channel, int subscribedChannels) {
-                System.out.println("Client is Unsubscribed from channel : " + channel);
-                System.out.println(
-                        "Client is Subscribed to " + subscribedChannels + " no. of channels");
+                System.out.println("received " + message + " from " + channel);
+                Test clazz = (getObject(message));
+                System.out.println(clazz.getName());
+                System.out.println(HelloApplication.getInstance().getGson().fromJson(message, Test.class));
             }
         };
     }
+
+    @SuppressWarnings("unchecked")
+    public static <T> T getObject(String json) {
+        Map<Object, Object> map = HelloApplication.getInstance().getGson().fromJson(json, Map.class);
+
+        switch (ClassTypes.valueOf((String) map.get("classType"))) {
+            case TEST -> {
+                return (T) castType(json, Test.class);
+            }
+        }
+        return null;
+
+    }
+
+    public static <T> T castType(String json, Class<T> tClass) {
+        return HelloApplication.getInstance().getGson().fromJson(json, tClass);
+    }
+
 }
