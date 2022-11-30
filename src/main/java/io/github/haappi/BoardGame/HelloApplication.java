@@ -90,7 +90,10 @@ public class HelloApplication extends Application {
 
         stage.setOnCloseRequest(
                 event -> {
-                    threads.forEach(Thread::interrupt); // somehow close all the threads (this isn't working)
+                    threads.forEach(
+                            Thread
+                                    ::interrupt); // somehow close all the threads (this isn't
+                                                  // working)
                 });
     }
 }

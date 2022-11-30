@@ -3,8 +3,8 @@ package io.github.haappi.BoardGame;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-
 import javafx.scene.control.TextField;
+
 import redis.clients.jedis.Jedis;
 
 public class HelloController {

@@ -1,6 +1,6 @@
 package io.github.haappi.BoardGame;
 
-public class UserJoined extends BasePacket{
+public class UserJoined extends BasePacket {
     private final String userName;
     private final long timeStamp;
 
@@ -13,7 +13,7 @@ public class UserJoined extends BasePacket{
     }
 
     public UserJoined(String userName) {
-//        super();
+        //        super();
         this.userName = userName;
         this.timeStamp = System.currentTimeMillis();
     }
