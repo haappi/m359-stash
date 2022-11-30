@@ -62,6 +62,7 @@ public class Utils {
     /**
      * Attempts to cast a given {@link String} automatically into its {@link Class<T>}
      * May return <b><font color ="orange">null</font></b> if the {@link ClassTypes} isn't found.
+     *
      * @param json The {@link String} json of the given object.
      * @return <b><font color ="orange">null</font></b> or the {@link ClassTypes} casted properly.
      */
@@ -70,10 +71,8 @@ public class Utils {
         Map<Object, Object> map =
                 HelloApplication.getInstance().getGson().fromJson(json, Map.class);
 
-        switch (ClassTypes.valueOf((String) map.get("classType"))) {
-            case TEST -> {
-                return (T) castType(json, Test.class);
-            }
+        if (ClassTypes.valueOf((String) map.get("classType")) == ClassTypes.TEST) {
+            return (T) castType(json, Test.class);
         }
         return null;
     }
