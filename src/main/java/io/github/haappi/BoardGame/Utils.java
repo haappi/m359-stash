@@ -16,7 +16,10 @@ import java.util.UUID;
 public class Utils {
 
     public static JedisPool initJedis(HashMap<String, String> config) {
-        if (!config.containsKey("USER") || !config.containsKey("PASS") || !config.containsKey("IP") || !config.containsKey("PORT")) {
+        if (!config.containsKey("USER")
+                || !config.containsKey("PASS")
+                || !config.containsKey("IP")
+                || !config.containsKey("PORT")) {
             return new JedisPool();
         }
         return new JedisPool(
@@ -83,7 +86,11 @@ public class Utils {
 
     public static void p(Jedis instance, String channel, String message) {
         String newMessage = message.substring(0, message.length() - 1);
-        newMessage = newMessage + ",\"clientID\":\"" + HelloApplication.getInstance().getClientID() + "\"}";
+        newMessage =
+                newMessage
+                        + ",\"clientID\":\""
+                        + HelloApplication.getInstance().getClientID()
+                        + "\"}";
         // ,"clientID":"...";
         instance.publish(channel, newMessage);
     }
