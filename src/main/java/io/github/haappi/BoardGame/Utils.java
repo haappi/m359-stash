@@ -10,11 +10,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class Utils {
 
-    public static JedisPool initJedis(HashMap<String, String> config) {
-        return new JedisPool(
+    public static CustomPool initJedis(HashMap<String, String> config) {
+        if (!config.containsKey("USER") || !config.containsKey("PASS") || !config.containsKey("IP") || !config.containsKey("PORT")) {
+            return new CustomPool();
+        }
+        return new CustomPool(
                 String.format(
                         "redis://%s:%s@%s:%s",
                         config.get("USER"),
@@ -38,6 +42,8 @@ public class Utils {
         Path path1 = Paths.get(path);
         if (!Files.exists(path1)) {
             Files.createFile(path1);
+            byte[] bytesData = ("CLIENT-ID=" + UUID.randomUUID()).getBytes();
+            Files.write(path1, bytesData);
         }
     }
 
