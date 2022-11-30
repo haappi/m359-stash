@@ -1,6 +1,6 @@
 package io.github.haappi.BoardGame;
 
-public class Test {
+public class Test extends BasePacket{
     private final String name;
     private final Long creationTime;
     private final String classType = String.valueOf(ClassTypes.TEST);

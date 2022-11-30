@@ -86,5 +86,11 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+        stage.setFullScreen(true);
+
+        stage.setOnCloseRequest(
+                event -> {
+                    threads.forEach(Thread::interrupt); // somehow close all the threads (this isn't working)
+                });
     }
 }

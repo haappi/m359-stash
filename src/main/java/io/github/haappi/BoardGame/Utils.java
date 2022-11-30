@@ -64,7 +64,7 @@ public class Utils {
 
     /**
      * Attempts to cast a given {@link String} automatically into its {@link Class<T>}
-     * May return <b><font color ="orange">null</font></b> if the {@link ClassTypes} isn't found.
+     * <br>May return <b><font color ="orange">null</font></b> if the {@link ClassTypes} isn't found.
      *
      * @param json The {@link String} json of the given object.
      * @return <b><font color ="orange">null</font></b> or the {@link ClassTypes} casted properly.
