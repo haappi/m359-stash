@@ -18,7 +18,7 @@ public class HelloApplication extends Application {
     protected HashMap<String, String> config;
     private String clientID;
     private final ArrayList<Thread> threads = new ArrayList<>();
-    protected CustomPool jedisPool;
+    protected JedisPool jedisPool;
     private static HelloApplication singleton;
     public static final int WIDTH = 1880;
     public static final int HEIGHT = 1040;
@@ -30,6 +30,10 @@ public class HelloApplication extends Application {
 
     public Gson getGson() {
         return singleton.gsonInstance;
+    }
+
+    public String getClientID() {
+        return this.clientID;
     }
 
     public Jedis getResource() {

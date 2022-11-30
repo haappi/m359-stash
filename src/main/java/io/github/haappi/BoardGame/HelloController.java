@@ -12,7 +12,7 @@ public class HelloController {
     protected void onHelloButtonClick() {
         Jedis instance = HelloApplication.getInstance().getResource();
         String json = HelloApplication.getInstance().getGson().toJson(new Test("heyyyy"));
-        instance.publish("test", json);
+        Utils.p(instance, "test", json);
         HelloApplication.getInstance().returnResource(instance);
     }
 }

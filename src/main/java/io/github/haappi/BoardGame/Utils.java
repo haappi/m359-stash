@@ -1,5 +1,6 @@
 package io.github.haappi.BoardGame;
 
+import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
 
@@ -14,11 +15,11 @@ import java.util.UUID;
 
 public class Utils {
 
-    public static CustomPool initJedis(HashMap<String, String> config) {
+    public static JedisPool initJedis(HashMap<String, String> config) {
         if (!config.containsKey("USER") || !config.containsKey("PASS") || !config.containsKey("IP") || !config.containsKey("PORT")) {
-            return new CustomPool();
+            return new JedisPool();
         }
-        return new CustomPool(
+        return new JedisPool(
                 String.format(
                         "redis://%s:%s@%s:%s",
                         config.get("USER"),
@@ -54,8 +55,6 @@ public class Utils {
                 System.out.println("received " + message + " from " + channel);
                 Test clazz = (getObject(message));
                 System.out.println(clazz.getName());
-                System.out.println(
-                        HelloApplication.getInstance().getGson().fromJson(message, Test.class));
             }
         };
     }
@@ -81,5 +80,12 @@ public class Utils {
 
     public static <T> T castType(String json, Class<T> tClass) {
         return HelloApplication.getInstance().getGson().fromJson(json, tClass);
+    }
+
+    public static void p(Jedis instance, String channel, String message) {
+        String newMessage = message.substring(0, message.length() - 1);
+        newMessage = newMessage + ",\"clientID\":\"" + HelloApplication.getInstance().getClientID() + "\"}";
+        // ,"clientID":"...";
+        instance.publish(channel, newMessage);
     }
 }

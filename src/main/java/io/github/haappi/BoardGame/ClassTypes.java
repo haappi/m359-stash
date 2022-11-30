@@ -2,7 +2,7 @@ package io.github.haappi.BoardGame;
 
 public enum ClassTypes {
     // https://stackoverflow.com/questions/3978654/best-way-to-create-enum-of-strings
-    TEST("test");
+    TEST("TEST");
 
     private final String text;
 
@@ -12,6 +12,6 @@ public enum ClassTypes {
 
     @Override
     public String toString() {
-        return text;
+        return text.toUpperCase();
     }
 }
