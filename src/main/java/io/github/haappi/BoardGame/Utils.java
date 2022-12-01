@@ -83,7 +83,10 @@ public class Utils {
             case TEST:
                 return (T) HelloApplication.getInstance().getGson().fromJson(json, Test.class);
             case CONNECTED_USER:
-                return (T) HelloApplication.getInstance().getGson().fromJson(json, ConnectedUser.class);
+                return (T)
+                        HelloApplication.getInstance()
+                                .getGson()
+                                .fromJson(json, ConnectedUser.class);
             default:
                 return null;
         }

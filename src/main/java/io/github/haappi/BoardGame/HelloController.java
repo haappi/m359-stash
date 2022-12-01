@@ -2,7 +2,6 @@ package io.github.haappi.BoardGame;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -30,7 +29,7 @@ public class HelloController {
         if (joinCode.getText() == null || joinCode.getText().isEmpty()) {
             return;
         }
-//        ((Node) actionEvent.getSource()).setDisable(true);
+        //        ((Node) actionEvent.getSource()).setDisable(true);
         HelloApplication.getInstance().setLobbyCode(joinCode.getText().toLowerCase());
 
         //        Jedis instance = HelloApplication.getInstance().getResource();
@@ -42,7 +41,7 @@ public class HelloController {
         maybe store player things in key mapping?
          */
 
-//        Utils.p(new Test(HelloApplication.getInstance().getClientID()));
+        //        Utils.p(new Test(HelloApplication.getInstance().getClientID()));
 
         Utils.p(new ConnectedUser(HelloApplication.getInstance().getClientID(), "haappi"));
         final Jedis subscriberJedis = HelloApplication.getInstance().getResource();
@@ -53,14 +52,24 @@ public class HelloController {
                                         Utils.getListener(),
                                         HelloApplication.getInstance().getLobbyCode()));
         thread.start();
-//        threadd = new Thread(() -> );
+        //        threadd = new Thread(() -> );
         // fixme this will always return 0 if you immediately run it after starting the thread.
-        System.out.println(subscriberJedis.sendCommand(Protocol.Command.PUBSUB, "NUMSUB", HelloApplication.getInstance().getLobbyCode()));
+        System.out.println(
+                subscriberJedis.sendCommand(
+                        Protocol.Command.PUBSUB,
+                        "NUMSUB",
+                        HelloApplication.getInstance().getLobbyCode()));
         //        HelloApplication.getInstance().returnResource(instance);
     }
 
     public void makeYourOwn(ActionEvent actionEvent) {
-        System.out.println(HelloApplication.getInstance().getResource().sendCommand(Protocol.Command.PUBSUB, "NUMSUB", HelloApplication.getInstance().getLobbyCode()));
-    return;
+        System.out.println(
+                HelloApplication.getInstance()
+                        .getResource()
+                        .sendCommand(
+                                Protocol.Command.PUBSUB,
+                                "NUMSUB",
+                                HelloApplication.getInstance().getLobbyCode()));
+        return;
     }
 }

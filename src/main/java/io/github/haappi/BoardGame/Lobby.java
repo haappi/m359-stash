@@ -1,7 +1,6 @@
 package io.github.haappi.BoardGame;
 
 import javafx.event.ActionEvent;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -19,7 +18,8 @@ public class Lobby {
 
     public void ready(ActionEvent actionEvent) {
         isPlayerReady = !isPlayerReady;
-        ((Button) actionEvent.getSource()).setText(isPlayerReady ? "I am ready." : "I am not ready");
+        ((Button) actionEvent.getSource())
+                .setText(isPlayerReady ? "I am ready." : "I am not ready");
         Utils.p(new PlayerUnreadyReady(isPlayerReady));
     }
 }
