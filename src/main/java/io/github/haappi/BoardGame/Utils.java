@@ -56,8 +56,8 @@ public class Utils {
             @Override
             public void onMessage(String channel, String message) {
                 System.out.println("received " + message + " from " + channel);
-                Test clazz = (getObject(message));
-                System.out.println(clazz.getName());
+                ConnectedUser clazz = (getObject(message));
+                System.out.println(clazz.toString());
             }
         };
     }
@@ -82,6 +82,8 @@ public class Utils {
         switch (constant) {
             case TEST:
                 return (T) HelloApplication.getInstance().getGson().fromJson(json, Test.class);
+            case CONNECTED_USER:
+                return (T) HelloApplication.getInstance().getGson().fromJson(json, ConnectedUser.class);
             default:
                 return null;
         }
@@ -100,7 +102,6 @@ public class Utils {
                         + "\"}";
         // ,"clientID":"...";
         instance.publish(channel, newMessage);
-        System.out.println("sent " + newMessage + " to " + channel);
     }
 
     /**

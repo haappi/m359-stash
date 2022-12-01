@@ -90,6 +90,9 @@ public class HelloApplication extends Application {
 
         stage.setOnCloseRequest(
                 event -> {
+                    if (this.lobbyCode != null && !this.lobbyCode.isEmpty()) {
+                        Utils.p(new UserLeft());
+                    }
                     threads.forEach(Thread::interrupt); // somehow close all the threads (this isn't
                     // working)
                 });
