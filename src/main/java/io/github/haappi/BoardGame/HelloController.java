@@ -24,13 +24,25 @@ public class HelloController {
     }
 
     public void connectToGame(ActionEvent actionEvent) {
-        Jedis instance = HelloApplication.getInstance().getResource();
-        String json =
-                HelloApplication.getInstance()
-                        .getGson()
-                        .toJson(new Test(HelloApplication.getInstance().getClientID()));
-        Utils.p(instance, "test", json);
-        HelloApplication.getInstance().returnResource(instance);
+        if (joinCode.getText() == null || joinCode.getText().isEmpty()) {
+            return;
+        }
+        HelloApplication.getInstance().setLobbyCode(joinCode.getText().toLowerCase());
+
+//        Jedis instance = HelloApplication.getInstance().getResource();
+        /* todo
+        some sort of key mapping persistently stored within redis (that gets deleted when application dies or after an hour or so)
+        that maps a key to a lobby code
+        player count
+        if game started
+        maybe store player things in key mapping?
+         */
+        Utils.p(new Test(HelloApplication.getInstance().getClientID()));
+        final Jedis subscriberJedis = HelloApplication.getInstance().getResource();
+        Thread thread = new Thread(() -> subscriberJedis.subscribe(Utils.getListener(), HelloApplication.getInstance().getLobbyCode()));
+        HelloApplication.getInstance().addThread(thread);
+        thread.start();
+//        HelloApplication.getInstance().returnResource(instance);
     }
 
     public void makeYourOwn(ActionEvent actionEvent) {

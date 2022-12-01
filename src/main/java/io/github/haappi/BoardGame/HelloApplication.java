@@ -63,6 +63,10 @@ public class HelloApplication extends Application {
         singleton.jedisPool.returnResource(instance);
     }
 
+    public void addThread(Thread thread) {
+        this.threads.add(thread);
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
         singleton = this;
@@ -76,10 +80,6 @@ public class HelloApplication extends Application {
         }
         this.clientID = this.config.get("CLIENT-ID");
         // https://basri.dev/posts/2012-06-20-a-simple-jedis-publish-subscribe-example/
-        final Jedis subscriberJedis = jedisPool.getResource();
-        Thread thread = new Thread(() -> subscriberJedis.subscribe(Utils.getListener(), "test"));
-        singleton.threads.add(thread);
-        thread.start();
         FXMLLoader fxmlLoader =
                 new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);

@@ -100,5 +100,32 @@ public class Utils {
                         + "\"}";
         // ,"clientID":"...";
         instance.publish(channel, newMessage);
+        System.out.println("sent " + newMessage + " to " + channel);
+    }
+
+    /**
+     * Automatically publishes a class to Jedis for you.
+     * This method automatically handles getting and closing a resource.
+     * The default channel specified in HelloController is used.
+     * @param object The object to publish.
+     */
+    public static void p(Object object) {
+        HelloApplication instance = HelloApplication.getInstance();
+        Jedis resource = instance.getResource();
+        Utils.p(resource, instance.getLobbyCode(), instance.getGson().toJson(object));
+        instance.returnResource(resource);
+    }
+
+    /**
+     * Automatically publishes a JSON String to Jedis for you.
+     * This method automatically handles getting and closing a resource.
+     * The default channel specified in HelloController is used.
+     * @param object The JSON String to publish.
+     */
+    public static void p(String object) {
+        HelloApplication instance = HelloApplication.getInstance();
+        Jedis resource = instance.getResource();
+        Utils.p(resource, instance.getLobbyCode(), object);
+        instance.returnResource(resource);
     }
 }
