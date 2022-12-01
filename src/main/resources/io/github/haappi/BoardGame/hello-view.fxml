@@ -4,13 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
-            fx:controller="io.github.haappi.BoardGame.HelloController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.BoardGame.HelloController">
     <children>
-        <Button layoutX="233.0" layoutY="175.0" mnemonicParsing="false" onAction="#onHelloButtonClick" text="Connect."/>
-        <Label fx:id="welcomeText" layoutX="259.0" layoutY="72.0" text="Label"/>
-        <TextField layoutX="74.0" layoutY="175.0" promptText="Enter Join Code"/>
-        <Button layoutX="375.0" layoutY="81.0" mnemonicParsing="false" text="Create your own lobby"/>
+        <Button layoutX="233.0" layoutY="175.0" mnemonicParsing="false" onAction="#connectToGame" text="Connect." />
+        <Label fx:id="welcomeText" layoutX="259.0" layoutY="72.0" text="Label" />
+        <TextField fx:id="joinCode" layoutX="74.0" layoutY="175.0" promptText="Enter Join Code" />
+        <Button disable="true" layoutX="375.0" layoutY="81.0" mnemonicParsing="false" onAction="#makeYourOwn" text="Create your own lobby" />
     </children>
 </AnchorPane>

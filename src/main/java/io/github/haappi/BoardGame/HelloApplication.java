@@ -1,11 +1,13 @@
 package io.github.haappi.BoardGame;
 
 import com.google.gson.Gson;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -84,5 +86,14 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
+        stage.setFullScreen(true);
+
+        stage.setOnCloseRequest(
+                event -> {
+                    threads.forEach(
+                            Thread
+                                    ::interrupt); // somehow close all the threads (this isn't
+                                                  // working)
+                });
     }
 }
