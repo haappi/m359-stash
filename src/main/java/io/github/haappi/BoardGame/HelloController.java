@@ -29,7 +29,7 @@ public class HelloController {
         }
         HelloApplication.getInstance().setLobbyCode(joinCode.getText().toLowerCase());
 
-//        Jedis instance = HelloApplication.getInstance().getResource();
+        //        Jedis instance = HelloApplication.getInstance().getResource();
         /* todo
         some sort of key mapping persistently stored within redis (that gets deleted when application dies or after an hour or so)
         that maps a key to a lobby code
@@ -39,10 +39,15 @@ public class HelloController {
          */
         Utils.p(new Test(HelloApplication.getInstance().getClientID()));
         final Jedis subscriberJedis = HelloApplication.getInstance().getResource();
-        Thread thread = new Thread(() -> subscriberJedis.subscribe(Utils.getListener(), HelloApplication.getInstance().getLobbyCode()));
+        Thread thread =
+                new Thread(
+                        () ->
+                                subscriberJedis.subscribe(
+                                        Utils.getListener(),
+                                        HelloApplication.getInstance().getLobbyCode()));
         HelloApplication.getInstance().addThread(thread);
         thread.start();
-//        HelloApplication.getInstance().returnResource(instance);
+        //        HelloApplication.getInstance().returnResource(instance);
     }
 
     public void makeYourOwn(ActionEvent actionEvent) {
