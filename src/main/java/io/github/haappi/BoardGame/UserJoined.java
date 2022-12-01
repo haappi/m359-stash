@@ -13,7 +13,6 @@ public class UserJoined extends BasePacket {
     }
 
     public UserJoined(String userName) {
-        //        super();
         this.userName = userName;
         this.timeStamp = System.currentTimeMillis();
     }

@@ -73,11 +73,18 @@ public class Utils {
     public static <T> T getObject(String json) {
         Map<Object, Object> map =
                 HelloApplication.getInstance().getGson().fromJson(json, Map.class);
-
-        if (ClassTypes.valueOf((String) map.get("classType")) == ClassTypes.TEST) {
-            return (T) castType(json, Test.class);
+        ClassTypes constant;
+        try {
+            constant = ClassTypes.valueOf((String) map.get("classType"));
+        } catch (IllegalArgumentException e) {
+            return null;
         }
-        return null;
+        switch (constant) {
+            case TEST:
+                return (T) HelloApplication.getInstance().getGson().fromJson(json, Test.class);
+            default:
+                return null;
+        }
     }
 
     public static <T> T castType(String json, Class<T> tClass) {
