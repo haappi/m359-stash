@@ -29,6 +29,8 @@ public class HelloController {
         if (joinCode.getText() == null || joinCode.getText().isEmpty()) {
             return;
         }
+        // todo check how many players are in the given lobby code
+        // todo if it's already at 4 players, inform the user that the lobby they specified is arelady full.
         //        ((Node) actionEvent.getSource()).setDisable(true);
         HelloApplication.getInstance().setLobbyCode(joinCode.getText().toLowerCase());
 
