@@ -58,8 +58,7 @@ public class HelloApplication extends Application {
 
     public void setScene(String fileName, boolean fullScreen) throws IOException {
         fileName = fileName.replace(".fxml", "") + ".fxml";
-        FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource(fileName));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fileName));
         Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setTitle("Hello!");
         stage.setScene(scene);
@@ -111,6 +110,4 @@ public class HelloApplication extends Application {
                     // working)
                 });
     }
-
-
 }

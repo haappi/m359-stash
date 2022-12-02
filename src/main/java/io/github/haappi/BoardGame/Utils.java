@@ -3,7 +3,6 @@ package io.github.haappi.BoardGame;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
-import redis.clients.jedis.Protocol;
 
 import java.io.IOException;
 import java.nio.file.Files;
