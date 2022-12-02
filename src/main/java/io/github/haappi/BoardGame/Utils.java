@@ -3,6 +3,7 @@ package io.github.haappi.BoardGame;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
+import redis.clients.jedis.Protocol;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -96,6 +97,12 @@ public class Utils {
         return HelloApplication.getInstance().getGson().fromJson(json, tClass);
     }
 
+    /**
+     * Publishes a class to Jedis.
+     * @param instance {@link Jedis} instance to use.
+     * @param channel A {@link String} specifying the channel name.
+     * @param message A JSON {@link String} with the information needed to pass. <br><font color="orange"><b>This must be valid JSON</font></b>
+     */
     public static void p(Jedis instance, String channel, String message) {
         String newMessage = message.substring(0, message.length() - 1);
         newMessage =
@@ -131,5 +138,18 @@ public class Utils {
         Jedis resource = instance.getResource();
         Utils.p(resource, instance.getLobbyCode(), object);
         instance.returnResource(resource);
+    }
+
+    /**
+     * Retrieves the amount of connected clients to the specified channel.
+     * This automatically handles getting and closing a {@link Jedis} resource.
+     * @param channel A {@link String} containing the channel to check for.
+     * @return A {@link Long} containing the number of connected clients.
+     */
+    public static Long getNumCount(String channel) {
+        Jedis resource = HelloApplication.getInstance().getResource();
+        Map<String, Long> longHashMap = resource.pubsubNumSub(channel);
+
+        return longHashMap.get(channel);
     }
 }

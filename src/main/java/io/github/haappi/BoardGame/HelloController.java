@@ -34,6 +34,7 @@ public class HelloController {
         // arelady full.
         //        ((Node) actionEvent.getSource()).setDisable(true);
         HelloApplication.getInstance().setLobbyCode(joinCode.getText().toLowerCase());
+        System.out.println(Utils.getNumCount(joinCode.getText().toLowerCase()));
 
         //        Jedis instance = HelloApplication.getInstance().getResource();
         /* todo
@@ -56,11 +57,6 @@ public class HelloController {
         thread.start();
         //        threadd = new Thread(() -> );
         // fixme this will always return 0 if you immediately run it after starting the thread.
-        System.out.println(
-                subscriberJedis.sendCommand(
-                        Protocol.Command.PUBSUB,
-                        "NUMSUB",
-                        HelloApplication.getInstance().getLobbyCode()));
         //        HelloApplication.getInstance().returnResource(instance);
     }
 

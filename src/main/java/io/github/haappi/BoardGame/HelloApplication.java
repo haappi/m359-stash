@@ -22,6 +22,7 @@ public class HelloApplication extends Application {
     private static HelloApplication singleton;
     private final ArrayList<Thread> threads = new ArrayList<>();
     private final Gson gsonInstance = new Gson();
+    private Stage stage;
     protected HashMap<String, String> config;
     protected JedisPool jedisPool;
     private String clientID;
@@ -49,6 +50,25 @@ public class HelloApplication extends Application {
 
     public String getClientID() {
         return this.clientID;
+    }
+
+    public Stage getStage() {
+        return this.stage;
+    }
+
+    public void setScene(String fileName, boolean fullScreen) throws IOException {
+        fileName = fileName.replace(".fxml", "") + ".fxml";
+        FXMLLoader fxmlLoader =
+                new FXMLLoader(HelloApplication.class.getResource(fileName));
+        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        stage.setTitle("Hello!");
+        stage.setScene(scene);
+        stage.show();
+        stage.setFullScreen(fullScreen);
+    }
+
+    public void setScene(String fileName) throws IOException {
+        setScene(fileName, true);
     }
 
     public Jedis getResource() {
@@ -80,14 +100,8 @@ public class HelloApplication extends Application {
         }
         this.clientID = this.config.get("CLIENT-ID");
         // https://basri.dev/posts/2012-06-20-a-simple-jedis-publish-subscribe-example/
-        FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setTitle("Hello!");
-        stage.setScene(scene);
-        stage.show();
-        stage.setFullScreen(true);
-
+        this.stage = stage;
+        setScene("hello-view", true);
         stage.setOnCloseRequest(
                 event -> {
                     if (this.lobbyCode != null && !this.lobbyCode.isEmpty()) {
@@ -97,4 +111,6 @@ public class HelloApplication extends Application {
                     // working)
                 });
     }
+
+
 }
