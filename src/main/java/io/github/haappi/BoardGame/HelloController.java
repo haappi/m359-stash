@@ -35,9 +35,12 @@ public class HelloController {
         //        ((Node) actionEvent.getSource()).setDisable(true);
         HelloApplication.getInstance().setLobbyCode(joinCode.getText().toLowerCase());
         if (Utils.getNumCount(joinCode.getText().toLowerCase()) >= 4) {
-            throw new RuntimeException("This lobby has reached the maximum of players."); // todo handle this better (show it to the client visually and return out of this function)
+            throw new RuntimeException(
+                    "This lobby has reached the maximum of players."); // todo handle this better
+                                                                       // (show it to the client
+                                                                       // visually and return out of
+                                                                       // this function)
         }
-
 
         //        Jedis instance = HelloApplication.getInstance().getResource();
         /* todo
