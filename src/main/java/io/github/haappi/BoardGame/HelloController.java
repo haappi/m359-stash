@@ -38,7 +38,6 @@ public class HelloController {
         /* todo
         some sort of key mapping persistently stored within redis (that gets deleted when application dies or after an hour or so)
         that maps a key to a lobby code
-        player count
         if game started
         maybe store player things in key mapping?
          */
