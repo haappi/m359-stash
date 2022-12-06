@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Protocol;
 
@@ -11,8 +12,7 @@ public class HelloController {
     public TextField joinCode;
     public TextField name;
     Thread threadd;
-    @FXML
-    private Label welcomeText;
+    @FXML private Label welcomeText;
 
     @FXML
     protected void onHelloButtonClick() {
