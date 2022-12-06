@@ -105,7 +105,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         singleton = this;
-        this.config = Utils.loadConfig();
+        this.config = Utils.loadConfig("config.txt");
         this.jedisPool = Utils.initJedis(this.config);
         final Jedis resource = this.getResource();
         try {

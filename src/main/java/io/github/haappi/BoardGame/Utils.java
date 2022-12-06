@@ -33,8 +33,15 @@ public class Utils {
                         config.get("PORT")));
     }
 
-    public static HashMap<String, String> loadConfig() throws IOException {
-        createFile("config.txt");
+    /**
+     * Loads a configuration file (or any file seperated with <b><font color ="aqua">=</font></b>)
+     * This will create a new file if it does not exist, and generate a random {@link UUID} to write.
+     * @param fileName The filename to load from.
+     * @return A {@link HashMap} with the keys and values casted as {@link String}'s
+     * @throws IOException If an IO error occurred.
+     */
+    public static HashMap<String, String> loadConfig(String fileName) throws IOException {
+        createFile(fileName, true);
         ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get("config.txt")));
         HashMap<String, String> config = new HashMap<>();
         for (String line : lines) {
@@ -44,21 +51,34 @@ public class Utils {
         return config;
     }
 
-    public static void createFile(String path) throws IOException {
+    /**
+     * Creates a file for you at the given {@link String} path.
+     * @param path A {@link String} containing the path to create the file.
+     * @param writeClient A {@link Boolean} stating whether to write a CLIENT-ID field or not.
+     * @throws IOException Thrown if IO errors have occurred.
+     */
+    public static void createFile(String path, boolean writeClient) throws IOException {
         Path path1 = Paths.get(path);
         if (!Files.exists(path1)) {
             Files.createFile(path1);
-            byte[] bytesData = ("CLIENT-ID=" + UUID.randomUUID()).getBytes();
-            Files.write(path1, bytesData);
+            if (writeClient) {
+                byte[] bytesData = ("CLIENT-ID=" + UUID.randomUUID()).getBytes();
+                Files.write(path1, bytesData);
+            }
         }
     }
 
-    public static JedisPubSub getListener() {
+    public static <T> JedisPubSub getListener() {
+        String clientID = HelloApplication.getInstance().getClientID();
         return new JedisPubSub() {
             @Override
             public void onMessage(String channel, String message) {
+                if (message.contains(clientID)) {
+                    return; // Ignore messages sent by the same client.
+                }
+                T object = getObject(message);
                 System.out.println("received " + message + " from " + channel);
-                if (getObject(message) instanceof ConnectedUser) {
+                if (object instanceof ConnectedUser) {
                     Utils.p(new ConnectedUser("test"));
                     // if we're in the lobby view, add it to the ListView, else drop it.
                     // todo                   Utils.p(); // send a message so the newly connected
@@ -98,10 +118,21 @@ public class Utils {
         }
     }
 
+    /**
+     * Casts the given {@link String} JSON into the provided {@link Class<T>}.
+     * @param json A {@link String} containing the JSON received from the server.
+     * @param tClass The {@link Class<T>} attempting to be casted into.
+     * @return {@link T} The JSON String casted into the Class.
+     */
     public static <T> T castType(String json, Class<T> tClass) {
         return HelloApplication.getInstance().getGson().fromJson(json, tClass);
     }
 
+    /**
+     * Returns a {@link FileInputStream} for a given asset in the assets' directory.
+     * @param fileName A {@link String} containing the filename.
+     * @return The {@link FileInputStream} if the file is found, else <b><font color ="orange">null</font></b>
+     */
     public static FileInputStream getImage(String fileName) {
         fileName =
                 fileName.replace(" ", "_").split("\\.")[0]; // Escape the dot, get the first element

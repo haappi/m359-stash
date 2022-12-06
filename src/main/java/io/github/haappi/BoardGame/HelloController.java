@@ -5,6 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Protocol;
 
@@ -45,6 +47,7 @@ public class HelloController {
         HelloApplication.getInstance().setLobbyCode(joinCode.getText().toLowerCase());
         if (Utils.getNumCount(joinCode.getText().toLowerCase()) >= 4) {
             welcomeText.setText("Lobby is full!");
+            welcomeText.setTextFill(Color.RED);
             return;
             //            throw new RuntimeException(
             //                    "This lobby has reached the maximum of players."); // todo handle
