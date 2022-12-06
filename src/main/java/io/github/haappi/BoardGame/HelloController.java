@@ -4,9 +4,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Protocol;
 
