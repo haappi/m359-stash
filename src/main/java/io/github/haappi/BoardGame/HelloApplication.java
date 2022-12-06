@@ -22,6 +22,22 @@ public class HelloApplication extends Application {
     private long redisClientID;
     private static HelloApplication singleton;
     private final ArrayList<Thread> threads = new ArrayList<>();
+    private final ArrayList<ConnectedUser> connectedUserArrayList = new ArrayList<>();
+
+    public ArrayList<ConnectedUser> getConnectedUserArrayList() {
+        return connectedUserArrayList;
+    }
+
+    public ArrayList<ConnectedUser> addConnectedUser(ConnectedUser connectedUser) {
+        connectedUserArrayList.add(connectedUser);
+        return connectedUserArrayList;
+    }
+
+    public ArrayList<ConnectedUser> removeConnectedUser(ConnectedUser connectedUser) {
+        connectedUserArrayList.remove(connectedUser);
+        return connectedUserArrayList;
+    }
+
     private final Gson gsonInstance = new Gson();
     private Stage stage;
     protected HashMap<String, String> config;
