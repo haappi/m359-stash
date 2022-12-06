@@ -4,6 +4,8 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -56,8 +58,11 @@ public class Utils {
             @Override
             public void onMessage(String channel, String message) {
                 System.out.println("received " + message + " from " + channel);
-                ConnectedUser clazz = (getObject(message));
-                System.out.println(clazz.toString());
+                if (getObject(message) instanceof ConnectedUser) {
+                    Utils.p(new ConnectedUser("test"));
+                    // if we're in the lobby view, add it to the ListView, else drop it.
+// todo                   Utils.p(); // send a message so the newly connected user can get the current players of the game.
+                }
             }
         };
     }
@@ -94,6 +99,16 @@ public class Utils {
 
     public static <T> T castType(String json, Class<T> tClass) {
         return HelloApplication.getInstance().getGson().fromJson(json, tClass);
+    }
+
+    public static FileInputStream getImage(String fileName) {
+        fileName = fileName.replace(" ", "_").split("\\.")[0]; // Escape the dot, get the first element
+        try {
+            return new FileInputStream("src/main/resources/assets/" + fileName + ".png");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     /**
@@ -150,5 +165,16 @@ public class Utils {
         Map<String, Long> longHashMap = resource.pubsubNumSub(channel);
 
         return longHashMap.get(channel);
+    }
+
+    /**
+     * Gets the current ping to the connected {@link JedisPool} instance as a {@link Long}.
+     */
+    public static Long getPing() {
+        long start = System.currentTimeMillis();
+        Jedis resource = HelloApplication.getInstance().getResource();
+        resource.ping();
+        HelloApplication.getInstance().returnResource(resource);
+        return System.currentTimeMillis() - start;
     }
 }

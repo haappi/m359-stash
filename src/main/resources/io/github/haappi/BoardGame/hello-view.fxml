@@ -5,11 +5,12 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.BoardGame.HelloController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.BoardGame.HelloController">
     <children>
         <Button layoutX="233.0" layoutY="175.0" mnemonicParsing="false" onAction="#connectToGame" text="Connect." />
         <Label fx:id="welcomeText" layoutX="259.0" layoutY="72.0" text="Label" />
         <TextField fx:id="joinCode" layoutX="74.0" layoutY="175.0" promptText="Enter Join Code" />
         <Button disable="false" layoutX="375.0" layoutY="81.0" mnemonicParsing="false" onAction="#makeYourOwn" text="Create your own lobby" />
+      <TextField fx:id="name" layoutX="205.0" layoutY="115.0" promptText="What is your name" />
     </children>
 </AnchorPane>

@@ -5,11 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Protocol;
 
 public class HelloController {
     public TextField joinCode;
+    public TextField name;
     Thread threadd;
     @FXML private Label welcomeText;
 
@@ -25,6 +29,14 @@ public class HelloController {
         HelloApplication.getInstance().returnResource(instance);
     }
 
+//    @FXML
+//    protected void initialize() {
+//        Image image = new Image(Utils.getImage("map-of-north-america.png"));
+//        aaa.add(new ImageView(image), 0, 0);
+//        aaa.setGridLinesVisible(true);
+//        aaa.setPrefSize(1000, 1000);
+//    }
+
     public void connectToGame(ActionEvent actionEvent) {
         if (joinCode.getText() == null || joinCode.getText().isEmpty()) {
             return;
@@ -35,8 +47,10 @@ public class HelloController {
         //        ((Node) actionEvent.getSource()).setDisable(true);
         HelloApplication.getInstance().setLobbyCode(joinCode.getText().toLowerCase());
         if (Utils.getNumCount(joinCode.getText().toLowerCase()) >= 4) {
-            throw new RuntimeException(
-                    "This lobby has reached the maximum of players."); // todo handle this better
+            welcomeText.setText("Lobby is full!");
+            return;
+//            throw new RuntimeException(
+//                    "This lobby has reached the maximum of players."); // todo handle this better
                                                                        // (show it to the client
                                                                        // visually and return out of
                                                                        // this function)
@@ -50,9 +64,7 @@ public class HelloController {
         maybe store player things in key mapping?
          */
 
-        //        Utils.p(new Test(HelloApplication.getInstance().getClientID()));
-
-        Utils.p(new ConnectedUser(HelloApplication.getInstance().getClientID(), "haappi"));
+        Utils.p(new ConnectedUser(HelloApplication.getInstance().getClientID(), name.getText() != null ? name.getText() : "Player " + Utils.getNumCount(joinCode.getText().toLowerCase())));
         final Jedis subscriberJedis = HelloApplication.getInstance().getResource();
         Thread thread =
                 new Thread(
@@ -67,6 +79,7 @@ public class HelloController {
     }
 
     public void makeYourOwn(ActionEvent actionEvent) {
+        Utils.p(new PingRequest());
         System.out.println(
                 HelloApplication.getInstance()
                         .getResource()

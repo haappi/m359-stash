@@ -19,6 +19,7 @@ import java.util.UUID;
 public class HelloApplication extends Application {
     public static final int WIDTH = 1880;
     public static final int HEIGHT = 1040;
+    private long redisClientID;
     private static HelloApplication singleton;
     private final ArrayList<Thread> threads = new ArrayList<>();
     private final Gson gsonInstance = new Gson();
@@ -91,6 +92,7 @@ public class HelloApplication extends Application {
         singleton = this;
         this.config = Utils.loadConfig();
         this.jedisPool = Utils.initJedis(this.config);
+        final Jedis resource = this.getResource();
         try {
             UUID.fromString(this.config.get("CLIENT-ID"));
         } catch (IllegalArgumentException e) {
@@ -98,6 +100,9 @@ public class HelloApplication extends Application {
             throw new RuntimeException("Malformed UUID. Received: " + config.get("CLIENT-ID"));
         }
         this.clientID = this.config.get("CLIENT-ID");
+        resource.clientSetname(this.clientID);
+        this.redisClientID = resource.clientId();
+        this.returnResource(resource);
         // https://basri.dev/posts/2012-06-20-a-simple-jedis-publish-subscribe-example/
         this.stage = stage;
         setScene("hello-view", true);
