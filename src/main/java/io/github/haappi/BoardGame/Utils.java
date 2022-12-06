@@ -61,7 +61,8 @@ public class Utils {
                 if (getObject(message) instanceof ConnectedUser) {
                     Utils.p(new ConnectedUser("test"));
                     // if we're in the lobby view, add it to the ListView, else drop it.
-// todo                   Utils.p(); // send a message so the newly connected user can get the current players of the game.
+                    // todo                   Utils.p(); // send a message so the newly connected
+                    // user can get the current players of the game.
                 }
             }
         };
@@ -102,7 +103,8 @@ public class Utils {
     }
 
     public static FileInputStream getImage(String fileName) {
-        fileName = fileName.replace(" ", "_").split("\\.")[0]; // Escape the dot, get the first element
+        fileName =
+                fileName.replace(" ", "_").split("\\.")[0]; // Escape the dot, get the first element
         try {
             return new FileInputStream("src/main/resources/assets/" + fileName + ".png");
         } catch (FileNotFoundException e) {

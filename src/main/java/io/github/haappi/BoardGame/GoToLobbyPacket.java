@@ -1,4 +1,3 @@
 package io.github.haappi.BoardGame;
 
-public class GoToLobbyPacket extends BasePacket{
-}
+public class GoToLobbyPacket extends BasePacket {}
