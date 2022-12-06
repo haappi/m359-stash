@@ -115,9 +115,10 @@ public class Utils {
 
     /**
      * Publishes a class to Jedis.
+     *
      * @param instance {@link Jedis} instance to use.
-     * @param channel A {@link String} specifying the channel name.
-     * @param message A JSON {@link String} with the information needed to pass. <br><font color="orange"><b>This must be valid JSON</font></b>
+     * @param channel  A {@link String} specifying the channel name.
+     * @param message  A JSON {@link String} with the information needed to pass. <br><font color="orange"><b>This must be valid JSON</font></b>
      */
     public static void p(Jedis instance, String channel, String message) {
         String newMessage = message.substring(0, message.length() - 1);
@@ -134,6 +135,7 @@ public class Utils {
      * Automatically publishes a class to Jedis for you.
      * This method automatically handles getting and closing a resource.
      * The default channel specified in HelloController is used.
+     *
      * @param object The object to publish.
      */
     public static void p(Object object) {
@@ -147,6 +149,7 @@ public class Utils {
      * Automatically publishes a JSON String to Jedis for you.
      * This method automatically handles getting and closing a resource.
      * The default channel specified in HelloController is used.
+     *
      * @param object The JSON String to publish.
      */
     public static void p(String object) {
@@ -159,6 +162,7 @@ public class Utils {
     /**
      * Retrieves the amount of connected clients to the specified channel.
      * This automatically handles getting and closing a {@link Jedis} resource.
+     *
      * @param channel A {@link String} containing the channel to check for.
      * @return A {@link Long} containing the number of connected clients.
      */

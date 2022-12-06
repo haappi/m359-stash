@@ -1,13 +1,11 @@
 package io.github.haappi.BoardGame;
 
 import com.google.gson.Gson;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -19,10 +17,24 @@ import java.util.UUID;
 public class HelloApplication extends Application {
     public static final int WIDTH = 1880;
     public static final int HEIGHT = 1040;
-    private long redisClientID;
     private static HelloApplication singleton;
     private final ArrayList<Thread> threads = new ArrayList<>();
     private final ArrayList<ConnectedUser> connectedUserArrayList = new ArrayList<>();
+    private final Gson gsonInstance = new Gson();
+    protected HashMap<String, String> config;
+    protected JedisPool jedisPool;
+    private long redisClientID;
+    private Stage stage;
+    private String clientID;
+    private String lobbyCode;
+
+    public static HelloApplication getInstance() {
+        return singleton;
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
 
     public ArrayList<ConnectedUser> getConnectedUserArrayList() {
         return connectedUserArrayList;
@@ -36,21 +48,6 @@ public class HelloApplication extends Application {
     public ArrayList<ConnectedUser> removeConnectedUser(ConnectedUser connectedUser) {
         connectedUserArrayList.remove(connectedUser);
         return connectedUserArrayList;
-    }
-
-    private final Gson gsonInstance = new Gson();
-    private Stage stage;
-    protected HashMap<String, String> config;
-    protected JedisPool jedisPool;
-    private String clientID;
-    private String lobbyCode;
-
-    public static HelloApplication getInstance() {
-        return singleton;
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 
     public String getLobbyCode() {

@@ -1,13 +1,9 @@
 package io.github.haappi.BoardGame;
 
 public class BasePacket {
+    private final String classType;
     private boolean isAMovePacket = false;
     private String fxID = "nil";
-    private final String classType;
-
-    public String getClassType() {
-        return this.classType;
-    }
 
     public BasePacket(ClassTypes classTypes) {
         this.classType = String.valueOf(classTypes);
@@ -15,6 +11,10 @@ public class BasePacket {
 
     public BasePacket() {
         this.classType = String.valueOf(ClassTypes.UNKNOWN);
+    }
+
+    public String getClassType() {
+        return this.classType;
     }
 
     public boolean isMovePacket() {
