@@ -2,34 +2,28 @@ package io.github.haappi.BoardGame;
 
 public class BasePacket {
     private final String classType;
-    private boolean isAMovePacket = false;
-    private String fxID = "nil";
+    private final boolean ignoreSelf;
 
-    public BasePacket(ClassTypes classTypes) {
+
+    public BasePacket(ClassTypes classTypes, boolean ignoreSelf) {
         this.classType = String.valueOf(classTypes);
+        this.ignoreSelf = ignoreSelf;
+    }
+    public BasePacket(ClassTypes classTypes) {
+        this(classTypes, true);
     }
 
     public BasePacket() {
-        this.classType = String.valueOf(ClassTypes.UNKNOWN);
+        this(ClassTypes.UNKNOWN, true);
+    }
+
+
+    public boolean isIgnoreSelf() {
+        return ignoreSelf;
     }
 
     public String getClassType() {
         return this.classType;
     }
 
-    public boolean isMovePacket() {
-        return isAMovePacket;
-    }
-
-    public void setMovePacket(boolean movePacket) {
-        isAMovePacket = movePacket;
-    }
-
-    public String getFxID() {
-        return fxID;
-    }
-
-    public void setFxID(String fxID) {
-        this.fxID = fxID;
-    }
 }

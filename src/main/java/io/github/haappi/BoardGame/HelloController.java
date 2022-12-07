@@ -2,12 +2,15 @@ package io.github.haappi.BoardGame;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Protocol;
+
+import java.io.IOException;
 
 public class HelloController {
     public TextField joinCode;
@@ -35,27 +38,18 @@ public class HelloController {
     //        aaa.setPrefSize(1000, 1000);
     //    }
 
-    public void connectToGame(ActionEvent actionEvent) {
+    public void connectToGame(ActionEvent actionEvent) throws IOException {
         if (joinCode.getText() == null || joinCode.getText().isEmpty()) {
             return;
         }
-        // todo check how many players are in the given lobby code
-        // todo if it's already at 4 players, inform the user that the lobby they specified is
-        // arelady full.
-        //        ((Node) actionEvent.getSource()).setDisable(true);
         HelloApplication.getInstance().setLobbyCode(joinCode.getText().toLowerCase());
-        if (Utils.getNumCount(joinCode.getText().toLowerCase()) >= 4) {
+        long count = Utils.getNumCount(HelloApplication.joinCode());
+        if (count >= 4) {
             welcomeText.setText("Lobby is full!");
             welcomeText.setTextFill(Color.RED);
             return;
-            //            throw new RuntimeException(
-            //                    "This lobby has reached the maximum of players."); // todo handle
-            // this better
-            // (show it to the client
-            // visually and return out of
-            // this function)
         }
-
+        ((Node) actionEvent.getSource()).setDisable(true);
         //        Jedis instance = HelloApplication.getInstance().getResource();
         /* todo
         some sort of key mapping persistently stored within redis (that gets deleted when application dies or after an hour or so)
@@ -64,33 +58,15 @@ public class HelloController {
         maybe store player things in key mapping?
          */
 
+        final Jedis subscriberJedis = HelloApplication.getInstance().getResource();
+        Thread thread = new Thread(() -> subscriberJedis.subscribe(Utils.getListener(), HelloApplication.joinCode()));
+        thread.start();
+        HelloApplication.getInstance().setName(name.getText() != null ? name.getText() : "Player " + count);
+        String stringName = HelloApplication.getInstance().getName();
         Utils.p(
                 new ConnectedUser(
                         HelloApplication.getInstance().getClientID(),
-                        name.getText() != null
-                                ? name.getText()
-                                : "Player " + Utils.getNumCount(joinCode.getText().toLowerCase())));
-        final Jedis subscriberJedis = HelloApplication.getInstance().getResource();
-        Thread thread =
-                new Thread(
-                        () ->
-                                subscriberJedis.subscribe(
-                                        Utils.getListener(),
-                                        HelloApplication.getInstance().getLobbyCode()));
-        thread.start();
-        //        threadd = new Thread(() -> );
-        // fixme this will always return 0 if you immediately run it after starting the thread.
-        //        HelloApplication.getInstance().returnResource(instance);
-    }
-
-    public void makeYourOwn(ActionEvent actionEvent) {
-        Utils.p(new PingRequest());
-        System.out.println(
-                HelloApplication.getInstance()
-                        .getResource()
-                        .sendCommand(
-                                Protocol.Command.PUBSUB,
-                                "NUMSUB",
-                                HelloApplication.getInstance().getLobbyCode()));
+                        stringName));
+        HelloApplication.getInstance().setScene("lobby");
     }
 }

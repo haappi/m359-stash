@@ -29,6 +29,15 @@ public class HelloApplication extends Application {
     private Stage stage;
     private String clientID;
     private String lobbyCode;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public static HelloApplication getInstance() {
         return singleton;
@@ -45,6 +54,10 @@ public class HelloApplication extends Application {
     public ArrayList<ConnectedUser> addConnectedUser(ConnectedUser connectedUser) {
         connectedUserArrayList.add(connectedUser);
         return connectedUserArrayList;
+    }
+
+    public static String joinCode() {
+        return singleton.lobbyCode;
     }
 
     public ArrayList<ConnectedUser> removeConnectedUser(ConnectedUser connectedUser) {

@@ -73,13 +73,14 @@ public class Utils {
         return new JedisPubSub() {
             @Override
             public void onMessage(String channel, String message) {
-                if (message.contains(clientID)) {
+                if (message.contains("\"ignoreSelf\":true") && message.contains(clientID)) {
                     return; // Ignore messages sent by the same client.
                 }
                 T object = getObject(message);
                 System.out.println("received " + message + " from " + channel);
-                if (object instanceof ConnectedUser) {
-                    Utils.p(new ConnectedUser("test"));
+                if (object instanceof ConnectedUser connectedUser) {
+                    Lobby.addUserToConnected(connectedUser);
+                    Utils.p(new ConnectedUser(HelloApplication.getInstance().getClientID(), HelloApplication.getInstance().getName()));
                     // if we're in the lobby view, add it to the ListView, else drop it.
                     // todo                   Utils.p(); // send a message so the newly connected
                     // user can get the current players of the game.

@@ -5,18 +5,36 @@ public class ConnectedUser extends BasePacket {
     private final long connectedSince;
     private final String userName;
 
-    public ConnectedUser(String UUID, String userName) {
-        super(ClassTypes.CONNECTED_USER);
+    public ConnectedUser(String UUID, String userName, boolean ignoreSelf) {
+        super(ClassTypes.CONNECTED_USER, ignoreSelf);
         this.UUID = UUID;
         this.userName = userName;
         this.connectedSince = System.currentTimeMillis();
     }
 
-    public ConnectedUser(String userName) {
-        super(ClassTypes.CONNECTED_USER);
+    public ConnectedUser(String UUID, String userName) {
+        super(ClassTypes.CONNECTED_USER, true);
+        this.UUID = UUID;
+        this.userName = userName;
+        this.connectedSince = System.currentTimeMillis();
+    }
+
+    public ConnectedUser(String userName, boolean ignoreSelf) {
+        super(ClassTypes.CONNECTED_USER, ignoreSelf);
         this.UUID = HelloApplication.getInstance().getClientID();
         this.userName = userName;
         this.connectedSince = System.currentTimeMillis();
+    }
+
+    public ConnectedUser(String userName) {
+        super(ClassTypes.CONNECTED_USER, true);
+        this.UUID = HelloApplication.getInstance().getClientID();
+        this.userName = userName;
+        this.connectedSince = System.currentTimeMillis();
+    }
+
+    public String getUUID() {
+        return this.UUID;
     }
 
     public String toString() {

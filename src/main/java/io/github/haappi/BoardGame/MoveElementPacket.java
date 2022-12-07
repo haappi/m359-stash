@@ -21,11 +21,6 @@ public class MoveElementPacket extends BasePacket {
         this.y = node.getLayoutY();
     }
 
-    @Override
-    public String getFxID() {
-        return fxID;
-    }
-
     public double getX() {
         return x;
     }
