@@ -4,11 +4,11 @@ public class BasePacket {
     private final String classType;
     private final boolean ignoreSelf;
 
-
     public BasePacket(ClassTypes classTypes, boolean ignoreSelf) {
         this.classType = String.valueOf(classTypes);
         this.ignoreSelf = ignoreSelf;
     }
+
     public BasePacket(ClassTypes classTypes) {
         this(classTypes, true);
     }
@@ -17,7 +17,6 @@ public class BasePacket {
         this(ClassTypes.UNKNOWN, true);
     }
 
-
     public boolean isIgnoreSelf() {
         return ignoreSelf;
     }
@@ -25,5 +24,4 @@ public class BasePacket {
     public String getClassType() {
         return this.classType;
     }
-
 }

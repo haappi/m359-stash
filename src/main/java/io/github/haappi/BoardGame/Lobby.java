@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Lobby {
@@ -34,7 +33,11 @@ public class Lobby {
     }
 
     public static void addUserToConnected(ConnectedUser packet) {
-        Lobby.connectedPlayersLocal.getItems().add(packet); // fix an infinite loop here because im not checking if the connected client already is connceeted or not
+        Lobby.connectedPlayersLocal
+                .getItems()
+                .add(
+                        packet); // fix an infinite loop here because im not checking if the
+                                 // connected client already is connceeted or not
     }
 
     private static boolean checkIfPlayerAlreadyConnected(ConnectedUser packet) {

@@ -8,7 +8,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Protocol;
 
 import java.io.IOException;
 
@@ -59,14 +58,16 @@ public class HelloController {
          */
 
         final Jedis subscriberJedis = HelloApplication.getInstance().getResource();
-        Thread thread = new Thread(() -> subscriberJedis.subscribe(Utils.getListener(), HelloApplication.joinCode()));
+        Thread thread =
+                new Thread(
+                        () ->
+                                subscriberJedis.subscribe(
+                                        Utils.getListener(), HelloApplication.joinCode()));
         thread.start();
-        HelloApplication.getInstance().setName(name.getText() != null ? name.getText() : "Player " + count);
+        HelloApplication.getInstance()
+                .setName(name.getText() != null ? name.getText() : "Player " + count);
         String stringName = HelloApplication.getInstance().getName();
-        Utils.p(
-                new ConnectedUser(
-                        HelloApplication.getInstance().getClientID(),
-                        stringName));
+        Utils.p(new ConnectedUser(HelloApplication.getInstance().getClientID(), stringName));
         HelloApplication.getInstance().setScene("lobby");
     }
 }

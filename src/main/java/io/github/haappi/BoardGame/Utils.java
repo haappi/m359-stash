@@ -80,7 +80,10 @@ public class Utils {
                 System.out.println("received " + message + " from " + channel);
                 if (object instanceof ConnectedUser connectedUser) {
                     Lobby.addUserToConnected(connectedUser);
-                    Utils.p(new ConnectedUser(HelloApplication.getInstance().getClientID(), HelloApplication.getInstance().getName()));
+                    Utils.p(
+                            new ConnectedUser(
+                                    HelloApplication.getInstance().getClientID(),
+                                    HelloApplication.getInstance().getName()));
                     // if we're in the lobby view, add it to the ListView, else drop it.
                     // todo                   Utils.p(); // send a message so the newly connected
                     // user can get the current players of the game.
