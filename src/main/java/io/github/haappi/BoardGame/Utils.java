@@ -87,7 +87,11 @@ public class Utils {
                     return; // Ignore messages sent too quickly.
                 }
 
-                timeouts.put(message, (long) (System.currentTimeMillis() + ((BasePacket) object).getTimeout() * 1000));
+                timeouts.put(
+                        message,
+                        (long)
+                                (System.currentTimeMillis()
+                                        + ((BasePacket) object).getTimeout() * 1000));
                 System.out.println("received " + message + " from " + channel);
                 if (object instanceof ConnectedUser connectedUser) {
                     Lobby.addUserToConnected(connectedUser);
