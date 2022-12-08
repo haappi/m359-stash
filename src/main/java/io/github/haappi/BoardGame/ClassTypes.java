@@ -9,6 +9,7 @@ public enum ClassTypes {
     PLAYER_UNREADY_READY("PLAYER_UNREADY_READY"),
     MOVE_ELEMENT("MOVE_ELEMENT"),
     ROLE_PICKED("ROLE_PICKED"),
+    NEW_PLAYER_JOIN("NEW_PLAYER_JOIN"),
     PING_REQUEST("PING_REQUEST");
 
     private final String text;

@@ -67,7 +67,9 @@ public class HelloController {
         HelloApplication.getInstance()
                 .setName(name.getText() != null ? name.getText() : "Player " + count);
         String stringName = HelloApplication.getInstance().getName();
-        Utils.p(new ConnectedUser(HelloApplication.getInstance().getClientID(), stringName));
+        NewPlayerJoin packet = new NewPlayerJoin(HelloApplication.getInstance().getClientID(), stringName);
+        Utils.p(packet);
         HelloApplication.getInstance().setScene("lobby");
+        Lobby.addUserToConnected(packet);
     }
 }

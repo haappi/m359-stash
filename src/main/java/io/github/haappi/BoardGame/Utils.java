@@ -93,15 +93,16 @@ public class Utils {
                                 (System.currentTimeMillis()
                                         + ((BasePacket) object).getTimeout() * 1000));
                 System.out.println("received " + message + " from " + channel);
-                if (object instanceof ConnectedUser connectedUser) {
-                    Lobby.addUserToConnected(connectedUser);
+                if (object instanceof NewPlayerJoin playerJoin) {
+                    Lobby.addUserToConnected(playerJoin);
                     Utils.p(
                             new ConnectedUser(
                                     HelloApplication.getInstance().getClientID(),
                                     HelloApplication.getInstance().getName()));
-                    // if we're in the lobby view, add it to the ListView, else drop it.
-                    // todo                   Utils.p(); // send a message so the newly connected
-                    // user can get the current players of the game.
+                    return;
+                }
+                if (object instanceof ConnectedUser connectedUser) {
+                    Lobby.addUserToConnected(new NewPlayerJoin(connectedUser.getUUID(), connectedUser.getUserName()));
                 }
             }
         };
@@ -132,6 +133,8 @@ public class Utils {
                         HelloApplication.getInstance()
                                 .getGson()
                                 .fromJson(json, ConnectedUser.class);
+            case NEW_PLAYER_JOIN:
+                return (T) HelloApplication.getInstance().getGson().fromJson(json, NewPlayerJoin.class);
             default:
                 return null;
         }

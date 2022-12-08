@@ -33,14 +33,14 @@ public class Lobby {
         Utils.p(new PlayerUnreadyReady(isPlayerReady));
     }
 
-    public static void addUserToConnected(ConnectedUser packet) {
+    public static void addUserToConnected(NewPlayerJoin packet) {
         if (checkIfPlayerAlreadyConnected(packet)) {
             return;
         }
-        Platform.runLater(() -> connectedPlayersLocal.getItems().add(packet));
+        Platform.runLater(() -> connectedPlayersLocal.getItems().add(new ConnectedUser(packet.getUUID(), packet.getUserName())));
     }
 
-    private static boolean checkIfPlayerAlreadyConnected(ConnectedUser packet) {
+    private static boolean checkIfPlayerAlreadyConnected(NewPlayerJoin packet) {
         for (ConnectedUser connectedUser : Lobby.connectedPlayersLocal.getItems()) {
             System.out.println(connectedUser);
             if (Objects.equals(connectedUser.getUUID(), packet.getUUID())) {

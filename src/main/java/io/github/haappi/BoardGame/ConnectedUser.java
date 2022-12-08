@@ -5,6 +5,10 @@ public class ConnectedUser extends BasePacket {
     private final long connectedSince;
     private final String userName;
 
+    public String getUserName() {
+        return userName;
+    }
+
     public ConnectedUser(String UUID, String userName, boolean ignoreSelf) {
         super(ClassTypes.CONNECTED_USER, ignoreSelf, 0.1);
         this.UUID = UUID;
