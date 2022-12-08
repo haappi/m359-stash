@@ -37,7 +37,11 @@ public class Lobby {
         if (checkIfPlayerAlreadyConnected(packet)) {
             return;
         }
-        Platform.runLater(() -> connectedPlayersLocal.getItems().add(new ConnectedUser(packet.getUUID(), packet.getUserName())));
+        Platform.runLater(
+                () ->
+                        connectedPlayersLocal
+                                .getItems()
+                                .add(new ConnectedUser(packet.getUUID(), packet.getUserName())));
     }
 
     private static boolean checkIfPlayerAlreadyConnected(NewPlayerJoin packet) {

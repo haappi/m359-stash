@@ -102,7 +102,9 @@ public class Utils {
                     return;
                 }
                 if (object instanceof ConnectedUser connectedUser) {
-                    Lobby.addUserToConnected(new NewPlayerJoin(connectedUser.getUUID(), connectedUser.getUserName()));
+                    Lobby.addUserToConnected(
+                            new NewPlayerJoin(
+                                    connectedUser.getUUID(), connectedUser.getUserName()));
                 }
             }
         };
@@ -134,7 +136,10 @@ public class Utils {
                                 .getGson()
                                 .fromJson(json, ConnectedUser.class);
             case NEW_PLAYER_JOIN:
-                return (T) HelloApplication.getInstance().getGson().fromJson(json, NewPlayerJoin.class);
+                return (T)
+                        HelloApplication.getInstance()
+                                .getGson()
+                                .fromJson(json, NewPlayerJoin.class);
             default:
                 return null;
         }
