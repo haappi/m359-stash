@@ -92,7 +92,7 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-        stage.setFullScreen(fullScreen);
+//        stage.setFullScreen(fullScreen);
     }
 
     public void setScene(String fileName) throws IOException {
@@ -127,7 +127,8 @@ public class HelloApplication extends Application {
             Platform.exit();
             throw new RuntimeException("Malformed UUID. Received: " + config.get("CLIENT-ID"));
         }
-        this.clientID = this.config.get("CLIENT-ID");
+//        this.clientID = this.config.get("CLIENT-ID");// fixme revert this
+        this.clientID = UUID.randomUUID().toString();
         resource.clientSetname(this.clientID);
         this.redisClientID = resource.clientId();
         this.returnResource(resource);

@@ -16,6 +16,8 @@ import java.util.Map;
 import java.util.UUID;
 
 public class Utils {
+    private static final HashMap<String, Long> timeouts = new HashMap<>();
+    private static final HashMap<String, Integer> packetsPerSecond = new HashMap<>();
 
     public static JedisPool initJedis(HashMap<String, String> config) {
         if (!config.containsKey("USER")
@@ -77,6 +79,15 @@ public class Utils {
                     return; // Ignore messages sent by the same client.
                 }
                 T object = getObject(message);
+                if (object == null) {
+                    return; // todo handle lost packets better
+                }
+
+                if (timeouts.getOrDefault(message, 0L) > System.currentTimeMillis()) {
+                    return; // Ignore messages sent too quickly.
+                }
+
+                timeouts.put(message, (long) (System.currentTimeMillis() + ((BasePacket) object).getTimeout() * 1000));
                 System.out.println("received " + message + " from " + channel);
                 if (object instanceof ConnectedUser connectedUser) {
                     Lobby.addUserToConnected(connectedUser);

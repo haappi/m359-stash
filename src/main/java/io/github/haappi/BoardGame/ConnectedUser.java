@@ -6,28 +6,28 @@ public class ConnectedUser extends BasePacket {
     private final String userName;
 
     public ConnectedUser(String UUID, String userName, boolean ignoreSelf) {
-        super(ClassTypes.CONNECTED_USER, ignoreSelf);
+        super(ClassTypes.CONNECTED_USER, ignoreSelf, 0.1);
         this.UUID = UUID;
         this.userName = userName;
         this.connectedSince = System.currentTimeMillis();
     }
 
     public ConnectedUser(String UUID, String userName) {
-        super(ClassTypes.CONNECTED_USER, true);
+        super(ClassTypes.CONNECTED_USER, true, 0.1);
         this.UUID = UUID;
         this.userName = userName;
         this.connectedSince = System.currentTimeMillis();
     }
 
     public ConnectedUser(String userName, boolean ignoreSelf) {
-        super(ClassTypes.CONNECTED_USER, ignoreSelf);
+        super(ClassTypes.CONNECTED_USER, ignoreSelf, 0.1);
         this.UUID = HelloApplication.getInstance().getClientID();
         this.userName = userName;
         this.connectedSince = System.currentTimeMillis();
     }
 
     public ConnectedUser(String userName) {
-        super(ClassTypes.CONNECTED_USER, true);
+        super(ClassTypes.CONNECTED_USER, true, 0.1);
         this.UUID = HelloApplication.getInstance().getClientID();
         this.userName = userName;
         this.connectedSince = System.currentTimeMillis();

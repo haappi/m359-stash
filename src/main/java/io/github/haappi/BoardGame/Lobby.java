@@ -1,5 +1,6 @@
 package io.github.haappi.BoardGame;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,15 +34,15 @@ public class Lobby {
     }
 
     public static void addUserToConnected(ConnectedUser packet) {
-        Lobby.connectedPlayersLocal
-                .getItems()
-                .add(
-                        packet); // fix an infinite loop here because im not checking if the
-                                 // connected client already is connceeted or not
+        if (checkIfPlayerAlreadyConnected(packet)) {
+            return;
+        }
+        Platform.runLater(() -> connectedPlayersLocal.getItems().add(packet));
     }
 
     private static boolean checkIfPlayerAlreadyConnected(ConnectedUser packet) {
         for (ConnectedUser connectedUser : Lobby.connectedPlayersLocal.getItems()) {
+            System.out.println(connectedUser);
             if (Objects.equals(connectedUser.getUUID(), packet.getUUID())) {
                 return true;
             }
