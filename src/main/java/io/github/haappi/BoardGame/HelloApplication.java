@@ -26,10 +26,28 @@ public class HelloApplication extends Application {
     protected HashMap<String, String> config;
     protected JedisPool jedisPool;
     private long redisClientID;
+
+    public long getRedisClientID() {
+        return redisClientID;
+    }
+
     private Stage stage;
     private String clientID;
     private String lobbyCode;
     private String name;
+    private Thread thread;
+
+    public Thread getThread() {
+        return thread;
+    }
+
+    public void setRedisClientID(long redisClientID) {
+        this.redisClientID = redisClientID;
+    }
+
+    public void setThread(Thread thread) {
+        this.thread = thread;
+    }
 
     public String getName() {
         return name;
@@ -85,10 +103,10 @@ public class HelloApplication extends Application {
         return this.stage;
     }
 
-    public void setScene(String fileName, boolean fullScreen) throws IOException {
+    public void setScene(String fileName, boolean fullScreen, int width, int height) throws IOException {
         fileName = fileName.replace(".fxml", "") + ".fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fileName));
-        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Scene scene = new Scene(fxmlLoader.load(), width, height);
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
@@ -96,7 +114,15 @@ public class HelloApplication extends Application {
     }
 
     public void setScene(String fileName) throws IOException {
-        setScene(fileName, true);
+        setScene(fileName, true, HelloApplication.WIDTH, HelloApplication.HEIGHT);
+    }
+
+    private void setScene(String s, boolean b) throws IOException {
+        setScene(s, b, HelloApplication.WIDTH, HelloApplication.HEIGHT);
+    }
+
+    public void setScene(String fileName, int width, int height) throws IOException {
+        setScene(fileName, false, width, height);
     }
 
     public Jedis getResource() {
@@ -144,4 +170,6 @@ public class HelloApplication extends Application {
                     // working)
                 });
     }
+
+
 }

@@ -78,7 +78,7 @@ public class Utils {
                 if (message.contains("\"ignoreSelf\":true") && message.contains(clientID)) {
                     return; // Ignore messages sent by the same client.
                 }
-                T object = getObject(message);
+                T object =  getObject(message);
                 if (object == null) {
                     return; // todo handle lost packets better
                 }
@@ -93,18 +93,30 @@ public class Utils {
                                 (System.currentTimeMillis()
                                         + ((BasePacket) object).getTimeout() * 1000));
                 System.out.println("received " + message + " from " + channel);
-                if (object instanceof NewPlayerJoin playerJoin) {
-                    Lobby.addUserToConnected(playerJoin);
-                    Utils.p(
-                            new ConnectedUser(
-                                    HelloApplication.getInstance().getClientID(),
-                                    HelloApplication.getInstance().getName()));
-                    return;
-                }
-                if (object instanceof ConnectedUser connectedUser) {
-                    Lobby.addUserToConnected(
-                            new NewPlayerJoin(
-                                    connectedUser.getUUID(), connectedUser.getUserName()));
+
+                switch (ClassTypes.valueOf(((BasePacket) object).getClassType())) {
+                    case NEW_PLAYER_JOIN -> {
+                        Lobby.addUserToConnected((NewPlayerJoin) object);
+                        Utils.p( // respond with a new player join packet
+                                new ConnectedUser(
+                                        HelloApplication.getInstance().getClientID(),
+                                        HelloApplication.getInstance().getName()));
+                    }
+                    case CONNECTED_USER -> {
+                        ConnectedUser connectedUser = (ConnectedUser) object;
+                        Lobby.addUserToConnected(
+                                new NewPlayerJoin(
+                                        connectedUser.getUUID(), connectedUser.getUserName()));
+                    }
+                    case USER_LEFT -> {
+                        UserLeft userLeft = (UserLeft) object;
+                        Lobby.removeUserFromConnected(userLeft);
+                    }
+                    case PLAYER_UNREADY_READY -> {
+                        PlayerUnreadyReady playerUnreadyReady = (PlayerUnreadyReady) object;
+                        Lobby.updatePlayerReady(playerUnreadyReady);
+                    }
+                    default -> System.out.println("Unknown packet type: " + object.getClass());
                 }
             }
         };
@@ -140,6 +152,13 @@ public class Utils {
                         HelloApplication.getInstance()
                                 .getGson()
                                 .fromJson(json, NewPlayerJoin.class);
+            case USER_LEFT:
+                return (T) HelloApplication.getInstance().getGson().fromJson(json, UserLeft.class);
+            case PLAYER_UNREADY_READY:
+                return (T)
+                        HelloApplication.getInstance()
+                                .getGson()
+                                .fromJson(json, PlayerUnreadyReady.class);
             default:
                 return null;
         }
@@ -179,14 +198,7 @@ public class Utils {
      * @param message  A JSON {@link String} with the information needed to pass. <br><font color="orange"><b>This must be valid JSON</font></b>
      */
     public static void p(Jedis instance, String channel, String message) {
-        String newMessage = message.substring(0, message.length() - 1);
-        newMessage =
-                newMessage
-                        + ",\"clientID\":\""
-                        + HelloApplication.getInstance().getClientID()
-                        + "\"}";
-        // ,"clientID":"...";
-        instance.publish(channel, newMessage);
+        instance.publish(channel, message);
     }
 
     /**

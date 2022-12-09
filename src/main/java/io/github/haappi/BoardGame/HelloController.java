@@ -60,12 +60,21 @@ public class HelloController {
         final Jedis subscriberJedis = HelloApplication.getInstance().getResource();
         Thread thread =
                 new Thread(
-                        () ->
+                        () -> {
+                            if (Thread.currentThread().isInterrupted()) {
+                                System.out.println("Interrupted");
+                                subscriberJedis.close();
+                            } else {
                                 subscriberJedis.subscribe(
-                                        Utils.getListener(), HelloApplication.joinCode()));
+                                        Utils.getListener(), HelloApplication.joinCode());
+                            }
+                        });
         thread.start();
+        HelloApplication.getInstance().setRedisClientID(subscriberJedis.clientId());
+        HelloApplication.getInstance().setThread(thread);
+        name.setText(name.getText().trim().replaceAll(" ", "-"));
         HelloApplication.getInstance()
-                .setName(name.getText() != null ? name.getText() : "Player " + count);
+                .setName(name.getText() != null || !name.getText().isEmpty() || !name.getText().equals(" ") ? name.getText() : "Player " + count);
         String stringName = HelloApplication.getInstance().getName();
         NewPlayerJoin packet =
                 new NewPlayerJoin(HelloApplication.getInstance().getClientID(), stringName);
