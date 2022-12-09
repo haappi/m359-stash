@@ -1,11 +1,13 @@
 package io.github.haappi.BoardGame;
 
 import com.google.gson.Gson;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
