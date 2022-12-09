@@ -1,11 +1,13 @@
 package io.github.haappi.BoardGame;
 
 import com.google.gson.Gson;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -100,7 +102,8 @@ public class HelloApplication extends Application {
         return this.stage;
     }
 
-    public void setScene(String fileName, boolean fullScreen, int width, int height) throws IOException {
+    public void setScene(String fileName, boolean fullScreen, int width, int height)
+            throws IOException {
         fileName = fileName.replace(".fxml", "") + ".fxml";
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fileName));
         Scene scene = new Scene(fxmlLoader.load(), width, height);
@@ -167,6 +170,4 @@ public class HelloApplication extends Application {
                     // working)
                 });
     }
-
-
 }

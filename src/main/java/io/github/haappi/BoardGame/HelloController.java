@@ -6,6 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+
 import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
@@ -14,8 +15,7 @@ public class HelloController {
     public TextField joinCode;
     public TextField name;
     Thread threadd;
-    @FXML
-    private Label welcomeText;
+    @FXML private Label welcomeText;
 
     @FXML
     protected void onHelloButtonClick() {
@@ -74,7 +74,12 @@ public class HelloController {
         HelloApplication.getInstance().setThread(thread);
         name.setText(name.getText().trim().replaceAll(" ", "-"));
         HelloApplication.getInstance()
-                .setName(name.getText() != null || !name.getText().isEmpty() || !name.getText().equals(" ") ? name.getText() : "Player " + count);
+                .setName(
+                        name.getText() != null
+                                        || !name.getText().isEmpty()
+                                        || !name.getText().equals(" ")
+                                ? name.getText()
+                                : "Player " + count);
         String stringName = HelloApplication.getInstance().getName();
         NewPlayerJoin packet =
                 new NewPlayerJoin(HelloApplication.getInstance().getClientID(), stringName);

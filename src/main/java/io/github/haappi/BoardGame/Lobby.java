@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.params.ClientKillParams;
 
@@ -22,34 +23,38 @@ public class Lobby {
     public Button startGameButton;
 
     public static void removeUserFromConnected(UserLeft userLeft) {
-        Platform.runLater(() -> {
-            for (int i = 0; i < connectedPlayersLocal.getItems().size(); i++) {
-                if (Objects.equals(connectedPlayersLocal.getItems().get(i).getUUID(), userLeft.getUUID())) {
-                    connectedPlayersLocal.getItems().remove(i);
-                    break;
-                }
-            }
-        });
+        Platform.runLater(
+                () -> {
+                    for (int i = 0; i < connectedPlayersLocal.getItems().size(); i++) {
+                        if (Objects.equals(
+                                connectedPlayersLocal.getItems().get(i).getUUID(),
+                                userLeft.getUUID())) {
+                            connectedPlayersLocal.getItems().remove(i);
+                            break;
+                        }
+                    }
+                });
     }
 
     public static void updatePlayerReady(PlayerUnreadyReady playerUnreadyReady) {
-        Platform.runLater(() -> {
-            for (ConnectedUser connectedUser : connectedPlayersLocal.getItems()) {
-                if (Objects.equals(connectedUser.getUUID(), playerUnreadyReady.getUUID())) {
-                    connectedUser.setReady(playerUnreadyReady.isReady());
-                    connectedPlayersLocal.refresh(); // Refresh the list view
-                    // Updates all the players in the list view (their toStrings)
-                    break;
-                }
-            }
-            for (ConnectedUser connectedUser : connectedPlayersLocal.getItems()) {
-                if (!connectedUser.isReady()) {
-                    startGameButtonLocal.setDisable(true);
-                    return;
-                }
-            }
-            startGameButtonLocal.setDisable(false);
-        });
+        Platform.runLater(
+                () -> {
+                    for (ConnectedUser connectedUser : connectedPlayersLocal.getItems()) {
+                        if (Objects.equals(connectedUser.getUUID(), playerUnreadyReady.getUUID())) {
+                            connectedUser.setReady(playerUnreadyReady.isReady());
+                            connectedPlayersLocal.refresh(); // Refresh the list view
+                            // Updates all the players in the list view (their toStrings)
+                            break;
+                        }
+                    }
+                    for (ConnectedUser connectedUser : connectedPlayersLocal.getItems()) {
+                        if (!connectedUser.isReady()) {
+                            startGameButtonLocal.setDisable(true);
+                            return;
+                        }
+                    }
+                    startGameButtonLocal.setDisable(false);
+                });
     }
 
     public static void addUserToConnected(NewPlayerJoin packet) {
@@ -86,7 +91,9 @@ public class Lobby {
         HelloApplication.getInstance().setLobbyCode(null);
         HelloApplication.getInstance().setScene("hello-view");
         Jedis resource = HelloApplication.getInstance().getResource();
-        resource.clientKill(ClientKillParams.clientKillParams().id(HelloApplication.getInstance().getRedisClientID() + ""));
+        resource.clientKill(
+                ClientKillParams.clientKillParams()
+                        .id(HelloApplication.getInstance().getRedisClientID() + ""));
         HelloApplication.getInstance().getThread().interrupt();
     }
 
@@ -94,9 +101,10 @@ public class Lobby {
         isPlayerReady = !isPlayerReady;
         ((Button) actionEvent.getSource())
                 .setText(isPlayerReady ? "I am not ready." : "I am ready");
-        Utils.p(new PlayerUnreadyReady(isPlayerReady, HelloApplication.getInstance().getClientID()));
+        Utils.p(
+                new PlayerUnreadyReady(
+                        isPlayerReady, HelloApplication.getInstance().getClientID()));
     }
 
-    public void startGame(ActionEvent event) {
-    }
+    public void startGame(ActionEvent event) {}
 }

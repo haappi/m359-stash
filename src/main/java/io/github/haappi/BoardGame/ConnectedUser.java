@@ -33,6 +33,8 @@ public class ConnectedUser extends BasePacket {
     }
 
     public String toString() {
-        return this.userName + (this.isReady ? " (R) " : " (NR) ") + super.getPing(); // add ready / not ready status here.
+        return this.userName
+                + (this.isReady ? " (R) " : " (NR) ")
+                + super.getPing(); // add ready / not ready status here.
     }
 }
