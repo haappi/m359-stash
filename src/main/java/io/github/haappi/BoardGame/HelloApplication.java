@@ -1,13 +1,11 @@
 package io.github.haappi.BoardGame;
 
 import com.google.gson.Gson;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -26,23 +24,34 @@ public class HelloApplication extends Application {
     protected HashMap<String, String> config;
     protected JedisPool jedisPool;
     private long redisClientID;
-
-    public long getRedisClientID() {
-        return redisClientID;
-    }
-
     private Stage stage;
     private String clientID;
     private String lobbyCode;
     private String name;
     private Thread thread;
 
-    public Thread getThread() {
-        return thread;
+    public static HelloApplication getInstance() {
+        return singleton;
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    public static String joinCode() {
+        return singleton.lobbyCode;
+    }
+
+    public long getRedisClientID() {
+        return redisClientID;
     }
 
     public void setRedisClientID(long redisClientID) {
         this.redisClientID = redisClientID;
+    }
+
+    public Thread getThread() {
+        return thread;
     }
 
     public void setThread(Thread thread) {
@@ -57,14 +66,6 @@ public class HelloApplication extends Application {
         this.name = name;
     }
 
-    public static HelloApplication getInstance() {
-        return singleton;
-    }
-
-    public static void main(String[] args) {
-        launch();
-    }
-
     public ArrayList<ConnectedUser> getConnectedUserArrayList() {
         return connectedUserArrayList;
     }
@@ -72,10 +73,6 @@ public class HelloApplication extends Application {
     public ArrayList<ConnectedUser> addConnectedUser(ConnectedUser connectedUser) {
         connectedUserArrayList.add(connectedUser);
         return connectedUserArrayList;
-    }
-
-    public static String joinCode() {
-        return singleton.lobbyCode;
     }
 
     public ArrayList<ConnectedUser> removeConnectedUser(ConnectedUser connectedUser) {

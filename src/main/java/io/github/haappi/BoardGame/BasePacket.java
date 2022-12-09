@@ -7,22 +7,6 @@ public class BasePacket {
     private final String clientID;
     private final long ping;
 
-    public long getPing() {
-        return ping;
-    }
-
-    public double getTimeout() {
-        return timeout;
-    }
-
-    public String getClientID() {
-        return clientID;
-    }
-
-    public String getUUID() {
-        return clientID;
-    }
-
     public BasePacket(ClassTypes classTypes, boolean ignoreSelf, double timeout, String clientID) {
         this.classType = String.valueOf(classTypes);
         this.ignoreSelf = ignoreSelf;
@@ -41,6 +25,22 @@ public class BasePacket {
 
     public BasePacket() {
         this(ClassTypes.UNKNOWN, true, 0.0, HelloApplication.getInstance().getClientID());
+    }
+
+    public long getPing() {
+        return ping;
+    }
+
+    public double getTimeout() {
+        return timeout;
+    }
+
+    public String getClientID() {
+        return clientID;
+    }
+
+    public String getUUID() {
+        return clientID;
     }
 
     public boolean isIgnoreSelf() {

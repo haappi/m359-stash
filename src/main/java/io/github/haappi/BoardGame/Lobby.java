@@ -13,13 +13,13 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class Lobby {
+    private static boolean isPlayerReady = false;
+    private static ListView<ConnectedUser> connectedPlayersLocal;
+    private static Button startGameButtonLocal;
     public Label connectedTo;
     public ListView<ConnectedUser> connectedPlayers;
     public Button readyButton;
-    private static boolean isPlayerReady = false;
-    private static ListView<ConnectedUser> connectedPlayersLocal;
     public Button startGameButton;
-    private static Button startGameButtonLocal;
 
     public static void removeUserFromConnected(UserLeft userLeft) {
         Platform.runLater(() -> {
@@ -52,6 +52,27 @@ public class Lobby {
         });
     }
 
+    public static void addUserToConnected(NewPlayerJoin packet) {
+        if (checkIfPlayerAlreadyConnected(packet)) {
+            return;
+        }
+        Platform.runLater(
+                () ->
+                        connectedPlayersLocal
+                                .getItems()
+                                .add(new ConnectedUser(packet.getUUID(), packet.getUserName())));
+    }
+
+    private static boolean checkIfPlayerAlreadyConnected(NewPlayerJoin packet) {
+        for (ConnectedUser connectedUser : Lobby.connectedPlayersLocal.getItems()) {
+            System.out.println(connectedUser);
+            if (Objects.equals(connectedUser.getUUID(), packet.getUUID())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @FXML
     protected void initialize() {
         connectedTo.setText("Connected to " + HelloApplication.getInstance().getLobbyCode());
@@ -74,27 +95,6 @@ public class Lobby {
         ((Button) actionEvent.getSource())
                 .setText(isPlayerReady ? "I am not ready." : "I am ready");
         Utils.p(new PlayerUnreadyReady(isPlayerReady, HelloApplication.getInstance().getClientID()));
-    }
-
-    public static void addUserToConnected(NewPlayerJoin packet) {
-        if (checkIfPlayerAlreadyConnected(packet)) {
-            return;
-        }
-        Platform.runLater(
-                () ->
-                        connectedPlayersLocal
-                                .getItems()
-                                .add(new ConnectedUser(packet.getUUID(), packet.getUserName())));
-    }
-
-    private static boolean checkIfPlayerAlreadyConnected(NewPlayerJoin packet) {
-        for (ConnectedUser connectedUser : Lobby.connectedPlayersLocal.getItems()) {
-            System.out.println(connectedUser);
-            if (Objects.equals(connectedUser.getUUID(), packet.getUUID())) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public void startGame(ActionEvent event) {

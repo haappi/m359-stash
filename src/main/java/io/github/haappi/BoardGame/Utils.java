@@ -38,6 +38,7 @@ public class Utils {
     /**
      * Loads a configuration file (or any file seperated with <b><font color ="aqua">=</font></b>)
      * This will create a new file if it does not exist, and generate a random {@link UUID} to write.
+     *
      * @param fileName The filename to load from.
      * @return A {@link HashMap} with the keys and values casted as {@link String}'s
      * @throws IOException If an IO error occurred.
@@ -55,7 +56,8 @@ public class Utils {
 
     /**
      * Creates a file for you at the given {@link String} path.
-     * @param path A {@link String} containing the path to create the file.
+     *
+     * @param path        A {@link String} containing the path to create the file.
      * @param writeClient A {@link Boolean} stating whether to write a CLIENT-ID field or not.
      * @throws IOException Thrown if IO errors have occurred.
      */
@@ -78,7 +80,7 @@ public class Utils {
                 if (message.contains("\"ignoreSelf\":true") && message.contains(clientID)) {
                     return; // Ignore messages sent by the same client.
                 }
-                T object =  getObject(message);
+                T object = getObject(message);
                 if (object == null) {
                     return; // todo handle lost packets better
                 }
@@ -166,7 +168,8 @@ public class Utils {
 
     /**
      * Casts the given {@link String} JSON into the provided {@link Class<T>}.
-     * @param json A {@link String} containing the JSON received from the server.
+     *
+     * @param json   A {@link String} containing the JSON received from the server.
      * @param tClass The {@link Class<T>} attempting to be casted into.
      * @return {@link T} The JSON String casted into the Class.
      */
@@ -176,6 +179,7 @@ public class Utils {
 
     /**
      * Returns a {@link FileInputStream} for a given asset in the assets' directory.
+     *
      * @param fileName A {@link String} containing the filename.
      * @return The {@link FileInputStream} if the file is found, else <b><font color ="orange">null</font></b>
      */
