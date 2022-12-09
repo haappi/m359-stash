@@ -1,13 +1,11 @@
 package io.github.haappi.BoardGame;
 
 import com.google.gson.Gson;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -166,8 +164,9 @@ public class HelloApplication extends Application {
                     if (this.lobbyCode != null && !this.lobbyCode.isEmpty()) {
                         Utils.p(new UserLeft());
                     }
-                    threads.forEach(Thread::interrupt); // somehow close all the threads (this isn't
-                    // working)
+                    threads.forEach(Thread::interrupt);
+                    Platform.exit();
+                    System.exit(0);
                 });
     }
 }

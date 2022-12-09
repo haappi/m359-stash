@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.params.ClientKillParams;
 
@@ -106,5 +105,7 @@ public class Lobby {
                         isPlayerReady, HelloApplication.getInstance().getClientID()));
     }
 
-    public void startGame(ActionEvent event) {}
+    public void startGame(ActionEvent event) {
+        Utils.p(new StartGamePacket());
+    }
 }

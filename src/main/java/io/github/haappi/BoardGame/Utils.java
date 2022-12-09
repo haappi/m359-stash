@@ -1,5 +1,6 @@
 package io.github.haappi.BoardGame;
 
+import javafx.application.Platform;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
@@ -118,6 +119,15 @@ public class Utils {
                         PlayerUnreadyReady playerUnreadyReady = (PlayerUnreadyReady) object;
                         Lobby.updatePlayerReady(playerUnreadyReady);
                     }
+                    case START_GAME -> {
+                        Platform.runLater(() -> {
+                            try {
+                                HelloApplication.getInstance().setScene("board-view");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                    }
                     default -> System.out.println("Unknown packet type: " + object.getClass());
                 }
             }
@@ -161,6 +171,10 @@ public class Utils {
                         HelloApplication.getInstance()
                                 .getGson()
                                 .fromJson(json, PlayerUnreadyReady.class);
+            case START_GAME:
+                return (T) HelloApplication.getInstance()
+                        .getGson()
+                        .fromJson(json, StartGamePacket.class);
             default:
                 return null;
         }

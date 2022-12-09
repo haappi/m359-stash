@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-
 import redis.clients.jedis.Jedis;
 
 import java.io.IOException;
@@ -14,28 +13,8 @@ import java.io.IOException;
 public class HelloController {
     public TextField joinCode;
     public TextField name;
-    Thread threadd;
-    @FXML private Label welcomeText;
-
     @FXML
-    protected void onHelloButtonClick() {
-        Jedis instance = HelloApplication.getInstance().getResource();
-        String json =
-                HelloApplication.getInstance()
-                        .getGson()
-                        .toJson(new Test(HelloApplication.getInstance().getClientID()));
-        Utils.p(instance, "test", json);
-        new UserJoined("a").getClassType();
-        HelloApplication.getInstance().returnResource(instance);
-    }
-
-    //    @FXML
-    //    protected void initialize() {
-    //        Image image = new Image(Utils.getImage("map-of-north-america.png"));
-    //        aaa.add(new ImageView(image), 0, 0);
-    //        aaa.setGridLinesVisible(true);
-    //        aaa.setPrefSize(1000, 1000);
-    //    }
+    private Label welcomeText;
 
     public void connectToGame(ActionEvent actionEvent) throws IOException {
         if (joinCode.getText() == null || joinCode.getText().isEmpty()) {
@@ -64,6 +43,8 @@ public class HelloController {
                             if (Thread.currentThread().isInterrupted()) {
                                 System.out.println("Interrupted");
                                 subscriberJedis.close();
+                                HelloApplication.getInstance().returnResource(subscriberJedis);
+                                Thread.currentThread().interrupt();
                             } else {
                                 subscriberJedis.subscribe(
                                         Utils.getListener(), HelloApplication.joinCode());
@@ -76,8 +57,8 @@ public class HelloController {
         HelloApplication.getInstance()
                 .setName(
                         name.getText() != null
-                                        || !name.getText().isEmpty()
-                                        || !name.getText().equals(" ")
+                                || !name.getText().isEmpty()
+                                || !name.getText().equals(" ")
                                 ? name.getText()
                                 : "Player " + count);
         String stringName = HelloApplication.getInstance().getName();
