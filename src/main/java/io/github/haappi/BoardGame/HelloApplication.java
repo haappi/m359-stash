@@ -1,13 +1,11 @@
 package io.github.haappi.BoardGame;
 
 import com.google.gson.Gson;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -25,6 +23,7 @@ public class HelloApplication extends Application {
     private final Gson gsonInstance = new Gson();
     protected HashMap<String, String> config;
     protected JedisPool jedisPool;
+    private Game game;
     private long redisClientID;
     private Stage stage;
     private String clientID;
@@ -50,6 +49,15 @@ public class HelloApplication extends Application {
 
     public void setRedisClientID(long redisClientID) {
         this.redisClientID = redisClientID;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+
+    public Game startGame() {
+        game = new Game();
+        return game;
     }
 
     public Thread getThread() {

@@ -1,3 +1,4 @@
 package io.github.haappi.BoardGame;
 
-public class JoinLobbyClass {}
+public class JoinLobbyClass {
+}

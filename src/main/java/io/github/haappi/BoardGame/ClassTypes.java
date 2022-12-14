@@ -11,7 +11,7 @@ public enum ClassTypes {
     ROLE_PICKED("ROLE_PICKED"),
     NEW_PLAYER_JOIN("NEW_PLAYER_JOIN"),
     PING_REQUEST("PING_REQUEST"),
-    START_GAME("START_GAME");
+    START_GAME("START_GAME"), LOSE_SCREEN("LOSE_SCREEN");
 
     private final String text;
 

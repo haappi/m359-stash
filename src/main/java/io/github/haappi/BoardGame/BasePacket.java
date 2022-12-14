@@ -19,6 +19,10 @@ public class BasePacket {
         this(classTypes, ignoreSelf, 0.0, clientID);
     }
 
+    public BasePacket(ClassTypes classTypes, boolean ignoreSelf) {
+        this(classTypes, ignoreSelf, 0.0, HelloApplication.getInstance().getClientID());
+    }
+
     public BasePacket(ClassTypes classTypes) {
         this(classTypes, true, 0.0, HelloApplication.getInstance().getClientID());
     }

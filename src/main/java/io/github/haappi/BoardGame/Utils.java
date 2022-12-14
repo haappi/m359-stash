@@ -1,7 +1,7 @@
 package io.github.haappi.BoardGame;
 
 import javafx.application.Platform;
-
+import javafx.scene.image.Image;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;
@@ -18,9 +18,6 @@ import java.util.Map;
 import java.util.UUID;
 
 public class Utils {
-    private static final HashMap<String, Long> timeouts = new HashMap<>();
-    private static final HashMap<String, Integer> packetsPerSecond = new HashMap<>();
-
     public static JedisPool initJedis(HashMap<String, String> config) {
         if (!config.containsKey("USER")
                 || !config.containsKey("PASS")
@@ -87,21 +84,12 @@ public class Utils {
                     return; // todo handle lost packets better
                 }
 
-                if (timeouts.getOrDefault(message, 0L) > System.currentTimeMillis()) {
-                    return; // Ignore messages sent too quickly.
-                }
-
-                timeouts.put(
-                        message,
-                        (long)
-                                (System.currentTimeMillis()
-                                        + ((BasePacket) object).getTimeout() * 1000));
                 System.out.println("received " + message + " from " + channel);
 
                 switch (ClassTypes.valueOf(((BasePacket) object).getClassType())) {
                     case NEW_PLAYER_JOIN -> {
                         Lobby.addUserToConnected((NewPlayerJoin) object);
-                        Utils.p( // respond with a new player join packet
+                        Utils.p(
                                 new ConnectedUser(
                                         HelloApplication.getInstance().getClientID(),
                                         HelloApplication.getInstance().getName()));
@@ -209,6 +197,10 @@ public class Utils {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static Image fileStreamToImage(FileInputStream fileInputStream) {
+        return new Image(fileInputStream);
     }
 
     /**
