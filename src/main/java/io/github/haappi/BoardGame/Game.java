@@ -1,7 +1,5 @@
 package io.github.haappi.BoardGame;
 
-import javafx.fxml.FXML;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,25 +22,26 @@ public class Game {
 
     final City CHICAGO = getCity("Chicago", "red");
     final City ONTARIO = getCity("Ontario", "blue");
+    private final HashMap<String, Integer> cubes = new HashMap<>();
+    private final ArrayList<City> researchStations = new ArrayList<>(List.of(ATLANTA));
     private ArrayList<ConnectedUser> connectedUsers = new ArrayList<>();
     private ArrayList<City> cities = new ArrayList<>(List.of(WHITEHORSE, EDMONTON, QUEBEC, VANCOUVER, SEATTLE, SAN_FRANCISCO, SALT_LAKE_CITY, DENVER, DALLAS, ATLANTA, MIAMI, NEW_YORK_CITY, CHICAGO, ONTARIO));
     private HashMap<City, ArrayList<City>> adjacentCities = new HashMap<>();
-    private final HashMap<String, Integer> cubes = new HashMap<>();
-    private final ArrayList<City> researchStations = new ArrayList<>(List.of(ATLANTA));
     private ArrayList<String> curedDiseases = new ArrayList<>();
     private ArrayList<String> eradicatedDiseases = new ArrayList<>();
     private int outbreakCounter = 0;
+    private int infectionRate = 0;
+    private final ArrayList<String> playerDeck = new ArrayList<>();
+    private final ArrayList<Player> players = new ArrayList<>();
 
-    public int getOutbreakCounter() {
-        return outbreakCounter;
-    }
+    public Game(ArrayList<ConnectedUser> players) {
+        for (City city : cities) {
+            playerDeck.add(city.getCityName());
+        }
+        for (ConnectedUser user : players) {
+            this.players.add(new Player(user.getUserName(), user.getUUID(), ATLANTA));
+        }
 
-    public void setOutbreakCounter(int outbreakCounter) {
-        this.outbreakCounter = outbreakCounter;
-    }
-
-    @FXML
-    protected void initialize() {
         cubes.put("red", 24);
         cubes.put("blue", 24);
         cubes.put("yellow", 24);
@@ -68,6 +67,14 @@ public class Game {
         adjacentCities.put(ONTARIO, new ArrayList<>(List.of(QUEBEC, EDMONTON, DENVER, SALT_LAKE_CITY)));
     }
 
+    public int getOutbreakCounter() {
+        return outbreakCounter;
+    }
+
+    public void setOutbreakCounter(int outbreakCounter) {
+        this.outbreakCounter = outbreakCounter;
+    }
+
     private City getCity(String name, String color) {
         return new City(this, name, color);
     }
@@ -78,6 +85,10 @@ public class Game {
 
     public void setConnectedUsers(ArrayList<ConnectedUser> connectedUsers) {
         this.connectedUsers = connectedUsers;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
     public ArrayList<City> getCities() {

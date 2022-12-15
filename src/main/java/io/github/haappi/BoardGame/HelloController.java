@@ -28,13 +28,6 @@ public class HelloController {
             return;
         }
         ((Node) actionEvent.getSource()).setDisable(true);
-        //        Jedis instance = HelloApplication.getInstance().getResource();
-        /* todo
-        some sort of key mapping persistently stored within redis (that gets deleted when application dies or after an hour or so)
-        that maps a key to a lobby code
-        if game started
-        maybe store player things in key mapping?
-         */
 
         final Jedis subscriberJedis = HelloApplication.getInstance().getResource();
         Thread thread =

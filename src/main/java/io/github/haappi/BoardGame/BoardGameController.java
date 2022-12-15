@@ -1,33 +1,38 @@
 package io.github.haappi.BoardGame;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 
 public class BoardGameController {
-    public Text ping;
-    public AnchorPane innerPane;
     public GridPane innerGrid;
     public ImageView imageView;
+    public Game game;
 
     @FXML
     protected void initialize() {
-        //            Image image = new Image(Utils.getImage("map-of-north-america.png"));
+        game = new Game(Lobby.getConnectedUsers());
+        game.getPlayers().forEach(player -> System.out.println(player.getName()));
         imageView.setImage(Utils.fileStreamToImage(Utils.getImage("labeled-map-of-north-america.png")));
-//        innerGrid.setStyle(
-//                "-fx-background-image: url('assets/labeled-map-of-north-america.png');"
-//                    + " -fx-background-repeat: no-repeat; width: 600px; height: 600px");
-        //            innerGrid.add(new ImageView(image), 0, 0);
-        //
-        for (int i = 0; i < 50; i++) {
-            for (int j = 0; j < 50; j++) {
-                innerGrid.add(new Rectangle(), j, i);
+        imageView.setFitHeight(1080);
+        imageView.setFitWidth(1920);
+        imageView.setPreserveRatio(true);
+
+
+        for (int i = 0; i < 25; i++) {
+            for (int j = 0; j < 25; j++) {
+                innerGrid.add(new Rectangle(10, 10), j, i);
+//                innerGrid.add(new Label(j + "," + i), j, i);
             }
         }
+        int thing = 50;
+//        innerGrid.getColumnConstraints().addAll(new ColumnConstraints(thing), new ColumnConstraints(thing), new ColumnConstraints(thing));
+//        innerGrid.getRowConstraints().addAll(new RowConstraints(thing), new RowConstraints(thing), new RowConstraints(thing));
         innerGrid.setGridLinesVisible(true);
-        innerGrid.setPrefSize(1000, 1000);
+//        innerGrid.setPrefSize(thing, thing);
     }
 }

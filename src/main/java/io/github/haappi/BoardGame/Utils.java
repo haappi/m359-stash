@@ -43,7 +43,7 @@ public class Utils {
      * @throws IOException If an IO error occurred.
      */
     public static HashMap<String, String> loadConfig(String fileName) throws IOException {
-        createFile(fileName, true);
+        createFile(fileName);
         ArrayList<String> lines = new ArrayList<>(Files.readAllLines(Paths.get("config.txt")));
         HashMap<String, String> config = new HashMap<>();
         for (String line : lines) {
@@ -56,18 +56,13 @@ public class Utils {
     /**
      * Creates a file for you at the given {@link String} path.
      *
-     * @param path        A {@link String} containing the path to create the file.
-     * @param writeClient A {@link Boolean} stating whether to write a CLIENT-ID field or not.
+     * @param path A {@link String} containing the path to create the file.
      * @throws IOException Thrown if IO errors have occurred.
      */
-    public static void createFile(String path, boolean writeClient) throws IOException {
+    public static void createFile(String path) throws IOException {
         Path path1 = Paths.get(path);
         if (!Files.exists(path1)) {
             Files.createFile(path1);
-            if (writeClient) {
-                byte[] bytesData = ("CLIENT-ID=" + UUID.randomUUID()).getBytes();
-                Files.write(path1, bytesData);
-            }
         }
     }
 
@@ -109,10 +104,32 @@ public class Utils {
                         Lobby.updatePlayerReady(playerUnreadyReady);
                     }
                     case START_GAME -> {
+                        StartGamePacket startGamePacket = (StartGamePacket) object;
+                        HelloApplication.hostUUID = startGamePacket.getClientID();
                         Platform.runLater(
                                 () -> {
                                     try {
                                         HelloApplication.getInstance().setScene("board-view");
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                });
+                    }
+                    case GAME_WON -> Platform.runLater(
+                            () -> {
+                                try {
+                                    HelloApplication.getInstance().setScene("game-won");
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            });
+                    case LOSE_SCREEN -> {
+                        LoseScreenPacket loseScreen = (LoseScreenPacket) object;
+                        HelloApplication.loseReason = loseScreen.getReason();
+                        Platform.runLater(
+                                () -> {
+                                    try {
+                                        HelloApplication.getInstance().setScene("lose-screen");
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
@@ -166,6 +183,16 @@ public class Utils {
                         HelloApplication.getInstance()
                                 .getGson()
                                 .fromJson(json, StartGamePacket.class);
+            case GAME_WON:
+                return (T)
+                        HelloApplication.getInstance()
+                                .getGson()
+                                .fromJson(json, GameWonPacket.class);
+            case LOSE_SCREEN:
+                return (T)
+                        HelloApplication.getInstance()
+                                .getGson()
+                                .fromJson(json, LoseScreenPacket.class);
             default:
                 return null;
         }

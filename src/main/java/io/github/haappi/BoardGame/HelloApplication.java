@@ -17,6 +17,8 @@ import java.util.UUID;
 public class HelloApplication extends Application {
     public static final int WIDTH = 1880;
     public static final int HEIGHT = 1040;
+    public static String hostUUID;
+    public static String loseReason;
     private static HelloApplication singleton;
     private final ArrayList<Thread> threads = new ArrayList<>();
     private final ArrayList<ConnectedUser> connectedUserArrayList = new ArrayList<>();
@@ -56,7 +58,7 @@ public class HelloApplication extends Application {
     }
 
     public Game startGame() {
-        game = new Game();
+        game = new Game(Lobby.getConnectedUsers());
         return game;
     }
 
@@ -155,13 +157,6 @@ public class HelloApplication extends Application {
         this.config = Utils.loadConfig("config.txt");
         this.jedisPool = Utils.initJedis(this.config);
         final Jedis resource = this.getResource();
-        try {
-            UUID.fromString(this.config.get("CLIENT-ID"));
-        } catch (IllegalArgumentException e) {
-            Platform.exit();
-            throw new RuntimeException("Malformed UUID. Received: " + config.get("CLIENT-ID"));
-        }
-        //        this.clientID = this.config.get("CLIENT-ID");// fixme revert this
         this.clientID = UUID.randomUUID().toString();
         resource.clientSetname(this.clientID);
         this.redisClientID = resource.clientId();

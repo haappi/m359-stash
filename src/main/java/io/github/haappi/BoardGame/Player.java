@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class Player {
     private final String name;
+    private final String UUID;
     private final ArrayList<Card> cards = new ArrayList<>();
     private City currentCity;
 
-    public Player(String name, City currwentCity) {
+    public Player(String name, String UUID, City currwentCity) {
         this.name = name;
+        this.UUID = UUID;
         this.currentCity = currwentCity;
     }
 

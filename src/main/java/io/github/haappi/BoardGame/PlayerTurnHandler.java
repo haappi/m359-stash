@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class PlayerTurnHandler {
     private final Game game;
     private final Player player;
-    private int count = 4;
     private final boolean happening = true;
+    private int count = 4;
 
     public PlayerTurnHandler(Game instance, Player player) {
         this.game = instance;
@@ -26,9 +26,11 @@ public class PlayerTurnHandler {
 
     public void build_research() {
         if (this.player.getCurrentCity().hasResearchStation()) {
+            Utils.p(new InformationMessage("This city already has a research station"));
             return;
         }
         if (this.game.getResearchStations().size() == 6) {
+            Utils.p(new InformationMessage("There are no more research stations left"));
             return;
         }
         if (this.player.getCards().contains(new CityCard(this.player.getCurrentCity()))) {
@@ -69,7 +71,47 @@ public class PlayerTurnHandler {
     }
 
     public void find_cure(String color, ArrayList<Card> cardToDiscard) {
-        if (cardToDiscard)
+        if (!this.player.getCurrentCity().hasResearchStation()) {
+            Utils.p(new InformationMessage("This city does not have a research station"));
+            return;
+        }
+        if (this.game.getCuredDiseases().contains(color)) {
+            Utils.p(new InformationMessage("This disease is already cured"));
+            return;
+        }
+        if (cardToDiscard.size() != 5) {
+            Utils.p(new InformationMessage("You need to discard 5 cards"));
+            return;
+        }
+        for (Card card : cardToDiscard) {
+            if (!this.player.getCards().contains(card)) {
+                Utils.p(new InformationMessage("You do not have all the cards"));
+                return;
+            }
+        }
+        ArrayList<CityCard> cards = new ArrayList<>();
+        for (Card card : cardToDiscard) {
+            cards.add((CityCard) card);
+        }
+        for (CityCard card : cards) {
+            if (!card.getCity().getColor().equals(color)) {
+                Utils.p(new InformationMessage("You need to discard 5 cards of the same color"));
+                return;
+            }
+        }
+        for (Card card : cardToDiscard) {
+            this.player.removeCard(card);
+        }
+
+        this.game.getCuredDiseases().add(color);
+
+        if (this.game.getCuredDiseases().size() == 4) {
+            Utils.p(new GameWonPacket("You have cured all the diseases! You win the game!"));
+            return;
+        }
+
+
+        this.count--;
     }
 
     public void share_knowledge(Player player, CityCard card) {

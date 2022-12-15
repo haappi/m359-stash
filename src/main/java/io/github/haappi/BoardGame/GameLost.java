@@ -1,10 +1,10 @@
 package io.github.haappi.BoardGame;
 
-public class LoseScreenPacket extends BasePacket {
+public class GameLost extends BasePacket {
     private final String reason;
 
-    public LoseScreenPacket(String reason) {
-        super(ClassTypes.LOSE_SCREEN, false);
+    public GameLost(String reason, String clientID) {
+        super(ClassTypes.GAME_LOST, false, 0.0, clientID);
         this.reason = reason;
     }
 

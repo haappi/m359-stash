@@ -10,7 +10,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.params.ClientKillParams;
 
 import java.io.IOException;
-import java.util.Objects;
+import java.util.*;
 
 public class Lobby {
     private static boolean isPlayerReady = false;
@@ -33,6 +33,12 @@ public class Lobby {
                         }
                     }
                 });
+    }
+
+    public static <T> ArrayList<ConnectedUser> getConnectedUsers() {
+        List list = new ArrayList(Arrays.asList(connectedPlayersLocal.getItems().toArray()));
+        Collections.sort(list);
+        return new ArrayList<ConnectedUser>(list);
     }
 
     public static void updatePlayerReady(PlayerUnreadyReady playerUnreadyReady) {
@@ -107,6 +113,19 @@ public class Lobby {
     }
 
     public void startGame(ActionEvent event) {
+        ConnectedUser connectedUser = new ConnectedUser("test", "test");
+        for (ConnectedUser connectedUser1 : connectedPlayers.getItems()) {
+            if (Objects.equals(connectedUser1.getUUID(), HelloApplication.getInstance().getClientID())) {
+                connectedUser = connectedUser1;
+                break;
+            }
+        }
+        if (Objects.equals(connectedUser.getUUID(), "test")) {
+            Utils.p(new LoseScreenPacket("An error occurred in the lobby."));
+            return;
+        }
+        connectedUser.setHost(true);
+
         Utils.p(new StartGamePacket());
     }
 }
