@@ -11,5 +11,4 @@ public class LoseScreenPacket extends BasePacket {
     public String getReason() {
         return reason;
     }
-
 }

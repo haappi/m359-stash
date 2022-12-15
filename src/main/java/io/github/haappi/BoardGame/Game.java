@@ -25,7 +25,23 @@ public class Game {
     private final HashMap<String, Integer> cubes = new HashMap<>();
     private final ArrayList<City> researchStations = new ArrayList<>(List.of(ATLANTA));
     private ArrayList<ConnectedUser> connectedUsers = new ArrayList<>();
-    private ArrayList<City> cities = new ArrayList<>(List.of(WHITEHORSE, EDMONTON, QUEBEC, VANCOUVER, SEATTLE, SAN_FRANCISCO, SALT_LAKE_CITY, DENVER, DALLAS, ATLANTA, MIAMI, NEW_YORK_CITY, CHICAGO, ONTARIO));
+    private ArrayList<City> cities =
+            new ArrayList<>(
+                    List.of(
+                            WHITEHORSE,
+                            EDMONTON,
+                            QUEBEC,
+                            VANCOUVER,
+                            SEATTLE,
+                            SAN_FRANCISCO,
+                            SALT_LAKE_CITY,
+                            DENVER,
+                            DALLAS,
+                            ATLANTA,
+                            MIAMI,
+                            NEW_YORK_CITY,
+                            CHICAGO,
+                            ONTARIO));
     private HashMap<City, ArrayList<City>> adjacentCities = new HashMap<>();
     private ArrayList<String> curedDiseases = new ArrayList<>();
     private ArrayList<String> eradicatedDiseases = new ArrayList<>();
@@ -47,24 +63,34 @@ public class Game {
         cubes.put("yellow", 24);
         cubes.put("black", 24);
 
-
         adjacentCities.put(WHITEHORSE, new ArrayList<>(List.of(EDMONTON, VANCOUVER)));
-        adjacentCities.put(EDMONTON, new ArrayList<>(List.of(VANCOUVER, SALT_LAKE_CITY, ONTARIO, QUEBEC)));
-        adjacentCities.put(QUEBEC, new ArrayList<>(List.of(EDMONTON, NEW_YORK_CITY, CHICAGO, ONTARIO)));
-        adjacentCities.put(VANCOUVER, new ArrayList<>(List.of(WHITEHORSE, EDMONTON, SEATTLE, SALT_LAKE_CITY)));
+        adjacentCities.put(
+                EDMONTON, new ArrayList<>(List.of(VANCOUVER, SALT_LAKE_CITY, ONTARIO, QUEBEC)));
+        adjacentCities.put(
+                QUEBEC, new ArrayList<>(List.of(EDMONTON, NEW_YORK_CITY, CHICAGO, ONTARIO)));
+        adjacentCities.put(
+                VANCOUVER, new ArrayList<>(List.of(WHITEHORSE, EDMONTON, SEATTLE, SALT_LAKE_CITY)));
 
-        adjacentCities.put(SEATTLE, new ArrayList<>(List.of(VANCOUVER, SAN_FRANCISCO, SALT_LAKE_CITY)));
-        adjacentCities.put(SAN_FRANCISCO, new ArrayList<>(List.of(SEATTLE, SALT_LAKE_CITY, DENVER, DALLAS)));
-        adjacentCities.put(SALT_LAKE_CITY, new ArrayList<>(List.of(SEATTLE, SAN_FRANCISCO, DENVER, ONTARIO)));
-        adjacentCities.put(DENVER, new ArrayList<>(List.of(SALT_LAKE_CITY, SAN_FRANCISCO, DALLAS, CHICAGO, ONTARIO, ATLANTA)));
+        adjacentCities.put(
+                SEATTLE, new ArrayList<>(List.of(VANCOUVER, SAN_FRANCISCO, SALT_LAKE_CITY)));
+        adjacentCities.put(
+                SAN_FRANCISCO, new ArrayList<>(List.of(SEATTLE, SALT_LAKE_CITY, DENVER, DALLAS)));
+        adjacentCities.put(
+                SALT_LAKE_CITY, new ArrayList<>(List.of(SEATTLE, SAN_FRANCISCO, DENVER, ONTARIO)));
+        adjacentCities.put(
+                DENVER,
+                new ArrayList<>(
+                        List.of(SALT_LAKE_CITY, SAN_FRANCISCO, DALLAS, CHICAGO, ONTARIO, ATLANTA)));
 
         adjacentCities.put(DALLAS, new ArrayList<>(List.of(CHICAGO, DENVER, ATLANTA, MIAMI)));
         adjacentCities.put(ATLANTA, new ArrayList<>(List.of(DALLAS, CHICAGO, MIAMI)));
         adjacentCities.put(MIAMI, new ArrayList<>(List.of(ATLANTA, DALLAS)));
         adjacentCities.put(NEW_YORK_CITY, new ArrayList<>(List.of(CHICAGO, QUEBEC, ATLANTA)));
 
-        adjacentCities.put(CHICAGO, new ArrayList<>(List.of(NEW_YORK_CITY, QUEBEC, DENVER, DALLAS, ATLANTA)));
-        adjacentCities.put(ONTARIO, new ArrayList<>(List.of(QUEBEC, EDMONTON, DENVER, SALT_LAKE_CITY)));
+        adjacentCities.put(
+                CHICAGO, new ArrayList<>(List.of(NEW_YORK_CITY, QUEBEC, DENVER, DALLAS, ATLANTA)));
+        adjacentCities.put(
+                ONTARIO, new ArrayList<>(List.of(QUEBEC, EDMONTON, DENVER, SALT_LAKE_CITY)));
     }
 
     public int getOutbreakCounter() {
@@ -164,6 +190,5 @@ public class Game {
             return;
         }
         eradicatedDiseases.add(color);
-
     }
 }

@@ -12,4 +12,3 @@ public class InformationMessage extends BasePacket {
         return message;
     }
 }
-

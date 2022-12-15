@@ -2,6 +2,7 @@ package io.github.haappi.BoardGame;
 
 import javafx.application.Platform;
 import javafx.scene.image.Image;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;

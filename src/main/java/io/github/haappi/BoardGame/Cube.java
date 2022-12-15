@@ -1,5 +1,3 @@
 package io.github.haappi.BoardGame;
 
-public class Cube {
-
-}
+public class Cube {}

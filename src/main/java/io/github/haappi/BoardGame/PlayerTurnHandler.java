@@ -60,12 +60,22 @@ public class PlayerTurnHandler {
     public void treat_disease(String color) {
         if (this.player.getCurrentCity().getCubes().get(color) > 0) {
             while (this.player.getCurrentCity().getCubes().get(color) > 0) {
-                this.player.getCurrentCity().getCubes().put(color, this.player.getCurrentCity().getCubes().get(color) - 1);
-                this.game.setCubes(this.player.getCurrentCity().getColor(), this.game.getCubes(this.player.getCurrentCity().getColor()) + 1);
+                this.player
+                        .getCurrentCity()
+                        .getCubes()
+                        .put(color, this.player.getCurrentCity().getCubes().get(color) - 1);
+                this.game.setCubes(
+                        this.player.getCurrentCity().getColor(),
+                        this.game.getCubes(this.player.getCurrentCity().getColor()) + 1);
             }
         } else {
-            this.player.getCurrentCity().getCubes().put(color, this.player.getCurrentCity().getCubes().get(color) - 1);
-            this.game.setCubes(this.player.getCurrentCity().getColor(), this.game.getCubes(this.player.getCurrentCity().getColor()) + 1);
+            this.player
+                    .getCurrentCity()
+                    .getCubes()
+                    .put(color, this.player.getCurrentCity().getCubes().get(color) - 1);
+            this.game.setCubes(
+                    this.player.getCurrentCity().getColor(),
+                    this.game.getCubes(this.player.getCurrentCity().getColor()) + 1);
         }
         this.count--;
     }
@@ -110,7 +120,6 @@ public class PlayerTurnHandler {
             return;
         }
 
-
         this.count--;
     }
 
@@ -126,5 +135,4 @@ public class PlayerTurnHandler {
             }
         }
     }
-
 }

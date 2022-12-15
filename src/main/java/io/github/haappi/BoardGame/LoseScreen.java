@@ -10,13 +10,14 @@ public class LoseScreen {
     @FXML
     public void initialize() {
         label.setText("You lost because \n" + HelloApplication.loseReason);
-        Platform.runLater(() -> {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            System.exit(0);
-        });
+        Platform.runLater(
+                () -> {
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.exit(0);
+                });
     }
 }

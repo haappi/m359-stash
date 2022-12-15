@@ -11,5 +11,4 @@ public class GameLost extends BasePacket {
     public String getReason() {
         return reason;
     }
-
 }

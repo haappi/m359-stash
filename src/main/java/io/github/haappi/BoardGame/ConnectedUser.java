@@ -7,6 +7,7 @@ public class ConnectedUser extends BasePacket implements Comparable<ConnectedUse
     private final String userName;
     private boolean isReady;
     private boolean isHost;
+
     public ConnectedUser(String UUID, String userName, boolean ignoreSelf) {
         super(ClassTypes.CONNECTED_USER, ignoreSelf, 0.1, UUID);
         this.UUID = UUID;

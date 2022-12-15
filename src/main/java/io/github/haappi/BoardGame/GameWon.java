@@ -13,11 +13,14 @@ public class GameWon {
     @FXML
     public void initialize() {
         imageView.setImage(Utils.fileStreamToImage(Utils.getImage("game--won.png")));
-        new Timer().schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(() -> Platform.exit());
-            }
-        }, 5000);
+        new Timer()
+                .schedule(
+                        new TimerTask() {
+                            @Override
+                            public void run() {
+                                Platform.runLater(() -> Platform.exit());
+                            }
+                        },
+                        5000);
     }
 }
