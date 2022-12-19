@@ -1,6 +1,7 @@
 package io.github.haappi.BoardGame;
 
 import io.github.haappi.BoardGame.Actions.*;
+
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
@@ -86,7 +87,6 @@ public class Player {
             BoardView.rectangles[i][j].setFill(color);
             BoardView.rectangles[i][j].setOpacity(100);
         }
-
     }
 
     public void discardACard(Card card) {

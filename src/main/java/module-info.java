@@ -8,5 +8,7 @@ module io.github.haappi.BoardGame {
 
     exports io.github.haappi.BoardGame;
     exports io.github.haappi.BoardGame.Actions;
-    opens io.github.haappi.BoardGame.Actions to javafx.fxml;
+
+    opens io.github.haappi.BoardGame.Actions to
+            javafx.fxml;
 }

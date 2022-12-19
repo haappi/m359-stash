@@ -1,18 +1,17 @@
 package io.github.haappi.BoardGame;
 
+import static io.github.haappi.BoardGame.HelloApplication.game;
+
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
-import static io.github.haappi.BoardGame.HelloApplication.game;
-
 public class HelloController {
     public TextField playerOneName;
     public TextField playerTwoName;
 
-    public HelloController() throws IOException {
-    }
+    public HelloController() throws IOException {}
 
     public void gameStart() throws IOException {
         if (playerOneName.getText() == null || playerOneName.getText().equals("")) {
@@ -26,6 +25,5 @@ public class HelloController {
 
         game.startGame();
         HelloApplication.setScene("board-view");
-
     }
 }

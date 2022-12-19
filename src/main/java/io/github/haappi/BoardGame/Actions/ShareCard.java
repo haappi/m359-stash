@@ -1,6 +1,7 @@
 package io.github.haappi.BoardGame.Actions;
 
 import io.github.haappi.BoardGame.*;
+
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 
@@ -20,7 +21,8 @@ public class ShareCard extends Action {
         playerListView.getItems().addAll(getPlayer().getGame().getPlayers());
         playerListView.getItems().remove(getPlayer());
 
-        ArrayList<Object> thingz = Utils.getTextInput("Share Card", playerListView, " with a player");
+        ArrayList<Object> thingz =
+                Utils.getTextInput("Share Card", playerListView, " with a player");
         TextInputDialog td = (TextInputDialog) thingz.get(0);
         td.showAndWait();
         Wrapper wrapper = (Wrapper) thingz.get(1);
@@ -30,7 +32,6 @@ public class ShareCard extends Action {
             super.incrementRemainingActions();
             return;
         }
-
 
         ListView<Card> cardListView = new ListView<>();
         cardListView.getItems().addAll(getPlayer().getHand());

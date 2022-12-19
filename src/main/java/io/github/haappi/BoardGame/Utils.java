@@ -41,20 +41,22 @@ public class Utils {
         return getTextInput(title, listView, " to a city");
     }
 
-    public static <T> ArrayList<Object> getTextInput(String title, ListView<T> listView, String appendToTitle) {
+    public static <T> ArrayList<Object> getTextInput(
+            String title, ListView<T> listView, String appendToTitle) {
         TextInputDialog td = new TextInputDialog(title);
         td.setTitle(title);
         td.setHeaderText(title + appendToTitle);
         // https://stackoverflow.com/questions/30026824/modifying-local-variable-from-inside-lambda
         var wrapper = new Wrapper();
         listView.setPrefHeight(listView.getItems().size() * 69 + 2);
-        listView.setOnMouseClicked(event -> {
-            if (listView.getSelectionModel().getSelectedItem() == null) {
-                return;
-            }
-            td.hide();
-            wrapper.set(listView.getSelectionModel().getSelectedItem());
-        });
+        listView.setOnMouseClicked(
+                event -> {
+                    if (listView.getSelectionModel().getSelectedItem() == null) {
+                        return;
+                    }
+                    td.hide();
+                    wrapper.set(listView.getSelectionModel().getSelectedItem());
+                });
         td.getDialogPane().setContent(listView);
         return new ArrayList<>(List.of(td, wrapper));
     }
@@ -79,5 +81,4 @@ public class Utils {
     public static Image fileStreamToImage(FileInputStream fileInputStream) {
         return new Image(fileInputStream);
     }
-
 }

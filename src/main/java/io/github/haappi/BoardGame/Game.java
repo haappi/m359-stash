@@ -48,13 +48,13 @@ public class Game {
                             MIAMI,
                             NEW_YORK_CITY,
                             CHICAGO,
-                            ONTARIO)
-            );
+                            ONTARIO));
     private final HashMap<City, ArrayList<City>> adjacentCities = new HashMap<>();
     private final int infectionRate = 0;
     InfectionThings infectionThings = new InfectionThings(this);
     private int turns = 0;
     private int outbreakCounter = 0;
+
     public Game() throws IOException {
         for (City city : this.cities) {
             this.possiblePlayerCards.add(new CityCard(city));
@@ -88,7 +88,6 @@ public class Game {
                 CHICAGO, new ArrayList<>(List.of(NEW_YORK_CITY, QUEBEC, DENVER, DALLAS, ATLANTA)));
         adjacentCities.put(
                 ONTARIO, new ArrayList<>(List.of(QUEBEC, EDMONTON, DENVER, SALT_LAKE_CITY)));
-
 
         Utils.getCityByName("Atlanta", this).setHasResearchStation(true);
         this.cubes.put("red", 24);
@@ -223,7 +222,6 @@ public class Game {
         PlayerTurn playerTurn = new PlayerTurn(this, player);
         player.setPlayerTurn(playerTurn);
 
-
         BoardView.updateExtraInformation();
         updateStuff();
 
@@ -236,10 +234,10 @@ public class Game {
         BoardView.cardViewStatic.getItems().clear();
         BoardView.actionsViewStatic.getItems().addAll(getCurrentPlayer().getActions());
         BoardView.cardViewStatic.getItems().addAll(getCurrentPlayer().getHand());
-        BoardView.actionsLabelStatic.setText("Actions (" + getCurrentPlayer().getPlayerTurn().getRemainingActions() + ")");
+        BoardView.actionsLabelStatic.setText(
+                "Actions (" + getCurrentPlayer().getPlayerTurn().getRemainingActions() + ")");
 
         BoardView.updateExtraInformation();
-
     }
 
     public ArrayList<Player> getPlayers() {

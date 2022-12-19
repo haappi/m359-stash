@@ -7,7 +7,6 @@ public class InfectionoDoThing {
     private final Game game;
     private final ArrayList<Card> playerHand;
 
-
     public InfectionoDoThing(Game game, ArrayList<Card> playerHand) throws IOException {
         this.game = game;
         this.playerHand = playerHand;
