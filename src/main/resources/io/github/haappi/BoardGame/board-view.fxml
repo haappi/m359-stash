@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="597.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.BoardGame.BoardView">
+    <children>
+        <TabPane prefHeight="597.0" prefWidth="830.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Game View">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <Label fx:id="personTurn" layoutX="28.0" layoutY="13.0" text="It's Player 1's turn">
+                                    <font>
+                                        <Font size="24.0"/>
+                                    </font>
+                                </Label>
+                                <Label fx:id="actionsLabel" layoutX="644.0" layoutY="-5.0" text="Actions (4)">
+                                    <font>
+                                        <Font size="24.0"/>
+                                    </font>
+                                </Label>
+                                <ListView fx:id="actionsView" layoutX="600.0" layoutY="35.0" prefHeight="200.0"
+                                          prefWidth="200.0"/>
+                                <Button layoutX="666.0" layoutY="242.0" mnemonicParsing="false" onAction="#doAction"
+                                        text="Do Action"/>
+                                <ListView fx:id="cardView" layoutX="600.0" layoutY="329.0" prefHeight="200.0"
+                                          prefWidth="200.0"/>
+                                <Label layoutX="642.0" layoutY="267.0" text="Your Cards">
+                                    <font>
+                                        <Font size="24.0"/>
+                                    </font>
+                                </Label>
+                                <ImageView fx:id="map" fitHeight="394.0" fitWidth="480.0" layoutX="14.0" layoutY="160.0"
+                                           pickOnBounds="true" preserveRatio="true"/>
+                                <Label fx:id="moreInformation" layoutX="334.0" layoutY="22.0" text="Extra Information">
+                                    <font>
+                                        <Font size="18.0"/>
+                                    </font>
+                                </Label>
+                                <Button layoutX="122.0" layoutY="49.0" mnemonicParsing="false" onAction="#endTurn"
+                                        text="End Turn"/>
+                                <GridPane fx:id="gridPane" gridLinesVisible="true" layoutX="5.0" layoutY="194.0"
+                                          prefHeight="374.0" prefWidth="427.0">
+                                </GridPane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</AnchorPane>

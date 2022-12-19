@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.BoardGame.HelloController">
+    <children>
+        <TextField fx:id="playerOneName" layoutX="67.0" layoutY="77.0" promptText="Enter Player 1 Name"/>
+        <TextField fx:id="playerTwoName" layoutX="67.0" layoutY="123.0" promptText="Enter Player 2 Name"/>
+        <Button layoutX="247.0" layoutY="102.0" mnemonicParsing="false" onAction="#gameStart" text="Start!"/>
+    </children>
+</AnchorPane>

@@ -1,0 +1,25 @@
+what's a hashmap
+- your key is "hash"ed to a number (hence the name hashmap)
+- the number hash is used to index into an array
+- this array is very fast to access, and doesn't have to traverse the entire array to find the value
+- however, you can only store one value per key
+- think of two arraylists alongside each other, but all duplicates removed for the key arraylist
+- - and you just match the index of the key to the index of the value arraylist
+
+
+getOrDefault()
+- usually we use `get`, but if the key doesn't exist, it returns null
+- and im too lazy to check for null
+- so i use getOrDefault, which takes in a default value to return if the key doesn't exist
+- no null checks for me!!!
+
+extends thing
+- this is inheritance. you "inherit" all the methods/attributes from the parent class
+- you can access all methods of the parent class in the child class
+- you can also override methods of the parent class in the child class
+
+var keyword
+- automatically infers the type of the variable
+- so you don't have to type out the type of the variable
+- var wrapper = new Object(){ String value = ""; };
+- - this is a wrapper class that holds a string
