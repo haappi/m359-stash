@@ -1,6 +1,9 @@
 package io.github.haappi.BoardGame;
 
+import static io.github.haappi.BoardGame.HelloApplication.game;
+
 import io.github.haappi.BoardGame.Actions.Action;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -14,8 +17,6 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.Random;
 
-import static io.github.haappi.BoardGame.HelloApplication.game;
-
 public class BoardView {
     public static final Rectangle[][] rectangles = new Rectangle[25][25];
     public static Label personTurnStatic, moreInformationStatic, actionsLabelStatic;
@@ -24,33 +25,27 @@ public class BoardView {
     public static ListView<Card> cardViewStatic;
     public static ImageView mapStatic;
     public GridPane gridPane;
-    @FXML
-    protected Label actionsLabel;
-    @FXML
-    protected Label personTurn;
-    @FXML
-    protected ListView<Action> actionsView;
-    @FXML
-    protected ListView<Card> cardView;
-    @FXML
-    protected ImageView map;
-    @FXML
-    protected Label moreInformation;
-    @FXML
-    protected ListView listView;
-    @FXML
-    protected Text eventInformation;
+    @FXML protected Label actionsLabel;
+    @FXML protected Label personTurn;
+    @FXML protected ListView<Action> actionsView;
+    @FXML protected ListView<Card> cardView;
+    @FXML protected ImageView map;
+    @FXML protected Label moreInformation;
+    @FXML protected ListView listView;
+    @FXML protected Text eventInformation;
 
     public static void updateExtraInformation(String data) {
         moreInformationStatic.setText(data);
     }
 
     public static void updateExtraInformation() {
-        moreInformationStatic.setText(String.format("""
+        moreInformationStatic.setText(
+                String.format(
+                        """
                                 Current City: %s
-                """, game.getCurrentPlayer().getCurrentCity()));
+                """,
+                        game.getCurrentPlayer().getCurrentCity()));
     }
-
 
     @FXML
     protected void initialize() {
@@ -68,21 +63,22 @@ public class BoardView {
         for (int i = 0; i < 25; i++) {
             for (int j = 0; j < 25; j++) {
                 Rectangle rect = new Rectangle(18, 18);
-//                rect.setFill(Color.WHITE);
+                //                rect.setFill(Color.WHITE);
                 rect.opacityProperty().set(0);
                 int finalI = i;
                 int finalJ = j;
-                rect.setOnMouseClicked(event -> {
-                    System.out.println(finalI + " " + finalJ);
-                    rect.opacityProperty().set(100);
-                    rect.setFill(Color.YELLOW);
-                });
+                rect.setOnMouseClicked(
+                        event -> {
+                            System.out.println(finalI + " " + finalJ);
+                            rect.opacityProperty().set(100);
+                            rect.setFill(Color.YELLOW);
+                        });
                 rectangles[i][j] = rect;
                 gridPane.add(rect, i, j);
             }
         }
         gridPane.setGridLinesVisible(true);
-//        listView.getItems().addAll(HelloApplication.game.getEvents());
+        //        listView.getItems().addAll(HelloApplication.game.getEvents());
     }
 
     @FXML
@@ -90,12 +86,10 @@ public class BoardView {
         Action action = actionsView.getSelectionModel().getSelectedItem();
         action.doAction();
         game.updateStuff();
-
     }
 
     @FXML
-    protected void endTurn(ActionEvent event) {
-    }
+    protected void endTurn(ActionEvent event) {}
 
     public void infect(ActionEvent event) throws IOException {
         // cheat method
@@ -108,7 +102,6 @@ public class BoardView {
         if (random == 0) {
             EndGame.reason = "big outbreak occured";
             HelloApplication.setScene("end-game");
-
         }
     }
 }
