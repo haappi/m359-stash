@@ -4,6 +4,7 @@ import io.github.haappi.BoardGame.City;
 import io.github.haappi.BoardGame.PlayerTurn;
 import io.github.haappi.BoardGame.Utils;
 import io.github.haappi.BoardGame.Wrapper;
+
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 
@@ -20,7 +21,8 @@ public class Drive extends Action {
         super.doAction();
         ListView<City> cities = new ListView<>();
         System.out.println(getPlayer().getGame().getCities());
-        cities.getItems().addAll(getPlayer().getGame().getAdjacentCities(getPlayer().getCurrentCity()));
+        cities.getItems()
+                .addAll(getPlayer().getGame().getAdjacentCities(getPlayer().getCurrentCity()));
         ArrayList<Object> thingz = Utils.getTextInput("Drive", cities);
         TextInputDialog td = (TextInputDialog) thingz.get(0);
         td.showAndWait();

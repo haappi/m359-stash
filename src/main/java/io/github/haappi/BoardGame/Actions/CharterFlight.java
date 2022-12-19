@@ -4,6 +4,7 @@ import io.github.haappi.BoardGame.City;
 import io.github.haappi.BoardGame.PlayerTurn;
 import io.github.haappi.BoardGame.Utils;
 import io.github.haappi.BoardGame.Wrapper;
+
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 
@@ -12,7 +13,8 @@ import java.util.ArrayList;
 public class CharterFlight extends Action {
     public CharterFlight(PlayerTurn playerTurn) {
         super("Charter Flight", playerTurn);
-        // Charter Flight: Move to any city by discarding the city card that matches the city you are in.
+        // Charter Flight: Move to any city by discarding the city card that matches the city you
+        // are in.
     }
 
     @Override

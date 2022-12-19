@@ -1,4 +1,3 @@
 package io.github.haappi.BoardGame;
 
-public class ActionEvent {
-}
+public class ActionEvent {}

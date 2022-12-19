@@ -1,6 +1,7 @@
 package io.github.haappi.BoardGame.Actions;
 
 import io.github.haappi.BoardGame.*;
+
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextInputDialog;
 
@@ -32,6 +33,5 @@ public class DirectFlight extends Action {
         }
         getPlayer().discardACard(getPlayer().getCityCard(city));
         getPlayer().setCurrentCity(city);
-
     }
 }

@@ -7,7 +7,6 @@ public class InfectionThings extends Card {
     private final ArrayList<City> cities;
     private final ArrayList<City> discarded = new ArrayList<>();
 
-
     public InfectionThings(Game gameInstance) {
         this.game = gameInstance;
         this.cities = gameInstance.getCities();

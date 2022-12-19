@@ -96,6 +96,5 @@ public class City {
         for (City city : this.game.getCities(this)) {
             city.doInfect(color);
         }
-
     }
 }
