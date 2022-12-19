@@ -11,6 +11,9 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+import java.util.Random;
+
 import static io.github.haappi.BoardGame.HelloApplication.game;
 
 public class BoardView {
@@ -92,5 +95,20 @@ public class BoardView {
 
     @FXML
     protected void endTurn(ActionEvent event) {
+    }
+
+    public void infect(ActionEvent event) throws IOException {
+        // cheat method
+        game.getCurrentPlayer().getCurrentCity().doInfect();
+        game.getCurrentPlayer().getCurrentCity().doInfect();
+        game.updateStuff();
+
+        Random rand = new Random();
+        int random = rand.nextInt(3);
+        if (random == 0) {
+            EndGame.reason = "big outbreak occured";
+            HelloApplication.setScene("end-game");
+
+        }
     }
 }
