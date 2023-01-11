@@ -2,7 +2,7 @@ package io.github.haappi.template;
 
 import javafx.scene.paint.Color;
 
-public class Grass extends Objects{
+public class Grass extends Objects {
     private final Color color;
     private int x;
     private int y;

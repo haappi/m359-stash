@@ -1,4 +1,3 @@
 package io.github.haappi.template;
 
-public class Objects {
-}
+public class Objects {}
