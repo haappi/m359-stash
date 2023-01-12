@@ -4,10 +4,8 @@ import static io.github.haappi.template.Utils.getRandomNumber;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -43,7 +41,6 @@ public class HelloController {
         objects[i][j] = new Elephant(i, j, buttons[i][j], buttons);
         elephant = (Elephant) objects[i][j];
 
-
         for (int k = 0; k < buttons.length; k++) {
             ColumnConstraints cc = new ColumnConstraints();
             cc.setHgrow(Priority.NEVER);
@@ -56,29 +53,34 @@ public class HelloController {
             gridPane.getRowConstraints().add(rc);
         }
 
-        AnimationTimer timer ;
-        timer = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                elephant.move();
-                System.out.println(elephant.getX() + " " + elephant.getY());
-                pauseTimerForDuration(this, Duration.millis(10));
-//                PauseTransition pt = new PauseTransition(Duration.seconds(1));
-//                pt.setOnFinished(event -> timer.start());
-//                timer.stop();
-//                pt.play();
-//                // this looks cool https://stackoverflow.com/questions/30146560/how-to-change-animationtimer-speed
-//
-//                // and this for custom class https://edencoding.com/animation-timer-pausing/
-            }
-        };
+        AnimationTimer timer;
+        timer =
+                new AnimationTimer() {
+                    @Override
+                    public void handle(long now) {
+                        elephant.move();
+                        System.out.println(elephant.getX() + " " + elephant.getY());
+                        pauseTimerForDuration(this, Duration.millis(10));
+                        //                PauseTransition pt = new
+                        // PauseTransition(Duration.seconds(1));
+                        //                pt.setOnFinished(event -> timer.start());
+                        //                timer.stop();
+                        //                pt.play();
+                        //                // this looks cool
+                        // https://stackoverflow.com/questions/30146560/how-to-change-animationtimer-speed
+                        //
+                        //                // and this for custom class
+                        // https://edencoding.com/animation-timer-pausing/
+                    }
+                };
         timer.start();
     }
 
     void pauseTimerForDuration(AnimationTimer timer, Duration duration) {
         // https://stackoverflow.com/questions/56334617/how-to-pause-animationtimer-for-a-set-number-of-seconds
 
-        // i would try doing this in the segement above, but the variable really wont be initalized hence it wont work
+        // i would try doing this in the segement above, but the variable really wont be initalized
+        // hence it wont work
         PauseTransition pt = new PauseTransition(duration);
         pt.setOnFinished(event -> timer.start());
 

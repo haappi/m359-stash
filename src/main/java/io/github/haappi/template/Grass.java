@@ -46,10 +46,12 @@ public class Grass extends Objects {
     }
 
     public void translate(int x, int y) {
-        if (this.x + x > buttons.length - 1 || this.x + x < 0 || this.y + y > buttons.length - 1 || this.y + y < 0) {
+        if (this.x + x > buttons.length - 1
+                || this.x + x < 0
+                || this.y + y > buttons.length - 1
+                || this.y + y < 0) {
             return;
         }
-
 
         Button temp;
         temp = this.buttons[this.x][this.y];
