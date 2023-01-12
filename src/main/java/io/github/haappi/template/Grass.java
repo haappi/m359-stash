@@ -10,7 +10,6 @@ public class Grass extends Objects {
     private final Button button;
     private final Button[][] buttons;
 
-
     public Grass(int x, int y, Button button, Button[][] buttons) {
         this.color = Color.GREEN;
         this.x = x;
@@ -56,7 +55,6 @@ public class Grass extends Objects {
         temp = this.buttons[this.x][this.y];
         this.buttons[this.x][this.y] = this.buttons[this.x + x][this.y + y];
         this.buttons[this.x + x][this.y + y] = temp;
-
 
         this.x += x;
         this.y += y;
