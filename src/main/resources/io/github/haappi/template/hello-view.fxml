@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.layout.GridPane?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.template.HelloController">
    <children>
-      <Button layoutX="253.0" layoutY="175.0" mnemonicParsing="false" onAction="#onHelloButtonClick" text="Button" />
-      <Label fx:id="welcomeText" layoutX="259.0" layoutY="72.0" text="Label" />
+      <GridPane fx:id="gridPane" layoutX="182.0" layoutY="96.0">
+
+      </GridPane>
+      <Button layoutX="466.0" layoutY="161.0" mnemonicParsing="false" onAction="#startButton" text="Start" />
    </children>
 </AnchorPane>

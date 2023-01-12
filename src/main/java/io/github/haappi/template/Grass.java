@@ -1,14 +1,27 @@
 package io.github.haappi.template;
 
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
 public class Grass extends Objects {
     private final Color color;
     private int x;
     private int y;
+    private final Button button;
+    private final Button[][] buttons;
 
-    public Grass(int x, int y) {
+
+    public Grass(int x, int y, Button button, Button[][] buttons) {
         this.color = Color.GREEN;
+        this.x = x;
+        this.y = y;
+        this.button = button;
+        this.buttons = buttons;
+    }
+
+    private void setStuff() {
+        button.setText(this.toString());
+        button.setTextFill(this.color);
     }
 
     public Color getColor() {
@@ -32,8 +45,14 @@ public class Grass extends Objects {
     }
 
     public void translate(int x, int y) {
+        this.buttons[this.x][this.y] = this.buttons[this.x + x][this.y + y];
+        this.buttons[this.x + x][this.y + y] = this.button;
+
+
         this.x += x;
         this.y += y;
+
+        this.setStuff();
     }
 
     public String toString() {
