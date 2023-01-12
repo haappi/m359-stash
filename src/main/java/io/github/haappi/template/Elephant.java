@@ -7,7 +7,7 @@ public class Elephant extends Objects {
     private final Color color;
     private int x;
     private int y;
-    private final Button button;
+    private Button button;
     private final Button[][] buttons;
 
     public Elephant(int x, int y, Button button, Button[][] buttons) {
@@ -51,12 +51,14 @@ public class Elephant extends Objects {
             return;
         }
 
+        Button temp;
+        temp = this.buttons[this.x][this.y];
         this.buttons[this.x][this.y] = this.buttons[this.x + x][this.y + y];
-        this.buttons[this.x + x][this.y + y] = this.button;
-
+        this.buttons[this.x + x][this.y + y] = temp;
 
         this.x += x;
         this.y += y;
+        this.button = this.buttons[this.x][this.y];
 
         this.setStuff();
     }
