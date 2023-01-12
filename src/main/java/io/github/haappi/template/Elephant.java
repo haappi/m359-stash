@@ -18,12 +18,11 @@ public class Elephant extends Objects {
         this.buttons = buttons;
 
         this.setStuff();
-        }
+    }
 
     private void setStuff() {
         button.setText(this.toString());
         button.setTextFill(this.color);
-
     }
 
     public Color getColor() {
@@ -47,13 +46,15 @@ public class Elephant extends Objects {
     }
 
     public void translate(int x, int y) {
-        if (this.x + x > buttons.length - 1 || this.x + x < 0 || this.y + y > buttons.length - 1 || this.y + y < 0) {
+        if (this.x + x > buttons.length - 1
+                || this.x + x < 0
+                || this.y + y > buttons.length - 1
+                || this.y + y < 0) {
             return;
         }
 
         this.buttons[this.x][this.y] = this.buttons[this.x + x][this.y + y];
         this.buttons[this.x + x][this.y + y] = this.button;
-
 
         this.x += x;
         this.y += y;

@@ -2,11 +2,8 @@ package io.github.haappi.template;
 
 import static io.github.haappi.template.Utils.getRandomNumber;
 
-import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -41,7 +38,6 @@ public class HelloController {
         objects[i][j] = new Elephant(i, j, buttons[i][j], buttons);
         elephant = (Elephant) objects[i][j];
 
-
         for (int k = 0; k < 5; k++) {
             ColumnConstraints cc = new ColumnConstraints();
             cc.setHgrow(Priority.NEVER);
@@ -54,11 +50,11 @@ public class HelloController {
             gridPane.getRowConstraints().add(rc);
         }
 
-//        new AnimationTimer() {
-//            @Override
-//            public void handle(long now) {
-//                elephant.move();
-//            }
-//        }.start();
+        //        new AnimationTimer() {
+        //            @Override
+        //            public void handle(long now) {
+        //                elephant.move();
+        //            }
+        //        }.start();
     }
 }
