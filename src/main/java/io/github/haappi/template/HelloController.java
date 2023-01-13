@@ -4,10 +4,8 @@ import static io.github.haappi.template.Utils.getRandomNumber;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
@@ -19,9 +17,7 @@ public class HelloController {
 
     private Button[][] buttons;
     private Objects[][] objects;
-    private Elephant elephant;
-
-    private boolean o = true;
+    private Wolf wolf;
 
     @FXML
     protected void startButton() {
@@ -40,8 +36,8 @@ public class HelloController {
         }
         int i = getRandomNumber(0, 4);
         int j = getRandomNumber(0, 4);
-        objects[i][j] = new Elephant(i, j, buttons[i][j], buttons);
-        elephant = (Elephant) objects[i][j];
+        objects[i][j] = new Wolf(i, j, buttons[i][j], buttons);
+        wolf = (Wolf) objects[i][j];
 
 
         for (int k = 0; k < buttons.length; k++) {
@@ -56,13 +52,33 @@ public class HelloController {
             gridPane.getRowConstraints().add(rc);
         }
 
-        AnimationTimer timer ;
-        timer = new AnimationTimer() {
+        AnimationTimer timer = new AnimationTimer() {
+            long lastUpdate = 0; // it's in here and not outside because issues with lambad
             @Override
             public void handle(long now) {
-                elephant.move();
-                System.out.println(elephant.getX() + " " + elephant.getY());
-                pauseTimerForDuration(this, Duration.millis(10));
+                if (now - lastUpdate > 1_000_000_000) {
+                    lastUpdate = now;
+                    wolf.move();
+                    System.out.println(wolf.getX() + " " + wolf.getY());
+                    int x = GridPane.getColumnIndex(wolf.getButton());
+                    int y = GridPane.getRowIndex(wolf.getButton());
+                    System.out.println(x + " " + y);
+//                    gridPane.getChildren().clear();
+//                    for (int i = 0; i < buttons.length; i++) {
+//                        for (int j = 0; j < buttons[i].length; j++) {
+//                            gridPane.add(buttons[i][j], j, i);
+//                        }
+//                    }
+//                    elephant.move();
+                }
+
+
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                System.out.println(Thread.currentThread().getName());
 //                PauseTransition pt = new PauseTransition(Duration.seconds(1));
 //                pt.setOnFinished(event -> timer.start());
 //                timer.stop();
@@ -73,6 +89,7 @@ public class HelloController {
             }
         };
         timer.start();
+//        System.out.println(Thread.currentThread().getName());
     }
 
     void pauseTimerForDuration(AnimationTimer timer, Duration duration) {
