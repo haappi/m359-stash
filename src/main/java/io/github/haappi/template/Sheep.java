@@ -4,13 +4,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-public class Sheep extends Objects{
+public class Sheep extends Objects {
     private final Color color;
     private int x;
     private int y;
     private Button button;
     private final Button[][] buttons;
-    public final static String NAME = "\uD83D\uDC11";
+    public static final String NAME = "\uD83D\uDC11";
 
     public Sheep(int x, int y, Button button, Button[][] buttons) {
         this.color = Color.RED;
@@ -58,15 +58,21 @@ public class Sheep extends Objects{
     }
 
     public void translate(int x, int y) {
-        if (this.x + x > buttons.length - 1 || this.x + x < 0 || this.y + y > buttons.length - 1 || this.y + y < 0) {
+        if (this.x + x > buttons.length - 1
+                || this.x + x < 0
+                || this.y + y > buttons.length - 1
+                || this.y + y < 0) {
             return;
         }
 
-        Button button1 = this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)];
-        Button button2 = this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y];
+        Button button1 =
+                this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)];
+        Button button2 =
+                this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y];
 
         this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)] = button2;
-        this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y] = button1;
+        this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y] =
+                button1;
 
         GridPane.setRowIndex(button1, GridPane.getRowIndex(button1) + x);
         GridPane.setColumnIndex(button1, GridPane.getColumnIndex(button1) + y);

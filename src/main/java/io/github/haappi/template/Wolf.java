@@ -10,7 +10,7 @@ public class Wolf extends Objects {
     private int y;
     private Button button;
     private final Button[][] buttons;
-    public final static String NAME = "\uD83D\uDC3A";
+    public static final String NAME = "\uD83D\uDC3A";
 
     public Wolf(int x, int y, Button button, Button[][] buttons) {
         this.color = Color.RED;
@@ -58,15 +58,21 @@ public class Wolf extends Objects {
     }
 
     public void translate(int x, int y) {
-        if (this.x + x > buttons.length - 1 || this.x + x < 0 || this.y + y > buttons.length - 1 || this.y + y < 0) {
+        if (this.x + x > buttons.length - 1
+                || this.x + x < 0
+                || this.y + y > buttons.length - 1
+                || this.y + y < 0) {
             return;
         }
 
-        Button button1 = this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)];
-        Button button2 = this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y];
+        Button button1 =
+                this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)];
+        Button button2 =
+                this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y];
 
         this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)] = button2;
-        this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y] = button1;
+        this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y] =
+                button1;
 
         GridPane.setRowIndex(button1, GridPane.getRowIndex(button1) + x);
         GridPane.setColumnIndex(button1, GridPane.getColumnIndex(button1) + y);
@@ -100,7 +106,6 @@ public class Wolf extends Objects {
             buttons[sheepX][sheepY] = grass.getButton();
             GridPane.setRowIndex(grass.getButton(), sheepX);
             GridPane.setColumnIndex(grass.getButton(), sheepY);
-
 
             /*
             Grass grass = new Grass(this.x, this.y, buttons[this.x][this.y], buttons);
