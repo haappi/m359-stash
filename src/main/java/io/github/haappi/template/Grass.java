@@ -67,4 +67,8 @@ public class Grass extends Objects {
     public String toString() {
         return "\uD83C\uDF3F";
     }
+
+    public Button getButton() {
+        return button;
+    }
 }

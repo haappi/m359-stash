@@ -10,6 +10,7 @@ public class Wolf extends Objects {
     private int y;
     private Button button;
     private final Button[][] buttons;
+    public final static String NAME = "\uD83D\uDC3A";
 
     public Wolf(int x, int y, Button button, Button[][] buttons) {
         this.color = Color.RED;
@@ -64,17 +65,57 @@ public class Wolf extends Objects {
         Button button1 = this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)];
         Button button2 = this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y];
 
-        GridPane.setColumnIndex(button1, GridPane.getColumnIndex(button) + y);
-        GridPane.setRowIndex(button1, GridPane.getRowIndex(button) + x);
-        GridPane.setColumnIndex(button2, GridPane.getColumnIndex(button));
-        GridPane.setRowIndex(button2, GridPane.getRowIndex(button));
-
         this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)] = button2;
         this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y] = button1;
 
+        GridPane.setRowIndex(button1, GridPane.getRowIndex(button1) + x);
+        GridPane.setColumnIndex(button1, GridPane.getColumnIndex(button1) + y);
+
+        GridPane.setRowIndex(button2, GridPane.getRowIndex(button2) - x);
+        GridPane.setColumnIndex(button2, GridPane.getColumnIndex(button2) - y);
 
         this.x += x;
         this.y += y;
+
+        // find the closest sheep
+        int sheepX = -1;
+        int sheepY = -1;
+        int sheepDistance = 10;
+        for (int i = 0; i < buttons.length; i++) {
+            for (int j = 0; j < buttons.length; j++) {
+                if (buttons[i][j].getText().equals(Sheep.NAME)) {
+                    int distance = Math.abs(this.x - i) + Math.abs(this.y - j);
+                    if (distance < sheepDistance) {
+                        sheepDistance = distance;
+                        sheepX = i;
+                        sheepY = j;
+                    }
+                }
+            }
+        }
+
+        // if the sheep is close enough, eat it
+        if (sheepDistance != -1 && sheepDistance <= 2) {
+            Grass grass = new Grass(sheepX, sheepY, buttons[sheepX][sheepY], buttons);
+            buttons[sheepX][sheepY] = grass.getButton();
+            GridPane.setRowIndex(grass.getButton(), sheepX);
+            GridPane.setColumnIndex(grass.getButton(), sheepY);
+
+
+            /*
+            Grass grass = new Grass(this.x, this.y, buttons[this.x][this.y], buttons);
+            buttons[this.x][this.y] = grass.getButton();
+            GridPane.setRowIndex(grass.getButton(), this.x);
+            GridPane.setColumnIndex(grass.getButton(), this.y);
+
+            buttons[sheepX][sheepY] = this.button;
+            GridPane.setRowIndex(this.button, sheepX);
+            GridPane.setColumnIndex(this.button, sheepY);
+
+            this.x = sheepX;
+            this.y = sheepY;
+             */
+        }
     }
 
     public void move() {
@@ -88,7 +129,7 @@ public class Wolf extends Objects {
     }
 
     public String toString() {
-        return "\uD83D\uDC3A";
+        return NAME;
     }
 
     public Button getButton() {

@@ -4,6 +4,7 @@ import static io.github.haappi.template.Utils.getRandomNumber;
 
 import javafx.animation.AnimationTimer;
 import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
@@ -92,6 +93,10 @@ public class HelloController {
 //        System.out.println(Thread.currentThread().getName());
     }
 
+    public static Grass getGrass(int x, int y, Button[][] buttons) {
+        return new Grass(x, y, new Button(), buttons);
+    }
+
     void pauseTimerForDuration(AnimationTimer timer, Duration duration) {
         // https://stackoverflow.com/questions/56334617/how-to-pause-animationtimer-for-a-set-number-of-seconds
 
@@ -101,5 +106,11 @@ public class HelloController {
 
         timer.stop();
         pt.play();
+    }
+
+    public void addSHeep(ActionEvent event) {
+        int i = getRandomNumber(0, 4);
+        int j = getRandomNumber(0, 4);
+        objects[i][j] = new Sheep(i, j, buttons[i][j], buttons);
     }
 }
