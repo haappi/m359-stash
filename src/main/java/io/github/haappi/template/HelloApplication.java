@@ -10,15 +10,11 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
     /*
-    start with 2d array dynamically created grid of Button type
-    put a square on the screen to represent something that moves around
-    - it moves randomly every half a second
+https://stackoverflow.com/questions/18430814/pathfinding-in-an-2d-array
+https://gist.github.com/manpreetdeol/83dc1203ed8cf77f8faf8d66df12efe0/
+https://plainenglish.io/blog/a-algorithm-in-python
 
-    put another square on the thing that moves indepently of the top
-    - they might be able to interact with each other (if they get within a certain distance of each other)
-
-    add differnert types of object (an elephant objcet, and maybe a grass object)
-
+https://gist.github.com/jamiees2/5531924
      */
     @Override
     public void start(Stage stage) throws IOException {
