@@ -1,4 +1,3 @@
 package io.github.haappi.template;
 
-public class Sheep extends Objects{
-}
+public class Sheep extends Objects {}

@@ -57,12 +57,17 @@ public class Wolf extends Objects {
     }
 
     public void translate(int x, int y) {
-        if (this.x + x > buttons.length - 1 || this.x + x < 0 || this.y + y > buttons.length - 1 || this.y + y < 0) {
+        if (this.x + x > buttons.length - 1
+                || this.x + x < 0
+                || this.y + y > buttons.length - 1
+                || this.y + y < 0) {
             return;
         }
 
-        Button button1 = this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)];
-        Button button2 = this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y];
+        Button button1 =
+                this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)];
+        Button button2 =
+                this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y];
 
         GridPane.setColumnIndex(button1, GridPane.getColumnIndex(button) + y);
         GridPane.setRowIndex(button1, GridPane.getRowIndex(button) + x);
@@ -70,8 +75,8 @@ public class Wolf extends Objects {
         GridPane.setRowIndex(button2, GridPane.getRowIndex(button));
 
         this.buttons[GridPane.getRowIndex(button)][GridPane.getColumnIndex(button)] = button2;
-        this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y] = button1;
-
+        this.buttons[GridPane.getRowIndex(button) + x][GridPane.getColumnIndex(button) + y] =
+                button1;
 
         this.x += x;
         this.y += y;
