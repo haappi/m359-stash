@@ -11,5 +11,4 @@ public class Building extends Objects {
         this.buttons = buttons;
         this.gridPane = gridPane;
     }
-
 }

@@ -10,12 +10,12 @@ import java.io.IOException;
 public class HelloApplication extends Application {
 
     /*
-https://stackoverflow.com/questions/18430814/pathfinding-in-an-2d-array
-https://gist.github.com/manpreetdeol/83dc1203ed8cf77f8faf8d66df12efe0/
-https://plainenglish.io/blog/a-algorithm-in-python
+    https://stackoverflow.com/questions/18430814/pathfinding-in-an-2d-array
+    https://gist.github.com/manpreetdeol/83dc1203ed8cf77f8faf8d66df12efe0/
+    https://plainenglish.io/blog/a-algorithm-in-python
 
-https://gist.github.com/jamiees2/5531924
-     */
+    https://gist.github.com/jamiees2/5531924
+         */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader =
