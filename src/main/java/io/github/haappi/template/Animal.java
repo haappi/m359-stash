@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-public class Animal extends Findable{
+public class Animal extends Findable {
     private final String name;
     private final String type;
     private final String emoji;
@@ -26,7 +26,15 @@ public class Animal extends Findable{
         return buttons;
     }
 
-    public Animal(String name, String type, int age, int row, int column, String emoji, GridPane gridPane, Button[][] buttons) {
+    public Animal(
+            String name,
+            String type,
+            int age,
+            int row,
+            int column,
+            String emoji,
+            GridPane gridPane,
+            Button[][] buttons) {
         super(row, column);
         this.name = name;
         this.type = type;
@@ -40,7 +48,10 @@ public class Animal extends Findable{
 
     private void translate(int x, int y) {
         // check if the new position is valid
-        if (row + y >= 0 && row + y < buttons.length && column + x >= 0 && column + x < buttons[0].length) {
+        if (row + y >= 0
+                && row + y < buttons.length
+                && column + x >= 0
+                && column + x < buttons[0].length) {
             // remove the animal from the old position
             buttons[row][column].setText("\uD83C\uDF3C");
             buttons[row][column].setTextFill(Color.GREEN);
