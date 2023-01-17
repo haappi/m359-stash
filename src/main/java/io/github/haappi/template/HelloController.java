@@ -1,9 +1,7 @@
 package io.github.haappi.template;
 
-import static io.github.haappi.template.Utils.getRandomNumber;
 
 import javafx.animation.AnimationTimer;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -12,7 +10,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
-import javafx.util.Duration;
 
 public class HelloController {
 
@@ -50,6 +47,7 @@ public class HelloController {
 
         new AnimationTimer() {
             long lastUpdate = 0; // it's in here and not outside because issues with lambad
+
             @Override
             public void handle(long now) {
                 if (now - lastUpdate > 1_000_000_000) {
@@ -58,12 +56,9 @@ public class HelloController {
                 }
             }
         }.start();
-
     }
 
-    public void startButton(ActionEvent actionEvent) {
-    }
+    public void startButton(ActionEvent actionEvent) {}
 
-    public void addSHeep(ActionEvent actionEvent) {
-    }
+    public void addSHeep(ActionEvent actionEvent) {}
 }
