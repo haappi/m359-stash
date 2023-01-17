@@ -26,7 +26,15 @@ public class Animal {
         return buttons;
     }
 
-    public Animal(String name, String type, int age, int row, int column, String emoji, GridPane gridPane, Button[][] buttons) {
+    public Animal(
+            String name,
+            String type,
+            int age,
+            int row,
+            int column,
+            String emoji,
+            GridPane gridPane,
+            Button[][] buttons) {
         this.name = name;
         this.type = type;
         this.age = age;
@@ -39,7 +47,10 @@ public class Animal {
 
     private void translate(int x, int y) {
         // check if the new position is valid
-        if (row + y >= 0 && row + y < buttons.length && column + x >= 0 && column + x < buttons[0].length) {
+        if (row + y >= 0
+                && row + y < buttons.length
+                && column + x >= 0
+                && column + x < buttons[0].length) {
             // remove the animal from the old position
             buttons[row][column].setText("\uD83C\uDF3C");
             buttons[row][column].setTextFill(Color.GREEN);
