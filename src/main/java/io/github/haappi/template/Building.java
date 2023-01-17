@@ -3,7 +3,7 @@ package io.github.haappi.template;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
-public class Building extends Objects {
+public class Building extends UnmovableObject {
     private final Button[][] buttons;
     private final GridPane gridPane;
 

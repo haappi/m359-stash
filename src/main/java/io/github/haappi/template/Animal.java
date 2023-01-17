@@ -4,7 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-public class Animal {
+public class Animal extends Findable{
     private final String name;
     private final String type;
     private final String emoji;
@@ -27,6 +27,7 @@ public class Animal {
     }
 
     public Animal(String name, String type, int age, int row, int column, String emoji, GridPane gridPane, Button[][] buttons) {
+        super(row, column);
         this.name = name;
         this.type = type;
         this.age = age;
