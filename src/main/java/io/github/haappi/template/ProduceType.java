@@ -1,5 +1,3 @@
 package io.github.haappi.template;
 
-public class ProduceType
-{
-}
+public class ProduceType {}
