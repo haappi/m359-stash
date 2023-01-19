@@ -13,9 +13,7 @@ public class Cell {
         this.button = button;
     }
 
-    public ArrayList<Button> getNeighbors() {
-
-    }
+    public ArrayList<Button> getNeighbors() {}
 
     private boolean isInGrid(Button button) {
         int row = Integer.MIN_VALUE;
@@ -23,10 +21,8 @@ public class Cell {
 
         Button[][] buttons = this.buttons.clone();
         for (Button[] b : buttons) {
-            for (Button innerB: b) {
-                if (innerB == button) {
-
-                }
+            for (Button innerB : b) {
+                if (innerB == button) {}
             }
         }
     }
