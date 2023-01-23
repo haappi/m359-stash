@@ -13,6 +13,8 @@ public class HelloController {
 
     public GridPane gridPane;
     public Button[][] buttons;
+    private Lion lion;
+    private Building building;
 
     @FXML
     protected void initialize() {
@@ -60,7 +62,7 @@ public class HelloController {
             gridPane.getRowConstraints().add(row);
         }
 
-        Lion lion = new Lion("rawr", "Lion", 5, 0, 0, gridPane, buttons);
+        lion = new Lion("rawr", "Lion", 5, 0, 0, gridPane, buttons);
 
         //        AStar aStar = new AStar(buttons, 9, 9);
         //
@@ -76,15 +78,20 @@ public class HelloController {
             public void handle(long now) {
                 if (now - lastUpdate > 1_000_000_000) {
                     lastUpdate = now;
-                    //                    lion.move();
+                    System.out.println("a");
+                    lion.move(true);
                 }
             }
         }.start();
     }
 
-    public void startButton(ActionEvent actionEvent) {}
+    public void startButton(ActionEvent actionEvent) {
+    }
 
-    public void addSHeep(ActionEvent actionEvent) {}
+    public void addSHeep(ActionEvent actionEvent) {
+        building = new Building(Utils.getRandomNumber(0, 9), Utils.getRandomNumber(0, 9), buttons, gridPane);
+        lion.moveToGoal(building.getX(), building.getY());
+    }
 
     public void aStar(ActionEvent actionEvent) {
         Button start = null;

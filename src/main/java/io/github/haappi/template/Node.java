@@ -25,16 +25,12 @@ public class Node {
         return x;
     }
 
-    public int getY() {
-        return y;
-    }
-
-    public void setParent(Node parent) {
-        this.parent = parent;
-    }
-
     public void setX(int x) {
         this.x = x;
+    }
+
+    public int getY() {
+        return y;
     }
 
     public void setY(int y) {
@@ -43,6 +39,10 @@ public class Node {
 
     public Node getParent() {
         return parent;
+    }
+
+    public void setParent(Node parent) {
+        this.parent = parent;
     }
 
     public double getgCost() {

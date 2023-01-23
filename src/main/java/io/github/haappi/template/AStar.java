@@ -1,10 +1,11 @@
 package io.github.haappi.template;
 
-import static io.github.haappi.template.Utils.heuristic;
-
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+import static io.github.haappi.template.Utils.heuristic;
 
 public class AStar {
     private final Button[][] grid;
@@ -17,6 +18,23 @@ public class AStar {
         this.grid = grid;
         this.goalX = goalX;
         this.goalY = goalY;
+    }
+
+    private static Node getFScoreNode(ArrayList<Node> list) {
+        Node lowestFCostNode = list.get(0);
+        for (Node node : list) {
+            if (node.getFCost() < lowestFCostNode.getFCost()) {
+                lowestFCostNode = node;
+            }
+        }
+        return lowestFCostNode;
+    }
+
+    private static boolean isValidSpot(int x, int y, Button[][] grid) {
+        return !grid[x][y].getStyle().contains("ff0000");
+        //        if (grid[x][y] instanceof Wall) {
+        //            return false;
+        //        } // todo make a check later to check for walls and what not
     }
 
     public void calculate(int startX, int startY) {
@@ -78,8 +96,6 @@ public class AStar {
 
                     if (!openList.contains(neighbor)) {
                         openList.add(neighbor);
-                        System.out.println("Added " + neighbor.getX() + ", " + neighbor.getY());
-                        grid[newX][newY].setText("0");
                     } else if (newGCost >= neighbor.getgCost()) {
                         continue; // This path is worse than the previous one
                     }
@@ -94,27 +110,8 @@ public class AStar {
         System.out.println("No path found");
     }
 
-    private static Node getFScoreNode(ArrayList<Node> list) {
-        Node lowestFCostNode = list.get(0);
-        for (Node node : list) {
-            if (node.getFCost() < lowestFCostNode.getFCost()) {
-                lowestFCostNode = node;
-            }
-        }
-        return lowestFCostNode;
-    }
-
-    private static boolean isValidSpot(int x, int y, Button[][] grid) {
-        if (grid[x][y].getStyle().contains("ff0000")) {
-            return false;
-        }
-        //        if (grid[x][y] instanceof Wall) {
-        //            return false;
-        //        } // todo make a check later to check for walls and what not
-        return true;
-    }
-
     public ArrayList<Node> getPath() {
+        Collections.reverse(path);
         return path;
     }
 }
