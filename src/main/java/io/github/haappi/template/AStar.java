@@ -1,11 +1,10 @@
 package io.github.haappi.template;
 
+import static io.github.haappi.template.Utils.heuristic;
+
 import javafx.scene.control.Button;
 
-import java.nio.file.Watchable;
 import java.util.ArrayList;
-
-import static io.github.haappi.template.Utils.heuristic;
 
 public class AStar {
     private final Button[][] grid;
@@ -56,14 +55,16 @@ public class AStar {
 
                     Node neighbor = new Node(newX, newY);
                     if (closedList.contains(neighbor)) {
-//                        grid[newX][newY].setStyle("-fx-background-color: #ff0000");
-//                        grid[newX][newY].setText("X");
+                        //                        grid[newX][newY].setStyle("-fx-background-color:
+                        // #ff0000");
+                        //                        grid[newX][newY].setText("X");
                         continue; // Already checked this node
                     }
 
                     if (!isValidSpot(newX, newY, grid)) {
-//                        grid[newX][newY].setStyle("-fx-background-color: #ff0000");
-//                        grid[newX][newY].setText("X");
+                        //                        grid[newX][newY].setStyle("-fx-background-color:
+                        // #ff0000");
+                        //                        grid[newX][newY].setText("X");
                         continue; // Not a valid spot
                     }
 
@@ -91,7 +92,6 @@ public class AStar {
         }
 
         System.out.println("No path found");
-
     }
 
     private static Node getFScoreNode(ArrayList<Node> list) {
@@ -108,9 +108,9 @@ public class AStar {
         if (grid[x][y].getStyle().contains("ff0000")) {
             return false;
         }
-//        if (grid[x][y] instanceof Wall) {
-//            return false;
-//        } // todo make a check later to check for walls and what not
+        //        if (grid[x][y] instanceof Wall) {
+        //            return false;
+        //        } // todo make a check later to check for walls and what not
         return true;
     }
 

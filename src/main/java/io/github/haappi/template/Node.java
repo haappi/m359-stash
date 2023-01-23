@@ -68,7 +68,8 @@ public class Node {
 
     @Override
     public boolean equals(Object obj) {
-        // I have to override this because I don't want to compare the memory address, but the actual x and y values
+        // I have to override this because I don't want to compare the memory address, but the
+        // actual x and y values
         if (obj == null) {
             return false;
         }

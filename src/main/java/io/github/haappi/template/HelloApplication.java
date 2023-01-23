@@ -23,9 +23,8 @@ public class HelloApplication extends Application {
         setStage("hello-view.fxml");
     }
 
-    public static void setStage(String fileName) throws IOException{
-        FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource(fileName));
+    public static void setStage(String fileName) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fileName));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);

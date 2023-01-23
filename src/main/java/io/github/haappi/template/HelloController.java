@@ -8,7 +8,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.paint.Color;
 
 public class HelloController {
 
@@ -33,19 +32,21 @@ public class HelloController {
                         button.setStyle("-fx-background-color: #ff0000;");
                     }
                 }
-//                button.setStyle(Utils.getRandomNumber(0, 5) < 4 ? "-fx-background-color: #00ff00" : "-fx-background-color: #ff0000");
+                //                button.setStyle(Utils.getRandomNumber(0, 5) < 4 ?
+                // "-fx-background-color: #00ff00" : "-fx-background-color: #ff0000");
                 gridPane.add(button, j, i);
                 buttons[i][j] = button;
 
-                button.setOnMouseClicked(event -> {
-                    if (button.getStyle().equals("-fx-background-color: #00ff00;")) {
-                        button.setStyle("-fx-background-color: #ff0000;");
-                    } else if (button.getStyle().equals("-fx-background-color: #0000ff;")) {
-                        button.setStyle("-fx-background-color: #00ff00;");
-                    } else {
-                        button.setStyle("-fx-background-color: #0000ff;");
-                    }
-                });
+                button.setOnMouseClicked(
+                        event -> {
+                            if (button.getStyle().equals("-fx-background-color: #00ff00;")) {
+                                button.setStyle("-fx-background-color: #ff0000;");
+                            } else if (button.getStyle().equals("-fx-background-color: #0000ff;")) {
+                                button.setStyle("-fx-background-color: #00ff00;");
+                            } else {
+                                button.setStyle("-fx-background-color: #0000ff;");
+                            }
+                        });
             }
         }
         for (int i = 0; i < size; i++) {
@@ -59,18 +60,15 @@ public class HelloController {
             gridPane.getRowConstraints().add(row);
         }
 
-
-
         Lion lion = new Lion("rawr", "Lion", 5, 0, 0, gridPane, buttons);
 
+        //        AStar aStar = new AStar(buttons, 9, 9);
+        //
+        //        aStar.calculate(2, 4);
+        //        System.out.println(aStar.getPath());
 
-//        AStar aStar = new AStar(buttons, 9, 9);
-//
-//        aStar.calculate(2, 4);
-//        System.out.println(aStar.getPath());
-
-//        buttons[9][9].setStyle("-fx-background-color: #0000ff;");
-//        buttons[2][4].setStyle("-fx-background-color: #0000ff;");
+        //        buttons[9][9].setStyle("-fx-background-color: #0000ff;");
+        //        buttons[2][4].setStyle("-fx-background-color: #0000ff;");
         new AnimationTimer() {
             long lastUpdate = 0; // it's in here and not outside because issues with lambad
 
@@ -78,7 +76,7 @@ public class HelloController {
             public void handle(long now) {
                 if (now - lastUpdate > 1_000_000_000) {
                     lastUpdate = now;
-//                    lion.move();
+                    //                    lion.move();
                 }
             }
         }.start();
@@ -106,10 +104,15 @@ public class HelloController {
 
         AStar aStar = new AStar(buttons, GridPane.getRowIndex(end), GridPane.getColumnIndex(end));
         aStar.calculate(GridPane.getRowIndex(start), GridPane.getColumnIndex(start));
-        aStar.getPath().forEach(coordPoint -> {
-            if (buttons[coordPoint.getX()][coordPoint.getY()].getStyle().equals("-fx-background-color: #00ff00;")) {
-                buttons[coordPoint.getX()][coordPoint.getY()].setStyle("-fx-background-color: #98fb98;");
-            }
-        });
+        aStar.getPath()
+                .forEach(
+                        coordPoint -> {
+                            if (buttons[coordPoint.getX()][coordPoint.getY()]
+                                    .getStyle()
+                                    .equals("-fx-background-color: #00ff00;")) {
+                                buttons[coordPoint.getX()][coordPoint.getY()].setStyle(
+                                        "-fx-background-color: #98fb98;");
+                            }
+                        });
     }
 }

@@ -39,7 +39,7 @@ public class Utils {
         return heuristic(x, y, goalX, goalY, true);
     }
 
-        /**
+    /**
      * Returns the distance between two points using Pythagorean distance.
      * Calculates the difference in X and Y separately and adds them together.
      *
@@ -50,5 +50,4 @@ public class Utils {
     public static int heuristic(Node startNode, int goalX, int goalY) {
         return heuristic(startNode.getX(), startNode.getY(), goalX, goalY, true);
     }
-
 }

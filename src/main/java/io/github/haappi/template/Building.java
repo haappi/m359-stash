@@ -1,12 +1,12 @@
-//package io.github.haappi.template;
+// package io.github.haappi.template;
 //
-//import javafx.scene.control.Button;
-//import javafx.scene.layout.GridPane;
-//import javafx.scene.paint.Color;
+// import javafx.scene.control.Button;
+// import javafx.scene.layout.GridPane;
+// import javafx.scene.paint.Color;
 //
-//import java.util.ArrayList;
+// import java.util.ArrayList;
 //
-//public class Building extends UnmovableObject {
+// public class Building extends UnmovableObject {
 //    private final Button[][] buttons;
 //    private CoordPoints topLeft;
 //    private CoordPoints bottomRight;
@@ -20,4 +20,4 @@
 //        this.buttons = buttons;
 //        this.gridPane = gridPane;
 //    }
-//}
+// }
