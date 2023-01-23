@@ -13,5 +13,6 @@
       <Button layoutX="759.0" layoutY="140.0" mnemonicParsing="false" onAction="#startButton" text="Start" />
       <Button layoutX="759.0" layoutY="167.0" mnemonicParsing="false" onAction="#addSHeep" text="Add sheep" />
       <ListView fx:id="listViewThingy" layoutX="695.0" layoutY="201.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="754.0" layoutY="61.0" mnemonicParsing="false" onAction="#aStar" text="A*" />
    </children>
 </AnchorPane>

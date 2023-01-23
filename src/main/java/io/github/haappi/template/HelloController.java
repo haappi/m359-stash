@@ -17,6 +17,7 @@ public class HelloController {
 
     @FXML
     protected void initialize() {
+
         int size = 10;
         buttons = new Button[size][size];
         for (int i = 0; i < size; i++) {
@@ -26,9 +27,25 @@ public class HelloController {
                 button.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
                 button.setMinSize(50, 50);
                 button.setText("\uD83C\uDF3C");
-                button.setTextFill(Color.GREEN);
+                button.setStyle("-fx-background-color: #00ff00;");
+                if (j == 3) {
+                    if (Utils.getRandomNumber(0, 8) > 5) {
+                        button.setStyle("-fx-background-color: #ff0000;");
+                    }
+                }
+//                button.setStyle(Utils.getRandomNumber(0, 5) < 4 ? "-fx-background-color: #00ff00" : "-fx-background-color: #ff0000");
                 gridPane.add(button, j, i);
                 buttons[i][j] = button;
+
+                button.setOnMouseClicked(event -> {
+                    if (button.getStyle().equals("-fx-background-color: #00ff00;")) {
+                        button.setStyle("-fx-background-color: #ff0000;");
+                    } else if (button.getStyle().equals("-fx-background-color: #0000ff;")) {
+                        button.setStyle("-fx-background-color: #00ff00;");
+                    } else {
+                        button.setStyle("-fx-background-color: #0000ff;");
+                    }
+                });
             }
         }
         for (int i = 0; i < size; i++) {
@@ -42,8 +59,18 @@ public class HelloController {
             gridPane.getRowConstraints().add(row);
         }
 
+
+
         Lion lion = new Lion("rawr", "Lion", 5, 0, 0, gridPane, buttons);
 
+
+//        AStar aStar = new AStar(buttons, 9, 9);
+//
+//        aStar.calculate(2, 4);
+//        System.out.println(aStar.getPath());
+
+//        buttons[9][9].setStyle("-fx-background-color: #0000ff;");
+//        buttons[2][4].setStyle("-fx-background-color: #0000ff;");
         new AnimationTimer() {
             long lastUpdate = 0; // it's in here and not outside because issues with lambad
 
@@ -51,7 +78,7 @@ public class HelloController {
             public void handle(long now) {
                 if (now - lastUpdate > 1_000_000_000) {
                     lastUpdate = now;
-                    lion.move();
+//                    lion.move();
                 }
             }
         }.start();
@@ -60,4 +87,29 @@ public class HelloController {
     public void startButton(ActionEvent actionEvent) {}
 
     public void addSHeep(ActionEvent actionEvent) {}
+
+    public void aStar(ActionEvent actionEvent) {
+        Button start = null;
+        Button end = null;
+
+        for (Button[] button : buttons) {
+            for (Button value : button) {
+                if (value.getStyle().equals("-fx-background-color: #0000ff;")) {
+                    if (start == null) {
+                        start = value;
+                    } else {
+                        end = value;
+                    }
+                }
+            }
+        }
+
+        AStar aStar = new AStar(buttons, GridPane.getRowIndex(end), GridPane.getColumnIndex(end));
+        aStar.calculate(GridPane.getRowIndex(start), GridPane.getColumnIndex(start));
+        aStar.getPath().forEach(coordPoint -> {
+            if (buttons[coordPoint.getX()][coordPoint.getY()].getStyle().equals("-fx-background-color: #00ff00;")) {
+                buttons[coordPoint.getX()][coordPoint.getY()].setStyle("-fx-background-color: #98fb98;");
+            }
+        });
+    }
 }

@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
+    private static Stage stage;
 
     /*
     https://stackoverflow.com/questions/18430814/pathfinding-in-an-2d-array
@@ -18,8 +19,13 @@ public class HelloApplication extends Application {
          */
     @Override
     public void start(Stage stage) throws IOException {
+        HelloApplication.stage = stage;
+        setStage("hello-view.fxml");
+    }
+
+    public static void setStage(String fileName) throws IOException{
         FXMLLoader fxmlLoader =
-                new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+                new FXMLLoader(HelloApplication.class.getResource(fileName));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("Hello!");
         stage.setScene(scene);

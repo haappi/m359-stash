@@ -14,4 +14,6 @@ public class Lion extends Animal {
             Button[][] buttons) {
         super(name, type, age, row, column, "🦁", gridPane, buttons);
     }
+
+    // todo implemenmt this to work with the A* algorithm
 }
