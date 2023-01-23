@@ -46,23 +46,23 @@ public class Animal extends Findable {
         this.buttons = buttons;
     }
 
-    private void translate(int x, int y) {
-        // check if the new position is valid
-        if (row + y >= 0
-                && row + y < buttons.length
-                && column + x >= 0
-                && column + x < buttons[0].length) {
-            // remove the animal from the old position
-            buttons[row][column].setText("\uD83C\uDF3C");
-            buttons[row][column].setTextFill(Color.GREEN);
-            // set the new position
-            row += y;
-            column += x;
-            // set the animal to the new position
-            buttons[row][column].setText(emoji);
-            buttons[row][column].setTextFill(Color.RED);
-        }
-    }
+//    private void translate(int x, int y) {
+//        // check if the new position is valid
+//        if (row + y >= 0
+//                && row + y < buttons.length
+//                && column + x >= 0
+//                && column + x < buttons[0].length) {
+//            // remove the animal from the old position
+//            buttons[row][column].setText("\uD83C\uDF3C");
+//            buttons[row][column].setTextFill(Color.GREEN);
+//            // set the new position
+//            row += y;
+//            column += x;
+//            // set the animal to the new position
+//            buttons[row][column].setText(emoji);
+//            buttons[row][column].setTextFill(Color.RED);
+//        }
+//    }
 
     public void move() {
         int x = Utils.getRandomNumber(-1, 1);
