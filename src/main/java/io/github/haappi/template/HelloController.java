@@ -85,11 +85,15 @@ public class HelloController {
         }.start();
     }
 
-    public void startButton(ActionEvent actionEvent) {
-    }
+    public void startButton(ActionEvent actionEvent) {}
 
     public void addSHeep(ActionEvent actionEvent) {
-        building = new Building(Utils.getRandomNumber(0, 9), Utils.getRandomNumber(0, 9), buttons, gridPane);
+        building =
+                new Building(
+                        Utils.getRandomNumber(0, 9),
+                        Utils.getRandomNumber(0, 9),
+                        buttons,
+                        gridPane);
         lion.moveToGoal(building.getX(), building.getY());
     }
 

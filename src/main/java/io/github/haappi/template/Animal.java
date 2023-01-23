@@ -73,7 +73,7 @@ public class Animal {
         System.out.println(nextPosition);
         System.out.println(this.getRow() + " " + this.getColumn());
 
-//         remove the animal from the old position
+        //         remove the animal from the old position
         buttons[row][column].setTextFill(Color.GREEN);
         buttons[row][column].setText("\uD83C\uDF3C");
 
@@ -105,11 +105,11 @@ public class Animal {
     //        }
     //    }
 
-//    public void move() {
-//        int x = Utils.getRandomNumber(-1, 1);
-//        int y = Utils.getRandomNumber(-1, 1);
-//        translate(x, y);
-//    }
+    //    public void move() {
+    //        int x = Utils.getRandomNumber(-1, 1);
+    //        int y = Utils.getRandomNumber(-1, 1);
+    //        translate(x, y);
+    //    }
 
     public int getRow() {
         return row;

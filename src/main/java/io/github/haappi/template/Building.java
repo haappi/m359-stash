@@ -13,7 +13,6 @@ public class Building extends UnmovableObject {
     private final double rating = 1.00;
     private final ArrayList<ProduceType> produceTypes = new ArrayList<>();
 
-
     public Building(int x, int y, Button[][] buttons, GridPane gridPane) {
         super(x, y); // fixme correct these values later
         this.buttons = buttons;
@@ -21,6 +20,4 @@ public class Building extends UnmovableObject {
 
         buttons[x][y].setText("\uD83C\uDFDF️");
     }
-
-
 }
