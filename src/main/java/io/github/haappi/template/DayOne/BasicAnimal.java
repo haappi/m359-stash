@@ -4,6 +4,7 @@ import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BasicAnimal {
     private final String emoji;
@@ -12,6 +13,7 @@ public class BasicAnimal {
     private int x;
     private int y;
     private boolean isInWater;
+    private final HashMap<String, Integer> inventory = new HashMap<>();
 
     public BasicAnimal(int x, int y, Color color, String emoji, Button[][] buttons) {
         this.x = x;
@@ -57,6 +59,10 @@ public class BasicAnimal {
         return nearby;
     }
 
+    public HashMap<String, Integer> getInventory() {
+        return inventory;
+    }
+
     public int getX() {
         return x;
     }
@@ -91,7 +97,8 @@ public class BasicAnimal {
         if (isInWater) {
             buttons[this.x][this.y].setStyle(
                     "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #0000FF,"
-                        + " #FF0000);");
+                            + " #FF0000);");
+            inventory.put("Water", inventory.getOrDefault("Water", 0) + 1);
         } else {
             buttons[this.x][this.y].setStyle("-fx-background-color: #FF0000;");
         }
@@ -131,7 +138,8 @@ public class BasicAnimal {
         if (isInWater) {
             buttons[this.x][this.y].setStyle(
                     "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #0000FF,"
-                        + " #FF0000);");
+                            + " #FF0000);");
+            inventory.put("Water", inventory.getOrDefault("Water", 0) + 1);
         } else {
             buttons[this.x][this.y].setStyle("-fx-background-color: #FF0000;");
         }

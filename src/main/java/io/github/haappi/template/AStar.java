@@ -1,17 +1,17 @@
 package io.github.haappi.template;
 
-import static io.github.haappi.template.Utils.heuristic;
-
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static io.github.haappi.template.Utils.heuristic;
+
 public class AStar {
     private final Button[][] grid;
     private final int goalX, goalY;
-    private final ArrayList<Node> openList = new ArrayList<>();
-    private final ArrayList<Node> closedList = new ArrayList<>();
+    private final ArrayList<Node> openList = new ArrayList<>(); // Nodes that need to be checked (or being)
+    private final ArrayList<Node> closedList = new ArrayList<>(); // Nodes that have been checked
     private final ArrayList<Node> path = new ArrayList<>();
 
     public AStar(Button[][] grid, int goalX, int goalY) {
@@ -20,7 +20,7 @@ public class AStar {
         this.goalY = goalY;
     }
 
-    private static Node getFScoreNode(ArrayList<Node> list) {
+    private static Node getFScoreNode(ArrayList<Node> list) { // This gets the lowest f score from the node list provided.
         Node lowestFCostNode = list.get(0);
         for (Node node : list) {
             if (node.getFCost() < lowestFCostNode.getFCost()) {
@@ -40,7 +40,7 @@ public class AStar {
     public void calculate(int startX, int startY) {
         Node startNode = new Node(startX, startY);
         startNode.setgCost(0); // No cost because it's the start node
-        startNode.sethCost(heuristic(startNode, goalX, goalY));
+        startNode.sethCost(heuristic(startNode, goalX, goalY)); // use manhattan distance thingy to get distance between the two points
 
         openList.add(startNode);
 
@@ -89,9 +89,9 @@ public class AStar {
                     double newGCost;
 
                     if (i != 0 && j != 0) { // Higher values for diagonals
-                        newGCost = smallFCost.getgCost() + 1.6;
+                        newGCost = smallFCost.getgCost() + 1.6; // We should try avoiding diagonals when they just look stupid in the path
                     } else {
-                        newGCost = smallFCost.getgCost() + 1;
+                        newGCost = smallFCost.getgCost() + 1; // Prioritize going straight.
                     }
 
                     if (!openList.contains(neighbor)) {
