@@ -20,7 +20,13 @@ public class BasicBuilding {
     private int level = 1;
 
     public BasicBuilding(
-            int x, int y, int maxLevel, Color color, Button[][] buttons, GridPane gridPane, String name) {
+            int x,
+            int y,
+            int maxLevel,
+            Color color,
+            Button[][] buttons,
+            GridPane gridPane,
+            String name) {
         this.buttons = buttons;
         this.gridPane = gridPane;
         this.maxLevel = maxLevel;
@@ -112,7 +118,6 @@ public class BasicBuilding {
         }
         produceTypes.get(0).setCount(produceTypes.get(0).getCount() + 1);
         System.out.println(produceTypes.get(0));
-
     }
 
     @Override

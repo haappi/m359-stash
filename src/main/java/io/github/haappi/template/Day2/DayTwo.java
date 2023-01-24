@@ -1,6 +1,10 @@
 package io.github.haappi.template.Day2;
 
+import static io.github.haappi.template.Common.makeGridPane;
+import static io.github.haappi.template.Utils.getRandomNumber;
+
 import io.github.haappi.template.DayOne.BasicAnimal;
+
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,9 +12,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
-
-import static io.github.haappi.template.Common.makeGridPane;
-import static io.github.haappi.template.Utils.getRandomNumber;
 
 public class DayTwo {
     private final ArrayList<BasicAnimal> pray = new ArrayList<>();

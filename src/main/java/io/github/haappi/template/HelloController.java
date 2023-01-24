@@ -90,8 +90,7 @@ public class HelloController {
         //        }.start();
     }
 
-    public void startButton(ActionEvent actionEvent) {
-    }
+    public void startButton(ActionEvent actionEvent) {}
 
     public void addSHeep(ActionEvent actionEvent) {
         building =

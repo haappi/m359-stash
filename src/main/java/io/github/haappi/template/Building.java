@@ -1,6 +1,7 @@
 package io.github.haappi.template;
 
 import io.github.haappi.template.DayThree.ProduceType;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;

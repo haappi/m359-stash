@@ -22,8 +22,6 @@ public class ProduceType {
 
     @Override
     public String toString() {
-        return "ProduceType{\n" +
-                "name=" + this.name + "\n" +
-                "count=" + this.count + "}";
+        return "ProduceType{\n" + "name=" + this.name + "\n" + "count=" + this.count + "}";
     }
 }
