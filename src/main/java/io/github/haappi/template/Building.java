@@ -9,9 +9,9 @@ import java.util.ArrayList;
 public class Building extends UnmovableObject {
     private final Button[][] buttons;
     private final GridPane gridPane;
-    private Color color;
     private final double rating = 1.00;
     private final ArrayList<ProduceType> produceTypes = new ArrayList<>();
+    private Color color;
 
     public Building(int x, int y, Button[][] buttons, GridPane gridPane) {
         super(x, y); // fixme correct these values later

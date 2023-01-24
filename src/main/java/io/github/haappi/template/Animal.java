@@ -13,10 +13,9 @@ public class Animal {
     private final int age;
     private final GridPane gridPane;
     private final Button[][] buttons;
+    private final ArrayList<Node> currentPathToFollow = new ArrayList<>();
     private int row;
     private int column;
-    private final ArrayList<Node> currentPathToFollow = new ArrayList<>();
-
     private int currentGoalX;
     private int currentGoalY;
 
@@ -86,30 +85,6 @@ public class Animal {
 
         currentPathToFollow.remove(nextPosition);
     }
-
-    //    private void translate(int x, int y) {
-    //        // check if the new position is valid
-    //        if (row + y >= 0
-    //                && row + y < buttons.length
-    //                && column + x >= 0
-    //                && column + x < buttons[0].length) {
-    //            // remove the animal from the old position
-    //            buttons[row][column].setText("\uD83C\uDF3C");
-    //            buttons[row][column].setTextFill(Color.GREEN);
-    //            // set the new position
-    //            row += y;
-    //            column += x;
-    //            // set the animal to the new position
-    //            buttons[row][column].setText(emoji);
-    //            buttons[row][column].setTextFill(Color.RED);
-    //        }
-    //    }
-
-    //    public void move() {
-    //        int x = Utils.getRandomNumber(-1, 1);
-    //        int y = Utils.getRandomNumber(-1, 1);
-    //        translate(x, y);
-    //    }
 
     public int getRow() {
         return row;

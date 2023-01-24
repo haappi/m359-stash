@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
-            fx:controller="io.github.haappi.template.InsideBuilding"
+            fx:controller="io.github.haappi.template.DayFive"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>

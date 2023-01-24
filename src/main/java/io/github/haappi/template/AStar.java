@@ -1,11 +1,11 @@
 package io.github.haappi.template;
 
-import static io.github.haappi.template.Utils.heuristic;
-
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static io.github.haappi.template.Utils.heuristic;
 
 public class AStar {
     private final Button[][] grid;

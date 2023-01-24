@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.template.DayThree.DayThree">
+    <GridPane fx:id="gridPane" layoutX="182.0" layoutY="96.0">
+
+    </GridPane>
+    <ListView fx:id="buildings" layoutX="371.0" layoutY="110.0" prefHeight="200.0" prefWidth="200.0"/>
+
+</AnchorPane>
