@@ -5,7 +5,6 @@ import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-
 public class BasicAnimal {
     private final String emoji;
     private final Color color;
@@ -46,8 +45,10 @@ public class BasicAnimal {
         for (int i = x - radius; i <= x + radius; i++) {
             for (int j = y - radius; j <= y + radius; j++) {
                 if (i >= 0 && i < buttons.length && j >= 0 && j < buttons.length) {
-                    if (!buttons[i][j].getText().equals("\uD83C\uDF3C") || buttons[i][j].getText().equals(emoji)) { // ignore grass & same type
-                        nearby.add(new BasicAnimal(i, j, Color.RED, buttons[i][j].getText(), buttons));
+                    if (!buttons[i][j].getText().equals("\uD83C\uDF3C")
+                            || buttons[i][j].getText().equals(emoji)) { // ignore grass & same type
+                        nearby.add(
+                                new BasicAnimal(i, j, Color.RED, buttons[i][j].getText(), buttons));
                     }
                 }
             }
@@ -84,10 +85,13 @@ public class BasicAnimal {
         buttons[this.x][this.y].setStyle("-fx-background-color: #00ff00;");
         this.x = x;
         buttons[this.x][this.y].setText(emoji);
-        buttons[this.x][this.y].setStyle("-fx-background-color: " + color.toString().substring(2) + ";");
+        buttons[this.x][this.y].setStyle(
+                "-fx-background-color: " + color.toString().substring(2) + ";");
 
         if (isInWater) {
-            buttons[this.x][this.y].setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #0000FF, #FF0000);");
+            buttons[this.x][this.y].setStyle(
+                    "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #0000FF,"
+                        + " #FF0000);");
         } else {
             buttons[this.x][this.y].setStyle("-fx-background-color: #FF0000;");
         }
@@ -115,17 +119,19 @@ public class BasicAnimal {
             return;
         }
 
-
         isInWater = buttons[this.x][y].getText().equals("\uD83C\uDF0A"); // 🌊
 
         buttons[this.x][this.y].setText(isInWater ? "\uD83C\uDF0A" : "\uD83C\uDF3C"); // 🌊 🌼
         buttons[this.x][this.y].setStyle("-fx-background-color: #00ff00;");
         this.y = y;
         buttons[this.x][this.y].setText(emoji);
-        buttons[this.x][this.y].setStyle("-fx-background-color: " + color.toString().substring(2) + ";");
+        buttons[this.x][this.y].setStyle(
+                "-fx-background-color: " + color.toString().substring(2) + ";");
 
         if (isInWater) {
-            buttons[this.x][this.y].setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #0000FF, #FF0000);");
+            buttons[this.x][this.y].setStyle(
+                    "-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #0000FF,"
+                        + " #FF0000);");
         } else {
             buttons[this.x][this.y].setStyle("-fx-background-color: #FF0000;");
         }

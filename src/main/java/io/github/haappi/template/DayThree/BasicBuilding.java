@@ -1,6 +1,7 @@
 package io.github.haappi.template.DayThree;
 
 import io.github.haappi.template.ProduceType;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -17,7 +18,8 @@ public class BasicBuilding {
     private Color color;
     private int level = 1;
 
-    public BasicBuilding(int x, int y, int maxLevel, Color color, Button[][] buttons, GridPane gridPane) {
+    public BasicBuilding(
+            int x, int y, int maxLevel, Color color, Button[][] buttons, GridPane gridPane) {
         this.buttons = buttons;
         this.gridPane = gridPane;
         this.maxLevel = maxLevel;
@@ -41,7 +43,6 @@ public class BasicBuilding {
                 buttons[i][j].setTextFill(color);
             }
         }
-
     }
 
     public Button[][] getButtons() {

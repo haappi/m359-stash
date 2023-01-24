@@ -1,14 +1,15 @@
 package io.github.haappi.template.Day6;
 
+import static io.github.haappi.template.Common.makeGridPane;
+import static io.github.haappi.template.Utils.getRandomNumber;
+
 import io.github.haappi.template.DayOne.BasicAnimal;
+
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
-
-import static io.github.haappi.template.Common.makeGridPane;
-import static io.github.haappi.template.Utils.getRandomNumber;
 
 public class DaySix {
     public GridPane gridPane;
@@ -18,13 +19,19 @@ public class DaySix {
     @FXML
     public void initialize() {
         buttons = makeGridPane(10, gridPane);
-        lion = new BasicAnimal(getRandomNumber(2, 7), getRandomNumber(2, 7), Color.RED, "\uD83D\uDC3A", buttons);
+        lion =
+                new BasicAnimal(
+                        getRandomNumber(2, 7),
+                        getRandomNumber(2, 7),
+                        Color.RED,
+                        "\uD83D\uDC3A",
+                        buttons);
 
-//        for (int i = 0; i < 10; i++) {
-//            Button button = buttons[getRandomNumber(0, 9)][getRandomNumber(0, 9)];
-//            button.setText("\uD83C\uDF0A"); // 🌊
-//            button.setTextFill(Color.BLUE);
-//        }
+        //        for (int i = 0; i < 10; i++) {
+        //            Button button = buttons[getRandomNumber(0, 9)][getRandomNumber(0, 9)];
+        //            button.setText("\uD83C\uDF0A"); // 🌊
+        //            button.setTextFill(Color.BLUE);
+        //        }
         // for loop in an outer loop around lion
         for (int i = lion.getX() - 2; i < lion.getX() + 2; i++) {
             for (int j = lion.getY() - 2; j < lion.getY() + 2; j++) {

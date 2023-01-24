@@ -20,7 +20,6 @@ public class Common {
                 button.setStyle("-fx-background-color: #00ff00;");
                 gridPane.add(button, j, i);
                 buttons[i][j] = button;
-
             }
         }
         for (int i = 0; i < size; i++) {

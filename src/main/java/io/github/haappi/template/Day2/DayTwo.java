@@ -1,6 +1,10 @@
 package io.github.haappi.template.Day2;
 
+import static io.github.haappi.template.Common.makeGridPane;
+import static io.github.haappi.template.Utils.getRandomNumber;
+
 import io.github.haappi.template.DayOne.BasicAnimal;
+
 import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -8,9 +12,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
-
-import static io.github.haappi.template.Common.makeGridPane;
-import static io.github.haappi.template.Utils.getRandomNumber;
 
 public class DayTwo {
     public GridPane gridPane;
@@ -21,10 +22,22 @@ public class DayTwo {
     @FXML
     public void initialize() {
         buttons = makeGridPane(10, gridPane);
-        lion = new BasicAnimal(getRandomNumber(0, 9), getRandomNumber(0, 9), Color.RED, "\uD83D\uDC3A", buttons);
+        lion =
+                new BasicAnimal(
+                        getRandomNumber(0, 9),
+                        getRandomNumber(0, 9),
+                        Color.RED,
+                        "\uD83D\uDC3A",
+                        buttons);
 
         for (int i = 0; i < 10; i++) {
-            pray.add(new BasicAnimal(getRandomNumber(0, 9), getRandomNumber(0, 9), Color.BROWN, "\uD83D\uDC3B", buttons)); // 🐻
+            pray.add(
+                    new BasicAnimal(
+                            getRandomNumber(0, 9),
+                            getRandomNumber(0, 9),
+                            Color.BROWN,
+                            "\uD83D\uDC3B",
+                            buttons)); // 🐻
         }
 
         new AnimationTimer() {
@@ -55,14 +68,14 @@ public class DayTwo {
                             lion.setY(animal.getY(), true);
 
                             for (int i = 0; i < pray.size(); i++) {
-                                if (pray.get(i).getX() == animal.getX() && pray.get(i).getY() == animal.getY()) {
+                                if (pray.get(i).getX() == animal.getX()
+                                        && pray.get(i).getY() == animal.getY()) {
                                     pray.remove(i);
                                     break;
                                 }
                             }
                         }
                     }
-
                 }
             }
         }.start();
