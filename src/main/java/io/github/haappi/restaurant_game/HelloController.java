@@ -1,4 +1,4 @@
-package io.github.haappi.template;
+package io.github.haappi.restaurant_game;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

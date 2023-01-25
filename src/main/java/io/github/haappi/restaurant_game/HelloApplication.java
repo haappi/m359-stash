@@ -1,4 +1,4 @@
-package io.github.haappi.template;
+package io.github.haappi.restaurant_game;
 
 import java.io.IOException;
 import javafx.application.Application;
