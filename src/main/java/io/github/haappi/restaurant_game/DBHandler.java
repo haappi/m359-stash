@@ -16,16 +16,17 @@ public class DBHandler {
     private static DBHandler instance;
 
     private DBHandler() throws IOException {
-        ConfigFile configFile = HelloApplication.gson.fromJson(new String(Files.readAllBytes(Paths.get("src/main/resources/config.json"))), ConfigFile.class);
-
+        ConfigFile configFile =
+                HelloApplication.gson.fromJson(
+                        new String(Files.readAllBytes(Paths.get("src/main/resources/config.json"))),
+                        ConfigFile.class);
 
         ConnectionString connectionString = new ConnectionString(configFile.getConnection());
-        MongoClientSettings settings = MongoClientSettings.builder()
-                .applyConnectionString(connectionString)
-                .serverApi(ServerApi.builder()
-                        .version(ServerApiVersion.V1)
-                        .build())
-                .build();
+        MongoClientSettings settings =
+                MongoClientSettings.builder()
+                        .applyConnectionString(connectionString)
+                        .serverApi(ServerApi.builder().version(ServerApiVersion.V1).build())
+                        .build();
         MongoClient mongoClient = MongoClients.create(settings);
         MongoDatabase database = mongoClient.getDatabase("test");
     }
