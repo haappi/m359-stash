@@ -45,12 +45,12 @@ public class AStar {
         startNode.sethCost(
                 heuristic(
                         startNode, goalX,
-                        goalY)); // use manhattan distance thingy to get distance between the two
+                        goalY)); // use pythagorean thingy to get distance between the two
                                  // points
 
-        openList.add(startNode);
+        openList.add(startNode); // Add the start node to the open list
 
-        while (openList.size() != 0) {
+        while (openList.size() != 0) { // this is when the algorithm is done
             Node smallFCost = getFScoreNode(openList);
             if (smallFCost.getX() == goalX && smallFCost.getY() == goalY) { // We found the goal
                 Node current = smallFCost;
@@ -65,7 +65,7 @@ public class AStar {
             closedList.add(smallFCost);
 
             for (int i = -1; i <= 1; i++) {
-                for (int j = -1; j <= 1; j++) {
+                for (int j = -1; j <= 1; j++) { // check all neighbors
                     if (i == 0 && j == 0) {
                         continue; // No need to check the current node
                     }
@@ -79,16 +79,10 @@ public class AStar {
 
                     Node neighbor = new Node(newX, newY);
                     if (closedList.contains(neighbor)) {
-                        //                        grid[newX][newY].setStyle("-fx-background-color:
-                        // #ff0000");
-                        //                        grid[newX][newY].setText("X");
                         continue; // Already checked this node
                     }
 
                     if (!isValidSpot(newX, newY, grid)) {
-                        //                        grid[newX][newY].setStyle("-fx-background-color:
-                        // #ff0000");
-                        //                        grid[newX][newY].setText("X");
                         continue; // Not a valid spot
                     }
 
@@ -107,6 +101,7 @@ public class AStar {
                         openList.add(neighbor);
                     } else if (newGCost >= neighbor.getgCost()) {
                         continue; // This path is worse than the previous one
+                        // it could also mean we're straying away from the goal, so we should stop now and not consume resources
                     }
 
                     neighbor.sethCost(heuristic(neighbor, goalX, goalY));

@@ -23,7 +23,7 @@ public class DayThree {
     private BasicAnimal lion;
     private int xClicked = 0;
     private int yClicked = 0;
-    private final String selectedBuilding = "Farm";
+    private String selectedBuilding = "Farm";
     private final ArrayList<BasicBuilding> buildingss = new ArrayList<>();
 
     @FXML
@@ -32,7 +32,7 @@ public class DayThree {
         buildings.getItems().add("News");
         buildings.setOnMouseClicked(
                 event -> {
-                    System.out.println(buildings.getSelectionModel().getSelectedItem());
+                    selectedBuilding = buildings.getSelectionModel().getSelectedItem().toString();
                 });
 
         buttons = makeGridPane(10, gridPane);
