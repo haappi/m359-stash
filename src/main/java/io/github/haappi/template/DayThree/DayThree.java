@@ -88,10 +88,8 @@ public class DayThree {
                                 if (!buttons[i][j].getText().equals("\uD83C\uDF3C")
                                         || buttons[i][j]
                                                 .getText()
-                                                .equals(
-                                                        lion
-                                                                .getEmoji())) { // ignore grass &
-                                                                                // same type
+                                                .equals(lion.getEmoji())) { // ignore grass &
+                                    // same type
 
                                     int finalI = i;
                                     int finalJ = j;

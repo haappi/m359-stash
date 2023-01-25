@@ -46,7 +46,7 @@ public class AStar {
                 heuristic(
                         startNode, goalX,
                         goalY)); // use pythagorean thingy to get distance between the two
-                                 // points
+        // points
 
         openList.add(startNode); // Add the start node to the open list
 
@@ -92,7 +92,7 @@ public class AStar {
                         newGCost =
                                 smallFCost.getgCost()
                                         + 1.6; // We should try avoiding diagonals when they just
-                                               // look stupid in the path
+                        // look stupid in the path
                     } else {
                         newGCost = smallFCost.getgCost() + 1; // Prioritize going straight.
                     }
@@ -101,7 +101,8 @@ public class AStar {
                         openList.add(neighbor);
                     } else if (newGCost >= neighbor.getgCost()) {
                         continue; // This path is worse than the previous one
-                        // it could also mean we're straying away from the goal, so we should stop now and not consume resources
+                        // it could also mean we're straying away from the goal, so we should stop
+                        // now and not consume resources
                     }
 
                     neighbor.sethCost(heuristic(neighbor, goalX, goalY));
