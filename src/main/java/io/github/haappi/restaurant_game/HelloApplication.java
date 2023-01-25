@@ -12,7 +12,15 @@ public class HelloApplication extends Application {
   public static final Gson gson = new Gson();
   @Override
   public void start(Stage stage) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/hello-view.fxml"));
+    /*
+    Possible useful things
+    https://github.com/karakun/OpenWebStart/blob/master/documentation/faq/FAQ.adoc#how-to-run-openjfx-based-javafx-applications-with-openwebstart
+    https://docs.webfx.dev/#_getting_started
+
+    https://stackoverflow.com/questions/27958019/embed-a-javafx-application-in-a-html-webpage
+    https://docs.oracle.com/javase/9/deploy/self-contained-application-packaging.htm#JSDPG583
+     */
+    FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
     Scene scene = new Scene(fxmlLoader.load(), 320, 240);
     stage.setTitle("Hello!");
     stage.setScene(scene);
