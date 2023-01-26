@@ -4,7 +4,7 @@ public class ConfigFile {
     private String name;
     private String password;
     private String uri;
-    private String extra = "";
+    private final String extra = "";
 
     public String getConnection() {
         return "mongodb+srv://" + name + ":" + password + "@" + uri + "" + extra;
