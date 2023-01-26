@@ -1,10 +1,12 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.Gson;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import org.bson.Document;
 
 import java.io.IOException;
@@ -32,8 +34,13 @@ public class HelloApplication extends Application {
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
-        Document doc = DBHandler.getInstance().insert(new testClass("fhsduifhsd"), DBHandler.getInstance().getCollection("test", "monkey"));
+        Document doc =
+                DBHandler.getInstance()
+                        .insert(
+                                new testClass("fhsduifhsd"),
+                                DBHandler.getInstance().getCollection("test", "monkey"));
         System.out.println(DBHandler.getInstance().getClassFromDocument(doc, testClass.class));
-//        System.out.println((HelloApplication.gson.fromJson(doc.toJson(), testClass.class)));
+        //        System.out.println((HelloApplication.gson.fromJson(doc.toJson(),
+        // testClass.class)));
     }
 }
