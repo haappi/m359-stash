@@ -1,15 +1,15 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.Gson;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 import org.bson.Document;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class HelloApplication extends Application {
     public static final Gson gson = new Gson();
@@ -41,10 +41,14 @@ public class HelloApplication extends Application {
          */
         setStageScene("hello-view");
         testClass ok = new testClass("fhsduifhsd");
-//        Document docc = DBHandler.getInstance().insert(new ArrayList<>(List.of(ok, ok, 1, "a")), DBHandler.getInstance().getCollection("test", "monkey"));
-        Document doc = DBHandler.getInstance().insert(ok, DBHandler.getInstance().getCollection("test", "monkey"));
+        //        Document docc = DBHandler.getInstance().insert(new ArrayList<>(List.of(ok, ok, 1,
+        // "a")), DBHandler.getInstance().getCollection("test", "monkey"));
+        Document doc =
+                DBHandler.getInstance()
+                        .insert(ok, DBHandler.getInstance().getCollection("test", "monkey"));
         System.out.println(DBHandler.getInstance().getClassFromDocument(doc, testClass.class));
-//        System.out.println((HelloApplication.gson.fromJson(doc.toJson(), testClass.class)));
+        //        System.out.println((HelloApplication.gson.fromJson(doc.toJson(),
+        // testClass.class)));
     }
 
     /**
@@ -54,7 +58,10 @@ public class HelloApplication extends Application {
      */
     public void setStageScene(String fileName) {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(fileName.replace(".fxml", "") + ".fxml"));
+            FXMLLoader fxmlLoader =
+                    new FXMLLoader(
+                            HelloApplication.class.getResource(
+                                    fileName.replace(".fxml", "") + ".fxml"));
             Scene scene = new Scene(fxmlLoader.load(), width, height);
             HelloApplication.getInstance().setStageScene(scene);
         } catch (IOException e) {

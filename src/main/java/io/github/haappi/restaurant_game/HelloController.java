@@ -10,6 +10,5 @@ public class HelloController {
     protected void onHelloButtonClick() {
         welcomeText.setText("Welcome to JavaFX Application!");
         HelloApplication.getInstance().setStageScene("main-menu");
-
     }
 }
