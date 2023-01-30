@@ -8,7 +8,8 @@ module io.github.haappi.restaurant_game {
     requires org.mongodb.bson;
 
     opens io.github.haappi.restaurant_game to
-            javafx.fxml, com.google.gson;
+            javafx.fxml,
+            com.google.gson;
 
     exports io.github.haappi.restaurant_game;
 }
