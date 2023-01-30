@@ -63,8 +63,7 @@ public class DBHandler {
     }
 
     public Document insert(Object tclass, MongoCollection<Document> collection) {
-        System.out.println(HelloApplication.gson.toJson(tclass));
-
+//        BsonValue id = collection.insertOne(new Document("aaaa", HelloApplication.gson.toJson(tclass))).getInsertedId();
         BsonValue id = collection.insertOne(Document.parse(HelloApplication.gson.toJson(tclass))).getInsertedId();
         return collection.find(new Document("_id", id)).first();
     }
