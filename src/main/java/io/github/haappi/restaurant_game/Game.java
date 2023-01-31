@@ -3,17 +3,20 @@ package io.github.haappi.restaurant_game;
 import java.util.ArrayList;
 
 /**
-Hosts all variables and what not in POJO for easy MongoDB mapping.
+ * Hosts all variables and what not in POJO for easy MongoDB mapping.
  */
 public class Game {
     private final String _id;
-    private Tile[][] restaurantTiles; // https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html#copyOf(T[],%20int)
+    private Tile[][]
+            restaurantTiles; // https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html#copyOf(T[],%20int)
     private Tile[][] farmTiles; // same as above^
     private final ArrayList<Building> ownedLocations = new ArrayList<>();
     private int test = 0;
 
     public Game(String gameCode) {
-        this._id = gameCode; // fixme, mongodb does NOT like the tiles being null. make it something else instead.
+        this._id =
+                gameCode; // fixme, mongodb does NOT like the tiles being null. make it something
+                          // else instead.
         restaurantTiles = new Tile[5][5];
         farmTiles = new Tile[5][5];
     }

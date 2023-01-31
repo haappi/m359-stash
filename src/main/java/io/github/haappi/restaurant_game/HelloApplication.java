@@ -7,8 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import org.bson.Document;
-
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -41,17 +39,18 @@ public class HelloApplication extends Application {
         https://docs.oracle.com/javase/9/deploy/self-contained-application-packaging.htm#JSDPG583
          */
 
-
-
-//        testClass ok = new testClass("fhsduifhsd");
-//        //        Document docc = DBHandler.getInstance().insert(new ArrayList<>(List.of(ok, ok, 1,
-//        // "a")), DBHandler.getInstance().getCollection("test", "monkey"));
-//        Document doc =
-//                DBHandler.getInstance()
-//                        .insert(ok, DBHandler.getInstance().getCollection("test", "monkey"));
-//        System.out.println(DBHandler.getInstance().getClassFromDocument(doc, testClass.class));
-//        //        System.out.println((HelloApplication.gson.fromJson(doc.toJson(),
-//        // testClass.class)));
+        //        testClass ok = new testClass("fhsduifhsd");
+        //        //        Document docc = DBHandler.getInstance().insert(new
+        // ArrayList<>(List.of(ok, ok, 1,
+        //        // "a")), DBHandler.getInstance().getCollection("test", "monkey"));
+        //        Document doc =
+        //                DBHandler.getInstance()
+        //                        .insert(ok, DBHandler.getInstance().getCollection("test",
+        // "monkey"));
+        //        System.out.println(DBHandler.getInstance().getClassFromDocument(doc,
+        // testClass.class));
+        //        //        System.out.println((HelloApplication.gson.fromJson(doc.toJson(),
+        //        // testClass.class)));
     }
 
     /**

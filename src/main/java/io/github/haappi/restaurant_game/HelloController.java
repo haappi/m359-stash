@@ -3,6 +3,7 @@ package io.github.haappi.restaurant_game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
 import org.bson.Document;
 
 import java.io.IOException;
@@ -23,9 +24,13 @@ public class HelloController {
             gameInstance.setTest(120);
         }
         System.out.println(HelloApplication.gson.toJson(gameInstance));
-        DBHandler.getInstance().insert(game, DBHandler.getInstance().getCollection(DBHandler.dbName, DBHandler.collectionName));
+        DBHandler.getInstance()
+                .insert(
+                        game,
+                        DBHandler.getInstance()
+                                .getCollection(DBHandler.dbName, DBHandler.collectionName));
         System.out.println(gameInstance.getTest());
         welcomeText.setText("Welcome to JavaFX Application!");
-//        HelloApplication.getInstance().setStageScene("main-menu");
+        //        HelloApplication.getInstance().setStageScene("main-menu");
     }
 }
