@@ -11,7 +11,10 @@ import com.mongodb.client.MongoDatabase;
 
 import org.bson.BsonValue;
 import org.bson.Document;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import javax.print.Doc;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -19,6 +22,9 @@ import java.nio.file.Paths;
 public class DBHandler {
     private static DBHandler instance;
     private final MongoClient client;
+
+    public static final String dbName = "haappi";
+    public static final String collectionName = "restaurantGame";
 
     private DBHandler() throws IOException {
         ConfigFile configFile =
@@ -71,5 +77,23 @@ public class DBHandler {
                         .insertOne(Document.parse(HelloApplication.gson.toJson(tclass)))
                         .getInsertedId();
         return collection.find(new Document("_id", id)).first();
+    }
+
+    /**
+     * Attempts to find a document with the provided query. This will search in the default DB/Collection as specified in this class.
+     * @param document {@link Document} a document to look for.
+     * @return A {@link Document} or null if not found.
+     */
+    public @Nullable Document findDocument(Document document) {
+        return getCollection(dbName, collectionName).find(document).first();
+    }
+
+    /**
+     * Attempts to find a document with the given _id. This will search in the default DB/Collection as specified in this class.
+     * @param _id A {@link String} containing the _id to search for
+     * @return A {@link Document} if found, else null.
+     */
+    public @Nullable Document findDocument(String _id) {
+        return findDocument(new Document("_id", _id));
     }
 }

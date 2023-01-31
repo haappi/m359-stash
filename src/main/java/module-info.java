@@ -6,6 +6,7 @@ module io.github.haappi.restaurant_game {
     requires org.mongodb.driver.core;
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.bson;
+    requires org.jetbrains.annotations;
 
     opens io.github.haappi.restaurant_game to
             javafx.fxml,

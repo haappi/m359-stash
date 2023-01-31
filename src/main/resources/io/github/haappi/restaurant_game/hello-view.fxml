@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
-            fx:controller="io.github.haappi.restaurant_game.HelloController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.restaurant_game.HelloController">
     <children>
-        <Button layoutX="253.0" layoutY="175.0" mnemonicParsing="false" onAction="#onHelloButtonClick" text="Button"/>
-        <Label fx:id="welcomeText" layoutX="259.0" layoutY="72.0" text="Label"/>
+        <Button layoutX="253.0" layoutY="175.0" mnemonicParsing="false" onAction="#onHelloButtonClick" text="Button" />
+        <Label fx:id="welcomeText" layoutX="259.0" layoutY="72.0" text="Label" />
+      <TextField fx:id="gameCodeInput" layoutX="199.0" layoutY="222.0" promptText="game code" />
     </children>
 </AnchorPane>

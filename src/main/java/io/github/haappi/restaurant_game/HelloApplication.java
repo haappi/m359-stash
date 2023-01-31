@@ -40,15 +40,18 @@ public class HelloApplication extends Application {
         https://stackoverflow.com/questions/27958019/embed-a-javafx-application-in-a-html-webpage
         https://docs.oracle.com/javase/9/deploy/self-contained-application-packaging.htm#JSDPG583
          */
-        testClass ok = new testClass("fhsduifhsd");
-        //        Document docc = DBHandler.getInstance().insert(new ArrayList<>(List.of(ok, ok, 1,
-        // "a")), DBHandler.getInstance().getCollection("test", "monkey"));
-        Document doc =
-                DBHandler.getInstance()
-                        .insert(ok, DBHandler.getInstance().getCollection("test", "monkey"));
-        System.out.println(DBHandler.getInstance().getClassFromDocument(doc, testClass.class));
-        //        System.out.println((HelloApplication.gson.fromJson(doc.toJson(),
-        // testClass.class)));
+
+
+
+//        testClass ok = new testClass("fhsduifhsd");
+//        //        Document docc = DBHandler.getInstance().insert(new ArrayList<>(List.of(ok, ok, 1,
+//        // "a")), DBHandler.getInstance().getCollection("test", "monkey"));
+//        Document doc =
+//                DBHandler.getInstance()
+//                        .insert(ok, DBHandler.getInstance().getCollection("test", "monkey"));
+//        System.out.println(DBHandler.getInstance().getClassFromDocument(doc, testClass.class));
+//        //        System.out.println((HelloApplication.gson.fromJson(doc.toJson(),
+//        // testClass.class)));
     }
 
     /**
