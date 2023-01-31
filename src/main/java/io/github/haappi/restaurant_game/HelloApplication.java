@@ -31,6 +31,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
         this.stage = stage;
         HelloApplication.instance = this;
+        setStageScene("hello-view");
         /*
         Possible useful things
         https://github.com/karakun/OpenWebStart/blob/master/documentation/faq/FAQ.adoc#how-to-run-openjfx-based-javafx-applications-with-openwebstart
@@ -39,7 +40,6 @@ public class HelloApplication extends Application {
         https://stackoverflow.com/questions/27958019/embed-a-javafx-application-in-a-html-webpage
         https://docs.oracle.com/javase/9/deploy/self-contained-application-packaging.htm#JSDPG583
          */
-        setStageScene("hello-view");
         testClass ok = new testClass("fhsduifhsd");
         //        Document docc = DBHandler.getInstance().insert(new ArrayList<>(List.of(ok, ok, 1,
         // "a")), DBHandler.getInstance().getCollection("test", "monkey"));
