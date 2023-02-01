@@ -13,6 +13,7 @@ import org.bson.BsonValue;
 import org.bson.Document;
 import org.jetbrains.annotations.Nullable;
 
+import javax.print.Doc;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -70,6 +71,7 @@ public class DBHandler {
     public Document insert(Object tclass, MongoCollection<Document> collection) {
         //        BsonValue id = collection.insertOne(new Document("aaaa",
         // HelloApplication.gson.toJson(tclass))).getInsertedId();
+        System.out.println(Document.parse(HelloApplication.gson.toJson(tclass)));
         BsonValue id =
                 collection
                         .insertOne(Document.parse(HelloApplication.gson.toJson(tclass)))
