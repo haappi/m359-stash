@@ -8,34 +8,31 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
-import org.bson.BsonValue;
+import com.mongodb.client.model.UpdateOptions;
 import org.bson.Document;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import javax.print.Doc;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class DBHandler {
-    private static DBHandler instance;
-    private final MongoClient client;
-
     public static final String dbName = "haappi";
     public static final String collectionName = "restaurantGame";
+    private static DBHandler instance;
+    private final MongoClient client;
 
     private DBHandler() throws IOException {
         ConfigFile configFile =
                 HelloApplication.gson.fromJson(
                         new String(Files.readAllBytes(Paths.get("src/main/resources/config.json"))),
                         ConfigFile.class);
-        System.out.println(configFile.getConnection());
-
         ConnectionString connectionString = new ConnectionString(configFile.getConnection());
         MongoClientSettings settings =
                 MongoClientSettings.builder()
                         .applyConnectionString(connectionString)
-                        .serverApi(ServerApi.builder().version(ServerApiVersion.V1).build())
                         .build();
         client = MongoClients.create(settings);
     }
@@ -67,32 +64,49 @@ public class DBHandler {
         return HelloApplication.gson.fromJson(document.toJson(), tClass);
     }
 
-    public Document insert(Object tclass, MongoCollection<Document> collection) {
-        //        BsonValue id = collection.insertOne(new Document("aaaa",
-        // HelloApplication.gson.toJson(tclass))).getInsertedId();
-        System.out.println(Document.parse(HelloApplication.gson.toJson(tclass)));
-        BsonValue id =
-                collection
-                        .insertOne(Document.parse(HelloApplication.gson.toJson(tclass)))
-                        .getInsertedId();
-        return collection.find(new Document("_id", id)).first();
+    /**
+     * Attempts to upsert a {@link CustomClass} type into the specified {@link MongoCollection}.
+     *
+     * @param tClass     A {@link CustomClass} object to insert.
+     * @param collection The {@link MongoCollection} to insert this into.
+     * @return A {@link Document}, if it upserted properly, else null.
+     */
+    public @Nullable Document insert(@NotNull CustomClass tClass, @Nullable MongoCollection<Document> collection) {
+        if (collection == null) {
+            collection = getCollection(dbName, collectionName);
+        }
+        collection
+                .updateOne(tClass.getFilter(), new Document("$set", Document.parse(HelloApplication.gson.toJson(tClass))), new UpdateOptions().upsert(true));
+
+        return collection.find(new Document("_id", tClass.get_id())).first();
+    }
+
+    /**
+     * Attempts to upsert a {@link CustomClass} type into the default {@link MongoCollection} as specified in this class.
+     * @param tClass A {@link CustomClass} object to insert.
+     * @return A {@link Document}, if it upserted properly, else null.
+     */
+    public @Nullable Document insert(CustomClass tClass) {
+        return this.insert(tClass, getCollection(dbName, collectionName));
     }
 
     /**
      * Attempts to find a document with the provided query. This will search in the default DB/Collection as specified in this class.
+     *
      * @param document {@link Document} a document to look for.
      * @return A {@link Document} or null if not found.
      */
-    public @Nullable Document findDocument(Document document) {
+    public @Nullable Document findDocument(@NotNull Document document) {
         return getCollection(dbName, collectionName).find(document).first();
     }
 
     /**
      * Attempts to find a document with the given _id. This will search in the default DB/Collection as specified in this class.
+     *
      * @param _id A {@link String} containing the _id to search for
      * @return A {@link Document} if found, else null.
      */
-    public @Nullable Document findDocument(String _id) {
+    public @Nullable Document findDocument(@NotNull String _id) {
         return findDocument(new Document("_id", _id));
     }
 }

@@ -1,6 +1,6 @@
 package io.github.haappi.restaurant_game;
 
-public class RevenueTrend {
+public class RevenueTrend { //https://docs.oracle.com/javafx/2/charts/line-chart.htm
     // stores money made / spent in a particular day
     // for us e with a grid thingy (check extras)
 

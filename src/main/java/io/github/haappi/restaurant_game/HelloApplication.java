@@ -1,7 +1,6 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.Gson;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,15 +10,14 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
     public static final Gson gson = new Gson();
+    public static HelloApplication instance;
+    private Stage stage;
+    private final int width = 1600;
+    private final int height = 900; // this is one below 1920x1080
 
     public static void main(String[] args) {
         launch();
     }
-
-    private Stage stage;
-    private int width = 1600;
-    private int height = 900; // this is one below 1920x1080
-    public static HelloApplication instance;
 
     public static HelloApplication getInstance() {
         return instance;

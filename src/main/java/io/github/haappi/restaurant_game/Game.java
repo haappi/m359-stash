@@ -4,8 +4,7 @@ package io.github.haappi.restaurant_game;
 /**
  * Hosts all variables and what not in POJO for easy MongoDB mapping.
  */
-public class Game {
-    private final String _id;
+public class Game extends CustomClass {
     //    private Tile[][]
     //            restaurantTiles; //
     // https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html#copyOf(T[],%20int)
@@ -14,35 +13,32 @@ public class Game {
     private int test = 0;
 
     public Game(String gameCode) {
-        this._id = gameCode; // fixme, mongodb does NOT like the tiles being null. make it something
+        super(gameCode);
         // else instead.
         //        restaurantTiles = new Tile[5][5];
         //        farmTiles = new Tile[5][5];
     }
 
-    public String get_id() {
-        return _id;
-    }
 
-    //    public Tile[][] getRestaurantTiles() {
-    //        return restaurantTiles;
-    //    }
-
-    //    public void setRestaurantTiles(Tile[][] restaurantTiles) {
-    //        this.restaurantTiles = restaurantTiles;
-    //    }
-
-    //    public Tile[][] getFarmTiles() {
-    //        return farmTiles;
-    //    }
-
-    //    public void setFarmTiles(Tile[][] farmTiles) {
-    //        this.farmTiles = farmTiles;
-    //    }
-
-    //    public ArrayList<Building> getOwnedLocations() {
-    //        return ownedLocations;
-    //    }
+//        public Tile[][] getRestaurantTiles() {
+//            return restaurantTiles;
+//        }
+//
+//        public void setRestaurantTiles(Tile[][] restaurantTiles) {
+//            this.restaurantTiles = restaurantTiles;
+//        }
+//
+//        public Tile[][] getFarmTiles() {
+//            return farmTiles;
+//        }
+//
+//        public void setFarmTiles(Tile[][] farmTiles) {
+//            this.farmTiles = farmTiles;
+//        }
+//
+//        public ArrayList<Building> getOwnedLocations() {
+//            return ownedLocations;
+//        }
 
     public int getTest() {
         return test;
