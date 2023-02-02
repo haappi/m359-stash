@@ -3,14 +3,14 @@ package io.github.haappi.restaurant_game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
 import org.bson.Document;
 
 import java.io.IOException;
 
 public class HelloController {
     public TextField gameCodeInput;
-    @FXML
-    private Label welcomeText;
+    @FXML private Label welcomeText;
 
     @FXML
     protected void onHelloButtonClick() throws IOException {
@@ -24,13 +24,16 @@ public class HelloController {
             gameInstance.setTest(120);
         }
         System.out.println(HelloApplication.gson.toJson(gameInstance));
-        System.out.println(DBHandler.getInstance()
-                .insert(
-                        gameInstance,
-                        DBHandler.getInstance()
-                                .getCollection(DBHandler.dbName, DBHandler.collectionName)).get("_id"));
+        System.out.println(
+                DBHandler.getInstance()
+                        .insert(
+                                gameInstance,
+                                DBHandler.getInstance()
+                                        .getCollection(DBHandler.dbName, DBHandler.collectionName))
+                        .get("_id"));
         // https://www.callicoder.com/java-8-completablefuture-tutorial/
-        // todo - prolly dont need to do that, since i'll only load the game once, (auto)save every 5 minutes or so, and save when program closed // when they exit their session.
+        // todo - prolly dont need to do that, since i'll only load the game once, (auto)save every
+        // 5 minutes or so, and save when program closed // when they exit their session.
         System.out.println(gameInstance.getTest());
         welcomeText.setText("Welcome to JavaFX Application!");
         //        HelloApplication.getInstance().setStageScene("main-menu");

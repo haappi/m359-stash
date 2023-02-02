@@ -2,18 +2,16 @@ package io.github.haappi.restaurant_game;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.ServerApi;
-import com.mongodb.ServerApiVersion;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
+
 import org.bson.Document;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import javax.print.Doc;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -31,9 +29,7 @@ public class DBHandler {
                         ConfigFile.class);
         ConnectionString connectionString = new ConnectionString(configFile.getConnection());
         MongoClientSettings settings =
-                MongoClientSettings.builder()
-                        .applyConnectionString(connectionString)
-                        .build();
+                MongoClientSettings.builder().applyConnectionString(connectionString).build();
         client = MongoClients.create(settings);
     }
 
@@ -71,12 +67,15 @@ public class DBHandler {
      * @param collection The {@link MongoCollection} to insert this into.
      * @return A {@link Document}, if it upserted properly, else null.
      */
-    public @Nullable Document insert(@NotNull CustomClass tClass, @Nullable MongoCollection<Document> collection) {
+    public @Nullable Document insert(
+            @NotNull CustomClass tClass, @Nullable MongoCollection<Document> collection) {
         if (collection == null) {
             collection = getCollection(dbName, collectionName);
         }
-        collection
-                .updateOne(tClass.getFilter(), new Document("$set", Document.parse(HelloApplication.gson.toJson(tClass))), new UpdateOptions().upsert(true));
+        collection.updateOne(
+                tClass.getFilter(),
+                new Document("$set", Document.parse(HelloApplication.gson.toJson(tClass))),
+                new UpdateOptions().upsert(true));
 
         return collection.find(new Document("_id", tClass.get_id())).first();
     }

@@ -1,6 +1,5 @@
 package io.github.haappi.restaurant_game;
 
-
 /**
  * Hosts all variables and what not in POJO for easy MongoDB mapping.
  */
@@ -19,26 +18,25 @@ public class Game extends CustomClass {
         //        farmTiles = new Tile[5][5];
     }
 
-
-//        public Tile[][] getRestaurantTiles() {
-//            return restaurantTiles;
-//        }
-//
-//        public void setRestaurantTiles(Tile[][] restaurantTiles) {
-//            this.restaurantTiles = restaurantTiles;
-//        }
-//
-//        public Tile[][] getFarmTiles() {
-//            return farmTiles;
-//        }
-//
-//        public void setFarmTiles(Tile[][] farmTiles) {
-//            this.farmTiles = farmTiles;
-//        }
-//
-//        public ArrayList<Building> getOwnedLocations() {
-//            return ownedLocations;
-//        }
+    //        public Tile[][] getRestaurantTiles() {
+    //            return restaurantTiles;
+    //        }
+    //
+    //        public void setRestaurantTiles(Tile[][] restaurantTiles) {
+    //            this.restaurantTiles = restaurantTiles;
+    //        }
+    //
+    //        public Tile[][] getFarmTiles() {
+    //            return farmTiles;
+    //        }
+    //
+    //        public void setFarmTiles(Tile[][] farmTiles) {
+    //            this.farmTiles = farmTiles;
+    //        }
+    //
+    //        public ArrayList<Building> getOwnedLocations() {
+    //            return ownedLocations;
+    //        }
 
     public int getTest() {
         return test;
