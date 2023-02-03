@@ -22,18 +22,26 @@ public class DBHandler {
     private static DBHandler instance;
     private final MongoClient client;
 
-    private DBHandler() throws IOException {
-        ConfigFile configFile =
-                HelloApplication.gson.fromJson(
-                        new String(Files.readAllBytes(Paths.get("src/main/resources/config.json"))),
-                        ConfigFile.class);
-        ConnectionString connectionString = new ConnectionString(configFile.getConnection());
-        MongoClientSettings settings =
-                MongoClientSettings.builder().applyConnectionString(connectionString).build();
-        client = MongoClients.create(settings);
+    private DBHandler() {
+        MongoClient client1;
+        try {
+            ConfigFile configFile =
+                    HelloApplication.gson.fromJson(
+                            new String(Files.readAllBytes(Paths.get("src/main/resources/config.json"))),
+                            ConfigFile.class);
+
+            ConnectionString connectionString = new ConnectionString(configFile.getConnection());
+            MongoClientSettings settings =
+                    MongoClientSettings.builder().applyConnectionString(connectionString).build();
+            client1 = MongoClients.create(settings);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+            client1 = MongoClients.create();
+        }
+        client = client1;
     }
 
-    public static synchronized DBHandler getInstance() throws IOException {
+    public static synchronized DBHandler getInstance() {
         if (DBHandler.instance == null) {
             instance = new DBHandler();
         }
