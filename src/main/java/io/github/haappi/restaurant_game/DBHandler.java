@@ -27,7 +27,9 @@ public class DBHandler {
         try {
             ConfigFile configFile =
                     HelloApplication.gson.fromJson(
-                            new String(Files.readAllBytes(Paths.get("src/main/resources/config.json"))),
+                            new String(
+                                    Files.readAllBytes(
+                                            Paths.get("src/main/resources/config.json"))),
                             ConfigFile.class);
 
             ConnectionString connectionString = new ConnectionString(configFile.getConnection());

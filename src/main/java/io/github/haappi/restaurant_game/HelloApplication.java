@@ -1,8 +1,8 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.Gson;
-
 import com.google.gson.GsonBuilder;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,7 +12,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
-    public static final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+    public static final Gson gson =
+            new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
     public static HelloApplication instance;
     private Stage stage;
     private AnchorPane currentPane;
@@ -66,7 +67,7 @@ public class HelloApplication extends Application {
             // https://edencoding.com/javafx-scene/
             // todo maybe use that to switch between scenes
             // or maybe some sort of fade out animation
-//            scene.getRoot().upda
+            //            scene.getRoot().upda
             HelloApplication.getInstance().setStageScene(scene);
         } catch (IOException e) {
             e.printStackTrace();

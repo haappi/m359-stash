@@ -4,18 +4,21 @@ import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * Hosts all variables and what not in POJO for easy MongoDB mapping.
  */
 public class Game extends CustomClass {
     @Expose
-    private Tile[][] restaurantTiles; // todo refactor me so each resutrant has their own set of tiles & farms are their own set of things. there will NOT be a global resturantTile thingy. only one binded to each resturant & anothe when we're actually showingit to the user.
-    @Expose
-    private final long profileCreation = System.currentTimeMillis();
-    @Expose
-    private long lastSave = System.currentTimeMillis();
+    private Tile[][]
+            restaurantTiles; // todo refactor me so each resutrant has their own set of tiles &
+                             // farms are their own set of things. there will NOT be a global
+                             // resturantTile thingy. only one binded to each resturant & anothe
+                             // when we're actually showingit to the user.
+
+    @Expose private final long profileCreation = System.currentTimeMillis();
+    @Expose private long lastSave = System.currentTimeMillis();
+
     @Expose(serialize = false)
     public Timer timer = new Timer();
 
@@ -74,7 +77,8 @@ public class Game extends CustomClass {
      * Attempts to save this profile asynchronously.
      */
     public void saveProfile() {
-        //            HelloApplication.getInstance(). // todo somehow inform the user in an animated way
+        //            HelloApplication.getInstance(). // todo somehow inform the user in an animated
+        // way
         new Thread(this::doSave).start();
     }
 
@@ -82,7 +86,11 @@ public class Game extends CustomClass {
      * Attempts to save this profile off of the {@link Thread} this was invoked from.
      */
     public void doSave() {
-        DBHandler.getInstance().insert(this, DBHandler.getInstance().getCollection(DBHandler.dbName, DBHandler.collectionName));
+        DBHandler.getInstance()
+                .insert(
+                        this,
+                        DBHandler.getInstance()
+                                .getCollection(DBHandler.dbName, DBHandler.collectionName));
     }
 
     /**
@@ -90,11 +98,11 @@ public class Game extends CustomClass {
      * @param interval A {@link Long} stating the interval in milliseconds
      */
     public void autoSave(long interval) {
-//        timer.scheduleAtFixedRate(new TimerTask() {
-//            @Override
-//            public void run() {
-//                doSave();
-//            }
-//        }, 0L, interval);
+        //        timer.scheduleAtFixedRate(new TimerTask() {
+        //            @Override
+        //            public void run() {
+        //                doSave();
+        //            }
+        //        }, 0L, interval);
     }
 }

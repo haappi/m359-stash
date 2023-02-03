@@ -12,6 +12,5 @@ module io.github.haappi.restaurant_game {
             javafx.fxml,
             com.google.gson;
 
-
     exports io.github.haappi.restaurant_game;
 }
