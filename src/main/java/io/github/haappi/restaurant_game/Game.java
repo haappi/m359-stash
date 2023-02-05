@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Hosts all variables and what not in POJO for easy MongoDB mapping.
@@ -77,8 +78,7 @@ public class Game extends CustomClass {
      * Attempts to save this profile asynchronously.
      */
     public void saveProfile() {
-        //            HelloApplication.getInstance(). // todo somehow inform the user in an animated
-        // way
+        //            HelloApplication.getInstance().
         new Thread(this::doSave).start();
     }
 
@@ -86,8 +86,9 @@ public class Game extends CustomClass {
      * Attempts to save this profile off of the {@link Thread} this was invoked from.
      */
     public void doSave() {
+        this.lastSave = System.currentTimeMillis();
         DBHandler.getInstance()
-                .insert(
+                .insert( // todo somehow inform the user in an animated way
                         this,
                         DBHandler.getInstance()
                                 .getCollection(DBHandler.dbName, DBHandler.collectionName));
@@ -98,11 +99,11 @@ public class Game extends CustomClass {
      * @param interval A {@link Long} stating the interval in milliseconds
      */
     public void autoSave(long interval) {
-        //        timer.scheduleAtFixedRate(new TimerTask() {
-        //            @Override
-        //            public void run() {
-        //                doSave();
-        //            }
-        //        }, 0L, interval);
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        doSave();
+                    }
+                }, 0L, interval);
     }
 }
