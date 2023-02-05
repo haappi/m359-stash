@@ -13,9 +13,9 @@ public class Game extends CustomClass {
     @Expose
     private Tile[][]
             restaurantTiles; // todo refactor me so each resutrant has their own set of tiles &
-                             // farms are their own set of things. there will NOT be a global
-                             // resturantTile thingy. only one binded to each resturant & anothe
-                             // when we're actually showingit to the user.
+    // farms are their own set of things. there will NOT be a global
+    // resturantTile thingy. only one binded to each resturant & anothe
+    // when we're actually showingit to the user.
 
     @Expose private final long profileCreation = System.currentTimeMillis();
     @Expose private long lastSave = System.currentTimeMillis();
@@ -99,11 +99,14 @@ public class Game extends CustomClass {
      * @param interval A {@link Long} stating the interval in milliseconds
      */
     public void autoSave(long interval) {
-                timer.scheduleAtFixedRate(new TimerTask() {
+        timer.scheduleAtFixedRate(
+                new TimerTask() {
                     @Override
                     public void run() {
                         doSave();
                     }
-                }, 0L, interval);
+                },
+                0L,
+                interval);
     }
 }
