@@ -10,13 +10,6 @@ import java.util.TimerTask;
  * Hosts all variables and what not in POJO for easy MongoDB mapping.
  */
 public class Game extends CustomClass {
-    @Expose
-    private Tile[][]
-            restaurantTiles; // todo refactor me so each resutrant has their own set of tiles &
-                             // farms are their own set of things. there will NOT be a global
-                             // resturantTile thingy. only one binded to each resturant & anothe
-                             // when we're actually showingit to the user.
-
     @Expose private final long profileCreation = System.currentTimeMillis();
     @Expose private long lastSave = System.currentTimeMillis();
 
@@ -42,16 +35,7 @@ public class Game extends CustomClass {
 
     public Game(String gameCode) {
         super(gameCode);
-        restaurantTiles = new Tile[5][5];
         farmTiles = new Tile[5][5];
-    }
-
-    public Tile[][] getRestaurantTiles() {
-        return restaurantTiles;
-    }
-
-    public void setRestaurantTiles(Tile[][] restaurantTiles) {
-        this.restaurantTiles = restaurantTiles;
     }
 
     public Tile[][] getFarmTiles() {

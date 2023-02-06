@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
-<AnchorPane prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.restaurant_game.RestaurantView">
-   <children>
-      <GridPane fx:id="resturantPane" layoutX="297.0" layoutY="256.0">
-        <columnConstraints>
-        </columnConstraints>
-        <rowConstraints>
-        </rowConstraints>
-      </GridPane>
-      <ListView fx:id="listview" layoutX="1063.0" layoutY="56.0" prefHeight="200.0" prefWidth="200.0" />
-   </children>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="io.github.haappi.restaurant_game.RestaurantView"
+            prefHeight="400.0" prefWidth="600.0">
+
 </AnchorPane>

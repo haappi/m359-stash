@@ -39,6 +39,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
         this.stage = stage;
         HelloApplication.instance = this;
         setStageScene("hello-view");
