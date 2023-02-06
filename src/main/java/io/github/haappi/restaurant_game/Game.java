@@ -83,11 +83,14 @@ public class Game extends CustomClass {
      * @param interval A {@link Long} stating the interval in milliseconds
      */
     public void autoSave(long interval) {
-                timer.scheduleAtFixedRate(new TimerTask() {
+        timer.scheduleAtFixedRate(
+                new TimerTask() {
                     @Override
                     public void run() {
                         doSave();
                     }
-                }, 0L, interval);
+                },
+                0L,
+                interval);
     }
 }

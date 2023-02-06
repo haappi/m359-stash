@@ -3,8 +3,6 @@ package io.github.haappi.restaurant_game;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 
-import java.util.ArrayList;
-
 public class RestaurantView {
     private final Tile[][] restaurantTiles;
     public GridPane resturantPane;
