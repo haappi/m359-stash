@@ -1,6 +1,7 @@
 package io.github.haappi.restaurant_game;
 
 import javafx.application.Platform;
+import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -56,13 +57,22 @@ public class ExceptionHandler
         stackPane.getChildren().addAll(background, message);
 
         // set the position to be the top right corner of the screen
-        stackPane.setLayoutX(
-                HelloApplication.getInstance().getStage().getWidth() - stackPane.getWidth());
+//        stackPane.setLayoutX(
+//                HelloApplication.getInstance().getStage().getWidth() - stackPane.getWidth());
+
+
+        stackPane.setAlignment(Pos.TOP_RIGHT);
 
         return stackPane;
     }
 
     private void animateStackPane(StackPane stackPane) {
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                // fixme work here
+            }
+        }
         // todo - animate the stackpane to slide in from the top right corner of the screen
         // and then slide out after 5 seconds.
 

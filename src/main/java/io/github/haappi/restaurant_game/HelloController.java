@@ -12,6 +12,7 @@ public class HelloController {
 
     @FXML
     protected void onHelloButtonClick() throws IOException {
+        System.out.println("a");
         throw new IllegalStateException("This is a test");
         //        Document game = DBHandler.getInstance().findDocument(gameCodeInput.getText());
         //        Game gameInstance;
