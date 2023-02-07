@@ -10,6 +10,9 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://repo.maven.apache.org/maven2"
+    }
 }
 
 ext {
@@ -37,7 +40,14 @@ dependencies {
     implementation 'org.mongodb:mongodb-driver-sync:4.8.2'
     implementation 'com.google.code.gson:gson:2.10.1'
     implementation 'org.jetbrains:annotations:20.1.0'
-    implementation 'org.slf4j:slf4j-log4j1:1.7.29'
+    compileOnly('com.sparkjava:spark-core:2.7.2')
+    compileOnly('org.slf4j:slf4j-simple:2.0.6')
+    implementation 'org.slf4j:slf4j-api:2.0.5'
+    implementation 'org.apache.logging.log4j:log4j-core:2.19.0'
+    compileOnly(group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21')
+//    implementation 'org.slf4j:slf4j-log4j1:2.17.2'
+
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
