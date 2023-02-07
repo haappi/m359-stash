@@ -7,7 +7,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -40,7 +39,8 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // todo this looks cool https://stackoverflow.com/questions/46203973/javafx-running-a-thread-multiple-times
+        // todo this looks cool
+        // https://stackoverflow.com/questions/46203973/javafx-running-a-thread-multiple-times
 
         Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
         this.stage = stage;

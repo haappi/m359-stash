@@ -1,17 +1,13 @@
 package io.github.haappi.restaurant_game;
 
 import javafx.application.Platform;
-import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.Stack;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class ExceptionHandler
         implements Thread
@@ -27,15 +23,21 @@ public class ExceptionHandler
 
         // wait 5 seconds
         // remove the node from the scene
-        new Thread(() -> {
-            try {
-                Thread.sleep(5000);
-            } catch (InterruptedException interruptedException) {
-                interruptedException.printStackTrace();
-            }
-            Platform.runLater(() -> HelloApplication.getInstance().getCurrentPane().getChildren().remove(pane));
-
-        }).start();
+        new Thread(
+                        () -> {
+                            try {
+                                Thread.sleep(5000);
+                            } catch (InterruptedException interruptedException) {
+                                interruptedException.printStackTrace();
+                            }
+                            Platform.runLater(
+                                    () ->
+                                            HelloApplication.getInstance()
+                                                    .getCurrentPane()
+                                                    .getChildren()
+                                                    .remove(pane));
+                        })
+                .start();
 
         // show it to the user in the current Controller view like a slide in / out animation or
         // something
@@ -44,15 +46,18 @@ public class ExceptionHandler
 
     private StackPane getMessage(Throwable exception) {
         Text message = new Text(exception.getMessage());
-        Rectangle background = new Rectangle(message.getLayoutBounds().getWidth(),
-                message.getLayoutBounds().getHeight());
+        Rectangle background =
+                new Rectangle(
+                        message.getLayoutBounds().getWidth(),
+                        message.getLayoutBounds().getHeight());
         background.setFill(Color.RED);
         background.opacityProperty().set(0.5);
         StackPane stackPane = new StackPane();
         stackPane.getChildren().addAll(background, message);
 
         // set the position to be the top right corner of the screen
-        stackPane.setLayoutX(HelloApplication.getInstance().getStage().getWidth() - stackPane.getWidth());
+        stackPane.setLayoutX(
+                HelloApplication.getInstance().getStage().getWidth() - stackPane.getWidth());
 
         return stackPane;
     }
