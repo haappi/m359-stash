@@ -58,9 +58,9 @@ public class ExceptionHandler
         stackPane.getChildren().addAll(background, message);
 
         // set the position to be the top right corner of the screen
-//        stackPane.setLayoutX(
-//                HelloApplication.getInstance().getStage().getWidth() - stackPane.getWidth());
-
+        //        stackPane.setLayoutX(
+        //                HelloApplication.getInstance().getStage().getWidth() -
+        // stackPane.getWidth());
 
         stackPane.setAlignment(Pos.TOP_RIGHT);
 
