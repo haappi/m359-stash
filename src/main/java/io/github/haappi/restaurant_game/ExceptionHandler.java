@@ -1,5 +1,6 @@
 package io.github.haappi.restaurant_game;
 
+import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.StackPane;
@@ -72,7 +73,7 @@ public class ExceptionHandler
             public void handle(long now) {
                 // fixme work here
             }
-        }
+        }.start();
         // todo - animate the stackpane to slide in from the top right corner of the screen
         // and then slide out after 5 seconds.
 
