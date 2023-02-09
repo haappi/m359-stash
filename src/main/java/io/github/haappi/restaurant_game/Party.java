@@ -16,7 +16,7 @@ public class Party {
         this.currentHunger = currentHunger;
 
         switch (size) {
-            // set images
+                // set images
         }
     }
 
@@ -32,7 +32,6 @@ public class Party {
         this.currentHunger = currentHunger;
     }
 
-
     public int getSize() {
         return size;
     }
@@ -44,6 +43,4 @@ public class Party {
     public double getCurrentHunger() {
         return currentHunger;
     }
-
-
 }

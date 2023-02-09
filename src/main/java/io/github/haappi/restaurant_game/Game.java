@@ -13,7 +13,7 @@ public class Game extends CustomClass {
     @Expose private final long profileCreation = System.currentTimeMillis();
     @Expose private long lastSave = System.currentTimeMillis();
 
-//    @Expose(serialize = false)
+    //    @Expose(serialize = false)
     public Timer timer = new Timer();
 
     public long getProfileCreationTime() {
