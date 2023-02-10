@@ -2,6 +2,8 @@ package io.github.haappi.restaurant_game;
 
 import com.google.gson.annotations.Expose;
 
+import io.github.haappi.restaurant_game.Tiles.Tile;
+import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.GridPane;
 
@@ -16,5 +18,8 @@ public class FarmingView {
 
     public FarmingView(Tile[][] farmingTiles) {
         this.farmingTiles = farmingTiles;
+    }
+
+    public void driveBack(ActionEvent actionEvent) {
     }
 }

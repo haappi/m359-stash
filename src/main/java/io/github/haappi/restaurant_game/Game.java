@@ -1,6 +1,7 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.annotations.Expose;
+import io.github.haappi.restaurant_game.Tiles.Tile;
 
 import java.util.ArrayList;
 import java.util.Timer;
