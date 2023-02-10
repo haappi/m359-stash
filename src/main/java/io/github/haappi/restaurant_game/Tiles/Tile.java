@@ -26,5 +26,4 @@ public class Tile extends Button {
     public Color getTileColor() {
         return tileColor;
     }
-
 }

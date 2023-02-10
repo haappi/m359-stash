@@ -1,12 +1,11 @@
 package io.github.haappi.restaurant_game;
 
+import static io.github.haappi.restaurant_game.Utils.heuristic;
 
 import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import static io.github.haappi.restaurant_game.Utils.heuristic;
 
 public class AStar {
     private final Button[][] grid;

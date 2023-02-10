@@ -6,7 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tables extends Upgrades {
-    private final static ArrayList<Color> tableColors = new ArrayList<>(List.of(Color.AQUA, Color.WHITE));
+    private static final ArrayList<Color> tableColors =
+            new ArrayList<>(List.of(Color.AQUA, Color.WHITE));
 
     public Tables(int currentTier) {
         super(currentTier, tableColors.size(), tableColors);
