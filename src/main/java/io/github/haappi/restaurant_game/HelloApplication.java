@@ -2,6 +2,7 @@ package io.github.haappi.restaurant_game;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -47,23 +48,26 @@ public class HelloApplication extends Application {
         this.currentPane = currentPane;
         MousePosition.TEXT = new Text("monke");
 
-        Task<Void> task = new Task<>() { // Void with uppercase is just void, but its more confivicent since im working with Objects
-            // in this function
-            @Override
-            public Void call() {
-                currentPane.setOnMouseMoved(event -> {
-                    MousePosition.X = event.getSceneX();
-                    MousePosition.Y = event.getSceneY();
+        Task<Void> task =
+                new Task<>() { // Void with uppercase is just void, but its more confivicent since
+                               // im working with Objects
+                    // in this function
+                    @Override
+                    public Void call() {
+                        currentPane.setOnMouseMoved(
+                                event -> {
+                                    MousePosition.X = event.getSceneX();
+                                    MousePosition.Y = event.getSceneY();
 
-                    Platform.runLater(() -> {
-                        MousePosition.TEXT.setX(MousePosition.X);
-                        MousePosition.TEXT.setY(MousePosition.Y);
-                    });
-
-                });
-                return null;
-            }
-        };
+                                    Platform.runLater(
+                                            () -> {
+                                                MousePosition.TEXT.setX(MousePosition.X);
+                                                MousePosition.TEXT.setY(MousePosition.Y);
+                                            });
+                                });
+                        return null;
+                    }
+                };
 
         new Thread(task).start();
 
@@ -122,6 +126,8 @@ public class HelloApplication extends Application {
     }
 
     public double getMouseX() {
-        return stage.getScene().getWindow().getX() + stage.getScene().getX() + stage.getScene().getWindow().getX();
+        return stage.getScene().getWindow().getX()
+                + stage.getScene().getX()
+                + stage.getScene().getWindow().getX();
     }
 }

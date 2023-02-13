@@ -9,8 +9,7 @@ import java.io.IOException;
 
 public class HelloController {
     public TextField gameCodeInput;
-    @FXML
-    private Label welcomeText;
+    @FXML private Label welcomeText;
 
     @FXML
     protected void onHelloButtonClick() throws IOException {

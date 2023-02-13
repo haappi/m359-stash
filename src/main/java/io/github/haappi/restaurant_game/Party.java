@@ -15,7 +15,7 @@ public class Party {
         this.currentHunger = currentHunger;
 
         switch (size) {
-            // set images
+                // set images
         }
     }
 

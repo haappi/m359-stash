@@ -1,6 +1,5 @@
 package io.github.haappi.restaurant_game;
 
-
 import javafx.scene.text.Text;
 
 public class MousePosition {

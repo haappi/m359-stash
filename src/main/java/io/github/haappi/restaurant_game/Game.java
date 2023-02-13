@@ -1,8 +1,10 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.annotations.Expose;
+
 import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
+
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -15,13 +17,11 @@ import java.util.TimerTask;
  * Hosts all variables and what not in POJO for easy MongoDB mapping.
  */
 public class Game extends CustomClass {
-    @Expose
-    private final long profileCreation = System.currentTimeMillis();
+    @Expose private final long profileCreation = System.currentTimeMillis();
     private final ArrayList<Building> ownedLocations = new ArrayList<>();
     //    @Expose(serialize = false)
     public Timer timer = new Timer();
-    @Expose
-    private long lastSave = System.currentTimeMillis();
+    @Expose private long lastSave = System.currentTimeMillis();
     //     https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html#copyOf(T[],%20int)
     private Tile[][] farmTiles; // same as above^
     private Tile[][] restaurantTiles; // same as above^
@@ -35,7 +35,6 @@ public class Game extends CustomClass {
                 farmTiles[i][j] = new Tile(Color.BROWN, i, j, 60);
             }
         }
-
 
         restaurantTiles = new Tile[15][15];
 
