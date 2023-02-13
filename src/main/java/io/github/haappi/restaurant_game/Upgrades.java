@@ -6,9 +6,9 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 
 public class Upgrades extends Button {
-    private int currentTier = 0;
     private final int maxTier;
     private final ArrayList<Color> coloredTiers = new ArrayList<>();
+    private int currentTier = 0;
 
     public Upgrades(int currentTier, int maxTier, ArrayList<Color> coloredTiers) {
         this.currentTier = currentTier;

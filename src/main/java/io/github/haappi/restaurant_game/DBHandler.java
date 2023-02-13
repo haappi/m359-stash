@@ -7,7 +7,6 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
-
 import org.bson.Document;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -92,6 +91,7 @@ public class DBHandler {
 
     /**
      * Attempts to upsert a {@link CustomClass} type into the default {@link MongoCollection} as specified in this class.
+     *
      * @param tClass A {@link CustomClass} object to insert.
      * @return A {@link Document}, if it upserted properly, else null.
      */

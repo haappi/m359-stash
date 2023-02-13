@@ -7,13 +7,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class ExceptionHandler
         implements Thread
-                .UncaughtExceptionHandler { // https://www.baeldung.com/java-global-exception-handler
+        .UncaughtExceptionHandler { // https://www.baeldung.com/java-global-exception-handler
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionHandler.class);
 
@@ -26,19 +25,19 @@ public class ExceptionHandler
         // wait 5 seconds
         // remove the node from the scene
         new Thread(
-                        () -> {
-                            try {
-                                Thread.sleep(5000);
-                            } catch (InterruptedException interruptedException) {
-                                interruptedException.printStackTrace();
-                            }
-                            Platform.runLater(
-                                    () ->
-                                            HelloApplication.getInstance()
-                                                    .getCurrentPane()
-                                                    .getChildren()
-                                                    .remove(pane));
-                        })
+                () -> {
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
+                    Platform.runLater(
+                            () ->
+                                    HelloApplication.getInstance()
+                                            .getCurrentPane()
+                                            .getChildren()
+                                            .remove(pane));
+                })
                 .start();
 
         // show it to the user in the current Controller view like a slide in / out animation or

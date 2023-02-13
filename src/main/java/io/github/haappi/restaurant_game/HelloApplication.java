@@ -2,11 +2,13 @@ package io.github.haappi.restaurant_game;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,19 +17,11 @@ public class HelloApplication extends Application {
     public static final Gson gson =
             new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
     public static HelloApplication instance;
-    private Stage stage;
-    private AnchorPane currentPane;
-
-    public AnchorPane getCurrentPane() {
-        return currentPane;
-    }
-
-    public void setCurrentPane(AnchorPane currentPane) {
-        this.currentPane = currentPane;
-    }
-
     private final int WIDTH = 1600;
     private final int HEIGHT = 900; // this is one below 1920x1080
+    private Stage stage;
+    private Game gameInstance;
+    private AnchorPane currentPane;
 
     public static void main(String[] args) {
         launch();
@@ -35,6 +29,45 @@ public class HelloApplication extends Application {
 
     public static HelloApplication getInstance() {
         return instance;
+    }
+
+    public Game getGameInstance() {
+        return gameInstance;
+    }
+
+    public void setGameInstance(Game gameInstance) {
+        this.gameInstance = gameInstance;
+    }
+
+    public AnchorPane getCurrentPane() {
+        return currentPane;
+    }
+
+    public void setCurrentPane(AnchorPane currentPane) {
+        this.currentPane = currentPane;
+        MousePosition.TEXT = new Text("monke");
+
+        Task<Void> task = new Task<>() { // Void with uppercase is just void, but its more confivicent since im working with Objects
+            // in this function
+            @Override
+            public Void call() {
+                currentPane.setOnMouseMoved(event -> {
+                    MousePosition.X = event.getSceneX();
+                    MousePosition.Y = event.getSceneY();
+
+                    Platform.runLater(() -> {
+                        MousePosition.TEXT.setX(MousePosition.X);
+                        MousePosition.TEXT.setY(MousePosition.Y);
+                    });
+
+                });
+                return null;
+            }
+        };
+
+        new Thread(task).start();
+
+        currentPane.getChildren().add(MousePosition.TEXT);
     }
 
     @Override
@@ -86,5 +119,9 @@ public class HelloApplication extends Application {
 
     public Scene getStage() {
         return stage.getScene();
+    }
+
+    public double getMouseX() {
+        return stage.getScene().getWindow().getX() + stage.getScene().getX() + stage.getScene().getWindow().getX();
     }
 }

@@ -1,5 +1,6 @@
 package io.github.haappi.restaurant_game;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -8,7 +9,8 @@ import java.io.IOException;
 
 public class HelloController {
     public TextField gameCodeInput;
-    @FXML private Label welcomeText;
+    @FXML
+    private Label welcomeText;
 
     @FXML
     protected void onHelloButtonClick() throws IOException {
@@ -38,6 +40,12 @@ public class HelloController {
         //        // 5 minutes or so, and save when program closed // when they exit their session.
         //        System.out.println(gameInstance.getTest());
         //        welcomeText.setText("Welcome to JavaFX Application!");
+        HelloApplication.getInstance().setStageScene("restaurant-view");
+    }
+
+    public void gamer(ActionEvent actionEvent) {
+        Game game = new Game("test");
+        HelloApplication.getInstance().setGameInstance(game);
         HelloApplication.getInstance().setStageScene("restaurant-view");
     }
 }

@@ -3,7 +3,7 @@ package io.github.haappi.restaurant_game.Tiles;
 import javafx.scene.paint.Color;
 
 public class FloorTile extends Tile {
-    public FloorTile(Color color, int x, int y) {
-        super(color, x, y);
+    public FloorTile(Color color, int x, int y, int prefWidthHeight) {
+        super(color, x, y, prefWidthHeight);
     }
 }

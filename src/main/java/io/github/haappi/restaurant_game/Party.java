@@ -4,10 +4,9 @@ import javafx.scene.image.Image;
 
 public class Party {
     private final int size;
+    private final long creationTime = System.currentTimeMillis();
     private double currentReputation;
     private double currentHunger;
-    private final long creationTime = System.currentTimeMillis();
-
     private Image image; // depending on size, will be a different image
 
     public Party(int size, double currentReputation, double currentHunger, double currentThirst) {
@@ -16,20 +15,12 @@ public class Party {
         this.currentHunger = currentHunger;
 
         switch (size) {
-                // set images
+            // set images
         }
     }
 
     public long getCreationTime() {
         return creationTime;
-    }
-
-    public void setCurrentReputation(double currentReputation) {
-        this.currentReputation = currentReputation;
-    }
-
-    public void setCurrentHunger(double currentHunger) {
-        this.currentHunger = currentHunger;
     }
 
     public int getSize() {
@@ -40,7 +31,15 @@ public class Party {
         return currentReputation;
     }
 
+    public void setCurrentReputation(double currentReputation) {
+        this.currentReputation = currentReputation;
+    }
+
     public double getCurrentHunger() {
         return currentHunger;
+    }
+
+    public void setCurrentHunger(double currentHunger) {
+        this.currentHunger = currentHunger;
     }
 }
