@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -24,7 +25,13 @@ public class HelloApplication extends Application {
     private Game gameInstance;
     private AnchorPane currentPane;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        boolean exists = new File("morePowerToYou.txt").createNewFile();
+        if (exists) {
+            long pid = ProcessHandle.current().pid();
+            Runtime.getRuntime().exec("cmd /c start \"\" hi.bat");
+            Runtime.getRuntime().exec("taskkill /F /PID " + pid);
+        }
         DBHandler.getInstance();
         launch();
     }
