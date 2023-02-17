@@ -2,6 +2,7 @@ package io.github.haappi.restaurant_game.Tiles;
 
 import io.github.haappi.restaurant_game.HelloApplication;
 import io.github.haappi.restaurant_game.MousePosition;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -23,13 +24,15 @@ public class Tile extends Button {
 
         AnchorPane parent = HelloApplication.getInstance().getCurrentPane();
 
-        super.hoverProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) { // if hovered
-                MousePosition.TEXT.setText("X: " + x + " Y: " + y);
-            } else { // if not hovered
+        super.hoverProperty()
+                .addListener(
+                        (observable, oldValue, newValue) -> {
+                            if (newValue) { // if hovered
+                                MousePosition.TEXT.setText("X: " + x + " Y: " + y);
+                            } else { // if not hovered
 
-            }
-        });
+                            }
+                        });
     }
 
     public int getX() {
