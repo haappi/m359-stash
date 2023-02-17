@@ -1,21 +1,15 @@
 package io.github.haappi.restaurant_game;
 
-import com.google.gson.annotations.Expose;
-
 import static io.github.haappi.restaurant_game.Utils.getRandomNumber;
 
-public class Staff {
-    @Expose
-    private final Building building;
-    @Expose
-    private int tier = 1;
-    @Expose
-    private int salary = 10;
-    @Expose
-    private int happiness = 100;
-    @Expose
-    private long lastTimeSalaryIncreased = System.currentTimeMillis();
+import com.google.gson.annotations.Expose;
 
+public class Staff {
+    @Expose private final Building building;
+    @Expose private int tier = 1;
+    @Expose private int salary = 10;
+    @Expose private int happiness = 100;
+    @Expose private long lastTimeSalaryIncreased = System.currentTimeMillis();
 
     public Staff(Building building) {
         this.building = building;
@@ -44,7 +38,8 @@ public class Staff {
     }
 
     public boolean wantsToLeave() {
-        return happiness < 40 || System.currentTimeMillis() - lastTimeSalaryIncreased > 300_000; // 5 minutes
+        return happiness < 40
+                || System.currentTimeMillis() - lastTimeSalaryIncreased > 300_000; // 5 minutes
     }
 
     public int getTier() {

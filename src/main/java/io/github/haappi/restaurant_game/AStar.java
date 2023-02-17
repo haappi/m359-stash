@@ -119,7 +119,8 @@ public class AStar {
      * Gets the path from the start to the end.
      */
     public ArrayList<Node> getPath() {
-        Collections.reverse(path); // Reverse the path so it's in the right order (start point to end)
+        Collections.reverse(
+                path); // Reverse the path so it's in the right order (start point to end)
         return path;
     }
 }
