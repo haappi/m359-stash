@@ -38,10 +38,10 @@ public class LocationManagerHandler {
                     break;
                 }
             case "Upgrade":
-            {
-                System.out.println("Upgrade");
-                break;
-            }
+                {
+                    System.out.println("Upgrade");
+                    break;
+                }
         }
     }
 }

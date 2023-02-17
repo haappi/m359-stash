@@ -1,6 +1,7 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.annotations.Expose;
+
 import javafx.application.Platform;
 
 import java.util.ArrayList;
@@ -60,18 +61,20 @@ public class Game extends CustomClass {
                         if (ownedLocations.size() == 0) {
                             return;
                         }
-                        Building randomBuilding = ownedLocations.get((int) (Math.random() * ownedLocations.size()));
+                        Building randomBuilding =
+                                ownedLocations.get((int) (Math.random() * ownedLocations.size()));
                         Party party = new Party(Utils.getRandomNumber(1, 4));
                         party.setCurrentX(0);
                         party.setCurrentY(0);
 
-
-                        randomBuilding.setCustomersADay(randomBuilding.getCustomersADay() + party.getSize());
+                        randomBuilding.setCustomersADay(
+                                randomBuilding.getCustomersADay() + party.getSize());
                         randomBuilding.setRating(randomBuilding.getRating() + 0.01);
                         if (randomBuilding.getCustomersADay() >= 100) {
                             randomBuilding.setCurrentLevel(randomBuilding.getCurrentLevel() + 1);
                             randomBuilding.addOrRemoveMoney(1000);
-                            randomBuilding.setBuildingHealth(randomBuilding.getBuildingHealth() + 10);
+                            randomBuilding.setBuildingHealth(
+                                    randomBuilding.getBuildingHealth() + 10);
                         }
                         if (randomBuilding.getBuildingHealth() >= 100) {
                             randomBuilding.setBuildingHealth(100);
@@ -96,27 +99,35 @@ public class Game extends CustomClass {
                         if (ownedLocations.size() == 0) {
                             return;
                         }
-                        Building randomBuilding = ownedLocations.get((int) (Math.random() * ownedLocations.size()));
+                        Building randomBuilding =
+                                ownedLocations.get((int) (Math.random() * ownedLocations.size()));
                         if (currentWeather == Weather.RAINY) {
-                            randomBuilding.setBuildingHealth(randomBuilding.getBuildingHealth() - 5);
+                            randomBuilding.setBuildingHealth(
+                                    randomBuilding.getBuildingHealth() - 5);
                         }
                         if (currentWeather == Weather.SNOWY) {
-                            randomBuilding.setBuildingHealth(randomBuilding.getBuildingHealth() - 5);
+                            randomBuilding.setBuildingHealth(
+                                    randomBuilding.getBuildingHealth() - 5);
                         }
                         if (currentWeather == Weather.HAIL) {
-                            randomBuilding.setBuildingHealth(randomBuilding.getBuildingHealth() - 10);
+                            randomBuilding.setBuildingHealth(
+                                    randomBuilding.getBuildingHealth() - 10);
                         }
                         if (currentWeather == Weather.FOGGY) {
-                            randomBuilding.setBuildingHealth(randomBuilding.getBuildingHealth() - 1);
+                            randomBuilding.setBuildingHealth(
+                                    randomBuilding.getBuildingHealth() - 1);
                         }
                         if (currentWeather == Weather.CLOUDY) {
-                            randomBuilding.setBuildingHealth(randomBuilding.getBuildingHealth() - 1);
+                            randomBuilding.setBuildingHealth(
+                                    randomBuilding.getBuildingHealth() - 1);
                         }
                         if (currentWeather == Weather.THUNDERSTORM) {
-                            randomBuilding.setBuildingHealth(randomBuilding.getBuildingHealth() - 10);
+                            randomBuilding.setBuildingHealth(
+                                    randomBuilding.getBuildingHealth() - 10);
                         }
                         if (currentWeather == Weather.TORNADO) {
-                            randomBuilding.setBuildingHealth(randomBuilding.getBuildingHealth() - 20);
+                            randomBuilding.setBuildingHealth(
+                                    randomBuilding.getBuildingHealth() - 20);
                         }
                         if (randomBuilding.getBuildingHealth() <= 0) {
                             ownedLocations.remove(randomBuilding);
@@ -124,10 +135,11 @@ public class Game extends CustomClass {
                             money -= 500 - randomBuilding.getRating() * 75;
                         }
                         if (money <= 100) {
-                            System.out.println("You have lost the game! You can't afford to keep your restaurant open!");
+                            System.out.println(
+                                    "You have lost the game! You can't afford to keep your"
+                                        + " restaurant open!");
                             Platform.exit();
                             System.exit(0);
-
                         }
                     }
                 },

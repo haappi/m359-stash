@@ -1,6 +1,5 @@
 package io.github.haappi.restaurant_game.Upgrades;
 
-import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 

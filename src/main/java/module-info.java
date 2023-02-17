@@ -26,6 +26,10 @@ module io.github.haappi.restaurant_game {
     opens io.github.haappi.restaurant_game.Upgrades to
             com.google.gson,
             javafx.fxml;
+
     exports io.github.haappi.restaurant_game.PathFinding;
-    opens io.github.haappi.restaurant_game.PathFinding to com.google.gson, javafx.fxml;
+
+    opens io.github.haappi.restaurant_game.PathFinding to
+            com.google.gson,
+            javafx.fxml;
 }

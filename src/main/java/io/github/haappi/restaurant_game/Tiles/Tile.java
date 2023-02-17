@@ -3,7 +3,6 @@ package io.github.haappi.restaurant_game.Tiles;
 import io.github.haappi.restaurant_game.HelloApplication;
 import io.github.haappi.restaurant_game.MousePosition;
 
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;

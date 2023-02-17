@@ -1,5 +1,7 @@
 package io.github.haappi.restaurant_game;
 
+import static io.github.haappi.restaurant_game.Utils.stringGenerator;
+
 import com.google.gson.annotations.Expose;
 
 import io.github.haappi.restaurant_game.Tiles.FloorTile;
@@ -10,8 +12,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
-
-import static io.github.haappi.restaurant_game.Utils.stringGenerator;
 
 public class Building {
     @Expose private final Tile[][] tiles;
@@ -24,8 +24,7 @@ public class Building {
         return buildingName;
     }
 
-    @Expose
-    private final String buildingName = stringGenerator(5);
+    @Expose private final String buildingName = stringGenerator(5);
     @Expose private final ArrayList<RevenueTrend> trends = new ArrayList<>();
     @Expose private final ArrayList<Staff> staff = new ArrayList<>();
     @Expose private double rating = 5.00;
@@ -143,13 +142,15 @@ public class Building {
 
     public ArrayList<LocationManagerHandler> getManagers(ListView attachedTo) {
         attachedTo.getItems().clear();
-        attachedTo.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-                LocationManagerHandler item = (LocationManagerHandler) attachedTo.getSelectionModel().getSelectedItem();
-                item.manage();
-            }
-        });
-
+        attachedTo.setOnMouseClicked(
+                event -> {
+                    if (event.getClickCount() == 2) {
+                        LocationManagerHandler item =
+                                (LocationManagerHandler)
+                                        attachedTo.getSelectionModel().getSelectedItem();
+                        item.manage();
+                    }
+                });
 
         ArrayList<LocationManagerHandler> managers = new ArrayList<>();
         managers.add(new LocationManagerHandler("View Staff", this));

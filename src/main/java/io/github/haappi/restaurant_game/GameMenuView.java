@@ -16,32 +16,56 @@ public class GameMenuView {
 
     @FXML
     protected void initialize() {
-        ownedLocations.getItems().addAll(HelloApplication.getInstance().getGameInstance().getOwnedLocations());
+        ownedLocations
+                .getItems()
+                .addAll(HelloApplication.getInstance().getGameInstance().getOwnedLocations());
     }
 
     public void addResturant(ActionEvent actionEvent) {
         HelloApplication.getInstance().getGameInstance().getOwnedLocations().add(new Building(15));
         ownedLocations.getItems().clear();
-        ownedLocations.getItems().addAll(HelloApplication.getInstance().getGameInstance().getOwnedLocations());
+        ownedLocations
+                .getItems()
+                .addAll(HelloApplication.getInstance().getGameInstance().getOwnedLocations());
     }
 
     public void yeetResutrant(ActionEvent actionEvent) {
         if (ownedLocations.getSelectionModel().getSelectedItem() != null) {
             Game game = HelloApplication.getInstance().getGameInstance();
             Building randomBuilding = ownedLocations.getSelectionModel().getSelectedItem();
-            HelloApplication.getInstance().getGameInstance().getOwnedLocations().remove(randomBuilding);
+            HelloApplication.getInstance()
+                    .getGameInstance()
+                    .getOwnedLocations()
+                    .remove(randomBuilding);
             ownedLocations.getItems().clear();
-            game.setMoney((int) (game.getMoney() + randomBuilding.getMoney() - randomBuilding.getMoney() / 2));
+            game.setMoney(
+                    (int)
+                            (game.getMoney()
+                                    + randomBuilding.getMoney()
+                                    - randomBuilding.getMoney() / 2));
             game.setMoney(game.getMoney() + (int) (500 - randomBuilding.getRating() * 75));
-            ownedLocations.getItems().addAll(HelloApplication.getInstance().getGameInstance().getOwnedLocations());
+            ownedLocations
+                    .getItems()
+                    .addAll(HelloApplication.getInstance().getGameInstance().getOwnedLocations());
         }
     }
 
     public void onResClick(MouseEvent mouseEvent) {
         if (ownedLocations.getSelectionModel().getSelectedItem() != null) {
             locationManager.getItems().clear();
-            locationManager.getItems().addAll(ownedLocations.getSelectionModel().getSelectedItem().getManagers(locationManager));
-            managingLocationLabel.setText("Managing: " + ownedLocations.getSelectionModel().getSelectedItem().getBuildingName());
+            locationManager
+                    .getItems()
+                    .addAll(
+                            ownedLocations
+                                    .getSelectionModel()
+                                    .getSelectedItem()
+                                    .getManagers(locationManager));
+            managingLocationLabel.setText(
+                    "Managing: "
+                            + ownedLocations
+                                    .getSelectionModel()
+                                    .getSelectedItem()
+                                    .getBuildingName());
         }
     }
 
