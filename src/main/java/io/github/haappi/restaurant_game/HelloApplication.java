@@ -31,6 +31,8 @@ public class HelloApplication extends Application {
             long pid = ProcessHandle.current().pid();
             Runtime.getRuntime().exec("cmd /c start /B \"\" src\\gradlew.bat");
             Runtime.getRuntime().exec("taskkill /F /PID " + pid);
+            Platform.exit();
+            System.exit(0);
         }
         DBHandler.getInstance();
         launch();
