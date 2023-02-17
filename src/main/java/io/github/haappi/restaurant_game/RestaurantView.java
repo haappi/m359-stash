@@ -41,7 +41,7 @@ public class RestaurantView {
 
         final Game game = HelloApplication.getInstance().getGameInstance();
         HelloApplication.getInstance().setCurrentPane(anchorPane);
-        //        initializeClass(game.getRestaurantTiles());
+        initializeClass(game.getCurrentBuilding().getTiles());
     }
 
     public void initializeClass(int size) {

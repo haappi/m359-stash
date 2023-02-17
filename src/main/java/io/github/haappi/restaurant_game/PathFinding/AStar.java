@@ -1,4 +1,4 @@
-package io.github.haappi.restaurant_game;
+package io.github.haappi.restaurant_game.PathFinding;
 
 import static io.github.haappi.restaurant_game.Utils.heuristic;
 

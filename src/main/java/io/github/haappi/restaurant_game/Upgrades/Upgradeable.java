@@ -1,11 +1,12 @@
 package io.github.haappi.restaurant_game.Upgrades;
 
 import javafx.scene.control.Button;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class Upgradeable extends Button {
+public class Upgradeable extends Region {
     private final int maxTier;
     private final ArrayList<Color> coloredTiers = new ArrayList<>();
     private int currentTier = 0;

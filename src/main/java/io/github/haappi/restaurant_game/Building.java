@@ -6,19 +6,46 @@ import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.TableTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
 
+import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
+import static io.github.haappi.restaurant_game.Utils.stringGenerator;
+
 public class Building {
     @Expose private final Tile[][] tiles;
+
+    public Tile[][] getTiles() {
+        return tiles;
+    }
+
+    public String getBuildingName() {
+        return buildingName;
+    }
+
+    @Expose
+    private final String buildingName = stringGenerator(5);
     @Expose private final ArrayList<RevenueTrend> trends = new ArrayList<>();
     @Expose private final ArrayList<Staff> staff = new ArrayList<>();
     @Expose private double rating = 5.00;
     @Expose private int buildingHealth = 100;
     @Expose private int currentLevel = 1;
     @Expose private double money = 1000;
+
+    public void setCustomersADay(int customersADay) {
+        this.customersADay = customersADay;
+    }
+
     @Expose private int customersADay;
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
+    }
+
+    public int getCustomersADay() {
+        return customersADay;
+    }
 
     private final ArrayList<TableTile> chachedTables = new ArrayList<>();
     @Expose private RestaurantView restaurantView;
@@ -35,7 +62,7 @@ public class Building {
         for (int x = 0; x < 2; x++) {
             int randomX = Utils.getRandomNumber(0, tiles.length - 1);
             int randomY = Utils.getRandomNumber(0, tiles.length - 1);
-            tiles[randomX][randomY] = new TableTile(Color.GRAY, randomX, randomY, 50);
+            tiles[randomX][randomY] = new TableTile(Color.GRAY, randomX, randomY, 50, this);
         }
         cacheTables();
     }
@@ -112,5 +139,23 @@ public class Building {
 
     public void addOrRemoveMoney(double money) {
         this.money += money;
+    }
+
+    public ArrayList<LocationManagerHandler> getManagers(ListView attachedTo) {
+        attachedTo.getItems().clear();
+        attachedTo.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                LocationManagerHandler item = (LocationManagerHandler) attachedTo.getSelectionModel().getSelectedItem();
+                item.manage();
+            }
+        });
+
+
+        ArrayList<LocationManagerHandler> managers = new ArrayList<>();
+        managers.add(new LocationManagerHandler("View Staff", this));
+        managers.add(new LocationManagerHandler("Go to Location", this));
+        managers.add(new LocationManagerHandler("View Stats", this));
+        managers.add(new LocationManagerHandler("Upgrade", this));
+        return managers;
     }
 }

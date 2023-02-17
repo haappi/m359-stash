@@ -5,10 +5,11 @@ import io.github.haappi.restaurant_game.MousePosition;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
-public class Tile extends Button {
+public class Tile extends Region {
     private final Color tileColor;
     private final int x;
     private final int y;

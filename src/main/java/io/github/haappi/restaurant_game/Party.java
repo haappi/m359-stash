@@ -1,5 +1,7 @@
 package io.github.haappi.restaurant_game;
 
+import io.github.haappi.restaurant_game.Tiles.TableTile;
+
 public class Party {
     private final int size;
     private final long creationTime = System.currentTimeMillis();
@@ -7,6 +9,34 @@ public class Party {
     private long lastUpdate = creationTime;
     private double currentHappiness = 10.0;
     private double currentReputation = 2.0;
+    private int currentX;
+    private int currentY;
+
+    public int getCurrentX() {
+        return currentX;
+    }
+
+    public void setCurrentX(int currentX) {
+        this.currentX = currentX;
+    }
+
+    public int getCurrentY() {
+        return currentY;
+    }
+
+    public void setCurrentY(int currentY) {
+        this.currentY = currentY;
+    }
+
+    public TableTile getSeatedAt() {
+        return seatedAt;
+    }
+
+    public void setSeatedAt(TableTile seatedAt) {
+        this.seatedAt = seatedAt;
+    }
+
+    private TableTile seatedAt;
 
     public Party(int size) {
         this(size, 2.0, 10.0);
@@ -44,6 +74,19 @@ public class Party {
     }
 
     public void setLastUpdate(long lastUpdate) {
+        if (lastUpdate - this.lastUpdate > 5000) {
+            // if so, update the happiness and reputation
+            currentHappiness -= 0.5 * (lastUpdate - this.lastUpdate) / 1000;
+            currentReputation -= 0.5 * (lastUpdate - this.lastUpdate) / 1000;
+        }
+
+        if (currentHappiness < 5.0 || currentReputation < 0.5) {
+            // if so, they leave
+            seatedAt.angryParty(this);
+            System.out.println("Party of size " + size + " left due to bad service");
+            return;
+        }
+
         this.lastUpdate = lastUpdate;
     }
 

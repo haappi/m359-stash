@@ -1,9 +1,21 @@
 package io.github.haappi.restaurant_game;
 
+import io.github.haappi.restaurant_game.PathFinding.Node;
+
 import java.util.Random;
 
 public class Utils {
     private static final Random random = new Random();
+
+    public static String stringGenerator(int length) {
+        String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            int index = (int) (characters.length() * Math.random());
+            sb.append(characters.charAt(index));
+        }
+        return sb.toString();
+    }
 
     public static int getRandomNumber(int min, int max) {
         return random.nextInt(min, max);

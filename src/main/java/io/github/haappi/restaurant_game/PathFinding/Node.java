@@ -1,4 +1,4 @@
-package io.github.haappi.restaurant_game;
+package io.github.haappi.restaurant_game.PathFinding;
 
 public class Node {
     // The node's x and y position
