@@ -118,4 +118,9 @@ public class DBHandler {
     public @Nullable Document findDocument(@NotNull String _id) {
         return findDocument(new Document("_id", _id));
     }
+
+    public void close() {
+        HelloApplication.getInstance().getGameInstance().doSave();
+        client.close();
+    }
 }

@@ -1,16 +1,16 @@
-package io.github.haappi.restaurant_game;
+package io.github.haappi.restaurant_game.Upgrades;
 
 import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
-public class Upgrades extends Button {
+public class Upgradeable extends Button {
     private final int maxTier;
     private final ArrayList<Color> coloredTiers = new ArrayList<>();
     private int currentTier = 0;
 
-    public Upgrades(int currentTier, int maxTier, ArrayList<Color> coloredTiers) {
+    public Upgradeable(int currentTier, int maxTier, ArrayList<Color> coloredTiers) {
         this.currentTier = currentTier;
         this.maxTier = maxTier;
         this.coloredTiers.addAll(coloredTiers);
@@ -20,7 +20,7 @@ public class Upgrades extends Button {
         }
     }
 
-    public Upgrades(int maxTier, ArrayList<Color> coloredTiers) {
+    public Upgradeable(int maxTier, ArrayList<Color> coloredTiers) {
         this(0, maxTier, coloredTiers);
     }
 

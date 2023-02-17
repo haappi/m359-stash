@@ -1,11 +1,11 @@
-package io.github.haappi.restaurant_game;
+package io.github.haappi.restaurant_game.Upgrades;
 
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Chairs extends Upgrades {
+public class Chairs extends Upgradeable {
     private static final ArrayList<Color> chairColors =
             new ArrayList<>(
                     List.of(

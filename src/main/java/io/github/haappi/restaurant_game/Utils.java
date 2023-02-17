@@ -1,9 +1,12 @@
 package io.github.haappi.restaurant_game;
 
+import java.util.Random;
+
 public class Utils {
+    private static final Random random = new Random();
 
     public static int getRandomNumber(int min, int max) {
-        return (int) Math.floor(Math.random() * (max - min + 1) + min);
+        return random.nextInt(min, max);
     }
 
     /**

@@ -24,6 +24,7 @@ public class HelloApplication extends Application {
     private AnchorPane currentPane;
 
     public static void main(String[] args) {
+        DBHandler.getInstance();
         launch();
     }
 
@@ -75,7 +76,7 @@ public class HelloApplication extends Application {
         // todo this looks cool
         // https://stackoverflow.com/questions/46203973/javafx-running-a-thread-multiple-times
 
-        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
+//        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
         this.stage = stage;
         HelloApplication.instance = this;
         setStageScene("hello-view");
@@ -87,6 +88,12 @@ public class HelloApplication extends Application {
         https://stackoverflow.com/questions/27958019/embed-a-javafx-application-in-a-html-webpage
         https://docs.oracle.com/javase/9/deploy/self-contained-application-packaging.htm#JSDPG583
         */
+
+        stage.setOnCloseRequest(event -> {
+            DBHandler.getInstance().close();
+            Platform.exit();
+            System.exit(0);
+        });
     }
 
     /**

@@ -46,7 +46,7 @@ public class ExceptionHandler
     }
 
     private StackPane getMessage(Throwable exception) {
-        Text message = new Text(exception.getMessage());
+        Text message = new Text(exception.getCause().getMessage());
         Rectangle background =
                 new Rectangle(
                         message.getLayoutBounds().getWidth(),

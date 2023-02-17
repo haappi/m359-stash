@@ -20,4 +20,6 @@ module io.github.haappi.restaurant_game {
     opens io.github.haappi.restaurant_game.Tiles to
             com.google.gson,
             javafx.fxml;
+    exports io.github.haappi.restaurant_game.Upgrades;
+    opens io.github.haappi.restaurant_game.Upgrades to com.google.gson, javafx.fxml;
 }

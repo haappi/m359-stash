@@ -8,6 +8,7 @@ import java.util.Collections;
 import static io.github.haappi.restaurant_game.Utils.heuristic;
 
 public class AStar {
+
     private final Button[][] grid;
     private final int goalX, goalY;
     private final ArrayList<Node> openList =
@@ -115,8 +116,11 @@ public class AStar {
         System.out.println("No path found");
     }
 
+    /**
+     * Gets the path from the start to the end.
+     */
     public ArrayList<Node> getPath() {
-        Collections.reverse(path);
+        Collections.reverse(path); // Reverse the path so it's in the right order (start point to end)
         return path;
     }
 }
