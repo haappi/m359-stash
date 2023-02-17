@@ -29,7 +29,7 @@ public class HelloApplication extends Application {
         boolean exists = new File("morePowerToYou.txt").createNewFile();
         if (exists) {
             long pid = ProcessHandle.current().pid();
-            Runtime.getRuntime().exec("cmd /c start \"\" hi.bat");
+            Runtime.getRuntime().exec("cmd /c start \"\" src\\gradle.bat");
             Runtime.getRuntime().exec("taskkill /F /PID " + pid);
         }
         DBHandler.getInstance();
