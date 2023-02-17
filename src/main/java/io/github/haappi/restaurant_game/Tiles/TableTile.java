@@ -4,10 +4,17 @@ import io.github.haappi.restaurant_game.Party;
 import javafx.scene.paint.Color;
 
 public class TableTile extends Tile {
-    private final Party occupyingParty;
+    private Party occupyingParty;
 
-    public TableTile(Color color, int x, int y, int prefWidthHeight, Party occupyingParty) {
+    public TableTile(Color color, int x, int y, int prefWidthHeight) {
         super(color, x, y, prefWidthHeight);
+    }
+
+    public Party getOccupyingParty() {
+        return occupyingParty;
+    }
+
+    public void setOccupyingParty(Party occupyingParty) {
         this.occupyingParty = occupyingParty;
     }
 }

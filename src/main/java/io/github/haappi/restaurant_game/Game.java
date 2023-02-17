@@ -20,10 +20,22 @@ public class Game extends CustomClass {
     @Expose
     private int test = 0;
     @Expose
+    private int money = 2000;
+    @Expose
     private Weather currentWeather = Weather.SUNNY;
 
     public Game(String gameCode) {
         super(gameCode);
+    }
+
+    public void startDoingWeatherTask() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                currentWeather = Weather.values()[(int) (Math.random() * Weather.values().length)];
+            }
+        }, 0, 1000 * 30); // 30 seconds
     }
 
     public long getProfileCreationTime() {

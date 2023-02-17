@@ -1,22 +1,23 @@
 package io.github.haappi.restaurant_game;
 
-import static io.github.haappi.restaurant_game.Utils.heuristic;
-
-import javafx.scene.control.Button;
+import io.github.haappi.restaurant_game.Tiles.DecorTile;
+import io.github.haappi.restaurant_game.Tiles.Tile;
 
 import java.util.ArrayList;
 import java.util.Collections;
 
+import static io.github.haappi.restaurant_game.Utils.heuristic;
+
 public class AStar {
 
-    private final Button[][] grid;
+    private final Tile[][] grid;
     private final int goalX, goalY;
     private final ArrayList<Node> openList =
             new ArrayList<>(); // Nodes that need to be checked (or being)
     private final ArrayList<Node> closedList = new ArrayList<>(); // Nodes that have been checked
     private final ArrayList<Node> path = new ArrayList<>();
 
-    public AStar(Button[][] grid, int goalX, int goalY) {
+    public AStar(Tile[][] grid, int goalX, int goalY) {
         this.grid = grid;
         this.goalX = goalX;
         this.goalY = goalY;
@@ -33,11 +34,9 @@ public class AStar {
         return lowestFCostNode;
     }
 
-    private static boolean isValidSpot(int x, int y, Button[][] grid) {
-        return !grid[x][y].getStyle().contains("ff0000");
-        //        if (grid[x][y] instanceof Wall) {
-        //            return false;
-        //        } // todo make a check later to check for walls and what not
+    private static boolean isValidSpot(int x, int y, Tile[][] grid) {
+        return !(grid[x][y] instanceof DecorTile);// todo add a color check
+//        return !grid[x][y].getStyle().contains("ff0000");
     }
 
     public void calculate(int startX, int startY) {

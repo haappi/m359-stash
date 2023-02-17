@@ -2,7 +2,6 @@ package io.github.haappi.restaurant_game;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -51,7 +50,7 @@ public class HelloApplication extends Application {
 
         Task<Void> task =
                 new Task<>() { // Void with uppercase is just void, but its more confivicent since
-                               // im working with Objects
+                    // im working with Objects
                     // in this function
                     @Override
                     public Void call() {

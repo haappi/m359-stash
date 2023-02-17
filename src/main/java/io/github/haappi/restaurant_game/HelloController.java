@@ -14,6 +14,7 @@ public class HelloController {
 
 //        game.autoSave(500000); // 5 minutes
         game.autoSave(30000); // 30 seconds
+        game.startDoingWeatherTask();
 
         HelloApplication.getInstance().setGameInstance(game);
         HelloApplication.getInstance().setStageScene("game-menu-view");
