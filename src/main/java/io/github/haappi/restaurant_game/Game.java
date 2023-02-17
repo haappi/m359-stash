@@ -137,7 +137,7 @@ public class Game extends CustomClass {
                         if (money <= 100) {
                             System.out.println(
                                     "You have lost the game! You can't afford to keep your"
-                                        + " restaurant open!");
+                                            + " restaurant open!");
                             Platform.exit();
                             System.exit(0);
                         }
