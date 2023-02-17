@@ -5,21 +5,14 @@ import com.google.gson.annotations.Expose;
 import java.util.ArrayList;
 
 public class Building {
-    @Expose
-    private final ArrayList<RevenueTrend> trends = new ArrayList<>();
-    @Expose
-    private final ArrayList<Staff> staff = new ArrayList<>();
-    @Expose
-    private double rating = 5.00;
-    @Expose
-    private int currentLevel = 1;
-    @Expose
-    private double money = 1000;
-    @Expose
-    private int customersADay;
+    @Expose private final ArrayList<RevenueTrend> trends = new ArrayList<>();
+    @Expose private final ArrayList<Staff> staff = new ArrayList<>();
+    @Expose private double rating = 5.00;
+    @Expose private int currentLevel = 1;
+    @Expose private double money = 1000;
+    @Expose private int customersADay;
 
-    @Expose
-    private RestaurantView restaurantView;
+    @Expose private RestaurantView restaurantView;
 
     public int getUpgradeCost() {
         return currentLevel * 1000;
@@ -49,7 +42,6 @@ public class Building {
     public ArrayList<RevenueTrend> getTrends() {
         return trends;
     }
-
 
     public void setRestaurantView(RestaurantView restaurantView) {
         if (this.restaurantView != null) {

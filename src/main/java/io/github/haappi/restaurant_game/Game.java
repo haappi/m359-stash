@@ -10,17 +10,12 @@ import java.util.TimerTask;
  * Hosts all variables and what not in POJO for easy MongoDB mapping.
  */
 public class Game extends CustomClass {
-    @Expose
-    private final long profileCreation = System.currentTimeMillis();
-    @Expose
-    private final ArrayList<Building> ownedLocations = new ArrayList<>();
-    @Expose
-    private long lastSave = System.currentTimeMillis();
+    @Expose private final long profileCreation = System.currentTimeMillis();
+    @Expose private final ArrayList<Building> ownedLocations = new ArrayList<>();
+    @Expose private long lastSave = System.currentTimeMillis();
     //     https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html#copyOf(T[],%20int)
-    @Expose
-    private int test = 0;
-    @Expose
-    private Weather currentWeather = Weather.SUNNY;
+    @Expose private int test = 0;
+    @Expose private Weather currentWeather = Weather.SUNNY;
 
     public Game(String gameCode) {
         super(gameCode);

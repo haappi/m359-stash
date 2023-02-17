@@ -1,9 +1,11 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.annotations.Expose;
+
 import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
 import io.github.haappi.restaurant_game.Upgrades.Upgradeable;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
@@ -16,15 +18,14 @@ public class RestaurantView {
     // todo
     // https://stackoverflow.com/questions/37619867/how-to-display-gridpane-object-grid-lines-permanently-and-without-using-the-set
     public AnchorPane anchorPane;
-    @Expose
-    public GridPane restaurantView = new GridPane();
+    @Expose public GridPane restaurantView = new GridPane();
     // make all emppty tiles a floor tile
     // split any tables into 2 tiles, and a table into 4 (or two, depending on its orientation)
     @Expose
     public ListView<Upgradeable>
             upgradesMenu; // make these image viwes with on clickls & flooring tiles and wghatevcer
-    @Expose
-    private Tile[][] restaurantTiles;
+
+    @Expose private Tile[][] restaurantTiles;
 
     @FXML
     protected void initialize() {
@@ -32,7 +33,7 @@ public class RestaurantView {
 
         final Game game = HelloApplication.getInstance().getGameInstance();
         HelloApplication.getInstance().setCurrentPane(anchorPane);
-//        initializeClass(game.getRestaurantTiles());
+        //        initializeClass(game.getRestaurantTiles());
     }
 
     public void initializeClass(int size) {
