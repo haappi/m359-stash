@@ -10,5 +10,4 @@ public enum TileDecors {
     STATUE,
     PAINTING,
     WINDOW,
-
 }

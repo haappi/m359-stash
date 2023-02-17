@@ -4,18 +4,18 @@ import javafx.scene.paint.Color;
 
 public class DecorTile extends Tile {
 
-//    public class DecorTilee extends Upgradeable {
-//
-//        public DecorTilee(Color color, int x, int y, int prefWidthHeight) {
-//            super(color, x, y, prefWidthHeight);
-//        }
-//
-//        super(color, x, y, prefWidthHeight);
+    //    public class DecorTilee extends Upgradeable {
+    //
+    //        public DecorTilee(Color color, int x, int y, int prefWidthHeight) {
+    //            super(color, x, y, prefWidthHeight);
+    //        }
+    //
+    //        super(color, x, y, prefWidthHeight);
 
-//    }
-//    public DecorTile(Color color, int x, int y, int prefWidthHeight) {
-//        super(color, x, y, prefWidthHeight);
-//    }
+    //    }
+    //    public DecorTile(Color color, int x, int y, int prefWidthHeight) {
+    //        super(color, x, y, prefWidthHeight);
+    //    }
 
     private TileDecors tileDecor = TileDecors.NONE;
 

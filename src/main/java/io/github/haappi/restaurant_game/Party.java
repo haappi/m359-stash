@@ -24,8 +24,8 @@ public class Party {
             case 3 -> this.emoji = "\uD83D\uDC6A"; // trio family emoji
             case 4 -> this.emoji =
                     "\uD83D\uDC69\u200D\uD83D\uDC69\u200D\uD83D\uDC66\u200D\uD83D\uDC66"; // quad
-                                                                                          // family
-                                                                                          // emoji
+                // family
+                // emoji
             default -> this.emoji =
                     "\uD83D\uDC7B"; // what the hell happened to them lmao // a ghost
         }

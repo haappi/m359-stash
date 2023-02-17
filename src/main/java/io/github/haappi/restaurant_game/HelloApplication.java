@@ -2,6 +2,7 @@ package io.github.haappi.restaurant_game;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;

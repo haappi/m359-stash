@@ -12,9 +12,7 @@ public class GameMenuView {
     public Button add;
     public Button remove;
 
-    public void addResturant(ActionEvent actionEvent) {
-    }
+    public void addResturant(ActionEvent actionEvent) {}
 
-    public void yeetResutrant(ActionEvent actionEvent) {
-    }
+    public void yeetResutrant(ActionEvent actionEvent) {}
 }

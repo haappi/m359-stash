@@ -1,34 +1,27 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.annotations.Expose;
+
 import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.TableTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
+
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 
 public class Building {
-    @Expose
-    private final Tile[][] tiles;
-    @Expose
-    private final ArrayList<RevenueTrend> trends = new ArrayList<>();
-    @Expose
-    private final ArrayList<Staff> staff = new ArrayList<>();
-    @Expose
-    private double rating = 5.00;
-    @Expose
-    private int buildingHealth = 100;
-    @Expose
-    private int currentLevel = 1;
-    @Expose
-    private double money = 1000;
-    @Expose
-    private int customersADay;
+    @Expose private final Tile[][] tiles;
+    @Expose private final ArrayList<RevenueTrend> trends = new ArrayList<>();
+    @Expose private final ArrayList<Staff> staff = new ArrayList<>();
+    @Expose private double rating = 5.00;
+    @Expose private int buildingHealth = 100;
+    @Expose private int currentLevel = 1;
+    @Expose private double money = 1000;
+    @Expose private int customersADay;
 
     private final ArrayList<TableTile> chachedTables = new ArrayList<>();
-    @Expose
-    private RestaurantView restaurantView;
+    @Expose private RestaurantView restaurantView;
 
     public Building(int tileSize) {
         tiles = new Tile[tileSize][tileSize];
@@ -97,7 +90,6 @@ public class Building {
     public ArrayList<RevenueTrend> getTrends() {
         return trends;
     }
-
 
     public void setRestaurantView(RestaurantView restaurantView) {
         if (this.restaurantView != null) {
