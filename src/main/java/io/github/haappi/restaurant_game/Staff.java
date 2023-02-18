@@ -1,35 +1,31 @@
 package io.github.haappi.restaurant_game;
 
+import static io.github.haappi.restaurant_game.Utils.getRandomNumber;
+
 import com.google.gson.annotations.Expose;
+
 import io.github.haappi.restaurant_game.PathFinding.AStar;
 import io.github.haappi.restaurant_game.PathFinding.Node;
 import io.github.haappi.restaurant_game.Tiles.TableTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
+
 import javafx.animation.AnimationTimer;
 import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 
-import static io.github.haappi.restaurant_game.Utils.getRandomNumber;
-
 public class Staff {
-    @Expose
-    private final Building building;
-    @Expose
-    private final String name = Utils.stringGenerator(5);
+    @Expose private final Building building;
+    @Expose private final String name = Utils.stringGenerator(5);
     private final Text text = new Text();
-    @Expose
-    private int tier = 1;
+    @Expose private int tier = 1;
     private int currentX = 0;
     private int currentY = 0;
     private Party party;
-    @Expose
-    private int salary = 10;
-    @Expose
-    private int happiness = 100;
+    @Expose private int salary = 10;
+    @Expose private int happiness = 100;
     private ArrayList<Node> currentPathToFollow = new ArrayList<>();
-    @Expose
-    private long lastTimeSalaryIncreased = System.currentTimeMillis();
+    @Expose private long lastTimeSalaryIncreased = System.currentTimeMillis();
 
     public Staff(Building building) {
         this.building = building;
@@ -160,7 +156,14 @@ public class Staff {
     }
 
     public String staffInformation() {
-        return "Name: " + name + " | Tier: " + tier + " | Salary: " + salary + " | Happiness: " + happiness;
+        return "Name: "
+                + name
+                + " | Tier: "
+                + tier
+                + " | Salary: "
+                + salary
+                + " | Happiness: "
+                + happiness;
     }
 
     public void setPartyHelping(Party party) {
@@ -178,22 +181,21 @@ public class Staff {
     public void doTask() {
         AnimationTimer timer;
         Staff staff = this;
-        timer = new AnimationTimer() {
-            long lastTimerUpdate = 0;
+        timer =
+                new AnimationTimer() {
+                    long lastTimerUpdate = 0;
 
-            @Override
-            public void handle(long now) {
-                if (now - lastTimerUpdate > 1_000_000_000) {
-                    lastTimerUpdate = now;
-                    staff.move();
-                    if (staff.getParty() == null) {
-                        this.stop();
+                    @Override
+                    public void handle(long now) {
+                        if (now - lastTimerUpdate > 1_000_000_000) {
+                            lastTimerUpdate = now;
+                            staff.move();
+                            if (staff.getParty() == null) {
+                                this.stop();
+                            }
+                        }
                     }
-                }
-
-
-            }
-        };
+                };
         timer.start();
     }
 }

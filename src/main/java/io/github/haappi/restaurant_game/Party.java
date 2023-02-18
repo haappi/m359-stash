@@ -140,11 +140,20 @@ public class Party {
         if (currentPathToFollow.size() == 0) {
             if (board[currentX - 1][currentY - 1] instanceof TableTile) {
                 setSeatedAt((TableTile) board[currentX - 1][currentY - 1]);
-                Staff waiter = HelloApplication.getInstance().getGameInstance().getCurrentBuilding().getClosestWaiter(currentX, currentY);
+                Staff waiter =
+                        HelloApplication.getInstance()
+                                .getGameInstance()
+                                .getCurrentBuilding()
+                                .getClosestWaiter(currentX, currentY);
                 if (waiter == null) {
-                    Building building = HelloApplication.getInstance().getGameInstance().getCurrentBuilding();
+                    Building building =
+                            HelloApplication.getInstance().getGameInstance().getCurrentBuilding();
                     building.setRating(building.getRating() - .5 * this.getSize());
-                    HelloApplication.getInstance().getGameInstance().setMoney(HelloApplication.getInstance().getGameInstance().getMoney() - 10 * this.getSize());
+                    HelloApplication.getInstance()
+                            .getGameInstance()
+                            .setMoney(
+                                    HelloApplication.getInstance().getGameInstance().getMoney()
+                                            - 10 * this.getSize());
                     System.out.println("Party of size " + size + " left due to no waiters");
                     return;
                 }
@@ -172,7 +181,6 @@ public class Party {
         board[currentX][currentY].getChildreen().add(text);
         currentPathToFollow.remove(0);
     }
-
 
     public double getCurrentHappiness() {
         return currentHappiness;

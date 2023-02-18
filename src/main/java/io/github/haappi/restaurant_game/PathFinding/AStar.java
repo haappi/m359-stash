@@ -39,7 +39,7 @@ public class AStar {
             return !floored.isSomethingOnTop();
         }
         return false;
-//        return (grid[x][y] instanceof FloorTile);
+        //        return (grid[x][y] instanceof FloorTile);
     }
 
     public void calculate(int startX, int startY) {

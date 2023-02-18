@@ -3,6 +3,7 @@ package io.github.haappi.restaurant_game.Tiles;
 import io.github.haappi.restaurant_game.Building;
 import io.github.haappi.restaurant_game.Party;
 import io.github.haappi.restaurant_game.Staff;
+
 import javafx.scene.paint.Color;
 
 public class TableTile extends Tile {

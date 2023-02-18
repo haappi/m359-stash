@@ -1,44 +1,35 @@
 package io.github.haappi.restaurant_game;
 
+import static io.github.haappi.restaurant_game.Utils.stringGenerator;
+
 import com.google.gson.annotations.Expose;
+
 import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.TableTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
+
 import javafx.application.Platform;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
-import static io.github.haappi.restaurant_game.Utils.stringGenerator;
-
 public class Building {
-    @Expose
-    private final Tile[][] tiles;
-    @Expose
-    private final String buildingName = stringGenerator(5);
-    @Expose
-    private final ArrayList<RevenueTrend> trends = new ArrayList<>();
-    @Expose
-    private final ArrayList<Staff> staff = new ArrayList<>();
+    @Expose private final Tile[][] tiles;
+    @Expose private final String buildingName = stringGenerator(5);
+    @Expose private final ArrayList<RevenueTrend> trends = new ArrayList<>();
+    @Expose private final ArrayList<Staff> staff = new ArrayList<>();
     private final ArrayList<TableTile> chachedTables = new ArrayList<>();
-    @Expose
-    private double rating = 5.00;
-    @Expose
-    private int buildingHealth = 100;
-    @Expose
-    private int currentLevel = 1;
-    @Expose
-    private double money = 1000;
-    @Expose
-    private int plateTier;
-    @Expose
-    private int tableTier;
-    @Expose
-    private int chairTier;
-    @Expose
-    private int customersADay;
+    @Expose private double rating = 5.00;
+    @Expose private int buildingHealth = 100;
+    @Expose private int currentLevel = 1;
+    @Expose private double money = 1000;
+    @Expose private int plateTier;
+    @Expose private int tableTier;
+    @Expose private int chairTier;
+    @Expose private int customersADay;
     private RestaurantView restaurantView;
 
     public Building(int tileSize) {
@@ -47,7 +38,6 @@ public class Building {
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[x].length; y++) {
                 tiles[x][y] = new FloorTile(Color.AQUAMARINE, x, y, 50);
-
             }
         }
 
@@ -223,19 +213,36 @@ public class Building {
     }
 
     public String getStats() {
-        return "Rating: " + this.rating + " Money: " + this.money + " Customers a day: " + this.customersADay + " Level: " + this.currentLevel + " Health: " + this.buildingHealth + " Staff: " + this.staff.size() + " Trends: " + this.trends.size() + " Tables: " + this.chachedTables.size() + "\n\n" + trends;
+        return "Rating: "
+                + this.rating
+                + " Money: "
+                + this.money
+                + " Customers a day: "
+                + this.customersADay
+                + " Level: "
+                + this.currentLevel
+                + " Health: "
+                + this.buildingHealth
+                + " Staff: "
+                + this.staff.size()
+                + " Trends: "
+                + this.trends.size()
+                + " Tables: "
+                + this.chachedTables.size()
+                + "\n\n"
+                + trends;
     }
 
     public Staff getClosestWaiter(int currentX, int currentY) {
         Staff closestWaiter = null;
         double closestDistance = Double.MAX_VALUE;
         for (Staff waiter : staff) {
-            double distance = Utils.heuristic(currentX, currentY, waiter.getCurrentX(), waiter.getCurrentY());
+            double distance =
+                    Utils.heuristic(currentX, currentY, waiter.getCurrentX(), waiter.getCurrentY());
             if (distance < closestDistance) {
                 closestDistance = distance;
                 closestWaiter = waiter;
             }
-
         }
         return closestWaiter;
     }

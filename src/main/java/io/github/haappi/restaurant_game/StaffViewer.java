@@ -54,9 +54,19 @@ public class StaffViewer {
     public void remvoeStaff(ActionEvent actionEvent) {
         Staff current = staffList.getSelectionModel().getSelectedItem();
         if (current != null) {
-            HelloApplication.getInstance().getGameInstance().getCurrentBuilding().getStaff().remove(current);
+            HelloApplication.getInstance()
+                    .getGameInstance()
+                    .getCurrentBuilding()
+                    .getStaff()
+                    .remove(current);
             staffList.getItems().clear();
-            staffList.getItems().addAll(HelloApplication.getInstance().getGameInstance().getCurrentBuilding().getStaff());
+            staffList
+                    .getItems()
+                    .addAll(
+                            HelloApplication.getInstance()
+                                    .getGameInstance()
+                                    .getCurrentBuilding()
+                                    .getStaff());
         }
     }
 }
