@@ -2,6 +2,7 @@ package io.github.haappi.restaurant_game.Tiles;
 
 import io.github.haappi.restaurant_game.Building;
 import io.github.haappi.restaurant_game.Party;
+import io.github.haappi.restaurant_game.Staff;
 import javafx.scene.paint.Color;
 
 public class TableTile extends Tile {
@@ -23,6 +24,13 @@ public class TableTile extends Tile {
 
     public void angryParty(Party occupyingParty) {
         setOccupyingParty(null);
+        for (Staff staff : building.getStaff()) {
+            if (staff.getParty() == occupyingParty) {
+                staff.setParty(null);
+            }
+            staff.setSalary(staff.getSalary() - 1);
+            staff.setHappiness(staff.getHappiness() - 1);
+        }
         building.setRating(building.getRating() - .5 * occupyingParty.getSize());
     }
 }

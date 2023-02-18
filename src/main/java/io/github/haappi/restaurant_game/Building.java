@@ -46,7 +46,7 @@ public class Building {
 
         for (int x = 0; x < tiles.length; x++) {
             for (int y = 0; y < tiles[x].length; y++) {
-                tiles[x][y] = new FloorTile(Color.BEIGE, x, y, 50);
+                tiles[x][y] = new FloorTile(Color.AQUAMARINE, x, y, 50);
 
             }
         }
@@ -55,6 +55,9 @@ public class Building {
             int randomX = Utils.getRandomNumber(0, tiles.length - 1);
             int randomY = Utils.getRandomNumber(0, tiles.length - 1);
             tiles[randomX][randomY] = new TableTile(Color.GRAY, randomX, randomY, 50, this);
+        }
+        for (int x = 0; x < 5; x++) {
+            staff.add(new Staff(this));
         }
         cacheTables();
     }
@@ -221,5 +224,19 @@ public class Building {
 
     public String getStats() {
         return "Rating: " + this.rating + " Money: " + this.money + " Customers a day: " + this.customersADay + " Level: " + this.currentLevel + " Health: " + this.buildingHealth + " Staff: " + this.staff.size() + " Trends: " + this.trends.size() + " Tables: " + this.chachedTables.size() + "\n\n" + trends;
+    }
+
+    public Staff getClosestWaiter(int currentX, int currentY) {
+        Staff closestWaiter = null;
+        double closestDistance = Double.MAX_VALUE;
+        for (Staff waiter : staff) {
+            double distance = Utils.heuristic(currentX, currentY, waiter.getCurrentX(), waiter.getCurrentY());
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestWaiter = waiter;
+            }
+
+        }
+        return closestWaiter;
     }
 }

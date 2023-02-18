@@ -15,14 +15,15 @@ public class Party {
     private final long creationTime = System.currentTimeMillis();
     private final String emoji; // depending on size, will be a different image
     private final ArrayList<Node> currentPathToFollow = new ArrayList<>();
+    private final Tile[][] board;
+    private final Text text = new Text();
     private long lastUpdate = creationTime;
     private double currentHappiness = 10.0;
     private double currentReputation = 2.0;
     private int currentX;
     private int currentY;
-    private final Tile[][] board;
-    private final Text text = new Text();
     private TableTile seatedAt;
+    private Staff waiter;
 
     public Party(int size, Tile[][] board) {
         this(size, 2.0, 10.0, board);
@@ -138,7 +139,31 @@ public class Party {
     public void move() {
         System.out.println("Moving party of size " + size);
         if (currentPathToFollow.size() == 0) {
-            setSeatedAt((TableTile) board[currentX - 1][currentY - 1]);
+            if (board[currentX - 1][currentY - 1] instanceof TableTile) {
+                setSeatedAt((TableTile) board[currentX - 1][currentY - 1]);
+                Staff waiter = HelloApplication.getInstance().getGameInstance().getCurrentBuilding().getClosestWaiter(currentX, currentY);
+                if (waiter == null) {
+                    Building building = HelloApplication.getInstance().getGameInstance().getCurrentBuilding();
+                    building.setRating(building.getRating() - .5 * this.getSize());
+                    HelloApplication.getInstance().getGameInstance().setMoney(HelloApplication.getInstance().getGameInstance().getMoney() - 10 * this.getSize());
+                    System.out.println("Party of size " + size + " left due to no waiters");
+                    return;
+                }
+                this.waiter = waiter;
+                waiter.setPartyHelping(this);
+                waiter.doTask();
+            } else {
+                Game game = HelloApplication.getInstance().getGameInstance();
+                TableTile tile = game.getCurrentBuilding().closestEmptyTable();
+                if (tile == null) {
+                    Building building = game.getCurrentBuilding();
+                    building.setRating(building.getRating() - .5 * this.getSize());
+                    game.setMoney(game.getMoney() - 10 * this.getSize());
+                    System.out.println("Party of size " + size + " left due to no empty tables");
+                    return;
+                }
+                moveToGoal(tile.getX(), tile.getY());
+            }
             return;
         }
         Node nextPosition = currentPathToFollow.get(0);
@@ -149,6 +174,7 @@ public class Party {
         currentPathToFollow.remove(0);
 
     }
+
 
     public double getCurrentHappiness() {
         return currentHappiness;

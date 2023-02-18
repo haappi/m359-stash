@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -13,9 +12,9 @@
             </font>
         </Label>
         <Button fx:id="dishes" layoutX="272.0" layoutY="65.0" mnemonicParsing="false" onAction="#increaseDish"
-                prefHeight="25.0" prefWidth="28.0" text="1"/>
+                prefHeight="25.0" prefWidth="43.0" text="1"/>
         <Button fx:id="chairs" layoutX="272.0" layoutY="90.0" mnemonicParsing="false" onAction="#increaseChair"
-                prefHeight="25.0" prefWidth="28.0" text="1"/>
+                prefHeight="25.0" prefWidth="43.0" text="1"/>
         <Label layoutX="216.0" layoutY="91.0" text="Chairs">
             <font>
                 <Font size="18.0"/>
@@ -27,11 +26,12 @@
             </font>
         </Label>
         <Button fx:id="table" layoutX="272.0" layoutY="115.0" mnemonicParsing="false" onAction="#increaseTable"
-                prefHeight="25.0" prefWidth="28.0" text="1"/>
+                prefHeight="25.0" prefWidth="43.0" text="1"/>
         <Label fx:id="cashAmount" layoutX="453.0" layoutY="26.0" text="Cash:">
             <font>
                 <Font size="18.0"/>
             </font>
         </Label>
+        <Button layoutX="449.0" layoutY="65.0" mnemonicParsing="false" onAction="#backButton" text="Go Back"/>
     </children>
 </AnchorPane>

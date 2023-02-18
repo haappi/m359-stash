@@ -20,7 +20,7 @@ public class Game extends CustomClass {
     private long lastSave = System.currentTimeMillis();
     //     https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html#copyOf(T[],%20int)
     @Expose
-    private int money = 2000;
+    private int money = 5000;
     @Expose
     private Weather currentWeather = Weather.SUNNY;
     private Building currentBuilding;
@@ -99,6 +99,29 @@ public class Game extends CustomClass {
                 30000); // 30 seconds
     }
 
+    public void payStaffTask() {
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (ownedLocations.size() == 0) {
+                            return;
+                        }
+                        Building randomBuilding =
+                                ownedLocations.get((int) (Math.random() * ownedLocations.size()));
+                        if (randomBuilding.getStaff().size() == 0) {
+                            return;
+                        }
+                        randomBuilding.addOrRemoveMoney(
+                                -randomBuilding.getStaff().size() * 100);
+
+                    }
+                },
+                5000,
+                30000); // 30 seconds
+    }
+
     public void startDoingWeatherTask() {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(
@@ -140,6 +163,7 @@ public class Game extends CustomClass {
                             randomBuilding.setBuildingHealth(
                                     randomBuilding.getBuildingHealth() - 20);
                         }
+                        System.out.println("Weather: " + currentWeather + " Building Health: " + randomBuilding.getBuildingHealth());
                         if (randomBuilding.getBuildingHealth() <= 0) {
                             ownedLocations.remove(randomBuilding);
                             money += randomBuilding.getMoney() - randomBuilding.getMoney() / 2;
@@ -164,6 +188,13 @@ public class Game extends CustomClass {
 
     public void setMoney(int money) {
         this.money = money;
+        if (money <= 0) {
+            System.out.println(
+                    "You have lost the game! You can't afford to keep your"
+                            + " restaurant open!");
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
     public long getProfileCreationTime() {

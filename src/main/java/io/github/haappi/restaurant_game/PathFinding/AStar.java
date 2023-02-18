@@ -35,7 +35,11 @@ public class AStar {
     }
 
     private static boolean isValidSpot(int x, int y, Tile[][] grid) {
-        return (grid[x][y] instanceof FloorTile);
+        if (grid[x][y] instanceof FloorTile floored) {
+            return !floored.isSomethingOnTop();
+        }
+        return false;
+//        return (grid[x][y] instanceof FloorTile);
     }
 
     public void calculate(int startX, int startY) {
@@ -82,6 +86,7 @@ public class AStar {
                     }
 
                     if (!isValidSpot(newX, newY, grid)) {
+                        System.out.println("Invalid spot: " + newX + ", " + newY);
                         continue; // Not a valid spot
                     }
 

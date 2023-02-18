@@ -33,4 +33,24 @@ public class StaffViewer {
     public void prevMenu(ActionEvent actionEvent) {
         HelloApplication.getInstance().setStageScene("game-menu-view");
     }
+
+    public void addStaff(ActionEvent actionEvent) {
+        Staff current = staffList.getSelectionModel().getSelectedItem();
+        if (current != null) {
+            Game game = HelloApplication.getInstance().getGameInstance();
+            game.getCurrentBuilding().getStaff().add(current);
+            staffList.getItems().clear();
+            staffList.getItems().addAll(game.getCurrentBuilding().getStaff());
+            game.setMoney(game.getMoney() - 100);
+        }
+    }
+
+    public void remvoeStaff(ActionEvent actionEvent) {
+        Staff current = staffList.getSelectionModel().getSelectedItem();
+        if (current != null) {
+            HelloApplication.getInstance().getGameInstance().getCurrentBuilding().getStaff().remove(current);
+            staffList.getItems().clear();
+            staffList.getItems().addAll(HelloApplication.getInstance().getGameInstance().getCurrentBuilding().getStaff());
+        }
+    }
 }

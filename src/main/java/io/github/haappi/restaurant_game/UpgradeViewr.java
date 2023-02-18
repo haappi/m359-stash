@@ -43,4 +43,8 @@ public class UpgradeViewr {
         game.getCurrentBuilding().setTableTier(game.getCurrentBuilding().getTableTier() + 1);
         setStuff();
     }
+
+    public void backButton(ActionEvent actionEvent) {
+        HelloApplication.instance.setStageScene("game-menu-view");
+    }
 }
