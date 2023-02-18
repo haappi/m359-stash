@@ -4,6 +4,7 @@ import io.github.haappi.restaurant_game.PathFinding.AStar;
 import io.github.haappi.restaurant_game.PathFinding.Node;
 import io.github.haappi.restaurant_game.Tiles.TableTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
+
 import javafx.animation.AnimationTimer;
 import javafx.application.Platform;
 import javafx.scene.text.Text;
@@ -44,8 +45,8 @@ public class Party {
             case 3 -> this.emoji = "\uD83D\uDC6A"; // trio family emoji
             case 4 -> this.emoji =
                     "\uD83D\uDC69\u200D\uD83D\uDC69\u200D\uD83D\uDC66\u200D\uD83D\uDC66"; // quad
-            // family
-            // emoji
+                // family
+                // emoji
             default -> this.emoji =
                     "\uD83D\uDC7B"; // what the hell happened to them lmao // a ghost
         }
@@ -53,25 +54,23 @@ public class Party {
 
         Platform.runLater(() -> board[currentX][currentY].getChildreen().add(text));
 
-
         AnimationTimer timer;
         Party party = this;
-        timer = new AnimationTimer() {
-            long lastTimerUpdate = 0;
+        timer =
+                new AnimationTimer() {
+                    long lastTimerUpdate = 0;
 
-            @Override
-            public void handle(long now) {
-                if (now - lastTimerUpdate > 1_000_000_000) {
-                    lastTimerUpdate = now;
-                    party.move();
-                    if (party.getSeatedAt() != null) {
-                        this.stop();
+                    @Override
+                    public void handle(long now) {
+                        if (now - lastTimerUpdate > 1_000_000_000) {
+                            lastTimerUpdate = now;
+                            party.move();
+                            if (party.getSeatedAt() != null) {
+                                this.stop();
+                            }
+                        }
                     }
-                }
-
-
-            }
-        };
+                };
         timer.start();
     }
 
@@ -147,7 +146,6 @@ public class Party {
         currentY = nextPosition.getY();
         board[currentX][currentY].getChildreen().add(text);
         currentPathToFollow.remove(0);
-
     }
 
     public double getCurrentHappiness() {

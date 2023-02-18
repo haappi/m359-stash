@@ -12,7 +12,13 @@ public class StaffViewer {
 
     @FXML
     protected void initialize() {
-        staffList.getItems().addAll(HelloApplication.getInstance().getGameInstance().getCurrentBuilding().getStaff());
+        staffList
+                .getItems()
+                .addAll(
+                        HelloApplication.getInstance()
+                                .getGameInstance()
+                                .getCurrentBuilding()
+                                .getStaff());
     }
 
     public void onClick(MouseEvent mouseEvent) {

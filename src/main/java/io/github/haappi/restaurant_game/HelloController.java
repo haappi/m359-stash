@@ -2,6 +2,7 @@ package io.github.haappi.restaurant_game;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+
 import org.bson.Document;
 
 public class HelloController {
@@ -11,7 +12,8 @@ public class HelloController {
     protected void onStartButtonClick() {
         Document _game =
                 DBHandler.getInstance()
-                        .findDocument(gameCodeInput.getText() != null ? gameCodeInput.getText() : "test");
+                        .findDocument(
+                                gameCodeInput.getText() != null ? gameCodeInput.getText() : "test");
         System.out.println(_game);
         Game game =
                 _game == null

@@ -33,9 +33,7 @@ public class GameMenuView {
         }
         game.addLocation(new Building(15));
         ownedLocations.getItems().clear();
-        ownedLocations
-                .getItems()
-                .addAll(game.getOwnedLocations());
+        ownedLocations.getItems().addAll(game.getOwnedLocations());
     }
 
     public void yeetResutrant(ActionEvent actionEvent) {
@@ -72,9 +70,9 @@ public class GameMenuView {
             managingLocationLabel.setText(
                     "Managing: "
                             + ownedLocations
-                            .getSelectionModel()
-                            .getSelectedItem()
-                            .getBuildingName());
+                                    .getSelectionModel()
+                                    .getSelectedItem()
+                                    .getBuildingName());
         }
     }
 

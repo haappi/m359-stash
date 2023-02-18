@@ -3,6 +3,7 @@ package io.github.haappi.restaurant_game;
 import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
 import io.github.haappi.restaurant_game.Upgrades.Upgradeable;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -73,6 +74,5 @@ public class RestaurantView {
         }
     }
 
-    public void backButton(ActionEvent actionEvent) {
-    }
+    public void backButton(ActionEvent actionEvent) {}
 }

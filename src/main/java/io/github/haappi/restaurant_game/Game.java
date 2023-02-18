@@ -1,7 +1,9 @@
 package io.github.haappi.restaurant_game;
 
 import com.google.gson.annotations.Expose;
+
 import io.github.haappi.restaurant_game.Tiles.TableTile;
+
 import javafx.application.Platform;
 
 import java.util.ArrayList;
@@ -12,17 +14,12 @@ import java.util.TimerTask;
  * Hosts all variables and what not in POJO for easy MongoDB mapping.
  */
 public class Game extends CustomClass {
-    @Expose
-    private final long profileCreation = System.currentTimeMillis();
-    @Expose
-    private final ArrayList<Building> ownedLocations = new ArrayList<>();
-    @Expose
-    private long lastSave = System.currentTimeMillis();
+    @Expose private final long profileCreation = System.currentTimeMillis();
+    @Expose private final ArrayList<Building> ownedLocations = new ArrayList<>();
+    @Expose private long lastSave = System.currentTimeMillis();
     //     https://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html#copyOf(T[],%20int)
-    @Expose
-    private int money = 2000;
-    @Expose
-    private Weather currentWeather = Weather.SUNNY;
+    @Expose private int money = 2000;
+    @Expose private Weather currentWeather = Weather.SUNNY;
     private Building currentBuilding;
 
     public Game(String gameCode) {
@@ -73,7 +70,8 @@ public class Game extends CustomClass {
                         if (table == null) {
                             return;
                         }
-                        Party party = new Party(Utils.getRandomNumber(1, 4), randomBuilding.getTiles());
+                        Party party =
+                                new Party(Utils.getRandomNumber(1, 4), randomBuilding.getTiles());
                         party.moveToGoal(table.getX(), table.getY());
                         party.setCurrentX(15);
                         party.setCurrentY(7);

@@ -12,7 +12,6 @@ public class UpgradeViewr {
     public Button table;
     public Label cashAmount;
 
-
     @FXML
     protected void initialize() {
         setStuff();
