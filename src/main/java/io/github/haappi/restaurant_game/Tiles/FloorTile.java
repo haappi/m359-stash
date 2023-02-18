@@ -1,8 +1,10 @@
 package io.github.haappi.restaurant_game.Tiles;
 
+import com.google.gson.annotations.Expose;
 import javafx.scene.paint.Color;
 
 public class FloorTile extends Tile {
+    @Expose
     private boolean isSomethingOnTop = false;
 
     public FloorTile(Color color, int x, int y, int prefWidthHeight) {

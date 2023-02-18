@@ -6,9 +6,12 @@ public class RevenueTrend { // https://docs.oracle.com/javafx/2/charts/line-char
     // stores money made / spent in a particular day
     // for us e with a grid thingy (check extras)
 
-    @Expose private final double moneyMade;
-    @Expose private final double moneySpent;
-    @Expose private final String date;
+    @Expose
+    private final double moneyMade;
+    @Expose
+    private final double moneySpent;
+    @Expose
+    private final String date;
 
     public RevenueTrend(double moneyMade, double moneySpent, String date) {
         this.moneyMade = moneyMade;

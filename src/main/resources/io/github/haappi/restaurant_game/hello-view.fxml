@@ -5,13 +5,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.restaurant_game.HelloController">
-    <Button layoutX="253.0" layoutY="175.0" mnemonicParsing="false" onAction="#onStartButtonClick" text="Start Game" />
-    <TextField fx:id="gameCodeInput" layoutX="217.0" layoutY="219.0" promptText="Enter Your Game Code" />
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18"
+            fx:controller="io.github.haappi.restaurant_game.HelloController">
+    <Button layoutX="253.0" layoutY="175.0" mnemonicParsing="false" onAction="#onStartButtonClick" text="Start Game"/>
+    <TextField fx:id="gameCodeInput" layoutX="217.0" layoutY="219.0" promptText="Enter Your Game Code"/>
     <Label layoutX="130.0" layoutY="29.0" text="Restaurant Simulator" textFill="#5f0ec9">
         <font>
-          <Font size="38.0" />
+            <Font size="38.0"/>
         </font>
     </Label>
 </AnchorPane>

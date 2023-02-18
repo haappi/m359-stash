@@ -2,12 +2,11 @@ package io.github.haappi.restaurant_game.Tiles;
 
 import io.github.haappi.restaurant_game.Building;
 import io.github.haappi.restaurant_game.Party;
-
 import javafx.scene.paint.Color;
 
 public class TableTile extends Tile {
-    private Party occupyingParty;
     private final Building building;
+    private Party occupyingParty;
 
     public TableTile(Color color, int x, int y, int prefWidthHeight, Building building) {
         super(color, x, y, prefWidthHeight);

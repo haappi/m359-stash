@@ -3,7 +3,6 @@ package io.github.haappi.restaurant_game;
 import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
 import io.github.haappi.restaurant_game.Upgrades.Upgradeable;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -49,7 +48,7 @@ public class RestaurantView {
 
         for (int i = 0; i < restaurantTiles.length; i++) {
             for (int j = 0; j < restaurantTiles[i].length; j++) {
-                restaurantTiles[i][j] = new FloorTile(Color.BEIGE, i, j, 60);
+                restaurantTiles[i][j] = new FloorTile(Color.BEIGE, i, j, 50);
                 restaurantView.add(restaurantTiles[i][j], j, i);
             }
         }
@@ -60,7 +59,10 @@ public class RestaurantView {
 
         for (int i = 0; i < restaurantTiles.length; i++) {
             for (int j = 0; j < restaurantTiles[i].length; j++) {
-                restaurantView.add(restaurantTiles[i][j], j, i);
+                if (restaurantTiles[i][j] == null)
+                    restaurantTiles[i][j] = new FloorTile(Color.BEIGE, i, j, 50);
+
+                restaurantView.add(restaurantTiles[i][j].contrusct(), j, i);
             }
         }
 
@@ -71,5 +73,6 @@ public class RestaurantView {
         }
     }
 
-    public void backButton(ActionEvent actionEvent) {}
+    public void backButton(ActionEvent actionEvent) {
+    }
 }

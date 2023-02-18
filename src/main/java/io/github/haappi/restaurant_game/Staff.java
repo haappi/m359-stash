@@ -1,15 +1,22 @@
 package io.github.haappi.restaurant_game;
 
-import static io.github.haappi.restaurant_game.Utils.getRandomNumber;
-
 import com.google.gson.annotations.Expose;
 
+import static io.github.haappi.restaurant_game.Utils.getRandomNumber;
+
 public class Staff {
-    @Expose private final Building building;
-    @Expose private int tier = 1;
-    @Expose private int salary = 10;
-    @Expose private int happiness = 100;
-    @Expose private long lastTimeSalaryIncreased = System.currentTimeMillis();
+    @Expose
+    private final Building building;
+    @Expose
+    private final String name = Utils.stringGenerator(5);
+    @Expose
+    private int tier = 1;
+    @Expose
+    private int salary = 10;
+    @Expose
+    private int happiness = 100;
+    @Expose
+    private long lastTimeSalaryIncreased = System.currentTimeMillis();
 
     public Staff(Building building) {
         this.building = building;
@@ -60,5 +67,9 @@ public class Staff {
 
     public Building getBuilding() {
         return building;
+    }
+
+    public String staffInformation() {
+        return "Name: " + name + " | Tier: " + tier + " | Salary: " + salary + " | Happiness: " + happiness;
     }
 }

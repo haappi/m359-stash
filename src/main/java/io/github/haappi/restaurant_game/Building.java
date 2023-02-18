@@ -1,20 +1,63 @@
 package io.github.haappi.restaurant_game;
 
-import static io.github.haappi.restaurant_game.Utils.stringGenerator;
-
 import com.google.gson.annotations.Expose;
-
 import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.TableTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
-
+import javafx.application.Platform;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
+import static io.github.haappi.restaurant_game.Utils.stringGenerator;
+
 public class Building {
-    @Expose private final Tile[][] tiles;
+    @Expose
+    private final Tile[][] tiles;
+    @Expose
+    private final String buildingName = stringGenerator(5);
+    @Expose
+    private final ArrayList<RevenueTrend> trends = new ArrayList<>();
+    @Expose
+    private final ArrayList<Staff> staff = new ArrayList<>();
+    private final ArrayList<TableTile> chachedTables = new ArrayList<>();
+    @Expose
+    private double rating = 5.00;
+    @Expose
+    private int buildingHealth = 100;
+    @Expose
+    private int currentLevel = 1;
+    @Expose
+    private double money = 1000;
+    @Expose
+    private int plateTier;
+    @Expose
+    private int tableTier;
+    @Expose
+    private int chairTier;
+    @Expose
+    private int customersADay;
+    private RestaurantView restaurantView;
+
+    public Building(int tileSize) {
+        tiles = new Tile[tileSize][tileSize];
+
+        for (int x = 0; x < tiles.length; x++) {
+            for (int y = 0; y < tiles[x].length; y++) {
+                tiles[x][y] = new FloorTile(Color.BEIGE, x, y, 50);
+
+            }
+        }
+
+        for (int x = 0; x < 5; x++) {
+            int randomX = Utils.getRandomNumber(0, tiles.length - 1);
+            int randomY = Utils.getRandomNumber(0, tiles.length - 1);
+            tiles[randomX][randomY] = new TableTile(Color.GRAY, randomX, randomY, 50, this);
+        }
+        cacheTables();
+    }
 
     public Tile[][] getTiles() {
         return tiles;
@@ -24,46 +67,48 @@ public class Building {
         return buildingName;
     }
 
-    @Expose private final String buildingName = stringGenerator(5);
-    @Expose private final ArrayList<RevenueTrend> trends = new ArrayList<>();
-    @Expose private final ArrayList<Staff> staff = new ArrayList<>();
-    @Expose private double rating = 5.00;
-    @Expose private int buildingHealth = 100;
-    @Expose private int currentLevel = 1;
-    @Expose private double money = 1000;
-
-    public void setCustomersADay(int customersADay) {
-        this.customersADay = customersADay;
+    public int getPlateTier() {
+        return plateTier;
     }
 
-    @Expose private int customersADay;
+    public void setPlateTier(int plateTier) {
+        this.plateTier = plateTier;
+    }
 
-    public void setCurrentLevel(int currentLevel) {
-        this.currentLevel = currentLevel;
+    public int getTableTier() {
+        return tableTier;
+    }
+
+    public void setTableTier(int tableTier) {
+        this.tableTier = tableTier;
+    }
+
+    public int getChairTier() {
+        return chairTier;
+    }
+
+    public void setChairTier(int chairTier) {
+        this.chairTier = chairTier;
     }
 
     public int getCustomersADay() {
         return customersADay;
     }
 
-    private final ArrayList<TableTile> chachedTables = new ArrayList<>();
-    @Expose private RestaurantView restaurantView;
+    public void setCustomersADay(int customersADay) {
+        this.customersADay = customersADay;
+    }
 
-    public Building(int tileSize) {
-        tiles = new Tile[tileSize][tileSize];
-
-        for (int x = 0; x < tiles.length; x++) {
-            for (int y = 0; y < tiles[x].length; y++) {
-                tiles[x][y] = new FloorTile(Color.BROWN, x, y, 50);
+    public @Nullable TableTile closestEmptyTable() {
+        if (this.chachedTables == null) {
+            return null;
+        }
+        for (TableTile tableTile : chachedTables) {
+            if (tableTile.getOccupyingParty() == null) {
+                return tableTile;
             }
         }
-
-        for (int x = 0; x < 2; x++) {
-            int randomX = Utils.getRandomNumber(0, tiles.length - 1);
-            int randomY = Utils.getRandomNumber(0, tiles.length - 1);
-            tiles[randomX][randomY] = new TableTile(Color.GRAY, randomX, randomY, 50, this);
-        }
-        cacheTables();
+        return null;
     }
 
     private void cacheTables() {
@@ -109,6 +154,10 @@ public class Building {
         return currentLevel;
     }
 
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
+    }
+
     public void addTrend(RevenueTrend trend) {
         trends.add(trend);
     }
@@ -136,6 +185,10 @@ public class Building {
         return money;
     }
 
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
     public void addOrRemoveMoney(double money) {
         this.money += money;
     }
@@ -148,7 +201,9 @@ public class Building {
                         LocationManagerHandler item =
                                 (LocationManagerHandler)
                                         attachedTo.getSelectionModel().getSelectedItem();
-                        item.manage();
+                        if (item != null) {
+                            Platform.runLater(item::manage);
+                        }
                     }
                 });
 
@@ -158,5 +213,13 @@ public class Building {
         managers.add(new LocationManagerHandler("View Stats", this));
         managers.add(new LocationManagerHandler("Upgrade", this));
         return managers;
+    }
+
+    public String toString() {
+        return this.buildingName;
+    }
+
+    public String getStats() {
+        return "Rating: " + this.rating + " Money: " + this.money + " Customers a day: " + this.customersADay + " Level: " + this.currentLevel + " Health: " + this.buildingHealth + " Staff: " + this.staff.size() + " Trends: " + this.trends.size() + " Tables: " + this.chachedTables.size() + "\n\n" + trends;
     }
 }

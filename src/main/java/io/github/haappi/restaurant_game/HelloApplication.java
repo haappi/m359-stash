@@ -2,7 +2,6 @@ package io.github.haappi.restaurant_game;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -18,6 +17,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     public static final Gson gson =
             new GsonBuilder().excludeFieldsWithoutExposeAnnotation().setPrettyPrinting().create();
+
     public static HelloApplication instance;
     private final int WIDTH = 1600;
     private final int HEIGHT = 900; // this is one below 1920x1080
@@ -79,9 +79,9 @@ public class HelloApplication extends Application {
                     }
                 };
 
-        new Thread(task).start();
+//        new Thread(task).start();
 
-        currentPane.getChildren().add(MousePosition.TEXT);
+//        currentPane.getChildren().add(MousePosition.TEXT);
     }
 
     @Override
@@ -134,8 +134,8 @@ public class HelloApplication extends Application {
 
     private void setStageScene(Scene scene) {
         stage.setScene(scene);
-        stage.show();
         currentPane = (AnchorPane) scene.getRoot();
+        stage.show();
     }
 
     public Scene getStage() {

@@ -1,12 +1,12 @@
 package io.github.haappi.restaurant_game.PathFinding;
 
-import static io.github.haappi.restaurant_game.Utils.heuristic;
-
-import io.github.haappi.restaurant_game.Tiles.DecorTile;
+import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
 
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static io.github.haappi.restaurant_game.Utils.heuristic;
 
 public class AStar {
 
@@ -35,8 +35,7 @@ public class AStar {
     }
 
     private static boolean isValidSpot(int x, int y, Tile[][] grid) {
-        return !(grid[x][y] instanceof DecorTile); // todo add a color check
-        //        return !grid[x][y].getStyle().contains("ff0000");
+        return (grid[x][y] instanceof FloorTile);
     }
 
     public void calculate(int startX, int startY) {

@@ -1,5 +1,6 @@
 package io.github.haappi.restaurant_game;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -22,11 +23,19 @@ public class GameMenuView {
     }
 
     public void addResturant(ActionEvent actionEvent) {
-        HelloApplication.getInstance().getGameInstance().getOwnedLocations().add(new Building(15));
+        Game game = HelloApplication.getInstance().getGameInstance();
+        game.setMoney(game.getMoney() - 2000);
+        if (game.getMoney() < 100) {
+            System.out.println(
+                    "You have lost the game! You can't afford to keep your restaurant open!");
+            Platform.exit();
+            System.exit(0);
+        }
+        game.addLocation(new Building(15));
         ownedLocations.getItems().clear();
         ownedLocations
                 .getItems()
-                .addAll(HelloApplication.getInstance().getGameInstance().getOwnedLocations());
+                .addAll(game.getOwnedLocations());
     }
 
     public void yeetResutrant(ActionEvent actionEvent) {
@@ -63,9 +72,9 @@ public class GameMenuView {
             managingLocationLabel.setText(
                     "Managing: "
                             + ownedLocations
-                                    .getSelectionModel()
-                                    .getSelectedItem()
-                                    .getBuildingName());
+                            .getSelectionModel()
+                            .getSelectedItem()
+                            .getBuildingName());
         }
     }
 
