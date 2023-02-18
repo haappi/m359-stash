@@ -1,12 +1,12 @@
 package io.github.haappi.restaurant_game.PathFinding;
 
+import static io.github.haappi.restaurant_game.Utils.heuristic;
+
 import io.github.haappi.restaurant_game.Tiles.FloorTile;
 import io.github.haappi.restaurant_game.Tiles.Tile;
 
 import java.util.ArrayList;
 import java.util.Collections;
-
-import static io.github.haappi.restaurant_game.Utils.heuristic;
 
 public class AStar {
 

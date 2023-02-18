@@ -24,27 +24,34 @@ public class LocationManagerHandler {
         HelloApplication.getInstance().getGameInstance().setCurrentBuilding(building);
 
         switch (name) {
-            case "View Staff": {
-                System.out.println("View Staff");
-                Platform.runLater(() -> HelloApplication.getInstance().setStageScene("staff-viewer"));
-                break;
-            }
-            case "Go to Location": {
-                System.out.println("Go to Location");
-                Platform.runLater(() -> HelloApplication.getInstance().setStageScene("restaurant-view"));
-                break;
-            }
-            case "View Stats": {
-                System.out.println("View Stats");
-                Platform.runLater(() -> HelloApplication.getInstance().setStageScene("stats-viewer"));
-                break;
-            }
-            case "Upgrade": {
-                System.out.println("Upgrade");
-                Platform.runLater(() -> HelloApplication.getInstance().setStageScene("upgrade-viewr"));
-                break;
-            }
+            case "View Staff":
+                {
+                    System.out.println("View Staff");
+                    Platform.runLater(
+                            () -> HelloApplication.getInstance().setStageScene("staff-viewer"));
+                    break;
+                }
+            case "Go to Location":
+                {
+                    System.out.println("Go to Location");
+                    Platform.runLater(
+                            () -> HelloApplication.getInstance().setStageScene("restaurant-view"));
+                    break;
+                }
+            case "View Stats":
+                {
+                    System.out.println("View Stats");
+                    Platform.runLater(
+                            () -> HelloApplication.getInstance().setStageScene("stats-viewer"));
+                    break;
+                }
+            case "Upgrade":
+                {
+                    System.out.println("Upgrade");
+                    Platform.runLater(
+                            () -> HelloApplication.getInstance().setStageScene("upgrade-viewr"));
+                    break;
+                }
         }
-
     }
 }
