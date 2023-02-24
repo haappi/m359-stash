@@ -38,8 +38,8 @@ import java.net.SocketException;
 import java.util.logging.Logger;
 
 public abstract class GenericSocket implements SocketListener {
-    
-    private final static Logger LOGGER =
+
+    private static final Logger LOGGER =
             Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
 
     public int port;
@@ -50,7 +50,7 @@ public abstract class GenericSocket implements SocketListener {
     private Thread socketReaderThread;
     private Thread setupThread;
     private int debugFlags;
-    
+
     /**
      * Returns true if the specified debug flag is set.
      * @param flag Debug flag in question
@@ -67,7 +67,7 @@ public abstract class GenericSocket implements SocketListener {
     public void setDebugFlags(int flags) {
         debugFlags = flags;
     }
-    
+
     /**
      * Get the current set of debug flags.
      * @return the current debug flag bitmask
@@ -80,8 +80,7 @@ public abstract class GenericSocket implements SocketListener {
      * Turn off debugging option.
      */
     public void clearDebugFlags() {
-        debugFlags = Constants.instance().
-                DEBUG_NONE;
+        debugFlags = Constants.instance().DEBUG_NONE;
     }
 
     /**
@@ -107,7 +106,7 @@ public abstract class GenericSocket implements SocketListener {
             if (debugFlagIsSet(Constants.instance().DEBUG_EXCEPTIONS)) {
                 LOGGER.info(e.getMessage());
             }
-        }  
+        }
     }
 
     /**
@@ -232,10 +231,12 @@ public abstract class GenericSocket implements SocketListener {
                     /*
                      * Get input and output streams
                      */
-                    input = new BufferedReader(new InputStreamReader(
-                            socketConnection.getInputStream()));
-                    output = new BufferedWriter(new OutputStreamWriter(
-                            socketConnection.getOutputStream()));
+                    input =
+                            new BufferedReader(
+                                    new InputStreamReader(socketConnection.getInputStream()));
+                    output =
+                            new BufferedWriter(
+                                    new OutputStreamWriter(socketConnection.getOutputStream()));
                     output.flush();
                 }
                 /*
@@ -262,7 +263,7 @@ public abstract class GenericSocket implements SocketListener {
              * Wait until the socket is set up before beginning to read.
              */
             waitForReady();
-            /* 
+            /*
              * Now that the readerThread has started, it's safe to inform
              * the world that the socket is open, if in fact, it is open.
              * If used in conjunction with JavaFX, use Platform.runLater()
@@ -270,7 +271,7 @@ public abstract class GenericSocket implements SocketListener {
              * thread.
              */
             if (socketConnection != null && socketConnection.isConnected()) {
-                onClosedStatus(false) ;
+                onClosedStatus(false);
             }
             /*
              * Read from from input stream one line at a time
@@ -301,10 +302,9 @@ public abstract class GenericSocket implements SocketListener {
             }
         }
     }
-    
+
     public GenericSocket() {
-        this(Constants.instance().DEFAULT_PORT,
-                Constants.instance().DEBUG_NONE);
+        this(Constants.instance().DEFAULT_PORT, Constants.instance().DEBUG_NONE);
     }
 
     public GenericSocket(int port) {

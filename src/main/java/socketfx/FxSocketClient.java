@@ -36,8 +36,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
 
-public class FxSocketClient extends GenericSocket
-        implements SocketListener {
+public class FxSocketClient extends GenericSocket implements SocketListener {
 
     public String host;
     private SocketListener fxListener;
@@ -51,12 +50,13 @@ public class FxSocketClient extends GenericSocket
      */
     @Override
     public void onMessage(final String line) {
-        javafx.application.Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                fxListener.onMessage(line);
-            }
-        });
+        javafx.application.Platform.runLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        fxListener.onMessage(line);
+                    }
+                });
     }
 
     /**
@@ -68,12 +68,13 @@ public class FxSocketClient extends GenericSocket
      */
     @Override
     public void onClosedStatus(final boolean isClosed) {
-        javafx.application.Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                fxListener.onClosedStatus(isClosed);
-            }
-        });
+        javafx.application.Platform.runLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        fxListener.onClosedStatus(isClosed);
+                    }
+                });
     }
 
     /**
@@ -95,8 +96,7 @@ public class FxSocketClient extends GenericSocket
              */
             socketConnection.connect(new InetSocketAddress(host, port));
             if (debugFlagIsSet(Constants.instance().DEBUG_STATUS)) {
-                System.out.println("Connected to " + host
-                        + "at port " + port);
+                System.out.println("Connected to " + host + "at port " + port);
             }
         } catch (IOException e) {
             if (debugFlagIsSet(Constants.instance().DEBUG_EXCEPTIONS)) {
@@ -113,21 +113,21 @@ public class FxSocketClient extends GenericSocket
     @Override
     protected void closeAdditionalSockets() {}
 
-    public FxSocketClient(SocketListener fxListener,
-            String host, int port, int debugFlags) {
+    public FxSocketClient(SocketListener fxListener, String host, int port, int debugFlags) {
         super(port, debugFlags);
         this.host = host;
         this.fxListener = fxListener;
     }
 
     public FxSocketClient(SocketListener fxListener) {
-        this(fxListener, Constants.instance().DEFAULT_HOST,
+        this(
+                fxListener,
+                Constants.instance().DEFAULT_HOST,
                 Constants.instance().DEFAULT_PORT,
                 Constants.instance().DEBUG_NONE);
     }
 
-    public FxSocketClient(SocketListener fxListener,
-            String host, int port) {
+    public FxSocketClient(SocketListener fxListener, String host, int port) {
         this(fxListener, host, port, Constants.instance().DEBUG_NONE);
     }
 }
