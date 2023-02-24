@@ -1,4 +1,4 @@
-package io.github.haappi.bold_server;
+package io.github.haappi.bold_client;
 
 import java.io.IOException;
 import javafx.application.Application;

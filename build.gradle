@@ -24,8 +24,8 @@ tasks.withType(JavaCompile) {
 }
 
 application {
-    mainModule = 'io.github.haappi.bold_server'
-    mainClass = 'io.github.haappi.bold_server.HelloApplication'
+    mainModule = 'io.github.haappi.bold_client'
+    mainClass = 'io.github.haappi.bold_client.HelloApplication'
 }
 
 javafx {

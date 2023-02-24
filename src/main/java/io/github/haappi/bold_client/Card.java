@@ -1,4 +1,4 @@
-package io.github.haappi.bold_server;
+package io.github.haappi.bold_client;
 
 public class Card {
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015, Jim Connors
+ * Copyright (c) 2013, Jim Connors
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,20 +31,21 @@
 
 package socketfx;
 
-import java.net.ServerSocket;
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.net.Socket;
 import java.net.SocketException;
 
-
-public class FxSocketServer extends GenericSocket
+public class FxSocketClient extends GenericSocket
         implements SocketListener {
 
+    public String host;
     private SocketListener fxListener;
-    private ServerSocket serverSocket;
 
     /**
      * Called whenever a message is read from the socket.  In
-     * JavaFX, this method must be run on the main thread and is
-     * accomplished by the Platform.runLater() call.  Failure to do so
+     * JavaFX, this method must be run on the main thread and
+     * is accomplished by the Platform.runLater() call.  Failure to do so
      * *will* result in strange errors and exceptions.
      * @param line Line of text read from the socket.
      */
@@ -60,9 +61,9 @@ public class FxSocketServer extends GenericSocket
 
     /**
      * Called whenever the open/closed status of the Socket
-     * changes.  In JavaFX, this method must be run on the main thread and is
-     * accomplished by the Platform.runLater() call.  Failure to do so
-     * *will* result in strange errors and exceptions.
+     * changes.  In JavaFX, this method must be run on the main thread and
+     * is accomplished by the Platform.runLater() call.  Failure to do so
+     * will* result in strange errors and exceptions.
      * @param isClosed true if the socket is closed
      */
     @Override
@@ -76,34 +77,28 @@ public class FxSocketServer extends GenericSocket
     }
 
     /**
-     * Initialize the FxSocketServer up to and including issuing the 
-     * accept() method on its socketConnection.
+     * Initialize the SocketClient up to and including issuing the accept()
+     * method on its socketConnection.
      * @throws SocketException
      */
     @Override
     protected void initSocketConnection() throws SocketException {
         try {
-            /*
-             * Create server socket
-             */
-            serverSocket = new ServerSocket(port);
+            socketConnection = new Socket();
             /*
              * Allows the socket to be bound even though a previous
              * connection is in a timeout state.
              */
-            serverSocket.setReuseAddress(true);
+            socketConnection.setReuseAddress(true);
             /*
-             * Wait for connection
+             * Create a socket connection to the server
              */
+            socketConnection.connect(new InetSocketAddress(host, port));
             if (debugFlagIsSet(Constants.instance().DEBUG_STATUS)) {
-                System.out.println("Waiting for connection");
+                System.out.println("Connected to " + host
+                        + "at port " + port);
             }
-            socketConnection = serverSocket.accept();
-            if (debugFlagIsSet(Constants.instance().DEBUG_STATUS)) {
-                System.out.println("Connection received from "
-                        + socketConnection.getInetAddress().getHostName());
-            }
-        } catch (Exception e) {
+        } catch (IOException e) {
             if (debugFlagIsSet(Constants.instance().DEBUG_EXCEPTIONS)) {
                 e.printStackTrace();
             }
@@ -112,32 +107,27 @@ public class FxSocketServer extends GenericSocket
     }
 
     /**
-     * For FxSocketServer class, additional ServerSocket instance has
-     * to be closed.
+     * For SocketClient class, no additional work is required.  Method
+     * is null.
      */
     @Override
-    protected void closeAdditionalSockets() {
-        try {
-            if (serverSocket != null && !serverSocket.isClosed()) {
-                serverSocket.close();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public FxSocketServer(SocketListener fxListener,
-            int port, int debugFlags) {
+    protected void closeAdditionalSockets() {}
+
+    public FxSocketClient(SocketListener fxListener,
+            String host, int port, int debugFlags) {
         super(port, debugFlags);
+        this.host = host;
         this.fxListener = fxListener;
     }
 
-    public FxSocketServer(SocketListener fxListener) {
-        this(fxListener, Constants.instance().DEFAULT_PORT,
-            Constants.instance().DEBUG_NONE);
+    public FxSocketClient(SocketListener fxListener) {
+        this(fxListener, Constants.instance().DEFAULT_HOST,
+                Constants.instance().DEFAULT_PORT,
+                Constants.instance().DEBUG_NONE);
     }
 
-    public FxSocketServer(SocketListener fxListener, int port) {
-        this(fxListener, port, Constants.instance().DEBUG_NONE);
+    public FxSocketClient(SocketListener fxListener,
+            String host, int port) {
+        this(fxListener, host, port, Constants.instance().DEBUG_NONE);
     }
 }
