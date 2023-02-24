@@ -34,9 +34,7 @@ package socketfx;
 import java.net.ServerSocket;
 import java.net.SocketException;
 
-
-public class FxSocketServer extends GenericSocket
-        implements SocketListener {
+public class FxSocketServer extends GenericSocket implements SocketListener {
 
     private SocketListener fxListener;
     private ServerSocket serverSocket;
@@ -50,12 +48,13 @@ public class FxSocketServer extends GenericSocket
      */
     @Override
     public void onMessage(final String line) {
-        javafx.application.Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                fxListener.onMessage(line);
-            }
-        });
+        javafx.application.Platform.runLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        fxListener.onMessage(line);
+                    }
+                });
     }
 
     /**
@@ -67,16 +66,17 @@ public class FxSocketServer extends GenericSocket
      */
     @Override
     public void onClosedStatus(final boolean isClosed) {
-        javafx.application.Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                fxListener.onClosedStatus(isClosed);
-            }
-        });
+        javafx.application.Platform.runLater(
+                new Runnable() {
+                    @Override
+                    public void run() {
+                        fxListener.onClosedStatus(isClosed);
+                    }
+                });
     }
 
     /**
-     * Initialize the FxSocketServer up to and including issuing the 
+     * Initialize the FxSocketServer up to and including issuing the
      * accept() method on its socketConnection.
      * @throws SocketException
      */
@@ -100,8 +100,9 @@ public class FxSocketServer extends GenericSocket
             }
             socketConnection = serverSocket.accept();
             if (debugFlagIsSet(Constants.instance().DEBUG_STATUS)) {
-                System.out.println("Connection received from "
-                        + socketConnection.getInetAddress().getHostName());
+                System.out.println(
+                        "Connection received from "
+                                + socketConnection.getInetAddress().getHostName());
             }
         } catch (Exception e) {
             if (debugFlagIsSet(Constants.instance().DEBUG_EXCEPTIONS)) {
@@ -125,16 +126,14 @@ public class FxSocketServer extends GenericSocket
             e.printStackTrace();
         }
     }
-    
-    public FxSocketServer(SocketListener fxListener,
-            int port, int debugFlags) {
+
+    public FxSocketServer(SocketListener fxListener, int port, int debugFlags) {
         super(port, debugFlags);
         this.fxListener = fxListener;
     }
 
     public FxSocketServer(SocketListener fxListener) {
-        this(fxListener, Constants.instance().DEFAULT_PORT,
-            Constants.instance().DEBUG_NONE);
+        this(fxListener, Constants.instance().DEFAULT_PORT, Constants.instance().DEBUG_NONE);
     }
 
     public FxSocketServer(SocketListener fxListener, int port) {
