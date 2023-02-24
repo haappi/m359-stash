@@ -35,22 +35,22 @@ package socketfx;
  * This class contains constatnts that are common across platforms.  Only
  * primitive types should be used here to avoid ambiguity.
  *
- * It follows the Singleton design pattern and takes advantage of the 
+ * It follows the Singleton design pattern and takes advantage of the
  * properties of the Java Virtual Machine such that initialiazion of the
  * class instance will be done in a thread safe manner.
  */
 
-public class Constants {   
+public class Constants {
     private Constants() {}
-    
+
     private static class LazyHolder {
         private static final Constants INSTANCE = new Constants();
     }
-    
+
     public static Constants instance() {
         return LazyHolder.INSTANCE;
     }
-    
+
     /*
      * Multicast Socket constants
      */
@@ -66,6 +66,5 @@ public class Constants {
     public final int DEBUG_EXCEPTIONS = 0x4;
     public final int DEBUG_STATUS = 0x8;
     public final int DEBUG_XMLOUTPUT = 0x10;
-    public final int DEBUG_ALL =
-            DEBUG_IO | DEBUG_EXCEPTIONS | DEBUG_STATUS | DEBUG_XMLOUTPUT;
+    public final int DEBUG_ALL = DEBUG_IO | DEBUG_EXCEPTIONS | DEBUG_STATUS | DEBUG_XMLOUTPUT;
 }
