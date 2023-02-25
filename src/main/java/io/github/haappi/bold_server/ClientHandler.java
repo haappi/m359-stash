@@ -33,13 +33,23 @@ public class ClientHandler extends Thread {
         out.println(message);
     }
 
+    public void sendMessage(String message) {
+        this.writeMessage(message);
+    }
+
+    public void sendObject(Object object) {
+        out.println(object);
+        out.flush(); // Flushing is just to make sure that the object is sent
+        // (i think it's necessary so i added it :D)
+    }
+
     @Override
     public void run() {
         try {
             String line;
             while ((line = in.readLine()) != null) {
                 System.out.println("Client " + bindedTo.getInetAddress().getHostAddress() + " sent: " + line);
-                server.broadcastMessage(line, this); // Send the message to all OTHER clients
+                server.broadcast(line, this); // Send the message to all OTHER clients
             }
             // if we make it here, the client disconnected
             server.removeClient(this);
@@ -50,4 +60,7 @@ public class ClientHandler extends Thread {
         }
     }
 
+    public void close() throws IOException {
+        bindedTo.close();
+    }
 }

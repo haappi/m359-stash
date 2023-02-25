@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="900.0" prefWidth="1600.0"
+            xmlns="http://javafx.com/javafx/18" fx:controller="io.github.haappi.bold_server.MainView">
+    <children>
+        <ListView fx:id="serverListView" layoutX="700.0" layoutY="155.0" prefHeight="298.0" prefWidth="200.0"/>
+        <Label layoutX="757.0" layoutY="117.0" text="Running Servers"/>
+        <Button layoutX="778.0" layoutY="482.0" mnemonicParsing="false" onAction="#closeServer" text="Close"
+                textFill="#f50000"/>
+        <Button layoutX="730.0" layoutY="519.0" mnemonicParsing="false" onAction="#blockInc"
+                text="Block New Connections" textFill="RED"/>
+        <TextField fx:id="serverName" layoutX="323.0" layoutY="198.0" onAction="#createServer"
+                   promptText="Server Name"/>
+        <TextField fx:id="bindIP" layoutX="323.0" layoutY="235.0" onAction="#createServer" promptText="Bind IP"/>
+        <TextField fx:id="bindPort" layoutX="323.0" layoutY="272.0" onAction="#createServer" promptText="Bind Port"/>
+        <Label layoutX="345.0" layoutY="155.0" text="Create a new Server"/>
+        <Button layoutX="372.0" layoutY="316.0" mnemonicParsing="false" onAction="#createServer" text="Create!"
+                textFill="#38a149"/>
+        <ListView fx:id="connectedClients" layoutX="1289.0" layoutY="155.0" prefHeight="298.0" prefWidth="200.0"/>
+        <Label layoutX="1348.0" layoutY="117.0" text="Client Manager"/>
+        <Button layoutX="762.0" layoutY="561.0" mnemonicParsing="false" onAction="#startGameButton" text="Start Game"
+                textFill="#2e0c8a"/>
+        <Button layoutX="1342.0" layoutY="519.0" mnemonicParsing="false" onAction="#sendMessage" text="Send Message"
+                textFill="#38a149"/>
+        <TextField fx:id="sendMessageClient" layoutX="1322.0" layoutY="482.0" onAction="#sendMessage"
+                   promptText="Send a message..."/>
+        <Button layoutX="1334.0" layoutY="561.0" mnemonicParsing="false" onAction="#disconnectClient"
+                text="Disconnect Client" textFill="RED"/>
+    </children>
+</AnchorPane>

@@ -15,6 +15,7 @@ public class Card {
         this.cName = cName;
         parseCardName(cName);
     }
+
     //
     public void parseCardName(String cName) {
         cColor = cName.substring(0, 1); // creates the color of a card
@@ -22,17 +23,17 @@ public class Card {
     }
 
     public int getCardNumber() // sends the card value when called
-            {
+    {
         return cNumber;
     }
 
     public String getCardColor() // sends the card color when called
-            {
+    {
         return cColor;
     }
 
     public String getCardPath() // sends card path when called/ loaction in resources
-            {
+    {
         return pathName;
     }
 

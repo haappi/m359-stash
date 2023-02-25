@@ -51,8 +51,22 @@ public abstract class GenericSocket implements SocketListener {
     private Thread setupThread;
     private int debugFlags;
 
+    public GenericSocket() {
+        this(Constants.instance().DEFAULT_PORT, Constants.instance().DEBUG_NONE);
+    }
+
+    public GenericSocket(int port) {
+        this(port, Constants.instance().DEBUG_NONE);
+    }
+
+    public GenericSocket(int port, int debugFlags) {
+        this.port = port;
+        this.debugFlags = debugFlags;
+    }
+
     /**
      * Returns true if the specified debug flag is set.
+     *
      * @param flag Debug flag in question
      * @return true if the debug flag 'flag' is set.
      */
@@ -61,19 +75,21 @@ public abstract class GenericSocket implements SocketListener {
     }
 
     /**
-     * Turn on debugging option.
-     * @param flags The debugging flags to enable
-     */
-    public void setDebugFlags(int flags) {
-        debugFlags = flags;
-    }
-
-    /**
      * Get the current set of debug flags.
+     *
      * @return the current debug flag bitmask
      */
     public int getDebugFlags() {
         return debugFlags;
+    }
+
+    /**
+     * Turn on debugging option.
+     *
+     * @param flags The debugging flags to enable
+     */
+    public void setDebugFlags(int flags) {
+        debugFlags = flags;
     }
 
     /**
@@ -124,7 +140,7 @@ public abstract class GenericSocket implements SocketListener {
      * API, once a Socket has been closed, it is not available for
      * further networking use (i.e. can't be reconnected or rebound).
      * A new Socket needs to be created.
-     *
+     * <p>
      * For certain implementations (e.g. ProviderSocket), the
      * closeAdditionalSockets() method may need to be more than just a
      * null method.
@@ -164,6 +180,7 @@ public abstract class GenericSocket implements SocketListener {
      * ServerSocket vs Socket), the implementation details go here.
      * Initialization up to and including either accept() or connect() take
      * place here.
+     *
      * @throws SocketException
      */
     protected abstract void initSocketConnection() throws SocketException;
@@ -301,18 +318,5 @@ public abstract class GenericSocket implements SocketListener {
                 close();
             }
         }
-    }
-
-    public GenericSocket() {
-        this(Constants.instance().DEFAULT_PORT, Constants.instance().DEBUG_NONE);
-    }
-
-    public GenericSocket(int port) {
-        this(port, Constants.instance().DEBUG_NONE);
-    }
-
-    public GenericSocket(int port, int debugFlags) {
-        this.port = port;
-        this.debugFlags = debugFlags;
     }
 }

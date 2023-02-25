@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
 import socketfx.Constants;
 import socketfx.FxSocketServer;
 import socketfx.SocketListener;
@@ -23,33 +22,66 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 
 public class HelloController implements Initializable {
-    boolean areReady = false;
-    boolean clientReady = false;
-
-    @FXML private Button sendButton, ready;
-    @FXML private TextField sendTextField;
-    @FXML private Button connectButton;
-    @FXML private TextField portTextField;
-    @FXML private Label lblMessages;
-    @FXML private ImageView mainCardImgView;
-    Image imageM;
-
     private static final Logger LOGGER =
             Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
-
+    private final int counter = 0;
+    boolean areReady = false;
+    boolean clientReady = false;
+    Image imageM;
+    FileInputStream back1, tempCard;
+    Image imageBack;
+    Image imageFront;
+    List<Card> deck = new ArrayList<>();
+    Card discard;
+    List<ImageView> hand1I = new ArrayList<>();
+    List<ImageView> hand2I = new ArrayList<>();
+    List<Card> hand1D = new ArrayList<>();
+    List<Card> hand2D = new ArrayList<>();
+    @FXML
+    private Button sendButton, ready;
+    @FXML
+    private TextField sendTextField;
+    @FXML
+    private Button connectButton;
+    @FXML
+    private TextField portTextField;
+    @FXML
+    private Label lblMessages;
+    @FXML
+    private ImageView mainCardImgView;
     private boolean isConnected;
-    private int counter = 0;
     private String color;
-
-    public enum ConnectionDisplayState {
-        DISCONNECTED,
-        WAITING,
-        CONNECTED,
-        AUTOCONNECTED,
-        AUTOWAITING
-    }
-
     private FxSocketServer socket;
+    @FXML
+    private ImageView imgS0,
+            imgS1,
+            imgS2,
+            imgS3,
+            imgS4,
+            imgS5,
+            imgS6,
+            imgS7,
+            imgS8,
+            imgS9,
+            imgC0,
+            imgC1,
+            imgC2,
+            imgC3,
+            imgC4,
+            imgC5,
+            imgC6,
+            imgC7,
+            imgC8,
+            imgC9;
+
+    public HelloController() {
+        try {
+            back1 = new FileInputStream("src/main/resources/Images/BACK-1.jpg");
+            imageBack = new Image(back1);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     private void connect() {
         socket =
@@ -101,44 +133,12 @@ public class HelloController implements Initializable {
         //        connect();
     }
 
-    class ShutDownThread extends Thread {
-
-        @Override
-        public void run() {
-            if (socket != null) {
-                if (socket.debugFlagIsSet(Constants.instance().DEBUG_STATUS)) {
-                    LOGGER.info("ShutdownHook: Shutting down Server Socket");
-                }
-                socket.shutdown();
-            }
-        }
-    }
-
     @FXML
     private void handleConnectButton(ActionEvent event) {
         connectButton.setDisable(true);
 
         displayState(ConnectionDisplayState.WAITING);
         connect();
-    }
-    // ****************************************************************
-    class FxSocketListener implements SocketListener {
-
-        @Override
-        public void onMessage(String line) {
-            System.out.println("message received client");
-            lblMessages.setText(line);
-            if (line.equals("ready") && areReady) {
-
-                ready.setVisible(false);
-                initGame();
-            } else if (line.equals("ready")) {
-                clientReady = true;
-            }
-        }
-
-        @Override
-        public void onClosedStatus(boolean isClosed) {}
     }
 
     @FXML
@@ -171,7 +171,8 @@ public class HelloController implements Initializable {
         }
     }
 
-    public void initGame() {}
+    public void initGame() {
+    }
 
     @FXML
     private void handleDeal(ActionEvent event) {
@@ -210,10 +211,10 @@ public class HelloController implements Initializable {
         // populate deck
         for (int i = 1; i < 14; i++) {
 
-            deck.add(new Card("C" + Integer.toString(i + 1)));
-            deck.add(new Card("S" + Integer.toString(i + 1)));
-            deck.add(new Card("H" + Integer.toString(i + 1)));
-            deck.add(new Card("D" + Integer.toString(i + 1)));
+            deck.add(new Card("C" + (i + 1)));
+            deck.add(new Card("S" + (i + 1)));
+            deck.add(new Card("H" + (i + 1)));
+            deck.add(new Card("D" + (i + 1)));
         }
 
         // deal each hand
@@ -266,43 +267,45 @@ public class HelloController implements Initializable {
         mainCardImgView.setImage(imageM);
     }
 
-    public HelloController() {
-        try {
-            back1 = new FileInputStream("src/main/resources/Images/BACK-1.jpg");
-            imageBack = new Image(back1);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+    public enum ConnectionDisplayState {
+        DISCONNECTED,
+        WAITING,
+        CONNECTED,
+        AUTOCONNECTED,
+        AUTOWAITING
+    }
+
+    class ShutDownThread extends Thread {
+
+        @Override
+        public void run() {
+            if (socket != null) {
+                if (socket.debugFlagIsSet(Constants.instance().DEBUG_STATUS)) {
+                    LOGGER.info("ShutdownHook: Shutting down Server Socket");
+                }
+                socket.shutdown();
+            }
         }
     }
 
-    @FXML
-    private ImageView imgS0,
-            imgS1,
-            imgS2,
-            imgS3,
-            imgS4,
-            imgS5,
-            imgS6,
-            imgS7,
-            imgS8,
-            imgS9,
-            imgC0,
-            imgC1,
-            imgC2,
-            imgC3,
-            imgC4,
-            imgC5,
-            imgC6,
-            imgC7,
-            imgC8,
-            imgC9;
-    FileInputStream back1, tempCard;
-    Image imageBack;
-    Image imageFront;
-    List<Card> deck = new ArrayList<>();
-    Card discard;
-    List<ImageView> hand1I = new ArrayList<>();
-    List<ImageView> hand2I = new ArrayList<>();
-    List<Card> hand1D = new ArrayList<>();
-    List<Card> hand2D = new ArrayList<>();
+    // ****************************************************************
+    class FxSocketListener implements SocketListener {
+
+        @Override
+        public void onMessage(String line) {
+            System.out.println("message received client");
+            lblMessages.setText(line);
+            if (line.equals("ready") && areReady) {
+
+                ready.setVisible(false);
+                initGame();
+            } else if (line.equals("ready")) {
+                clientReady = true;
+            }
+        }
+
+        @Override
+        public void onClosedStatus(boolean isClosed) {
+        }
+    }
 }

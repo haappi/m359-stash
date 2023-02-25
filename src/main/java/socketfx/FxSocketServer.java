@@ -36,14 +36,28 @@ import java.net.SocketException;
 
 public class FxSocketServer extends GenericSocket implements SocketListener {
 
-    private SocketListener fxListener;
+    private final SocketListener fxListener;
     private ServerSocket serverSocket;
+
+    public FxSocketServer(SocketListener fxListener, int port, int debugFlags) {
+        super(port, debugFlags);
+        this.fxListener = fxListener;
+    }
+
+    public FxSocketServer(SocketListener fxListener) {
+        this(fxListener, Constants.instance().DEFAULT_PORT, Constants.instance().DEBUG_NONE);
+    }
+
+    public FxSocketServer(SocketListener fxListener, int port) {
+        this(fxListener, port, Constants.instance().DEBUG_NONE);
+    }
 
     /**
      * Called whenever a message is read from the socket.  In
      * JavaFX, this method must be run on the main thread and is
      * accomplished by the Platform.runLater() call.  Failure to do so
      * *will* result in strange errors and exceptions.
+     *
      * @param line Line of text read from the socket.
      */
     @Override
@@ -62,6 +76,7 @@ public class FxSocketServer extends GenericSocket implements SocketListener {
      * changes.  In JavaFX, this method must be run on the main thread and is
      * accomplished by the Platform.runLater() call.  Failure to do so
      * *will* result in strange errors and exceptions.
+     *
      * @param isClosed true if the socket is closed
      */
     @Override
@@ -78,6 +93,7 @@ public class FxSocketServer extends GenericSocket implements SocketListener {
     /**
      * Initialize the FxSocketServer up to and including issuing the
      * accept() method on its socketConnection.
+     *
      * @throws SocketException
      */
     @Override
@@ -125,18 +141,5 @@ public class FxSocketServer extends GenericSocket implements SocketListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public FxSocketServer(SocketListener fxListener, int port, int debugFlags) {
-        super(port, debugFlags);
-        this.fxListener = fxListener;
-    }
-
-    public FxSocketServer(SocketListener fxListener) {
-        this(fxListener, Constants.instance().DEFAULT_PORT, Constants.instance().DEBUG_NONE);
-    }
-
-    public FxSocketServer(SocketListener fxListener, int port) {
-        this(fxListener, port, Constants.instance().DEBUG_NONE);
     }
 }
