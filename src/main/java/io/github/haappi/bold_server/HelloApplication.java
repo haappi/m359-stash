@@ -1,6 +1,7 @@
 package io.github.haappi.bold_server;
 
 import io.github.haappi.bold_server.Packets.CloseServer;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,7 @@ public class HelloApplication extends Application {
     private final ArrayList<Server> servers = new ArrayList<>();
     private Stage stage;
 
-    public synchronized static HelloApplication getInstance() {
+    public static synchronized HelloApplication getInstance() {
         return instance;
     }
 
@@ -44,43 +45,44 @@ public class HelloApplication extends Application {
     public void start(Stage stage) {
         instance = this;
         this.stage = stage;
-        new Thread(() -> {
-            try {
-                while (true) {
-                    Scanner inputReader = new Scanner(System.in);
-                    String input = inputReader.nextLine();
-                    if (input.equals("exit")) {
-                        for (Server server : servers) {
-                            server.broadcast(new CloseServer());
-                            server.close();
-                        }
-                        System.exit(0);
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }).start();
+        new Thread(
+                        () -> {
+                            try {
+                                while (true) {
+                                    Scanner inputReader = new Scanner(System.in);
+                                    String input = inputReader.nextLine();
+                                    if (input.equals("exit")) {
+                                        for (Server server : servers) {
+                                            server.broadcast(new CloseServer());
+                                            server.close();
+                                        }
+                                        System.exit(0);
+                                    }
+                                }
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        })
+                .start();
         loadFxmlFile("main-view.fxml");
-
     }
 
     private void loadFxmlFile(String filename) {
         filename = filename.replace(".fxml", "") + ".fxml";
         String finalFilename = filename;
-        Platform.runLater(() -> {
-            FXMLLoader fxmlLoader =
-                    new FXMLLoader(HelloApplication.class.getResource(finalFilename));
-            Scene scene = null;
-            try {
-                scene = new Scene(fxmlLoader.load(), 1600, 900);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            stage.setTitle("Hello!");
-            stage.setScene(scene);
-            stage.show();
-        });
-
+        Platform.runLater(
+                () -> {
+                    FXMLLoader fxmlLoader =
+                            new FXMLLoader(HelloApplication.class.getResource(finalFilename));
+                    Scene scene = null;
+                    try {
+                        scene = new Scene(fxmlLoader.load(), 1600, 900);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    stage.setTitle("Hello!");
+                    stage.setScene(scene);
+                    stage.show();
+                });
     }
 }

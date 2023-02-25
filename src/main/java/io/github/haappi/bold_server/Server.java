@@ -100,7 +100,15 @@ public class Server {
     }
 
     public String toString() {
-        return this.name + " (" + this.ipListening + ":" + this.portListening + ")" + " - " + clients.size() + " clients";
+        return this.name
+                + " ("
+                + this.ipListening
+                + ":"
+                + this.portListening
+                + ")"
+                + " - "
+                + clients.size()
+                + " clients";
     }
 
     public ArrayList<ClientHandler> getClients() {
