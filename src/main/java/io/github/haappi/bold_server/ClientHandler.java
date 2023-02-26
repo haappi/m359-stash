@@ -8,7 +8,8 @@ import java.net.Socket;
 import java.net.SocketException;
 
 public class ClientHandler extends Thread {
-    // Im extending this class because I want this to run in another thread (without more boilerplate from me) (so if one client
+    // Im extending this class because I want this to run in another thread (without more
+    // boilerplate from me) (so if one client
     // disconnects, the server can still handle other clients)
     // and I want to be able to call the method "stop" on this class to stop the thread (if they
     // disconnect)
@@ -17,12 +18,20 @@ public class ClientHandler extends Thread {
     private final Server server;
 
     private ObjectOutputStream
-            objectStream; // This is the output stream to the client (objects are "written" through this)
+            objectStream; // This is the output stream to the client (objects are "written" through
+                          // this)
     private ObjectInputStream
-            objectInputStream; // This is the input stream from the client (objects are "read" through this)
+            objectInputStream; // This is the input stream from the client (objects are "read"
+                               // through this)
 
     public ClientHandler(Socket bindedTo, Server server) {
-        Logger.getInstance().log("Client connected: " + bindedTo.getInetAddress().getHostAddress() + ":" + bindedTo.getPort(), Logger.YELLOW);
+        Logger.getInstance()
+                .log(
+                        "Client connected: "
+                                + bindedTo.getInetAddress().getHostAddress()
+                                + ":"
+                                + bindedTo.getPort(),
+                        Logger.YELLOW);
         this.bindedTo = bindedTo;
         this.server = server;
 
@@ -33,7 +42,6 @@ public class ClientHandler extends Thread {
             e.printStackTrace();
         }
     }
-
 
     public void sendObject(Object object) throws IOException {
         objectStream.writeObject(object);
@@ -68,7 +76,13 @@ public class ClientHandler extends Thread {
     }
 
     public void close() throws IOException {
-        Logger.getInstance().log("Client disconnected: " + bindedTo.getInetAddress().getHostAddress() + ":" + bindedTo.getPort(), Logger.YELLOW);
+        Logger.getInstance()
+                .log(
+                        "Client disconnected: "
+                                + bindedTo.getInetAddress().getHostAddress()
+                                + ":"
+                                + bindedTo.getPort(),
+                        Logger.YELLOW);
         bindedTo.close();
     }
 }

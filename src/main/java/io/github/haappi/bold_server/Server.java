@@ -52,7 +52,14 @@ public class Server {
     }
 
     public void start() {
-        Logger.getInstance().log("Starting server " + this.name + " on " + this.ipListening + ":" + this.portListening);
+        Logger.getInstance()
+                .log(
+                        "Starting server "
+                                + this.name
+                                + " on "
+                                + this.ipListening
+                                + ":"
+                                + this.portListening);
         try {
             while (true) {
                 if (!isAcceptingConnections) continue;
