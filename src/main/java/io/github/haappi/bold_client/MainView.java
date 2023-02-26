@@ -1,7 +1,7 @@
-package io.github.haappi.bold_server;
+package io.github.haappi.bold_client;
 
-import io.github.haappi.bold_server.Packets.CloseServer;
-import io.github.haappi.bold_server.Packets.ServerMessage;
+import io.github.haappi.bold_client.Packets.CloseServer;
+import io.github.haappi.bold_client.Packets.ServerMessage;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -125,7 +125,7 @@ public class MainView {
     protected void startGameButton() {}
 
     @FXML
-    protected void sendMessage() {
+    protected void sendMessage() throws IOException {
         if (selectedClient == null) return;
         selectedClient.sendObject(new ServerMessage(sendMessageClient.getText()));
     }

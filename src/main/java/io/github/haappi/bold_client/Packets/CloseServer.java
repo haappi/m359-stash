@@ -1,4 +1,4 @@
-package io.github.haappi.bold_server.Packets;
+package io.github.haappi.bold_client.Packets;
 
 import java.io.Serializable;
 

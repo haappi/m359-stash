@@ -1,6 +1,6 @@
-package io.github.haappi.bold_server;
+package io.github.haappi.bold_client;
 
-import io.github.haappi.bold_server.Packets.CloseServer;
+import io.github.haappi.bold_client.Packets.CloseServer;
 
 import java.io.IOException;
 import java.net.Inet4Address;
@@ -52,12 +52,11 @@ public class Server {
     }
 
     public void start() {
-        System.out.println("Server started on " + this.ipListening + ":" + this.portListening);
+        Logger.getInstance().log("Starting server " + this.name + " on " + this.ipListening + ":" + this.portListening);
         try {
             while (true) {
                 if (!isAcceptingConnections) continue;
                 Socket client = serverSocket.accept();
-                System.out.println("Client connected: " + client.getInetAddress().getHostAddress());
                 ClientHandler handler = new ClientHandler(client, this);
                 clients.add(handler);
                 handler.start();
@@ -71,15 +70,7 @@ public class Server {
         clients.remove(clientHandler);
     }
 
-    public void broadcast(String message, ClientHandler sender) {
-        for (ClientHandler client : clients) {
-            if (client != sender) {
-                client.writeMessage(message);
-            }
-        }
-    }
-
-    public void broadcast(Object object, ClientHandler sender) {
+    public void broadcast(Object object, ClientHandler sender) throws IOException {
         for (ClientHandler client : clients) {
             if (client != sender) {
                 client.sendObject(object);
@@ -87,13 +78,7 @@ public class Server {
         }
     }
 
-    public void broadcast(String message) {
-        for (ClientHandler client : clients) {
-            client.writeMessage(message);
-        }
-    }
-
-    public void broadcast(Object object) {
+    public void broadcast(Object object) throws IOException {
         for (ClientHandler client : clients) {
             client.sendObject(object);
         }
