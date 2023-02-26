@@ -1,6 +1,6 @@
-package io.github.haappi.bold_client.Packets;
+package io.github.haappi.packets;
 
-public class ServerMessage {
+public class ServerMessage implements Packet {
     private final String message;
 
     public ServerMessage(String message) {

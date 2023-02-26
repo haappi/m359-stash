@@ -1,4 +1,4 @@
-package io.github.haappi.bold_client;
+package io.github.haappi.bold_server;
 
 import java.lang.invoke.MethodHandles;
 

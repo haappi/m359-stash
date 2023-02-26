@@ -1,7 +1,7 @@
-package io.github.haappi.bold_client;
+package io.github.haappi.bold_server;
 
-import io.github.haappi.bold_client.Packets.CloseServer;
-import io.github.haappi.bold_client.Packets.ServerMessage;
+import io.github.haappi.packets.CloseServer;
+import io.github.haappi.packets.ServerMessage;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;

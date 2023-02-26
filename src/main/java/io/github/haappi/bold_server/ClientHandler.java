@@ -1,7 +1,11 @@
-package io.github.haappi.bold_client;
+package io.github.haappi.bold_server;
+
+import io.github.haappi.packets.Packet;
+import io.github.haappi.packets.Test;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class ClientHandler extends Thread {
     // Im extending this class because I want this to run in another thread (without more boilerplate from me) (so if one client
@@ -42,20 +46,29 @@ public class ClientHandler extends Thread {
         try {
             // while loop and keep listenting for objects
             while (true) {
-                Object object = objectInputStream.readObject();
-                System.out.println(((Test) object).getAge());
-//                if (object instanceof Packet) {
-//                    ((Packet) object).handle(this);
-//                }
+                try {
+                    Object object = objectInputStream.readObject();
+                    if (object instanceof Packet) {
+                        System.out.println(((Test) object).getAge());
+                    }
+                } catch (EOFException | SocketException e) {
+                    break;
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+        try {
+            this.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void close() throws IOException {
+        Logger.getInstance().log("Client disconnected: " + bindedTo.getInetAddress().getHostAddress() + ":" + bindedTo.getPort(), Logger.YELLOW);
         bindedTo.close();
     }
 }

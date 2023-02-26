@@ -4,8 +4,10 @@ module io.github.haappi.bold_server {
     requires java.desktop;
     requires java.logging;
 
-    opens io.github.haappi.bold_client to
+    opens io.github.haappi.bold_server to
             javafx.fxml;
 
-    exports io.github.haappi.bold_client;
+    exports io.github.haappi.bold_server;
+    exports io.github.haappi.packets;
+    opens io.github.haappi.packets to javafx.fxml;
 }

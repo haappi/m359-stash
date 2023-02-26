@@ -1,8 +1,8 @@
-package io.github.haappi.bold_client;
+package io.github.haappi.packets;
 
-import java.io.Serializable;
+import io.github.haappi.packets.Packet;
 
-public class Test implements Serializable {
+public class Test implements Packet {
     private String name = "fsdhuifhsdiyufhsdg";
     private int age = 0;
 

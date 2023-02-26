@@ -1,8 +1,6 @@
-package io.github.haappi.bold_client.Packets;
+package io.github.haappi.packets;
 
-import java.io.Serializable;
-
-public class CloseServer implements Serializable {
+public class CloseServer implements Packet {
     private final String message;
 
     public CloseServer(String message) {
