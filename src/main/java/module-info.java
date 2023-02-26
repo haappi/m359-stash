@@ -8,4 +8,6 @@ module io.github.haappi.bold_client {
             javafx.fxml;
 
     exports io.github.haappi.bold_client;
+    exports io.github.haappi.packets;
+    opens io.github.haappi.packets to javafx.fxml;
 }

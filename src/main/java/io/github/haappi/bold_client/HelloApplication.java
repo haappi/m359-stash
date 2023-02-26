@@ -1,5 +1,6 @@
 package io.github.haappi.bold_client;
 
+import io.github.haappi.packets.Test;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,9 +22,8 @@ public class HelloApplication extends Application {
     public static void main(String[] args) throws IOException {
         Client client = new Client();
         client.connect("localhost", 2005);
-        client.sendMessage("Hello, server!");
         client.sendObject(new Test());
-        client.close();
+//        client.close();
         launch();
     }
 }
