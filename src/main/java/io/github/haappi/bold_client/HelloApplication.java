@@ -9,10 +9,10 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
     public static void main(String[] args) throws IOException {
-//        Client client = new Client();
-//        client.connect("localhost", 2005);
-//        client.sendObject(new Test());
-//        client.close();
+        //        Client client = new Client();
+        //        client.connect("localhost", 2005);
+        //        client.sendObject(new Test());
+        //        client.close();
         launch();
     }
 

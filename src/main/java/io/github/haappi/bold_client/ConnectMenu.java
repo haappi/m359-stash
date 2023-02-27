@@ -7,14 +7,10 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 
 public class ConnectMenu {
-    @FXML
-    protected TextField clientName;
-    @FXML
-    protected TextField bindIP;
-    @FXML
-    protected TextField bindPort;
-    @FXML
-    protected Label status;
+    @FXML protected TextField clientName;
+    @FXML protected TextField bindIP;
+    @FXML protected TextField bindPort;
+    @FXML protected Label status;
 
     @FXML
     protected void joinServer() {
@@ -30,6 +26,5 @@ public class ConnectMenu {
             return;
         }
         status.setText("Connected to " + ip + ":" + port + "");
-
     }
 }
