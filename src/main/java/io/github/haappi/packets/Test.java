@@ -1,10 +1,8 @@
 package io.github.haappi.packets;
 
-import io.github.haappi.packets.Packet;
-
 public class Test implements Packet {
-    private String name = "fsdhuifhsdiyufhsdg";
-    private int age = 0;
+    private final String name = "fsdhuifhsdiyufhsdg";
+    private final int age = 0;
 
     public String getName() {
         return name;

@@ -2,7 +2,6 @@ package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.CloseServer;
 import io.github.haappi.packets.ServerMessage;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
@@ -15,12 +14,18 @@ import java.util.TimerTask;
 
 public class MainView {
     private final ArrayList<Timer> timers = new ArrayList<>();
-    @FXML protected ListView<Server> serverListView;
-    @FXML protected TextField serverName;
-    @FXML protected TextField bindIP;
-    @FXML protected TextField bindPort;
-    @FXML protected ListView<ClientHandler> connectedClients;
-    @FXML protected TextField sendMessageClient;
+    @FXML
+    protected ListView<Server> serverListView;
+    @FXML
+    protected TextField serverName;
+    @FXML
+    protected TextField bindIP;
+    @FXML
+    protected TextField bindPort;
+    @FXML
+    protected ListView<ClientHandler> connectedClients;
+    @FXML
+    protected TextField sendMessageClient;
     private Server selectedServer;
     private ClientHandler selectedClient;
 
@@ -122,7 +127,8 @@ public class MainView {
     }
 
     @FXML
-    protected void startGameButton() {}
+    protected void startGameButton() {
+    }
 
     @FXML
     protected void sendMessage() throws IOException {

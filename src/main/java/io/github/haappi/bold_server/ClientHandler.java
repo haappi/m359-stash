@@ -1,9 +1,12 @@
 package io.github.haappi.bold_server;
 
+import io.github.haappi.packets.Hello;
 import io.github.haappi.packets.Packet;
-import io.github.haappi.packets.Test;
 
-import java.io.*;
+import java.io.EOFException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.SocketException;
 
@@ -49,7 +52,9 @@ public class ClientHandler extends Thread {
                 try {
                     Object object = objectInputStream.readObject();
                     if (object instanceof Packet) {
-                        System.out.println(((Test) object).getAge());
+                        if (object instanceof Hello hello) {
+                            System.out.println(hello.getClientName());
+                        }
                     }
                 } catch (EOFException | SocketException e) {
                     break;

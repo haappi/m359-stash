@@ -3,7 +3,7 @@ package io.github.haappi.bold_server;
 import java.lang.invoke.MethodHandles;
 
 public class Logger {
-        // ANSI escape code
+    // ANSI escape code
     public static final String RESET = "\u001B[0m";
     public static final String BLACK = "\u001B[30m";
     public static final String RED = "\u001B[31m";
@@ -13,13 +13,12 @@ public class Logger {
     public static final String PURPLE = "\u001B[35m";
     public static final String CYAN = "\u001B[36m";
     public static final String WHITE = "\u001B[37m";
-    
-    private static Logger instance;
-
     private final static java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
+    private static Logger instance;
 
-    private Logger() {}
+    private Logger() {
+    }
 
     public static Logger getInstance() {
         if (instance == null) {
