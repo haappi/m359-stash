@@ -3,6 +3,7 @@ module io.github.haappi.bold_client {
     requires javafx.fxml;
     requires java.desktop;
     requires java.logging;
+    requires org.jetbrains.annotations;
 
     opens io.github.haappi.bold_client to
             javafx.fxml;
