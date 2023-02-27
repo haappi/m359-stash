@@ -1,6 +1,7 @@
 package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.CloseServer;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -45,23 +46,23 @@ public class HelloApplication extends Application {
         instance = this;
         this.stage = stage;
         new Thread(
-                () -> {
-                    try {
-                        while (true) {
-                            Scanner inputReader = new Scanner(System.in);
-                            String input = inputReader.nextLine();
-                            if (input.equals("exit")) {
-                                for (Server server : servers) {
-                                    server.broadcast(new CloseServer());
-                                    server.close();
+                        () -> {
+                            try {
+                                while (true) {
+                                    Scanner inputReader = new Scanner(System.in);
+                                    String input = inputReader.nextLine();
+                                    if (input.equals("exit")) {
+                                        for (Server server : servers) {
+                                            server.broadcast(new CloseServer());
+                                            server.close();
+                                        }
+                                        System.exit(0);
+                                    }
                                 }
-                                System.exit(0);
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                })
+                        })
                 .start();
         loadFxmlFile("main-view.fxml");
     }

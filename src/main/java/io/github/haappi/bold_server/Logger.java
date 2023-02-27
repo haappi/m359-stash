@@ -13,12 +13,11 @@ public class Logger {
     public static final String PURPLE = "\u001B[35m";
     public static final String CYAN = "\u001B[36m";
     public static final String WHITE = "\u001B[37m";
-    private final static java.util.logging.Logger LOGGER =
+    private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
     private static Logger instance;
 
-    private Logger() {
-    }
+    private Logger() {}
 
     public static Logger getInstance() {
         if (instance == null) {
@@ -34,6 +33,4 @@ public class Logger {
     public void log(String message, String color) {
         LOGGER.info(color + message + RESET);
     }
-
 }
-

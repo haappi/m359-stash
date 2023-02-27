@@ -22,10 +22,10 @@ public class ClientHandler extends Thread {
 
     private ObjectOutputStream
             objectStream; // This is the output stream to the client (objects are "written" through
-                          // this)
+    // this)
     private ObjectInputStream
             objectInputStream; // This is the input stream from the client (objects are "read"
-                               // through this)
+    // through this)
 
     public ClientHandler(Socket bindedTo, Server server) {
         Logger.getInstance()
