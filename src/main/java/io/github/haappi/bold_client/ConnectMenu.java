@@ -1,6 +1,7 @@
 package io.github.haappi.bold_client;
 
 import io.github.haappi.packets.Ready;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,14 +12,10 @@ import java.io.IOException;
 
 public class ConnectMenu {
     public Button readyButton;
-    @FXML
-    protected TextField clientName;
-    @FXML
-    protected TextField bindIP;
-    @FXML
-    protected TextField bindPort;
-    @FXML
-    protected Label status;
+    @FXML protected TextField clientName;
+    @FXML protected TextField bindIP;
+    @FXML protected TextField bindPort;
+    @FXML protected Label status;
 
     @FXML
     protected void joinServer() {
@@ -26,7 +23,7 @@ public class ConnectMenu {
         final String ip = bindIP.getText().isEmpty() ? "localhost" : bindIP.getText();
 
         status.setText("Connecting... to " + ip + ":" + port + "");
-        Client client =  Client.getInstance(clientName.getText());
+        Client client = Client.getInstance(clientName.getText());
         try {
             client.connect(ip, port);
         } catch (IOException e) {
@@ -37,7 +34,6 @@ public class ConnectMenu {
         }
         readyButton.setDisable(false);
         status.setText("Connected to " + ip + ":" + port + "");
-
     }
 
     public void readyButtonClick(ActionEvent actionEvent) throws IOException {

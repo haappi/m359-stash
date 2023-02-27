@@ -11,12 +11,15 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     private static HelloApplication instance;
     private Stage stage;
+
     public static synchronized HelloApplication getInstance() {
         return instance;
     }
+
     public static void main(String[] args) throws IOException {
         launch();
     }
+
     public void loadFxmlFile(String filename) {
         filename = filename.replace(".fxml", "") + ".fxml";
         String finalFilename = filename;
@@ -35,6 +38,7 @@ public class HelloApplication extends Application {
                     stage.show();
                 });
     }
+
     @Override
     public void start(Stage stage) throws IOException {
         loadFxmlFile("connect_menu.fxml");

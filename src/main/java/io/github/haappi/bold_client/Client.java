@@ -1,6 +1,7 @@
 package io.github.haappi.bold_client;
 
 import io.github.haappi.packets.Hello;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -11,9 +12,11 @@ import java.net.Socket;
 public class Client {
     private Socket clientSocket;
     private ObjectOutputStream
-            objectStream; // This is the output stream to the client (objects are "written" through this)
+            objectStream; // This is the output stream to the client (objects are "written" through
+                          // this)
     private ObjectInputStream
-            objectInputStream; // This is the input stream from the client (objects are "read" through this)
+            objectInputStream; // This is the input stream from the client (objects are "read"
+                               // through this)
 
     private final String name;
     private static Client instance;
@@ -47,7 +50,11 @@ public class Client {
         objectStream = new ObjectOutputStream(clientSocket.getOutputStream());
         objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
 
-        sendObject(new Hello(name, clientSocket.getInetAddress().getHostAddress(), clientSocket.getPort()));
+        sendObject(
+                new Hello(
+                        name,
+                        clientSocket.getInetAddress().getHostAddress(),
+                        clientSocket.getPort()));
     }
 
     public void sendObject(Object object) throws IOException {
