@@ -1,5 +1,3 @@
 package io.github.haappi.packets;
 
-public class Card implements Packet {
-
-}
+public class Card implements Packet {}
