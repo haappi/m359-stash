@@ -1,8 +1,8 @@
 package io.github.haappi.packets;
 
-import java.util.Locale;
-
 import static io.github.haappi.bold_server.Utils.charAt;
+
+import java.util.Locale;
 
 public class Card implements Packet {
     private final String color;
@@ -16,8 +16,8 @@ public class Card implements Packet {
     public Card(String color, String container, String size, String pattern) {
         String fileName1;
         this.color = color;
-        this.container=container;
-        this.size=size;
+        this.container = container;
+        this.size = size;
         this.pattern = pattern;
 
         fileName1 = charAt(color, 0) + charAt(container, 0) + charAt(size, 0) + charAt(pattern, 0);
