@@ -1,17 +1,23 @@
 package io.github.haappi.packets;
 
 public enum Enums {
-    SMALL("s"),
-    MEDIUM("m"),
-    LARGE("l"),
+    LARGE("large"),
+    MEDIUM("medium"),
+    SMALL("small"),
 
-    BLUE("b"),
-    YELLOW("y"),
-    RED("r"),
+    BLUE("blue"),
+    ORANGE("orange"),
+    YELLOW("yellow"),
 
-    BOTTLE("b"),
-    JUG("j"),
-    GLASS("g");
+    BOTTLE("bottle"),
+    CUP("cup"),
+    JAR("jar"),
+
+    DOTS("dots"),
+    STARS("stars"),
+    STRIPES("stripes"),
+
+    BACK_CARD("back");
 
     private final String string;
 
