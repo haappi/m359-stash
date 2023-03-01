@@ -13,10 +13,10 @@ public class Client {
     private Socket clientSocket;
     private ObjectOutputStream
             objectStream; // This is the output stream to the client (objects are "written" through
-                          // this)
+    // this)
     private ObjectInputStream
             objectInputStream; // This is the input stream from the client (objects are "read"
-                               // through this)
+    // through this)
 
     private final String name;
     private static Client instance;
