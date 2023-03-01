@@ -2,18 +2,17 @@ package io.github.haappi.packets;
 
 import javafx.scene.image.Image;
 
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Card implements Packet {
-//    private final String fileURI;
-//
-//    private final Enums size;
-//    private final Enums color;
-//    private final Enums container;
-//    private final Enums pattern;
-//
-//    private final boolean isBackCard;
+    //    private final String fileURI;
+    //
+    //    private final Enums size;
+    //    private final Enums color;
+    //    private final Enums container;
+    //    private final Enums pattern;
+    //
+    //    private final boolean isBackCard;
 
     private static final ConcurrentHashMap<String, Image> imageHashMap = new ConcurrentHashMap<>();
 

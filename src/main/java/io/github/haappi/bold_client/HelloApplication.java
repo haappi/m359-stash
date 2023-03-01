@@ -1,7 +1,7 @@
 package io.github.haappi.bold_client;
 
 import io.github.haappi.packets.Card;
-import io.github.haappi.packets.Enums;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class HelloApplication extends Application {
@@ -19,8 +18,8 @@ public class HelloApplication extends Application {
     private Stage stage;
 
     private ConcurrentHashMap<String, Image> imageHashMap = new ConcurrentHashMap<>();
-    // I'm using a conccurrent hashmap because i may have multiple threads trying to access the image at a given time, and I don't want bad things to happen
-
+    // I'm using a conccurrent hashmap because i may have multiple threads trying to access the
+    // image at a given time, and I don't want bad things to happen
 
     public static synchronized HelloApplication getInstance() {
         return instance;
@@ -63,5 +62,4 @@ public class HelloApplication extends Application {
         }
         loadFxmlFile("connect-menu.fxml");
     }
-
 }
