@@ -1,4 +1,4 @@
-package io.github.haappi.packets;
+package io.github.haappi.shared;
 
 public class Test implements Packet {
     private final String name = "fsdhuifhsdiyufhsdg";

@@ -60,6 +60,7 @@ public class HelloApplication extends Application {
                 Card.getImage(f.toURI().toString());
             }
         }
+        this.stage = stage;
         loadFxmlFile("connect-menu.fxml");
     }
 }

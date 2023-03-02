@@ -1,6 +1,6 @@
 package io.github.haappi.bold_client;
 
-import io.github.haappi.packets.Ready;
+import io.github.haappi.shared.Ready;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

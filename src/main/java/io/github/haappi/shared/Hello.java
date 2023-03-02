@@ -1,4 +1,4 @@
-package io.github.haappi.packets;
+package io.github.haappi.shared;
 
 public class Hello implements Packet {
     private final String clientName;
