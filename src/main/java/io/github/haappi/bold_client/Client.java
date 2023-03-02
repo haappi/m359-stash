@@ -1,8 +1,8 @@
 package io.github.haappi.bold_client;
 
 import io.github.haappi.shared.Hello;
-
 import io.github.haappi.shared.Packet;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.EOFException;
@@ -60,25 +60,27 @@ public class Client {
                         clientSocket.getPort()));
 
         // start listening to messages from the server
-        new Thread(() -> {
-            try {
-                while (true) {
-                    System.out.println("Reading object");
-                    Object object = objectInputStream.readObject();
-                    if (object instanceof Packet) {
-                        Packet packet = (Packet) object;
-                        System.out.println(packet);
-                    }
-                }
-            } catch (EOFException | SocketException e) {
-                System.out.println("Client disconnected");
-                // This is thrown when the client disconnects
-                // (EOFException is thrown when the server disconnec
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-                //
-            }
-        }).start();
+        new Thread(
+                        () -> {
+                            try {
+                                while (true) {
+                                    System.out.println("Reading object");
+                                    Object object = objectInputStream.readObject();
+                                    if (object instanceof Packet) {
+                                        Packet packet = (Packet) object;
+                                        System.out.println(packet);
+                                    }
+                                }
+                            } catch (EOFException | SocketException e) {
+                                System.out.println("Client disconnected");
+                                // This is thrown when the client disconnects
+                                // (EOFException is thrown when the server disconnec
+                            } catch (IOException | ClassNotFoundException e) {
+                                e.printStackTrace();
+                                //
+                            }
+                        })
+                .start();
     }
 
     public void sendObject(Object object) throws IOException {

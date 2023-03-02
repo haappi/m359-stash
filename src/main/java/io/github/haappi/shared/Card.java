@@ -1,9 +1,8 @@
 package io.github.haappi.shared;
 
+import static io.github.haappi.shared.Utils.charAt;
 
 import java.util.Locale;
-
-import static io.github.haappi.shared.Utils.charAt;
 
 public class Card implements Packet {
     private final String color;
@@ -18,8 +17,8 @@ public class Card implements Packet {
     public Card(String color, String container, String size, String pattern) {
         String fileName1;
         this.color = color;
-        this.container=container;
-        this.size=size;
+        this.container = container;
+        this.size = size;
         this.pattern = pattern;
 
         fileName1 = charAt(color, 0) + charAt(container, 0) + charAt(size, 0) + charAt(pattern, 0);
@@ -27,7 +26,9 @@ public class Card implements Packet {
         fileName = fileName1;
         isBackCard = false;
 
-        image = new io.github.haappi.shared.Image("file:src/main/resources/card-images/" + fileName + ".png");
+        image =
+                new io.github.haappi.shared.Image(
+                        "file:src/main/resources/card-images/" + fileName + ".png");
     }
 
     public String getColor() {
