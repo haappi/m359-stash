@@ -17,7 +17,6 @@ public class HelloApplication extends Application {
     private static HelloApplication instance;
     private Stage stage;
 
-    private ConcurrentHashMap<String, Image> imageHashMap = new ConcurrentHashMap<>();
     // I'm using a conccurrent hashmap because i may have multiple threads trying to access the
     // image at a given time, and I don't want bad things to happen
 

@@ -1,7 +1,7 @@
 package io.github.haappi.bold_client;
 
-import io.github.haappi.shared.Hello;
-import io.github.haappi.shared.Packet;
+import io.github.haappi.packets.Hello;
+import io.github.haappi.packets.Packet;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -1,6 +1,7 @@
-package io.github.haappi.shared;
+package io.github.haappi.packets;
 
 import io.github.haappi.bold_client.Client;
+import io.github.haappi.packets.Packet;
 
 public class Ready implements Packet {
     private final String clientName;

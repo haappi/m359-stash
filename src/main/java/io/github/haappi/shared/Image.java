@@ -1,5 +1,7 @@
 package io.github.haappi.shared;
 
+import io.github.haappi.packets.Packet;
+
 import java.io.InputStream;
 
 public class Image extends javafx.scene.image.Image implements Packet {
