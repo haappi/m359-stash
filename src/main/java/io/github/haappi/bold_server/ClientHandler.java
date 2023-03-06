@@ -47,8 +47,12 @@ public class ClientHandler extends Thread {
     }
 
     public void sendObject(Object object) throws IOException {
-        objectStream.writeObject(object);
-        objectStream.flush(); // Flushing is just to make sure that the object is sent
+        try {
+            objectStream.writeObject(object);
+            objectStream.flush(); // Flushing is just to make sure that the object is sent
+        } catch (IOException e) {
+            throw new IOException("Failed to send object", e);
+        }
         // (i think it's necessary so i added it :D)
     }
 

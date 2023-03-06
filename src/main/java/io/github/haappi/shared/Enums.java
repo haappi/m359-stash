@@ -1,4 +1,4 @@
-package io.github.haappi.packets;
+package io.github.haappi.shared;
 
 public enum Enums {
     LARGE("large"),

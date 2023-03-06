@@ -3,7 +3,9 @@ package io.github.haappi.bold_server;
 import io.github.haappi.packets.CloseServer;
 import io.github.haappi.packets.ServerMessage;
 
+import io.github.haappi.packets.Test;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
@@ -136,5 +138,11 @@ public class MainView {
         selectedClient.sendObject(
                 new CloseServer("You have been forcibly disconnected by the server"));
         selectedClient.close();
+    }
+
+    public void test(ActionEvent actionEvent) throws IOException {
+        selectedClient.sendObject(new Test());
+        selectedClient.sendObject(new io.github.haappi.shared.Card("red", "cup", "large", "stripes"));
+
     }
 }

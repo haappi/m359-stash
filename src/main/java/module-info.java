@@ -8,8 +8,10 @@ module io.github.haappi.bold_server {
             javafx.fxml;
 
     exports io.github.haappi.bold_server;
-    exports io.github.haappi.packets;
+    exports io.github.haappi.shared;
 
-    opens io.github.haappi.packets to
+    opens io.github.haappi.shared to
             javafx.fxml;
+    exports io.github.haappi.packets;
+    opens io.github.haappi.packets to javafx.fxml;
 }

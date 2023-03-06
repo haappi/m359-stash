@@ -1,6 +1,12 @@
 package io.github.haappi.packets;
 
+import io.github.haappi.packets.Packet;
+
+import java.io.Serial;
+
 public class CloseServer implements Packet {
+    @Serial
+    private static final long serialVersionUID = 8527554074055883126L;
     private final String message;
 
     public CloseServer(String message) {
