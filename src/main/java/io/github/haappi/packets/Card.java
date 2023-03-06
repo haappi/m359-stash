@@ -1,15 +1,15 @@
 package io.github.haappi.packets;
 
+import static io.github.haappi.shared.Utils.imageHashMap;
+
 import io.github.haappi.shared.Enums;
+
 import javafx.scene.image.Image;
 
 import java.io.Serial;
 
-import static io.github.haappi.shared.Utils.imageHashMap;
-
 public class Card implements Packet {
-    @Serial
-    private static final long serialVersionUID = 5839422576067187289L;
+    @Serial private static final long serialVersionUID = 5839422576067187289L;
     private final String fileURI;
     private final String cardName;
 
@@ -35,7 +35,9 @@ public class Card implements Packet {
         this.container = container;
         this.pattern = pattern;
         this.isBackCard = false;
-        this.fileURI = "file:src/main/resources/card-images/" + constructFileName(size, color, container, pattern);
+        this.fileURI =
+                "file:src/main/resources/card-images/"
+                        + constructFileName(size, color, container, pattern);
         this.cardName = constructFileName(size, color, container, pattern);
     }
 
@@ -80,9 +82,9 @@ public class Card implements Packet {
     private String constructFileName(Enums size, Enums color, Enums container, Enums pattern) {
         return """
                 %s_%s_%s_%s.png
-                """.formatted(pattern, size, color, container);
+                """
+                .formatted(pattern, size, color, container);
     }
-
 
     public static Image getImage(String fileUri) {
         String[] splitted = fileUri.split("/");
@@ -129,7 +131,5 @@ public class Card implements Packet {
     }
 
     @Override
-    public void handle() {
-
-    }
+    public void handle() {}
 }

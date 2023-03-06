@@ -1,12 +1,10 @@
 package io.github.haappi.packets;
 
-import io.github.haappi.packets.Packet;
 
 import java.io.Serial;
 
 public class Hello implements Packet {
-    @Serial
-    private static final long serialVersionUID = -1653769749542923033L;
+    @Serial private static final long serialVersionUID = -1653769749542923033L;
     private final String clientName;
     private final String ip;
     private final int port;
@@ -30,7 +28,5 @@ public class Hello implements Packet {
     }
 
     @Override
-    public void handle() {
-        
-    }
+    public void handle() {}
 }
