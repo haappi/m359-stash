@@ -12,4 +12,9 @@ public class Ready implements Packet {
     public String getClientName() {
         return clientName;
     }
+
+    @Override
+    public void handle() {
+
+    }
 }
