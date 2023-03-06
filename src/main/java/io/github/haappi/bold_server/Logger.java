@@ -16,8 +16,9 @@ public class Logger {
     private static final java.util.logging.Logger LOGGER =
             java.util.logging.Logger.getLogger(MethodHandles.lookup().lookupClass().getName());
     private static Logger instance;
-    private static final StackWalker walker = StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE);
-    //https://stackoverflow.com/questions/51768011/how-can-i-get-the-caller-class-object-from-a-method-in-java
+    private static final StackWalker walker =
+            StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE);
+    // https://stackoverflow.com/questions/51768011/how-can-i-get-the-caller-class-object-from-a-method-in-java
 
     private Logger() {}
 

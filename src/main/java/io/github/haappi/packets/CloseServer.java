@@ -1,6 +1,5 @@
 package io.github.haappi.packets;
 
-
 import java.io.Serial;
 
 public class CloseServer implements Packet {

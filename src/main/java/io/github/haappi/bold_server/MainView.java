@@ -140,8 +140,8 @@ public class MainView {
     }
 
     public void test(ActionEvent actionEvent) throws IOException {
-//        selectedClient.sendObject(new Test());
-//        selectedClient.sendObject(
-//                new io.github.haappi.shared.Card("red", "cup", "large", "stripes"));
+        //        selectedClient.sendObject(new Test());
+        //        selectedClient.sendObject(
+        //                new io.github.haappi.shared.Card("red", "cup", "large", "stripes"));
     }
 }
