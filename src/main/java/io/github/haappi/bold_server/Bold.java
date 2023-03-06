@@ -26,7 +26,7 @@ public class Bold {
         return card1.equals(card2);
     }
 
-    public boolean isMatch(Card ... cards) {
+    public boolean isMatch(Card... cards) {
         for (Card card : cards) {
             if (!isMatch(cards[0], card)) {
                 return false;
