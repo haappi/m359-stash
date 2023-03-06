@@ -14,7 +14,5 @@ public class Ready implements Packet {
     }
 
     @Override
-    public void handle() {
-
-    }
+    public void handle() {}
 }

@@ -8,6 +8,7 @@ public interface Packet extends Serializable {
      * If you wish to ignore the packet (one-way packets), override the method with an empty body.
      */
     default void handle() {
-        throw new RuntimeException("Attempted to handle a packet, but method isn't overridden in Child class.");
+        throw new RuntimeException(
+                "Attempted to handle a packet, but method isn't overridden in Child class.");
     }
 }
