@@ -2,7 +2,6 @@ package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.CloseServer;
 import io.github.haappi.packets.ServerMessage;
-import io.github.haappi.packets.Test;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -141,8 +140,8 @@ public class MainView {
     }
 
     public void test(ActionEvent actionEvent) throws IOException {
-        selectedClient.sendObject(new Test());
-        selectedClient.sendObject(
-                new io.github.haappi.shared.Card("red", "cup", "large", "stripes"));
+//        selectedClient.sendObject(new Test());
+//        selectedClient.sendObject(
+//                new io.github.haappi.shared.Card("red", "cup", "large", "stripes"));
     }
 }
