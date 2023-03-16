@@ -44,7 +44,8 @@ public class Card implements Packet {
                         + constructFileName(size, color, container, pattern);
         this.cardName = constructFileName(size, color, container, pattern);
 
-        // todo logic for if its a backcard (not flipped over but has a value assigned), it uses the backgcard image
+        // todo logic for if its a backcard (not flipped over but has a value assigned), it uses the
+        // backgcard image
     }
 
     public String getCardName() {
@@ -152,7 +153,7 @@ public class Card implements Packet {
         return "none";
     }
 
-    public static boolean isMatch(String against, Card ... cards) {
+    public static boolean isMatch(String against, Card... cards) {
         Object ref;
         switch (against) {
             case "size" -> ref = cards[0].size;

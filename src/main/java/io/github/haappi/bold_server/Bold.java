@@ -6,7 +6,6 @@ import io.github.haappi.shared.Enums;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 public class Bold {
@@ -84,7 +83,6 @@ public class Bold {
         }
 
         return true;
-
     }
 
     public void flipCard(Card card) throws IOException {

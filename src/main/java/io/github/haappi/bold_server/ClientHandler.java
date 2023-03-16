@@ -1,6 +1,5 @@
 package io.github.haappi.bold_server;
 
-import io.github.haappi.packets.Hello;
 import io.github.haappi.packets.Packet;
 
 import java.io.EOFException;
