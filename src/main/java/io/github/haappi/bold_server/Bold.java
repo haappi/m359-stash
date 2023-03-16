@@ -2,9 +2,12 @@ package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.Card;
 import io.github.haappi.packets.FlipCard;
+import io.github.haappi.shared.Enums;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class Bold {
     /*
@@ -36,17 +39,52 @@ public class Bold {
         this.modifier = modifier;
     }
 
+    private void setCards() {
+        Enums[] colors = {Enums.BLUE, Enums.ORANGE, Enums.YELLOW};
+        Enums[] containers = {Enums.CUP, Enums.BOTTLE, Enums.JAR};
+        Enums[] patterns = {Enums.DOTS, Enums.STRIPES, Enums.STARS};
+        Enums[] sizes = {Enums.SMALL, Enums.MEDIUM, Enums.LARGE};
+
+        for (Enums color : colors) {
+            for (Enums container : containers) {
+                for (Enums pattern : patterns) {
+                    for (Enums size : sizes) {
+                        drawPile.add(new Card(size, color, container, pattern));
+                    }
+                }
+            }
+        }
+        drawPile.add(new Card());
+
+        Collections.shuffle(drawPile);
+    }
+
     private boolean isMatch(Card card1, Card card2) {
         return card1.equals(card2);
     }
 
     public boolean isMatch(Card... cards) {
+        String[] attributes = {"color", "shape", "container", "size"};
+        String matchedAgainst = "";
+        for (String attribute : attributes) {
+            if (Card.isMatch(attribute, cards)) {
+                matchedAgainst = attribute;
+                break;
+            }
+        }
+
+        if (matchedAgainst.equals("")) {
+            return false;
+        }
+
         for (Card card : cards) {
-            if (!isMatch(cards[0], card)) {
+            if (!card.isFlipped()) {
                 return false;
             }
         }
+
         return true;
+
     }
 
     public void flipCard(Card card) throws IOException {

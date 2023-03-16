@@ -1,18 +1,22 @@
 package io.github.haappi.shared;
 
 public enum Enums {
+    // Size
     LARGE("large"),
     MEDIUM("medium"),
     SMALL("small"),
 
+    // Color
     BLUE("blue"),
     ORANGE("orange"),
     YELLOW("yellow"),
 
+    // Container
     BOTTLE("bottle"),
     CUP("cup"),
     JAR("jar"),
 
+    // Pattern
     DOTS("dots"),
     STARS("stars"),
     STRIPES("stripes"),

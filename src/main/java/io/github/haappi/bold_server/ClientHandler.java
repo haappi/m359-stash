@@ -63,10 +63,8 @@ public class ClientHandler extends Thread {
             while (true) {
                 try {
                     Object object = objectInputStream.readObject();
-                    if (object instanceof Packet) {
-                        if (object instanceof Hello hello) {
-                            System.out.println(hello.getClientName());
-                        }
+                    if (object instanceof Packet packet) {
+                        packet.handle();
                     }
                 } catch (EOFException | SocketException e) {
                     break;

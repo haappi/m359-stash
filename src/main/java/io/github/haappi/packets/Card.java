@@ -43,6 +43,8 @@ public class Card implements Packet {
                 "file:src/main/resources/card-images/"
                         + constructFileName(size, color, container, pattern);
         this.cardName = constructFileName(size, color, container, pattern);
+
+        // todo logic for if its a backcard (not flipped over but has a value assigned), it uses the backgcard image
     }
 
     public String getCardName() {
@@ -132,5 +134,51 @@ public class Card implements Packet {
             matches++;
         }
         return matches;
+    }
+
+    public String matches(Card other) {
+        if (this.size == other.size) {
+            return "size";
+        }
+        if (this.color == other.color) {
+            return "color";
+        }
+        if (this.container == other.container) {
+            return "container";
+        }
+        if (this.pattern == other.pattern) {
+            return "pattern";
+        }
+        return "none";
+    }
+
+    public static boolean isMatch(String against, Card ... cards) {
+        Object ref;
+        switch (against) {
+            case "size" -> ref = cards[0].size;
+            case "color" -> ref = cards[0].color;
+            case "container" -> ref = cards[0].container;
+            case "pattern" -> ref = cards[0].pattern;
+            default -> throw new IllegalStateException("Unexpected value: " + against);
+        }
+
+        for (Card card : cards) {
+            switch (against) {
+                case "size" -> {
+                    if (card.size != ref) return false;
+                }
+                case "color" -> {
+                    if (card.color != ref) return false;
+                }
+                case "container" -> {
+                    if (card.container != ref) return false;
+                }
+                case "pattern" -> {
+                    if (card.pattern != ref) return false;
+                }
+            }
+        }
+
+        return true;
     }
 }
