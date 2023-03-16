@@ -2,8 +2,8 @@ package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.Card;
 import io.github.haappi.packets.CloseServer;
-
 import io.github.haappi.shared.Utils;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

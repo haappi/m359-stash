@@ -40,8 +40,6 @@ public class Bold {
         this(server, 0);
     }
 
-
-
     private void setDeckCards() {
         drawPile.clear();
 
