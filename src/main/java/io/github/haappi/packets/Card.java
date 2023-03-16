@@ -89,6 +89,7 @@ public class Card implements Packet {
     public static Image getImage(String fileUri) {
         String[] splitted = fileUri.split("/");
         final String fileName = splitted[splitted.length - 1];
+        System.out.println(fileName);
         if (imageHashMap.get(fileName) != null) {
             return imageHashMap.get(fileName);
         }
