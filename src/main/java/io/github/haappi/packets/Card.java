@@ -30,7 +30,8 @@ public class Card extends ImageView implements Packet {
      * Else if it's True, it means the card is showing its back.
      */
     private boolean isFlipped = true;
-    public final static String backCardURI = "file:src/main/resources/card-images/back.png";
+
+    public static final String backCardURI = "file:src/main/resources/card-images/back.png";
 
     public boolean isFlipped() {
         return isFlipped;
@@ -48,23 +49,26 @@ public class Card extends ImageView implements Packet {
         transition.setFromAngle(180);
         transition.setToAngle(90);
 
-        transition.setOnFinished(() -> {
-            if (isFlipped) {
-                setImage(getImage(backCardURI));
-            } else {
-                setImage(getImage(fileURI));
-            }
-            transition.setFromAngle(90);
-            transition.setToAngle(0);
-            transition.play();
-        });
+        transition.setOnFinished(
+                () -> {
+                    if (isFlipped) {
+                        setImage(getImage(backCardURI));
+                    } else {
+                        setImage(getImage(fileURI));
+                    }
+                    transition.setFromAngle(90);
+                    transition.setToAngle(0);
+                    transition.play();
+                });
 
         transition.play();
     }
 
     public Card(Enums size, Enums color, Enums container, Enums pattern) {
-        super(getImage("file:src/main/resources/card-images/"
-                + constructFileName(size, color, container, pattern)));
+        super(
+                getImage(
+                        "file:src/main/resources/card-images/"
+                                + constructFileName(size, color, container, pattern)));
 
         this.size = size;
         this.color = color;
@@ -104,7 +108,8 @@ public class Card extends ImageView implements Packet {
         return isFlipped;
     }
 
-    private static String constructFileName(Enums size, Enums color, Enums container, Enums pattern) {
+    private static String constructFileName(
+            Enums size, Enums color, Enums container, Enums pattern) {
         return """
                 %s_%s_%s_%s.png
                 """
