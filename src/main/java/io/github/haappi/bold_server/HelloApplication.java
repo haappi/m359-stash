@@ -1,11 +1,14 @@
 package io.github.haappi.bold_server;
 
+import io.github.haappi.packets.Card;
 import io.github.haappi.packets.CloseServer;
 
+import io.github.haappi.shared.Utils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,6 +46,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) {
+        Utils.imageHashMap.put("back.png", new Image(Card.backCardURI));
         instance = this;
         this.stage = stage;
         new Thread(

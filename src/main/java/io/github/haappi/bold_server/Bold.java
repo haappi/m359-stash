@@ -28,17 +28,23 @@ public class Bold {
     private final Server server;
     private final int modifier;
 
-    public Bold(Server server) {
-        this.server = server;
-        modifier = 0; // No modifier
-    }
-
     public Bold(Server server, int modifier) {
         this.server = server;
         this.modifier = modifier;
+
+        setDeckCards();
+        Collections.shuffle(drawPile);
     }
 
-    private void setCards() {
+    public Bold(Server server) {
+        this(server, 0);
+    }
+
+
+
+    private void setDeckCards() {
+        drawPile.clear();
+
         Enums[] colors = {Enums.BLUE, Enums.ORANGE, Enums.YELLOW};
         Enums[] containers = {Enums.CUP, Enums.BOTTLE, Enums.JAR};
         Enums[] patterns = {Enums.DOTS, Enums.STRIPES, Enums.STARS};
@@ -53,9 +59,6 @@ public class Bold {
                 }
             }
         }
-        drawPile.add(new Card());
-
-        Collections.shuffle(drawPile);
     }
 
     private boolean isMatch(Card card1, Card card2) {
@@ -77,7 +80,7 @@ public class Bold {
         }
 
         for (Card card : cards) {
-            if (!card.isFlipped()) {
+            if (card.isFlipped()) {
                 return false;
             }
         }
@@ -89,5 +92,15 @@ public class Bold {
         card.flip();
 
         server.broadcast(new FlipCard(card));
+    }
+
+    public void createGameDeck() throws IOException {
+        for (int i = 0; i < cards.length; i++) {
+            for (int j = 0; j < cards[i].length; j++) {
+                cards[i][j] = drawPile.remove(0);
+            }
+        }
+
+        server.broadcast(cards);
     }
 }
