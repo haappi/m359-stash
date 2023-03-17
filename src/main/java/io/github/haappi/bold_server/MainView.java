@@ -1,10 +1,9 @@
 package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.CloseServer;
-import io.github.haappi.packets.Player;
 import io.github.haappi.packets.ServerMessage;
-
 import io.github.haappi.packets.StartGame;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -131,12 +130,12 @@ public class MainView {
             return;
         }
         // check if any of the players are NOT ready
-//        for (Player player : this.selectedServer.getGameInstance().getPlayers()) {
-//            if (!player.isReady()) {
-//                System.out.printf("Player %s is not ready\n", player.getPlayerName());
-//                return;
-//            }
-//        }
+        //        for (Player player : this.selectedServer.getGameInstance().getPlayers()) {
+        //            if (!player.isReady()) {
+        //                System.out.printf("Player %s is not ready\n", player.getPlayerName());
+        //                return;
+        //            }
+        //        }
         this.selectedServer.broadcast(new StartGame());
         this.selectedServer.getGameInstance().start();
     }

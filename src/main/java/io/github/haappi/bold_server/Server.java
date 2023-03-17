@@ -17,7 +17,6 @@ public class Server {
     private final String name;
     private Bold gameInstance;
 
-
     private boolean isAcceptingConnections = true;
 
     public Server(String name, int portListening, String ipListening) throws IOException {
