@@ -65,7 +65,7 @@ public class HelloApplication extends Application {
         for (File f : dir.listFiles()) {
             String uri = f.toURI().toString();
             if (uri.endsWith(".png")) {
-//                Card.getImage(f.toURI().toString());
+                //                Card.getImage(f.toURI().toString());
                 allCards.put(f.getName().replace(".png", ""), new Card(f.toURI().toString()));
             }
         }

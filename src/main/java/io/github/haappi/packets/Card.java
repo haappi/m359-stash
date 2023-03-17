@@ -88,7 +88,7 @@ public class Card extends ImageView implements Packet {
         fileURI = fileURI.replace(".png", "");
         this.cardName = fileURI;
 
-        if(fileURI.equals("back")) {
+        if (fileURI.equals("back")) {
             this.isFlipped = true;
 
             this.size = null;
@@ -148,7 +148,7 @@ public class Card extends ImageView implements Packet {
 
         String[] splitted = fileUri.split("/");
         final String fileName = splitted[splitted.length - 1];
-//        final String fileName = fileUri;
+        //        final String fileName = fileUri;
         if (imageHashMap.get(fileName) != null) {
             return imageHashMap.get(fileName);
         }
@@ -165,8 +165,11 @@ public class Card extends ImageView implements Packet {
         Card card = (Card) o;
 
         if (isFlipped != card.isFlipped) return false;
-        return pattern.equals(card.pattern) && size.equals(card.size) && color.equals(card.color) && container.equals(card.container);
-//        return getNumberOfMatches(card) > 1;
+        return pattern.equals(card.pattern)
+                && size.equals(card.size)
+                && color.equals(card.color)
+                && container.equals(card.container);
+        //        return getNumberOfMatches(card) > 1;
     }
 
     /**

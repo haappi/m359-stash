@@ -57,7 +57,8 @@ public class Client {
                 new Hello(
                         name,
                         clientSocket.getInetAddress().getHostAddress(),
-                        clientSocket.getPort(), clientSocket.getRemoteSocketAddress().toString().split("/")[1]));
+                        clientSocket.getPort(),
+                        clientSocket.getRemoteSocketAddress().toString().split("/")[1]));
 
         // start listening to messages from the server
         new Thread(

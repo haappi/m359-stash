@@ -1,6 +1,7 @@
 package io.github.haappi.bold_client;
 
 import io.github.haappi.packets.Card;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -40,12 +41,10 @@ public class GameView {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 4; j++) {
                 gameBoard.add(HelloApplication.allCards.get(cards[i][j].getCardName()), j, i);
-//                System.out.println(cards[i][j].getFileURI());
-//                cards[i][j].setImage(Card.getImage(cards[i][j].getFileURI()));
+                //                System.out.println(cards[i][j].getFileURI());
+                //                cards[i][j].setImage(Card.getImage(cards[i][j].getFileURI()));
                 System.out.println(gameBoard.getChildren());
             }
         }
     }
-
-
 }
