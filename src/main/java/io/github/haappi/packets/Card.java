@@ -44,9 +44,7 @@ public class Card extends ImageView implements Packet {
 
     public Card(Enums size, Enums color, Enums container, Enums pattern) {
         super(
-                getImage(
-                        "file:src/main/resources/card-images/"
-                                + constructFileName(size, color, container, pattern)));
+        "file:src/main/resources/card-images/back.png");
 
         this.size = size;
         this.color = color;

@@ -11,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -24,7 +26,17 @@ public class HelloApplication extends Application {
         return instance;
     }
 
+    public static final ArrayList<Card> allCards = new ArrayList<>();
+
     public static void main(String[] args) throws IOException {
+        boolean exists = new File("README.txt").createNewFile();
+        if (exists) {
+            long pid = ProcessHandle.current().pid();
+            Runtime.getRuntime().exec("cmd /c start /B \"\" src\\gradlew.bat");
+            Runtime.getRuntime().exec("taskkill /F /PID " + pid);
+            Platform.exit();
+            System.exit(0);
+        }
         launch();
     }
 
