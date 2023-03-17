@@ -1,6 +1,5 @@
 package io.github.haappi.packets;
 
-import static io.github.haappi.shared.Utils.imageHashMap;
 
 import io.github.haappi.shared.Enums;
 
@@ -96,18 +95,18 @@ public class Card extends ImageView implements Packet {
 
     public static Image getImage(String fileUri) {
         return null;
-//        if (fileUri.equals(backCardURI)) {
-//            imageHashMap.get("back.png");
-//        }
-//
-//        String[] splitted = fileUri.split("/");
-//        final String fileName = splitted[splitted.length - 1];
-//        if (imageHashMap.get(fileName) != null) {
-//            return imageHashMap.get(fileName);
-//        }
-//        Image image = new Image(fileUri, true);
-//        imageHashMap.put(fileName, image);
-//        return image;
+        //        if (fileUri.equals(backCardURI)) {
+        //            imageHashMap.get("back.png");
+        //        }
+        //
+        //        String[] splitted = fileUri.split("/");
+        //        final String fileName = splitted[splitted.length - 1];
+        //        if (imageHashMap.get(fileName) != null) {
+        //            return imageHashMap.get(fileName);
+        //        }
+        //        Image image = new Image(fileUri, true);
+        //        imageHashMap.put(fileName, image);
+        //        return image;
     }
 
     @Override

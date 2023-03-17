@@ -10,8 +10,7 @@ public class Hello implements Packet {
     private final String ip;
     private final int port;
 
-        private final String connectedTo;
-
+    private final String connectedTo;
 
     public Hello(String clientName, String ip, int port, String connectedTo) {
         this.clientName = clientName;
@@ -34,11 +33,16 @@ public class Hello implements Packet {
 
     @Override
     public void handle() {
-        HelloApplication.getInstance().getServers().forEach(server -> {
-            System.out.println(server.getIpListening() + ":" + server.getPortListening());
-            if ((server.getIpListening() + ":" + server.getPortListening()).equals(connectedTo)) {
-                server.getGameInstance().addPlayer(new Player(clientName));
-            }
-        });
+        HelloApplication.getInstance()
+                .getServers()
+                .forEach(
+                        server -> {
+                            System.out.println(
+                                    server.getIpListening() + ":" + server.getPortListening());
+                            if ((server.getIpListening() + ":" + server.getPortListening())
+                                    .equals(connectedTo)) {
+                                server.getGameInstance().addPlayer(new Player(clientName));
+                            }
+                        });
     }
 }
