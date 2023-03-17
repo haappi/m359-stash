@@ -10,8 +10,9 @@
     <TextField fx:id="bindIP" layoutX="323.0" layoutY="228.0" onAction="#joinServer" promptText="Bind IP" />
     <TextField fx:id="bindPort" layoutX="323.0" layoutY="260.0" onAction="#joinServer" promptText="Bind Port" />
     <Label layoutX="366.0" layoutY="198.0" text="Join a Server" />
-    <Button layoutX="377.0" layoutY="334.0" mnemonicParsing="false" onAction="#joinServer" text="Join!" textFill="#38a149" />
+    <Button fx:id="joinButton" layoutX="377.0" layoutY="334.0" mnemonicParsing="false" onAction="#joinServer" text="Join!" textFill="#38a149" />
     <Label fx:id="status" layoutX="359.0" layoutY="381.0" text="Connecting to..." />
     <TextField fx:id="clientName" layoutX="323.0" layoutY="291.0" onAction="#joinServer" promptText="Your Name" />
    <Button fx:id="readyButton" disable="true" layoutX="599.0" layoutY="291.0" mnemonicParsing="false" onAction="#readyButtonClick" text="Ready?" />
+   <Label fx:id="status1" layoutX="574.0" layoutY="264.0" text="You are NOT ready." />
 </AnchorPane>

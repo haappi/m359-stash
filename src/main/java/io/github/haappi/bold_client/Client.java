@@ -57,7 +57,7 @@ public class Client {
                 new Hello(
                         name,
                         clientSocket.getInetAddress().getHostAddress(),
-                        clientSocket.getPort()));
+                        clientSocket.getPort(), clientSocket.getRemoteSocketAddress().toString().split("/")[1]));
 
         // start listening to messages from the server
         new Thread(
@@ -69,10 +69,12 @@ public class Client {
                                     if (object instanceof Packet) {
                                         Packet packet = (Packet) object;
                                         System.out.println(packet);
+                                        packet.handle();
                                     }
                                 }
                             } catch (EOFException | SocketException e) {
                                 System.out.println("Client disconnected");
+                                HelloApplication.getInstance().loadFxmlFile("connect-menu.fxml");
                                 // This is thrown when the client disconnects
                                 // (EOFException is thrown when the server disconnec
                             } catch (IOException | ClassNotFoundException e) {
@@ -99,6 +101,13 @@ public class Client {
             return "Client";
         }
         return clientSocket.getInetAddress().getHostAddress() + ":" + clientSocket.getPort();
+    }
+
+    public String getServerAddress() {
+        if (clientSocket == null) {
+            return "localhost";
+        }
+        return clientSocket.getRemoteSocketAddress().toString().split("/")[1];
     }
 
     public void close() throws IOException {

@@ -2,15 +2,20 @@ package io.github.haappi.packets;
 
 import io.github.haappi.bold_client.Client;
 
+import java.io.Serial;
+
 public class Ready implements Packet {
-    private final String clientName;
+    @Serial
+    private static final long serialVersionUID = -5058600322899240319L;
+    private final Player player;
 
     public Ready() {
-        this.clientName = Client.getInstance().clientName();
+        this.player = Player.getInstance();
+        System.out.println(this.player);
     }
 
-    public String getClientName() {
-        return clientName;
+    public Player getPlayer() {
+        return player;
     }
 
     @Override

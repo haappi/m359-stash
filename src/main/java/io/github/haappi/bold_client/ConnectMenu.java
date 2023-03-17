@@ -12,6 +12,8 @@ import java.io.IOException;
 
 public class ConnectMenu {
     public Button readyButton;
+    public Button joinButton;
+    public Label status1;
     @FXML protected TextField clientName;
     @FXML protected TextField bindIP;
     @FXML protected TextField bindPort;
@@ -23,21 +25,25 @@ public class ConnectMenu {
         final String ip = bindIP.getText().isEmpty() ? "localhost" : bindIP.getText();
 
         status.setText("Connecting... to " + ip + ":" + port + "");
+        joinButton.setDisable(true);
         Client client = Client.getInstance(clientName.getText());
         try {
             client.connect(ip, port);
         } catch (IOException e) {
             status.setText("Failed to connect! Is the server running?");
             readyButton.setDisable(true);
+            joinButton.setDisable(false);
             client.reset();
             return;
         }
         readyButton.setDisable(false);
+        joinButton.setDisable(true);
         status.setText("Connected to " + ip + ":" + port + "");
+        status1.setText("You are NOT ready.");
     }
 
     public void readyButtonClick(ActionEvent actionEvent) throws IOException {
+        status1.setText("You are ready.");
         Client.getInstance().sendObject(new Ready());
-        HelloApplication.getInstance().loadFxmlFile("chat_menu.fxml");
     }
 }

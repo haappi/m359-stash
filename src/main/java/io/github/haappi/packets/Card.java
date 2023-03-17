@@ -50,7 +50,7 @@ public class Card extends ImageView implements Packet {
         transition.setToAngle(90);
 
         transition.setOnFinished(
-                () -> {
+                (a) -> {
                     if (isFlipped) {
                         setImage(getImage(backCardURI));
                     } else {
@@ -78,6 +78,31 @@ public class Card extends ImageView implements Packet {
                 "file:src/main/resources/card-images/"
                         + constructFileName(size, color, container, pattern);
         this.cardName = constructFileName(size, color, container, pattern);
+    }
+
+    public Card(String fileURI) {
+        super(getImage(fileURI));
+        this.fileURI = fileURI;
+        this.cardName = fileURI;
+        // get the rest of the string after the `/` after the last `/`
+        fileURI = fileURI.substring(fileURI.lastIndexOf("/") + 1);
+        fileURI = fileURI.replace(".png", "");
+
+        if(fileURI.equals("back")) {
+            this.isFlipped = true;
+
+            this.size = null;
+            this.color = null;
+            this.container = null;
+            this.pattern = null;
+            return;
+        }
+
+        System.out.println(fileURI);
+        this.pattern = Enums.valueOf(fileURI.split("_")[0].toUpperCase());
+        this.size = Enums.valueOf(fileURI.split("_")[1].toUpperCase());
+        this.color = Enums.valueOf(fileURI.split("_")[2].toUpperCase());
+        this.container = Enums.valueOf(fileURI.split("_")[3].toUpperCase());
     }
 
     public String getCardName() {

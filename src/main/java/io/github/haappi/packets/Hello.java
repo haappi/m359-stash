@@ -7,11 +7,17 @@ public class Hello implements Packet {
     private final String clientName;
     private final String ip;
     private final int port;
+    private final String connectedTo;
 
-    public Hello(String clientName, String ip, int port) {
+    public Hello(String clientName, String ip, int port, String connectedTo) {
         this.clientName = clientName;
         this.ip = ip;
         this.port = port;
+        this.connectedTo = connectedTo.replace("127.0.0.1", "localhost");
+    }
+
+    public String getConnectedTo() {
+        return connectedTo;
     }
 
     public String getClientName() {
@@ -25,7 +31,4 @@ public class Hello implements Packet {
     public int getPort() {
         return port;
     }
-
-    @Override
-    public void handle() {}
 }

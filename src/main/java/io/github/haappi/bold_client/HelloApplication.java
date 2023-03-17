@@ -10,10 +10,12 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 public class HelloApplication extends Application {
     private static HelloApplication instance;
     private Stage stage;
+    public static final HashMap<String, Card> allCards = new HashMap<>();
 
     // I'm using a conccurrent hashmap because i may have multiple threads trying to access the
     // image at a given time, and I don't want bad things to happen
@@ -47,6 +49,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        instance = this;
         String imageDir = "src/main/resources/card-images";
 
         File dir = new File(imageDir);
@@ -54,9 +57,11 @@ public class HelloApplication extends Application {
         for (File f : dir.listFiles()) {
             String uri = f.toURI().toString();
             if (uri.endsWith(".png")) {
-                Card.getImage(f.toURI().toString());
+//                Card.getImage(f.toURI().toString());
+                allCards.put(f.getName().replace(".png", ""), new Card(f.toURI().toString()));
             }
         }
+        System.out.println(allCards);
         this.stage = stage;
         loadFxmlFile("connect-menu.fxml");
     }
