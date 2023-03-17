@@ -1,6 +1,5 @@
 package io.github.haappi.packets;
 
-
 import io.github.haappi.shared.Enums;
 
 import javafx.scene.image.Image;
@@ -42,8 +41,7 @@ public class Card extends ImageView implements Packet {
     }
 
     public Card(Enums size, Enums color, Enums container, Enums pattern) {
-        super(
-        "file:src/main/resources/card-images/back.png");
+        super("file:src/main/resources/card-images/back.png");
 
         this.size = size;
         this.color = color;
