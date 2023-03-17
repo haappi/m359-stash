@@ -1,5 +1,7 @@
 package io.github.haappi.packets;
 
+import io.github.haappi.bold_server.HelloApplication;
+
 import java.io.Serial;
 
 public class Hello implements Packet {
@@ -8,10 +10,14 @@ public class Hello implements Packet {
     private final String ip;
     private final int port;
 
-    public Hello(String clientName, String ip, int port) {
+        private final String connectedTo;
+
+
+    public Hello(String clientName, String ip, int port, String connectedTo) {
         this.clientName = clientName;
         this.ip = ip;
         this.port = port;
+        this.connectedTo = connectedTo;
     }
 
     public String getClientName() {
@@ -24,5 +30,15 @@ public class Hello implements Packet {
 
     public int getPort() {
         return port;
+    }
+
+    @Override
+    public void handle() {
+        HelloApplication.getInstance().getServers().forEach(server -> {
+            System.out.println(server.getIpListening() + ":" + server.getPortListening());
+            if ((server.getIpListening() + ":" + server.getPortListening()).equals(connectedTo)) {
+                server.getGameInstance().addPlayer(new Player(clientName));
+            }
+        });
     }
 }

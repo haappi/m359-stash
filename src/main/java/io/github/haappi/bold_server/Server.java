@@ -17,6 +17,7 @@ public class Server {
     private final String name;
     private Bold gameInstance;
 
+
     private boolean isAcceptingConnections = true;
 
     public Server(String name, int portListening, String ipListening) throws IOException {
@@ -24,6 +25,12 @@ public class Server {
         this.portListening = portListening;
         this.ipListening = ipListening;
         serverSocket = new ServerSocket(portListening, 0, Inet4Address.getByName(ipListening));
+
+        this.gameInstance = new Bold(this);
+    }
+
+    public Bold getGameInstance() {
+        return gameInstance;
     }
 
     public Server(String name, int portListening) throws IOException {

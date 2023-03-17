@@ -2,6 +2,8 @@ package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.Card;
 import io.github.haappi.packets.FlipCard;
+import io.github.haappi.packets.Player;
+import io.github.haappi.packets.SendGameDeckPacket;
 import io.github.haappi.shared.Enums;
 
 import java.io.IOException;
@@ -27,6 +29,16 @@ public class Bold {
     private final ArrayList<Card> drawPile = new ArrayList<>();
     private final Server server;
     private final int modifier;
+
+    private final ArrayList<Player> players = new ArrayList<>();
+
+    public void addPlayer(Player player) {
+        players.add(player);
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
 
     public Bold(Server server, int modifier) {
         this.server = server;
@@ -99,6 +111,10 @@ public class Bold {
             }
         }
 
-        server.broadcast(cards);
+        server.broadcast(new SendGameDeckPacket(cards));
+    }
+
+    public void start() throws IOException {
+        createGameDeck();
     }
 }

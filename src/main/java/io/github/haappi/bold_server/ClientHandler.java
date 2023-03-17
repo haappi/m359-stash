@@ -18,6 +18,7 @@ public class ClientHandler extends Thread {
 
     private final Socket bindedTo;
     private final Server server;
+    private final String clientName;
 
     private ObjectOutputStream
             objectStream; // This is the output stream to the client (objects are "written" through
@@ -36,6 +37,7 @@ public class ClientHandler extends Thread {
                         Logger.YELLOW);
         this.bindedTo = bindedTo;
         this.server = server;
+        this.clientName = bindedTo.getInetAddress().getHostAddress() + ":" + bindedTo.getPort();
 
         try {
             objectStream = new ObjectOutputStream(bindedTo.getOutputStream());

@@ -95,18 +95,19 @@ public class Card extends ImageView implements Packet {
     }
 
     public static Image getImage(String fileUri) {
-        if (fileUri.equals(backCardURI)) {
-            imageHashMap.get("back.png");
-        }
-
-        String[] splitted = fileUri.split("/");
-        final String fileName = splitted[splitted.length - 1];
-        if (imageHashMap.get(fileName) != null) {
-            return imageHashMap.get(fileName);
-        }
-        Image image = new Image(fileUri, true);
-        imageHashMap.put(fileName, image);
-        return image;
+        return null;
+//        if (fileUri.equals(backCardURI)) {
+//            imageHashMap.get("back.png");
+//        }
+//
+//        String[] splitted = fileUri.split("/");
+//        final String fileName = splitted[splitted.length - 1];
+//        if (imageHashMap.get(fileName) != null) {
+//            return imageHashMap.get(fileName);
+//        }
+//        Image image = new Image(fileUri, true);
+//        imageHashMap.put(fileName, image);
+//        return image;
     }
 
     @Override

@@ -1,8 +1,10 @@
 package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.CloseServer;
+import io.github.haappi.packets.Player;
 import io.github.haappi.packets.ServerMessage;
 
+import io.github.haappi.packets.StartGame;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -123,7 +125,21 @@ public class MainView {
     }
 
     @FXML
-    protected void startGameButton() {}
+    protected void startGameButton() throws IOException {
+        if (this.selectedServer == null) return;
+        if (this.selectedServer.getGameInstance().getPlayers().size() == 0) {
+            return;
+        }
+        // check if any of the players are NOT ready
+//        for (Player player : this.selectedServer.getGameInstance().getPlayers()) {
+//            if (!player.isReady()) {
+//                System.out.printf("Player %s is not ready\n", player.getPlayerName());
+//                return;
+//            }
+//        }
+        this.selectedServer.broadcast(new StartGame());
+        this.selectedServer.getGameInstance().start();
+    }
 
     @FXML
     protected void sendMessage() throws IOException {
