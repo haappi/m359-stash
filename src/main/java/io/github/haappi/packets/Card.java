@@ -77,16 +77,16 @@ public class Card extends ImageView implements Packet {
         this.fileURI =
                 "file:src/main/resources/card-images/"
                         + constructFileName(size, color, container, pattern);
-        this.cardName = constructFileName(size, color, container, pattern);
+        this.cardName = constructFileName(size, color, container, pattern).replace(".png", "");
     }
 
     public Card(String fileURI) {
         super(getImage(fileURI));
         this.fileURI = fileURI;
-        this.cardName = fileURI;
         // get the rest of the string after the `/` after the last `/`
         fileURI = fileURI.substring(fileURI.lastIndexOf("/") + 1);
         fileURI = fileURI.replace(".png", "");
+        this.cardName = fileURI;
 
         if(fileURI.equals("back")) {
             this.isFlipped = true;
@@ -142,15 +142,17 @@ public class Card extends ImageView implements Packet {
     }
 
     public static Image getImage(String fileUri) {
-        if (fileUri.equals(backCardURI)) {
+        if (fileUri.contains(backCardURI)) {
             imageHashMap.get("back.png");
         }
 
         String[] splitted = fileUri.split("/");
         final String fileName = splitted[splitted.length - 1];
+//        final String fileName = fileUri;
         if (imageHashMap.get(fileName) != null) {
             return imageHashMap.get(fileName);
         }
+        System.out.println(fileName);
         Image image = new Image(fileUri, true);
         imageHashMap.put(fileName, image);
         return image;
@@ -161,10 +163,10 @@ public class Card extends ImageView implements Packet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
-        if (this.isBackCard() || card.isBackCard()) {
-            return false;
-        }
-        return getNumberOfMatches(card) > 1;
+
+        if (isFlipped != card.isFlipped) return false;
+        return pattern.equals(card.pattern) && size.equals(card.size) && color.equals(card.color) && container.equals(card.container);
+//        return getNumberOfMatches(card) > 1;
     }
 
     /**

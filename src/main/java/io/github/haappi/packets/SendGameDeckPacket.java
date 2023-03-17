@@ -1,5 +1,7 @@
 package io.github.haappi.packets;
 
+import io.github.haappi.bold_client.GameView;
+
 import java.io.Serial;
 
 public class SendGameDeckPacket implements Packet {
@@ -17,6 +19,8 @@ public class SendGameDeckPacket implements Packet {
 
     @Override
     public void handle() {
-
+        GameView instance = GameView.getInstance();
+        instance.cards = cards;
+        instance.updateCards(cards);
     }
 }

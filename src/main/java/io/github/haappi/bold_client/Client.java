@@ -68,7 +68,7 @@ public class Client {
                                     Object object = objectInputStream.readObject();
                                     if (object instanceof Packet) {
                                         Packet packet = (Packet) object;
-                                        System.out.println(packet);
+                                        Logger.getInstance().log("Reading object: " + packet);
                                         packet.handle();
                                     }
                                 }

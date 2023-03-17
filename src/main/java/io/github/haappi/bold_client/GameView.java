@@ -1,14 +1,16 @@
 package io.github.haappi.bold_client;
 
+import io.github.haappi.packets.Card;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 public class GameView {
-    public GridPane gameBoard;
-    public Label whosTurn;
+    public GridPane gameBoard = new GridPane();
+    public Card[][] cards = new Card[5][4];
+    public Label whosTurn = new Label();
 
-    private static GameView instance;
+    public static GameView instance;
 
     @FXML
     protected void initialize() {
@@ -21,8 +23,28 @@ public class GameView {
         }
     }
 
+    public GameView() {
+        instance = this;
+    }
+
     public static GameView getInstance() {
-        if (in)
+        if (instance == null) {
+            instance = new GameView();
+        }
+        return instance;
+    }
+
+    public void updateCards(Card[][] cards) {
+        System.out.println(HelloApplication.allCards.get("stripes_small_orange_jar"));
+        gameBoard.getChildren().clear();
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 4; j++) {
+                gameBoard.add(HelloApplication.allCards.get(cards[i][j].getCardName()), j, i);
+//                System.out.println(cards[i][j].getFileURI());
+//                cards[i][j].setImage(Card.getImage(cards[i][j].getFileURI()));
+                System.out.println(gameBoard.getChildren());
+            }
+        }
     }
 
 
