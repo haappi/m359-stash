@@ -1,6 +1,5 @@
 package io.github.haappi.packets;
 
-
 import java.io.Serial;
 import java.io.Serializable;
 
