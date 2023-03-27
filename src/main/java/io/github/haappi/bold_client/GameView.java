@@ -36,11 +36,11 @@ public class GameView {
     }
 
     public void updateCards(Card[][] cards) {
-        System.out.println(HelloApplication.allCards.get("stripes_small_orange_jar"));
         gameBoard.getChildren().clear();
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 4; j++) {
                 gameBoard.add(HelloApplication.allCards.get(cards[i][j].getCardName()), j, i);
+                GridPane.setConstraints(cards[i][j], j, i);
                 //                System.out.println(cards[i][j].getFileURI());
                 //                cards[i][j].setImage(Card.getImage(cards[i][j].getFileURI()));
                 System.out.println(gameBoard.getChildren());
