@@ -67,10 +67,10 @@ public class Client {
                                 while (true) {
                                     System.out.println("Reading object");
                                     Object object = objectInputStream.readObject();
-                                    if (object instanceof Packet) {
-                                        Packet packet = (Packet) object;
-                                        Logger.getInstance().log("Reading object: " + packet);
-                                        packet.handle();
+                                    if (object instanceof String) {
+                                        GameView.messageReceived((String) object);
+                                    } else {
+                                        GameView.objectReceived(object);
                                     }
                                 }
                             } catch (EOFException | SocketException e) {
@@ -86,13 +86,17 @@ public class Client {
                 .start();
     }
 
-    public void sendObject(Object object) throws IOException {
+    public void sendObject(Object object)  {
         if (objectStream == null) {
             return;
         }
 
-        objectStream.writeObject(object);
-        objectStream.flush(); // Flushing is just to make sure that the object is sent
+        try {
+            objectStream.writeObject(object);
+            objectStream.flush(); // Flushing is just to make sure that the object is sent
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         // (i think it's necessary so i added it :D)
 
     }

@@ -44,6 +44,6 @@ public class ConnectMenu {
 
     public void readyButtonClick(ActionEvent actionEvent) throws IOException {
         status1.setText("You are ready.");
-        Client.getInstance().sendObject(new Ready());
+        Client.getInstance().sendObject("ready");
     }
 }

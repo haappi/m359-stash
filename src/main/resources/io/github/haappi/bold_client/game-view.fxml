@@ -11,6 +11,7 @@
       </GridPane>
       <Label fx:id="whosTurn" layoutX="1114.0" layoutY="77.0" text="It's currently NOT | YOUR turn." />
       <Label layoutX="134.0" layoutY="69.0" text="Turn ends in 10s" />
+      <Label fx:id="scoreLabel" layoutX="1151.0" layoutY="102.0" text="Score:" />
    </children>
    <effect>
       <Glow />
