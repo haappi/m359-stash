@@ -108,7 +108,6 @@ public class Bold {
 //    }
 
     public boolean doCardsMatch() {
-
         String sizeCheck = "";
         String colorCheck = "";
         String containerCheck = "";
