@@ -38,7 +38,6 @@ public class Bold {
 
         setDeckCards();
         Collections.shuffle(drawPile);
-        createGameDeck();
     }
 
     public Bold(Server server) {
@@ -173,6 +172,9 @@ public class Bold {
                 newCard.setCol(card.getCol());
                 newCard.setRow(card.getRow());
             }
+            if (drawPile.size() == 0) {
+                server.broadcast("gameOver");
+            }
             new Thread(() -> {
                 try {
                     Thread.sleep(3000);
@@ -196,7 +198,16 @@ public class Bold {
 
     }
 
-    public void start() throws IOException {
+    public void start() {
         createGameDeck();
+        currentPlayer = players.get(0);
+        for (ClientHandler client : server.getClients()) {
+            if (client.getPlayer() == currentPlayer) {
+                client.sendMessage("yourTurn");
+            } else {
+                client.sendMessage("notYourTurn");
+            }
+        }
+
     }
 }

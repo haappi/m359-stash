@@ -142,5 +142,18 @@ public class Server {
             clientHandler.getPlayer().setTurn(false);
             return;
         }
+        if (msg.startsWith("cardClicked:")) {
+            String content = getContentOfMessage(msg);
+            int x = Integer.parseInt(content.split(",")[0]);
+            int y = Integer.parseInt(content.split(",")[1]);
+
+            if (gameInstance.doCardsMatch()) {
+                gameInstance.selectCard(x, y);
+            } else {
+                broadcast("noMatch");
+                gameInstance.nextLosersTurn();
+            }
+            return;
+        }
     }
 }
