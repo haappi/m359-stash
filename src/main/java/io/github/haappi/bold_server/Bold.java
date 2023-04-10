@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Bold {
-    private final Card[][] cards = new Card[5][4];
+    private final Card[][] cards = new Card[4][5];
     private final ArrayList<Card> drawPile = new ArrayList<>();
     private final Server server;
     private final int modifier;
