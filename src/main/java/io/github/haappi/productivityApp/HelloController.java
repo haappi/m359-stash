@@ -1,8 +1,7 @@
-package io.github.haappi.template;
+package io.github.haappi.productivityApp;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class HelloController {

@@ -1,4 +1,4 @@
-package io.github.haappi.template;
+package io.github.haappi.productivityApp.Timers;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -14,7 +14,7 @@ public class PomodoroHandler {
 
     private int minutes = 25;
     private int seconds = 0;
-    private int pomodors = 4;
+    private int pomodoros = 4;
     private int completedCount = 0;
     private boolean isBreakTime = false;
     private boolean isPaused = true;
@@ -77,7 +77,7 @@ public class PomodoroHandler {
                     } else {
                         if (isBreakTime) {
                             completedCount++;
-                            if (completedCount == pomodors) {
+                            if (completedCount == pomodoros) {
                                 statusLabel.setText("Done!");
                                 timeline.stop();
                             } else {
