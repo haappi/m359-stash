@@ -12,8 +12,10 @@ import javafx.util.Duration;
 
 import java.io.Serial;
 
-public class Card extends ImageView implements Packet {
+public class Card implements Packet {
     @Serial private static final long serialVersionUID = 5839422576067187289L;
+
+
     private final String fileURI;
     private final String cardName;
 
@@ -22,8 +24,24 @@ public class Card extends ImageView implements Packet {
     private final Enums container;
     private final Enums pattern;
 
-    private int x;
-    private int y;
+    private int row;
+    private int col;
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
 
     /**
      * If this is a False it means the card is showing its face.<br>
@@ -41,34 +59,34 @@ public class Card extends ImageView implements Packet {
         isFlipped = flipped;
     }
 
-    public void flip() {
-        setFlipped(!isFlipped);
-
-        RotateTransition transition = new RotateTransition(Duration.millis(100), this);
-        transition.setAxis(Rotate.Y_AXIS);
-        transition.setFromAngle(180);
-        transition.setToAngle(90);
-
-        transition.setOnFinished(
-                (a) -> {
-                    if (isFlipped) {
-                        setImage(getImage(backCardURI));
-                    } else {
-                        setImage(getImage(fileURI));
-                    }
-                    transition.setFromAngle(90);
-                    transition.setToAngle(0);
-                    transition.play();
-                });
-
-        transition.play();
-    }
+//    public void flip() {
+//        setFlipped(!isFlipped);
+//
+//        RotateTransition transition = new RotateTransition(Duration.millis(100), this);
+//        transition.setAxis(Rotate.Y_AXIS);
+//        transition.setFromAngle(180);
+//        transition.setToAngle(90);
+//
+//        transition.setOnFinished(
+//                (a) -> {
+//                    if (isFlipped) {
+//                        setImage(getImage(backCardURI));
+//                    } else {
+//                        setImage(getImage(fileURI));
+//                    }
+//                    transition.setFromAngle(90);
+//                    transition.setToAngle(0);
+//                    transition.play();
+//                });
+//
+//        transition.play();
+//    }
 
     public Card(Enums size, Enums color, Enums container, Enums pattern) {
-        super(
-                getImage(
-                        "file:src/main/resources/card-images/"
-                                + constructFileName(size, color, container, pattern)));
+//        super(
+//                getImage(
+//                        "file:src/main/resources/card-images/"
+//                                + constructFileName(size, color, container, pattern)));
 
         this.size = size;
         this.color = color;
@@ -81,7 +99,7 @@ public class Card extends ImageView implements Packet {
     }
 
     public Card(String fileURI) {
-        super(getImage(fileURI));
+//        super(getImage(fileURI));
         this.fileURI = fileURI;
         // get the rest of the string after the `/` after the last `/`
         fileURI = fileURI.substring(fileURI.lastIndexOf("/") + 1);

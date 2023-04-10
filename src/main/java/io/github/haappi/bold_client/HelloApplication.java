@@ -2,6 +2,7 @@ package io.github.haappi.bold_client;
 
 import io.github.haappi.packets.Card;
 
+import io.github.haappi.shared.Image;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ public class HelloApplication extends Application {
     private static HelloApplication instance;
     private Stage stage;
     public static final HashMap<String, Card> allCards = new HashMap<>();
+    public static final HashMap<String, Image> allCardImages = new HashMap<>();
 
     // I'm using a conccurrent hashmap because i may have multiple threads trying to access the
     // image at a given time, and I don't want bad things to happen
@@ -57,8 +59,10 @@ public class HelloApplication extends Application {
         for (File f : dir.listFiles()) {
             String uri = f.toURI().toString();
             if (uri.endsWith(".png")) {
+                System.out.println(f.getName());
                 //                Card.getImage(f.toURI().toString());
                 allCards.put(f.getName().replace(".png", ""), new Card(f.toURI().toString()));
+                allCardImages.put(f.getName().replace(".png", ""), new Image(f.toURI().toString()));
             }
         }
         System.out.println(allCards);

@@ -65,12 +65,13 @@ public class Client {
                         () -> {
                             try {
                                 while (true) {
-                                    System.out.println("Reading object");
                                     Object object = objectInputStream.readObject();
                                     if (object instanceof String) {
+                                        System.out.println("Reading String");
                                         GameView.messageReceived((String) object);
                                     } else {
-                                        GameView.objectReceived(object);
+                                        System.out.println("Reading object");
+                                        GameView.messageReceived(object);
                                     }
                                 }
                             } catch (EOFException | SocketException e) {
