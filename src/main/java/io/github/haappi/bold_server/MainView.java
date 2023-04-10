@@ -3,7 +3,6 @@ package io.github.haappi.bold_server;
 import io.github.haappi.packets.CloseServer;
 import io.github.haappi.packets.ServerMessage;
 import io.github.haappi.packets.StartGame;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,12 +16,18 @@ import java.util.TimerTask;
 
 public class MainView {
     private final ArrayList<Timer> timers = new ArrayList<>();
-    @FXML protected ListView<Server> serverListView;
-    @FXML protected TextField serverName;
-    @FXML protected TextField bindIP;
-    @FXML protected TextField bindPort;
-    @FXML protected ListView<ClientHandler> connectedClients;
-    @FXML protected TextField sendMessageClient;
+    @FXML
+    protected ListView<Server> serverListView;
+    @FXML
+    protected TextField serverName;
+    @FXML
+    protected TextField bindIP;
+    @FXML
+    protected TextField bindPort;
+    @FXML
+    protected ListView<ClientHandler> connectedClients;
+    @FXML
+    protected TextField sendMessageClient;
     private Server selectedServer;
     private ClientHandler selectedClient;
 
@@ -126,7 +131,7 @@ public class MainView {
     @FXML
     protected void startGameButton() throws IOException {
         if (this.selectedServer == null) return;
-        if (this.selectedServer.getGameInstance().getPlayers().size() == 0) {
+        if (this.selectedServer.getClients().size() == 0) {
             return;
         }
         // check if any of the players are NOT ready

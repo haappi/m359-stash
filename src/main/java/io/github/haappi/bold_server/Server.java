@@ -1,7 +1,6 @@
 package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.CloseServer;
-import io.github.haappi.shared.Utils;
 
 import java.io.IOException;
 import java.net.Inet4Address;
@@ -18,7 +17,7 @@ public class Server {
     private final int portListening;
     private final String ipListening;
     private final String name;
-    private Bold gameInstance;
+    private final Bold gameInstance;
 
     private boolean isAcceptingConnections = true;
 
@@ -31,16 +30,20 @@ public class Server {
         this.gameInstance = new Bold(this);
     }
 
-    public Bold getGameInstance() {
-        return gameInstance;
-    }
-
     public Server(String name, int portListening) throws IOException {
         this(name, portListening, InetAddress.getLocalHost().getHostAddress());
     }
 
     public Server() throws IOException {
         this("Server - " + System.currentTimeMillis(), 2005, "localhost");
+    }
+
+    public Bold getGameInstance() {
+        return gameInstance;
+    }
+
+    public ServerSocket getServerSocket() {
+        return serverSocket;
     }
 
     public boolean toggleAcceptingConnections() {
@@ -125,21 +128,17 @@ public class Server {
     }
 
 
-    public void handleMessageTwo(String msg, ClientHandler clientHandler) {
+    public void handleMessage(String msg, ClientHandler clientHandler) {
         if (msg.startsWith("playerName:")) {
-            clientHandler.setPlayer(clientHandler.getPlayer().setPlayerName(getContentOfMessage(msg)));
+            clientHandler.setPlayerName(getContentOfMessage(msg));
             return;
         }
         if (msg.startsWith("ready")) {
-            clientHandler.setPlayer(clientHandler.getPlayer().setReady(true));
+            clientHandler.setPlayerReady(true);
             return;
         }
         if (msg.startsWith("unready")) {
-            clientHandler.setPlayer(clientHandler.getPlayer().setReady(false));
-            return;
-        }
-        if (msg.startsWith("endTurn")) {
-            clientHandler.getPlayer().setTurn(false);
+            clientHandler.setPlayerReady(false);
             return;
         }
         if (msg.startsWith("cardClicked:")) {
@@ -147,13 +146,12 @@ public class Server {
             int x = Integer.parseInt(content.split(",")[0]);
             int y = Integer.parseInt(content.split(",")[1]);
 
-            if (gameInstance.doCardsMatch()) {
+            if (gameInstance.match(x, y)) {
                 gameInstance.selectCard(x, y);
             } else {
                 broadcast("noMatch");
                 gameInstance.nextLosersTurn();
             }
-            return;
         }
     }
 }

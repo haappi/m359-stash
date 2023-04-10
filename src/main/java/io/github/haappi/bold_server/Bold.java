@@ -1,36 +1,21 @@
 package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.Card;
-import io.github.haappi.packets.Player;
 import io.github.haappi.shared.Enums;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class Bold {
-    /*
-     * 5 rows, 4 columns
-     * - Add possibility to change grid size upon initialization todo
-     * Add a timer todo
-     * - The timer can be per player (x seconds), or for the entire game to stress out all players.
-     * - Or a combination of both so players do not stall.
-     * Special cards todo
-     * - Change stuff like timer // gridsize on the fly.
-     * - A card that voids half of your card
-     * - Shuffles the deck
-     * - - todo maybe make it animation so players can see how the cards move around?
-     *
-     * - "Double or nun" card. Player can choose to play it and they have to make x amount of matches in x amount of time or all their cards are voided.
-     */
     private final Card[][] cards = new Card[5][4];
     private final ArrayList<Card> drawPile = new ArrayList<>();
     private final Server server;
     private final int modifier;
 
-    private final ArrayList<Player> players = new ArrayList<>();
     private final ArrayList<Card> selectedCards = new ArrayList<>();
-    private Player currentPlayer;
+    private ClientHandler currentPlayer;
+
+    private boolean gameOver = false;
 
     public Bold(Server server, int modifier) {
         this.server = server;
@@ -41,23 +26,32 @@ public class Bold {
     }
 
     public Bold(Server server) {
-        this(server, 0);
+        this(server, 1);
     }
 
-    public void addPlayer(Player player) {
-        players.add(player);
-    }
+    private void restartGame() {
+        if (!gameOver) {
+            return;
+        }
+        gameOver = false;
 
-    public ArrayList<Player> getPlayers() {
-        return players;
+        for (ClientHandler client : server.getClients()) {
+            client.setScore(0);
+        }
+
+        for (ClientHandler client : server.getClients()) {
+            client.sendMessage("score:" + client.getPlayerScore());
+        }
+        setDeckCards();
+        Collections.shuffle(drawPile);
+        start();
     }
 
     public void selectCard(int row, int col) {
         Card card = cards[row][col];
         selectedCards.add(card);
-        for (ClientHandler player : server.getClients()) {
-            player.sendObject(card);
-        }
+
+        server.broadcast(card);
     }
 
     private void setDeckCards() {
@@ -79,63 +73,28 @@ public class Bold {
         }
     }
 
-//    private boolean isMatch(Card card1, Card card2) {
-//        return card1.equals(card2);
-//    }
-//
-//    public boolean isMatch(Card... cards) {
-//        String[] attributes = {"color", "shape", "container", "size"};
-//        String matchedAgainst = "";
-//        for (String attribute : attributes) {
-//            if (Card.isMatch(attribute, cards)) {
-//                matchedAgainst = attribute;
-//                break;
-//            }
-//        }
-//
-//        if (matchedAgainst.equals("")) {
-//            return false;
-//        }
-//
-//        for (Card card : cards) {
-//            if (card.isFlipped()) {
-//                return false;
-//            }
-//        }
-//
-//        return true;
-//    }
+    public boolean match(ArrayList<Card> selectedCards) {
+        Enums size = selectedCards.get(0).getSize();
+        Enums color = selectedCards.get(0).getColor();
+        Enums container = selectedCards.get(0).getContainer();
+        Enums pattern = selectedCards.get(0).getPattern();
 
-    public boolean doCardsMatch() {
-        String sizeCheck = "";
-        String colorCheck = "";
-        String containerCheck = "";
-        String patternCheck = "";
-
-        for (Card card : selectedCards) {
-            if (sizeCheck.equals("")) {
-                sizeCheck = card.getSize().toString();
-            } else if (!sizeCheck.equals(card.getSize().toString())) {
-                return false;
-            }
-            if (colorCheck.equals("")) {
-                colorCheck = card.getColor().toString();
-            } else if (!colorCheck.equals(card.getColor().toString())) {
-                return false;
-            }
-            if (containerCheck.equals("")) {
-                containerCheck = card.getContainer().toString();
-            } else if (!containerCheck.equals(card.getContainer().toString())) {
-                return false;
-            }
-            if (patternCheck.equals("")) {
-                patternCheck = card.getPattern().toString();
-            } else if (!patternCheck.equals(card.getPattern().toString())) {
+        for (int i = 1; i < selectedCards.size(); i++) {
+            Card card = selectedCards.get(i);
+            if (card.getSize() != size && card.getColor() != color
+                    && card.getContainer() != container && card.getPattern() != pattern) {
                 return false;
             }
         }
         return true;
     }
+
+    public boolean match(int x, int y) {
+        ArrayList<Card> selectedCards = new ArrayList<>(this.selectedCards);
+        selectedCards.add(cards[x][y]);
+        return match(selectedCards);
+    }
+
 
     public void createGameDeck() {
         for (int i = 0; i < cards.length; i++) {
@@ -148,22 +107,16 @@ public class Bold {
     }
 
     public void nextLosersTurn() {
-        currentPlayer.setScore((int) (currentPlayer.getScore() + Math.pow(selectedCards.size(), selectedCards.size())));
+        currentPlayer.increaseScore((int) (Math.pow(selectedCards.size(), selectedCards.size()) * modifier));
 
         for (ClientHandler client : server.getClients()) {
-            client.sendMessage("score:" + client.getPlayer().getScore());
+            client.sendMessage("score:" + client.getPlayerScore());
         }
 
-        for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).equals(currentPlayer)) {
-                if (i == players.size() - 1) {
-                    currentPlayer = players.get(0);
-                } else {
-                    currentPlayer = players.get(i + 1);
-                }
-                break;
-            }
-        }
+        int currentIndex = server.getClients().indexOf(currentPlayer);
+        int nextIndex = (currentIndex + 1) % server.getClients().size();
+        currentPlayer = server.getClients().get(nextIndex);
+
 
         if (selectedCards.size() >= 2) { // if they have selected atleast two cards, that must mean it was a match of some sort
             for (Card card : selectedCards) {
@@ -189,7 +142,19 @@ public class Bold {
         selectedCards.clear();
 
         for (ClientHandler client : server.getClients()) {
-            if (client.getPlayer() == currentPlayer) {
+            if (client == currentPlayer) {
+                client.sendMessage("yourTurn");
+            } else {
+                client.sendMessage("notYourTurn");
+            }
+        }
+    }
+
+    public void start() {
+        createGameDeck();
+        currentPlayer = server.getClients().get(0);
+        for (ClientHandler client : server.getClients()) {
+            if (client == currentPlayer) {
                 client.sendMessage("yourTurn");
             } else {
                 client.sendMessage("notYourTurn");
@@ -198,16 +163,41 @@ public class Bold {
 
     }
 
-    public void start() {
-        createGameDeck();
-        currentPlayer = players.get(0);
-        for (ClientHandler client : server.getClients()) {
-            if (client.getPlayer() == currentPlayer) {
-                client.sendMessage("yourTurn");
-            } else {
-                client.sendMessage("notYourTurn");
+    public boolean isGameCompleted() {
+        if (drawPile.size() > 0) {
+            return false;
+        }
+
+        for (Card[] value : cards) {
+            for (Card card : value) {
+                if (card != null && canCardBeMatched(card)) {
+                    return false;
+                }
             }
         }
 
+        return true;
+    }
+
+    private boolean canCardBeMatched(Card card) {
+        for (int row = 0; row < cards.length; row++) {
+            for (int col = 0; col < cards[row].length; col++) {
+                if (row != card.getRow() || col != card.getCol()) {
+                    Card otherCard = cards[row][col];
+                    if (otherCard != null && doCardsMatch(card, otherCard)) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private boolean doCardsMatch(Card card1, Card card2) {
+        return card1.getSize() == card2.getSize() ||
+                card1.getColor() == card2.getColor() ||
+                card1.getContainer() == card2.getContainer() ||
+                card1.getPattern() == card2.getPattern();
     }
 }

@@ -3,7 +3,6 @@ package io.github.haappi.bold_server;
 import io.github.haappi.packets.Card;
 import io.github.haappi.packets.CloseServer;
 import io.github.haappi.shared.Utils;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -11,12 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HelloApplication extends Application {
+    public static final ArrayList<Card> allCards = new ArrayList<>();
     private static HelloApplication instance;
     private final ArrayList<Server> servers = new ArrayList<>();
     private Stage stage;
@@ -24,8 +23,6 @@ public class HelloApplication extends Application {
     public static synchronized HelloApplication getInstance() {
         return instance;
     }
-
-    public static final ArrayList<Card> allCards = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         launch();
@@ -53,23 +50,23 @@ public class HelloApplication extends Application {
         instance = this;
         this.stage = stage;
         new Thread(
-                        () -> {
-                            try {
-                                while (true) {
-                                    Scanner inputReader = new Scanner(System.in);
-                                    String input = inputReader.nextLine();
-                                    if (input.equals("exit")) {
-                                        for (Server server : servers) {
-                                            server.broadcast(new CloseServer());
-                                            server.close();
-                                        }
-                                        System.exit(0);
-                                    }
+                () -> {
+                    try {
+                        while (true) {
+                            Scanner inputReader = new Scanner(System.in);
+                            String input = inputReader.nextLine();
+                            if (input.equals("exit")) {
+                                for (Server server : servers) {
+                                    server.broadcast(new CloseServer());
+                                    server.close();
                                 }
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                                System.exit(0);
                             }
-                        })
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                })
                 .start();
         loadFxmlFile("main-view.fxml");
     }

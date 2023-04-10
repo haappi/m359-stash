@@ -1,64 +1,26 @@
 package io.github.haappi.packets;
 
 import io.github.haappi.shared.Enums;
-
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.io.Serial;
 
-public class Card extends ImageView implements Packet {
-    @Serial private static final long serialVersionUID = 5839422576067187289L;
+public class Card implements Packet {
+    public static final String backCardURI = "file:src/main/resources/card-images/back.png";
+    @Serial
+    private static final long serialVersionUID = 5839422576067187289L;
     private final String fileURI;
     private final String cardName;
-
     private final Enums size;
     private final Enums color;
     private final Enums container;
     private final Enums pattern;
-
     private int row;
-
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
-    }
-
     private int col;
-
-    /**
-     * If this is a False it means the card is showing its face.<br>
-     * Else if it's True, it means the card is showing its back.
-     */
-    private boolean isFlipped = true;
-
-    public static final String backCardURI = "file:src/main/resources/card-images/back.png";
-
-    public boolean isFlipped() {
-        return isFlipped;
-    }
-
-    private void setFlipped(boolean flipped) {
-        isFlipped = flipped;
-    }
-
-    public void flip() {
-        setFlipped(!isFlipped);
-    }
+    private boolean selected = false;
 
     public Card(Enums size, Enums color, Enums container, Enums pattern) {
-        super("file:src/main/resources/card-images/back.png");
+//        super("file:src/main/resources/card-images/back.png");
 
         this.size = size;
         this.color = color;
@@ -68,34 +30,6 @@ public class Card extends ImageView implements Packet {
                 "file:src/main/resources/card-images/"
                         + constructFileName(size, color, container, pattern);
         this.cardName = constructFileName(size, color, container, pattern);
-    }
-
-    public String getCardName() {
-        return cardName;
-    }
-
-    public String getFileURI() {
-        return fileURI;
-    }
-
-    public Enums getSize() {
-        return size;
-    }
-
-    public Enums getColor() {
-        return color;
-    }
-
-    public Enums getContainer() {
-        return container;
-    }
-
-    public Enums getPattern() {
-        return pattern;
-    }
-
-    public boolean isBackCard() {
-        return isFlipped;
     }
 
     private static String constructFileName(
@@ -122,19 +56,119 @@ public class Card extends ImageView implements Packet {
         //        return image;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Card card = (Card) o;
-        if (this.isBackCard() || card.isBackCard()) {
-            return false;
+    public static boolean isMatch(String against, Card... cards) {
+        Object ref;
+        switch (against) {
+            case "size" -> ref = cards[0].size;
+            case "color" -> ref = cards[0].color;
+            case "container" -> ref = cards[0].container;
+            case "pattern" -> ref = cards[0].pattern;
+            default -> throw new IllegalStateException("Unexpected value: " + against);
         }
-        return getNumberOfMatches(card) > 1;
+
+        for (Card card : cards) {
+            switch (against) {
+                case "size" -> {
+                    if (card.size != ref) return false;
+                }
+                case "color" -> {
+                    if (card.color != ref) return false;
+                }
+                case "container" -> {
+                    if (card.container != ref) return false;
+                }
+                case "pattern" -> {
+                    if (card.pattern != ref) return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public int getRow() {
+        return row;
+    }
+//    /**
+//     * If this is a False it means the card is showing its face.<br>
+//     * Else if it's True, it means the card is showing its back.
+//     */
+//    private boolean isFlipped = true;
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+//    public boolean isFlipped() {
+//        return isFlipped;
+//    }
+//
+//    private void setFlipped(boolean flipped) {
+//        isFlipped = flipped;
+//    }
+//
+//    public void flip() {
+//        setFlipped(!isFlipped);
+//    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    public boolean isSelected() {
+        return selected;
+    }
+
+    public void setSelected(boolean selected) {
+        this.selected = selected;
+    }
+
+    public String getCardName() {
+        return cardName;
+    }
+
+    public String getFileURI() {
+        return fileURI;
+    }
+
+    public Enums getSize() {
+        return size;
+    }
+
+//    public boolean isBackCard() {
+//        return isFlipped;
+//    }
+
+    public Enums getColor() {
+        return color;
+    }
+
+    public Enums getContainer() {
+        return container;
+    }
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Card card = (Card) o;
+//        if (this.isBackCard() || card.isBackCard()) {
+//            return false;
+//        }
+//        return getNumberOfMatches(card) > 1;
+//    }
+
+    public Enums getPattern() {
+        return pattern;
     }
 
     /**
      * Checks how many attrs between the two cards are the same. Having more of the same attrs leads to a higher score.
+     *
      * @param o the other card
      * @return the number of matches
      */
@@ -169,35 +203,5 @@ public class Card extends ImageView implements Packet {
             return "pattern";
         }
         return "none";
-    }
-
-    public static boolean isMatch(String against, Card... cards) {
-        Object ref;
-        switch (against) {
-            case "size" -> ref = cards[0].size;
-            case "color" -> ref = cards[0].color;
-            case "container" -> ref = cards[0].container;
-            case "pattern" -> ref = cards[0].pattern;
-            default -> throw new IllegalStateException("Unexpected value: " + against);
-        }
-
-        for (Card card : cards) {
-            switch (against) {
-                case "size" -> {
-                    if (card.size != ref) return false;
-                }
-                case "color" -> {
-                    if (card.color != ref) return false;
-                }
-                case "container" -> {
-                    if (card.container != ref) return false;
-                }
-                case "pattern" -> {
-                    if (card.pattern != ref) return false;
-                }
-            }
-        }
-
-        return true;
     }
 }

@@ -1,11 +1,7 @@
 package io.github.haappi.bold_server;
 
-import io.github.haappi.packets.Packet;
-import io.github.haappi.packets.Player;
-
 import java.io.*;
 import java.net.Socket;
-import java.net.SocketException;
 
 public class ClientHandler extends Thread {
     // Im extending this class because I want this to run in another thread (without more
@@ -18,7 +14,11 @@ public class ClientHandler extends Thread {
     private final Server server;
     private final String clientName;
 
-    private Player player;
+//    private Player player;
+
+    private String playerName;
+    private boolean playerReady = false;
+
 
     private ObjectOutputStream
             objectStream; // This is the output stream to the client (objects are "written" through
@@ -27,19 +27,14 @@ public class ClientHandler extends Thread {
             objectInputStream; // This is the input stream from the client (objects are "read"
     // through this)
 
-    public Player getPlayer() {
-        return player == null ? new Player(clientName) : player;
-    }
+//    public Player getPlayer() {
+//        return player == null ? new Player(clientName) : player;
+//    }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
-    public Server getServer() {
-        return server;
-    }
-
-
+    //    public void setPlayer(Player player) {
+//        this.player = player;
+//    }
+    private int playerScore = 0;
 
     public ClientHandler(Socket bindedTo, Server server) {
         Logger.getInstance()
@@ -61,12 +56,39 @@ public class ClientHandler extends Thread {
         }
     }
 
+    public Server getServer() {
+        return server;
+    }
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public boolean isPlayerReady() {
+        return playerReady;
+    }
+
+    public void setPlayerReady(boolean playerReady) {
+        this.playerReady = playerReady;
+    }
+
+    public void increaseScore(int playerScore) {
+        this.playerScore = this.playerScore + playerScore;
+    }
+
+    public int getPlayerScore() {
+        return playerScore;
+    }
+
     public void sendObject(Object object) {
         try {
             objectStream.writeObject(object);
             objectStream.flush(); // Flushing is just to make sure that the object is sent
         } catch (IOException e) {
-            return;
         }
         // (i think it's necessary so i added it :D)
     }
@@ -79,7 +101,6 @@ public class ClientHandler extends Thread {
     public void run() {
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(bindedTo.getInputStream()));
-            // while loop and keep listenting for objects
 
             while (true) {
                 String msg = reader.readLine();
@@ -87,7 +108,7 @@ public class ClientHandler extends Thread {
                     break;
                 }
                 Logger.getInstance().log("Message received: " + msg + " from " + clientName, Logger.YELLOW);
-                server.handleMessageTwo(msg, this);
+                server.handleMessage(msg, this);
             }
 
 //            while (true) {
@@ -120,5 +141,9 @@ public class ClientHandler extends Thread {
                                 + bindedTo.getPort(),
                         Logger.YELLOW);
         bindedTo.close();
+    }
+
+    public void setScore(int i) {
+        this.playerScore = i;
     }
 }
