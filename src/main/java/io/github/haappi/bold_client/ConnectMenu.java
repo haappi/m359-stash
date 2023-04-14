@@ -1,7 +1,5 @@
 package io.github.haappi.bold_client;
 
-import io.github.haappi.packets.Ready;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -44,6 +42,6 @@ public class ConnectMenu {
 
     public void readyButtonClick(ActionEvent actionEvent) throws IOException {
         status1.setText("You are ready.");
-        Client.getInstance().sendObject("ready");
+        Client.getInstance().sendMessage("ready");
     }
 }

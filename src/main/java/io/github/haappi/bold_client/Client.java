@@ -1,9 +1,8 @@
 package io.github.haappi.bold_client;
 
-import io.github.haappi.packets.Hello;
-import io.github.haappi.packets.Packet;
-
+import javafx.application.Platform;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -26,12 +25,12 @@ public class Client {
 
     private Client(String name) {
         if (name == null || name.equals("")) {
-            name = "Client";
+            name = "Client-" + (int) (Math.random() * 1000);
         }
         this.name = name;
     }
 
-    public static synchronized @NotNull Client getInstance(String name) {
+    public static synchronized @NotNull Client getInstance(@Nullable String name) {
         if (instance == null) {
             instance = new Client(name);
         }
@@ -39,7 +38,7 @@ public class Client {
     }
 
     public static synchronized @NotNull Client getInstance() {
-        return getInstance("Client");
+        return getInstance(null);
     }
 
     public void reset() {
@@ -53,12 +52,14 @@ public class Client {
         objectStream = new ObjectOutputStream(clientSocket.getOutputStream());
         objectInputStream = new ObjectInputStream(clientSocket.getInputStream());
 
-        sendObject(
-                new Hello(
-                        name,
-                        clientSocket.getInetAddress().getHostAddress(),
-                        clientSocket.getPort(),
-                        clientSocket.getRemoteSocketAddress().toString().split("/")[1]));
+        sendMessage("playerName:" + name);
+
+//        sendObject(
+//                new Hello(
+//                        name,
+//                        clientSocket.getInetAddress().getHostAddress(),
+//                        clientSocket.getPort(),
+//                        clientSocket.getRemoteSocketAddress().toString().split("/")[1]));
 
         // start listening to messages from the server
         new Thread(
@@ -68,10 +69,10 @@ public class Client {
                                     Object object = objectInputStream.readObject();
                                     if (object instanceof String) {
                                         System.out.println("Reading String");
-                                        GameView.messageReceived((String) object);
+                                        Platform.runLater(() -> GameView.messageReceived((String) object));
                                     } else {
                                         System.out.println("Reading object");
-                                        GameView.messageReceived(object);
+                                        Platform.runLater(() -> GameView.messageReceived(object));
                                     }
                                 }
                             } catch (EOFException | SocketException e) {
@@ -87,7 +88,7 @@ public class Client {
                 .start();
     }
 
-    public void sendObject(Object object)  {
+    public void sendMessage(Object object)  {
         if (objectStream == null) {
             return;
         }
@@ -99,7 +100,10 @@ public class Client {
             e.printStackTrace();
         }
         // (i think it's necessary so i added it :D)
+    }
 
+    public void sendMessage(String message) {
+        this.sendMessage((Object) message);
     }
 
     public String clientName() {

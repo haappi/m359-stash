@@ -2,7 +2,6 @@ package io.github.haappi.bold_client;
 
 import io.github.haappi.packets.Card;
 
-import io.github.haappi.packets.Player;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -10,18 +9,18 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
 
-import static io.github.haappi.packets.Card.backCardURI;
 import static io.github.haappi.shared.Utils.getContentOfMessage;
 import static io.github.haappi.shared.Utils.getImageViewFromGridPane;
 import static javafx.scene.transform.Rotate.Y_AXIS;
 
 public class GameView {
-    public GridPane gameBoard = new GridPane();
+    public GridPane gameBoard;
     public Label whosTurn = new Label();
     private static final ArrayList<Card> selectedCards = new ArrayList<>();
 
@@ -34,12 +33,13 @@ public class GameView {
 
     private static boolean playerTurn = false;
 
-    private static Card[][] cards = new Card[4][5];
+    public static Card[][] cards = new Card[4][5];
+    public AnchorPane pane;
 
     public static void messageReceived(final String object) {
-        System.out.println(object);
-        if (object.startsWith("startGame")) {
-            HelloApplication.getInstance().loadFxmlFile("connect-menu");
+        System.out.println("String received: " + object);
+        if (object.startsWith("start")) {
+            HelloApplication.getInstance().loadFxmlFile("game-view");
             return;
         }
         if (object.startsWith("score:")) {
@@ -64,14 +64,15 @@ public class GameView {
                    ImageView view = getImageViewFromGridPane(staticGameBoard, card.getRow(), card.getCol());
                    RotateTransition transition = new RotateTransition(Duration.millis(500), view);
                    transition.setAxis(Y_AXIS);
-                   transition.setFromAngle(90);
-                   transition.setToAngle(0);
-                   transition.setOnFinished(e2 -> {
+                   transition.setFromAngle(180);
+                   transition.setToAngle(90);
+                   transition.setAutoReverse(true); // goes to the left once, goes to the right once. etc.
+                   transition.setOnFinished(event -> {
                     view.setImage(image);
                     transition.setFromAngle(90);
                     transition.setToAngle(0);
                     transition.play();
-                    transition.setOnFinished(e3 -> {
+                    transition.setOnFinished(eventt -> {
                         transition.stop();
                     });
                 });
@@ -82,22 +83,35 @@ public class GameView {
     }
 
     public static void messageReceived(Object object) {
+        System.out.println("Object received: " + object);
         if (object instanceof Card[][]) {
             Platform.runLater(() ->  GameView.getInstance().updateCards((Card[][]) object));
             return;
         }
         if (object instanceof Card card) {
             ImageView view = getImageViewFromGridPane(staticGameBoard, card.getRow(), card.getCol());
-            Image image = HelloApplication.allCardImages.get(card.getCardName());
+            System.out.println(HelloApplication.allCardImages.size());
+
+            // sout all entires in HashMap allCardImages
+
+            for (String key : HelloApplication.allCardImages.keySet()) {
+                System.out.println(key);
+            }
+            System.out.println("looking for: " + card.getCardName().replace(".png", "") + " in HashMap");
+
+            Image image = HelloApplication.allCardImages.get(card.getCardName().replace(".png", ""));
+            System.out.println(image.getUrl());
 
             RotateTransition transition = new RotateTransition(Duration.millis(500), view);
             transition.setAxis(Y_AXIS);
             transition.setFromAngle(0);
             transition.setToAngle(90);
+            transition.setAutoReverse(true); // goes to the left once, goes to the right once. etc.
 
             transition.setOnFinished(event -> {
                 view.setImage(image);
                 transition.setToAngle(180);
+                transition.setFromAngle(90);
                 transition.play();
                 transition.setOnFinished(e3 -> {
                     transition.stop();
@@ -105,7 +119,7 @@ public class GameView {
                 });
             });
             transition.play();
-            view.setOnMouseClicked(null);
+//            view.setOnMouseClicked(null);
             return;
         }
         if (object instanceof Integer) {
@@ -119,12 +133,11 @@ public class GameView {
         GameView.staticScoreLabel = scoreLabel;
         GameView.staticGameBoard = gameBoard;
         GameView.playerTurnLabel = whosTurn;
-        gameBoard = new GridPane();
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 4; j++) {
-                gameBoard.add(new Label("X"), i, j);
-            }
-        }
+//        for (int i = 0; i < 5; i++) {
+//            for (int j = 0; j < 4; j++) {
+//                gameBoard.add(new Label("X"), i, j);
+//            }
+//        }
         bigInitFunction();
     }
 
@@ -143,21 +156,26 @@ public class GameView {
 
     public void updateCards(final Card[][] cards) {
         gameBoard.getChildren().clear();
-        this.cards = cards;
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 5; j++) {
+        gameBoard.setVisible(true);
+        GameView.cards = cards;
+        for (int x = 0; x < 4; x++) {
+            for (int y = 0; y < 5; y++) {
                 ImageView imageView = new ImageView();
-                int finalI = i;
-                int finalJ = j;
+                int finalX = x;
+                int finalY = y;
                 imageView.setOnMouseClicked(event -> {
                     if (playerTurn) {
-                        Client.getInstance().sendObject("cardClicked:" + finalI + "," + finalJ);
+                        Client.getInstance().sendMessage("cardClicked:" + finalX + "," + finalY);
                     }
                 });
+                imageView.setFitWidth(100);
+                imageView.setFitHeight(100);
                 imageView.setImage(HelloApplication.allCardImages.get("back"));
-                System.out.println(gameBoard.getChildren());
+                System.out.println("Adding image to gridpane at " + x + ", " + y);
+                gameBoard.add(imageView, y, x);
             }
         }
+        System.out.println(gameBoard.getChildren());
     }
 
     private void bigInitFunction() {

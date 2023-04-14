@@ -65,7 +65,6 @@ public class HelloApplication extends Application {
                 allCardImages.put(f.getName().replace(".png", ""), new Image(f.toURI().toString()));
             }
         }
-        System.out.println(allCards);
         this.stage = stage;
         loadFxmlFile("connect-menu.fxml");
     }

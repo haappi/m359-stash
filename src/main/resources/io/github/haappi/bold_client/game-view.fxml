@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.bold_client.GameView">
+<AnchorPane fx:id="pane" prefHeight="900.0" prefWidth="1600.0" style="-fx-background-color: aliceblue;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.bold_client.GameView">
    <children>
       <GridPane fx:id="gameBoard" layoutX="213.0" layoutY="155.0">
       </GridPane>

@@ -153,10 +153,7 @@ public class Card implements Packet {
 
     private static String constructFileName(
             Enums size, Enums color, Enums container, Enums pattern) {
-        return """
-                %s_%s_%s_%s.png
-                """
-                .formatted(pattern, size, color, container);
+        return String.format("%s_%s_%s_%s.png", pattern, size, color, container);
     }
 
     public static Image getImage(String fileUri) {

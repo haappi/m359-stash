@@ -1,5 +1,6 @@
 package io.github.haappi.shared;
 
+import io.github.haappi.packets.Card;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,5 +26,16 @@ public class Utils {
             }
         }
         return null;
+    }
+
+    public static String prettyPrint(Card[][] cards) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (Card[] card : cards) {
+            for (Card value : card) {
+                stringBuilder.append(value.getCardName()).append(" ");
+            }
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
 }
