@@ -3,8 +3,8 @@ package io.github.haappi.bold_server;
 import io.github.haappi.packets.Card;
 import io.github.haappi.shared.Enums;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Bold {
     private final Card[][] cards = new Card[4][5];
@@ -29,11 +29,11 @@ public class Bold {
         this(server, 1);
     }
 
-    private void restartGame() {
-        if (!gameOver) {
-            return;
-        }
-        gameOver = false;
+    public void restartGame() {
+//        if (!gameOver) {
+//            return;
+//        }
+//        gameOver = false;
 
         for (ClientHandler client : server.getClients()) {
             client.setScore(0);
@@ -110,7 +110,8 @@ public class Bold {
     }
 
     public void nextLosersTurn() {
-        currentPlayer.increaseScore((int) (Math.pow(selectedCards.size(), selectedCards.size()) * modifier));
+        int score = selectedCards.size() * selectedCards.size();
+        currentPlayer.increaseScore(score);
 
         for (ClientHandler client : server.getClients()) {
             client.sendMessage("score:" + client.getPlayerScore());
@@ -129,7 +130,19 @@ public class Bold {
                 newCard.setRow(card.getRow());
             }
             if (drawPile.size() == 0) {
-                server.broadcast("gameOver");
+                if (isGameCompleted()) {
+                    HashMap<String, Integer> playerScores = new HashMap<>();
+                    for (ClientHandler connectedClient : server.getClients()) {
+                        playerScores.put(connectedClient.getPlayerName(), connectedClient.getPlayerScore());
+                    }
+                    // took the below from a stackoverflow thread
+                    HashMap<String, Integer> sorted = playerScores.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+                    StringBuilder toStrings = new StringBuilder();
+                    for (Map.Entry<String, Integer> entrySet : sorted.entrySet()) {
+                        toStrings.append(entrySet.getKey()).append(": ").append(entrySet.getValue()).append("\n");
+                    }
+                    server.broadcast("gameOver:"+ toStrings);
+                }
             }
             new Thread(() -> {
                 try {

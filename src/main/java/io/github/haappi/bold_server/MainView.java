@@ -149,7 +149,13 @@ public class MainView {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    Platform.runLater(() -> this.selectedServer.getGameInstance().start());
+                    Platform.runLater(() -> {
+//                        if (selectedServer.getGameInstance().isGameCompleted()) {
+//
+//                        } else {
+                            this.selectedServer.getGameInstance().start();
+//                        }
+                    });
                 })
                 .start();
     }
@@ -172,5 +178,13 @@ public class MainView {
         //        selectedClient.sendObject(new Test());
         //        selectedClient.sendObject(
         //                new io.github.haappi.shared.Card("red", "cup", "large", "stripes"));
+    }
+
+    public void restartGameButton(ActionEvent actionEvent) {
+        if (this.selectedServer.getGameInstance().isGameCompleted()) {
+            this.selectedServer.getGameInstance().restartGame();
+        } else {
+            Logger.getInstance().log("Cannot restart a running game instance.", Logger.RED);
+        }
     }
 }
