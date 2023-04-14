@@ -141,8 +141,17 @@ public class MainView {
                         return;
                     }
                 }
-        this.selectedServer.broadcast(new StartGame());
-        this.selectedServer.getGameInstance().start();
+        this.selectedServer.broadcast("start");
+        new Thread(
+                () -> {
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Platform.runLater(() -> this.selectedServer.getGameInstance().start());
+                })
+                .start();
     }
 
     @FXML

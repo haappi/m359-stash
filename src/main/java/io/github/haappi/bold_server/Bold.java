@@ -161,6 +161,7 @@ public class Bold {
         createGameDeck();
         currentPlayer = server.getClients().get(0);
         for (ClientHandler client : server.getClients()) {
+            client.sendMessage("score:" + client.getPlayerScore());
             if (client == currentPlayer) {
                 client.sendMessage("yourTurn");
             } else {
@@ -203,6 +204,12 @@ public class Bold {
     }
 
     private boolean doCardsMatch(Card card1, Card card2) {
+        if (card1 == card2) {
+            return false;
+        }
+        if (card1.getRow() == card2.getRow() && card1.getCol() == card2.getCol()) {
+            return false;
+        }
         return card1.getSize() == card2.getSize() ||
                 card1.getColor() == card2.getColor() ||
                 card1.getContainer() == card2.getContainer() ||

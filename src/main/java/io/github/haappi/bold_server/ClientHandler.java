@@ -2,6 +2,7 @@ package io.github.haappi.bold_server;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketException;
 
 public class ClientHandler extends Thread {
     // Im extending this class because I want this to run in another thread (without more
@@ -103,24 +104,18 @@ public class ClientHandler extends Thread {
             BufferedReader reader = new BufferedReader(new InputStreamReader(bindedTo.getInputStream()));
 
             while (true) {
-                String msg = reader.readLine();
-                if (msg == null) {
+                try {
+                    Object object = objectInputStream.readObject();
+                    Logger.getInstance().log("Message received: " + Logger.CYAN + object + Logger.YELLOW + " from " + clientName, Logger.YELLOW);
+                    if (object instanceof String packet) {
+                        server.handleMessage(packet, this);
+                    }
+                } catch (EOFException | SocketException e) {
                     break;
+                } catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
                 }
-                Logger.getInstance().log("Message received: " + msg + " from " + clientName, Logger.YELLOW);
-                server.handleMessage(msg, this);
             }
-
-//            while (true) {
-//                try {
-//                    Object object = objectInputStream.readObject();
-//                    if (object instanceof Packet packet) {
-//                        packet.handle(this);
-//                    }
-//                } catch (EOFException | SocketException e) {
-//                    break;
-//                }
-//            }
         } catch (IOException e) {
             e.printStackTrace();
         }
