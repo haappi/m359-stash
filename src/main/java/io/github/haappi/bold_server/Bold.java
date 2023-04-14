@@ -99,7 +99,10 @@ public class Bold {
     public void createGameDeck() {
         for (int i = 0; i < cards.length; i++) {
             for (int j = 0; j < cards[i].length; j++) {
-                cards[i][j] = drawPile.remove(0);
+                Card card = drawPile.remove(0);
+                cards[i][j] = card;
+                card.setRow(i);
+                card.setCol(j);
             }
         }
 
@@ -133,6 +136,16 @@ public class Bold {
                     Thread.sleep(3000);
                     server.broadcast(cards);
                     server.broadcast("flipAllCards");
+
+                    Thread.sleep(1000);
+
+                    for (ClientHandler client : server.getClients()) {
+                        if (client == currentPlayer) {
+                            client.sendMessage("yourTurn");
+                        } else {
+                            client.sendMessage("notYourTurn");
+                        }
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -141,13 +154,7 @@ public class Bold {
 
         selectedCards.clear();
 
-        for (ClientHandler client : server.getClients()) {
-            if (client == currentPlayer) {
-                client.sendMessage("yourTurn");
-            } else {
-                client.sendMessage("notYourTurn");
-            }
-        }
+
     }
 
     public void start() {
@@ -180,6 +187,7 @@ public class Bold {
     }
 
     private boolean canCardBeMatched(Card card) {
+        // somehow make this method faster
         for (int row = 0; row < cards.length; row++) {
             for (int col = 0; col < cards[row].length; col++) {
                 if (row != card.getRow() || col != card.getCol()) {

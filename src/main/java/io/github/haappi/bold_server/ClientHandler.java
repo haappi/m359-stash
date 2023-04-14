@@ -84,7 +84,7 @@ public class ClientHandler extends Thread {
         return playerScore;
     }
 
-    public void sendObject(Object object) {
+    public void sendMessage(Object object) {
         try {
             objectStream.writeObject(object);
             objectStream.flush(); // Flushing is just to make sure that the object is sent
@@ -94,7 +94,7 @@ public class ClientHandler extends Thread {
     }
 
     public void sendMessage(String message) {
-        this.sendObject(message);
+        this.sendMessage((Object) message);
     }
 
     @Override

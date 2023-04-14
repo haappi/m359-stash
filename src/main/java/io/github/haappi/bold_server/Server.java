@@ -92,14 +92,14 @@ public class Server {
     public void broadcast(Object object, ClientHandler sender) throws IOException {
         for (ClientHandler client : clients) {
             if (client != sender) {
-                client.sendObject(object);
+                client.sendMessage(object);
             }
         }
     }
 
     public void broadcast(Object object) {
         for (ClientHandler client : clients) {
-            client.sendObject(object);
+            client.sendMessage(object);
         }
     }
 

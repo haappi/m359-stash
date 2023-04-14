@@ -134,13 +134,13 @@ public class MainView {
         if (this.selectedServer.getClients().size() == 0) {
             return;
         }
-        // check if any of the players are NOT ready
-        //        for (Player player : this.selectedServer.getGameInstance().getPlayers()) {
-        //            if (!player.isReady()) {
-        //                System.out.printf("Player %s is not ready\n", player.getPlayerName());
-        //                return;
-        //            }
-        //        }
+//         check if any of the players are NOT ready
+                for (ClientHandler player : this.selectedServer.getClients()) {
+                    if (!player.isPlayerReady()) {
+                        System.out.printf("Player %s is not ready\n", player.getPlayerName());
+                        return;
+                    }
+                }
         this.selectedServer.broadcast(new StartGame());
         this.selectedServer.getGameInstance().start();
     }
@@ -148,13 +148,13 @@ public class MainView {
     @FXML
     protected void sendMessage() throws IOException {
         if (selectedClient == null) return;
-        selectedClient.sendObject(new ServerMessage(sendMessageClient.getText()));
+        selectedClient.sendMessage(new ServerMessage(sendMessageClient.getText()));
     }
 
     @FXML
     protected void disconnectClient() throws IOException {
         if (selectedClient == null) return;
-        selectedClient.sendObject(
+        selectedClient.sendMessage(
                 new CloseServer("You have been forcibly disconnected by the server"));
         selectedClient.close();
     }
