@@ -6,6 +6,7 @@ import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -58,10 +59,14 @@ public class GameView {
             return;
         }
         if (object.startsWith("flipAllCards")) {
+            ArrayList<RotateTransition> transitions = new ArrayList<>();
             Image image = HelloApplication.allCardImages.get("back");
-            for (Card[] cardRow : GameView.getInstance().cards) {
+            for (Card[] cardRow : GameView.cards) {
                for (Card card : cardRow) {
                    ImageView view = getImageViewFromGridPane(staticGameBoard, card.getRow(), card.getCol());
+                   if (view.getImage() == image) {
+                       continue;
+                   }
                    RotateTransition transition = new RotateTransition(Duration.millis(500), view);
                    transition.setAxis(Y_AXIS);
                    transition.setFromAngle(180);
@@ -76,9 +81,18 @@ public class GameView {
                         transition.stop();
                     });
                 });
-                transition.play();
+                   transitions.add(transition);
                }
-           }
+            }
+            transitions.forEach(RotateTransition::play);
+            return;
+        }
+        if (object.startsWith("gameOver")) {
+            String message = getContentOfMessage(object);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Game Concluded!");
+            alert.setHeaderText("The game has concluded. Please look at the server to restart the game.");
+            alert.setContentText(message);
         }
     }
 
