@@ -1,9 +1,14 @@
-module io.github.haappi.productivityApp {
-  requires javafx.controls;
-  requires javafx.fxml;
+module io.github.haappi.sample {
+//  requires javafx.controls;
+//  requires javafx.fxml;
+      requires com.gluonhq.attach.lifecycle;
   requires java.desktop;
-    requires firebase.admin;
-    requires com.google.auth.oauth2;
+  requires com.gluonhq.charm.glisten;
+  requires com.gluonhq.cloudlink.client;
+  requires com.gluonhq.attach.util;
+  requires com.gluonhq.attach.display;
+//    requires firebase.admin;
+//    requires com.google.auth.oauth2;
 
         // Requires directive for Firebase dependencies
 //    requires com.google.firebase.auth;
@@ -15,10 +20,10 @@ module io.github.haappi.productivityApp {
 //    requires com.google.cloud.core;
 //    requires com.google.cloud.pubsub;
 
-    opens io.github.haappi.productivityApp to
+    opens io.github.haappi.sample to
       javafx.fxml;
 
-  exports io.github.haappi.productivityApp;
-    exports io.github.haappi.productivityApp.Timers;
-    opens io.github.haappi.productivityApp.Timers to javafx.fxml;
+  exports io.github.haappi.sample;
+//    exports io.github.haappi.productivityApp.Timers;
+//    opens io.github.haappi.sample to javafx.fxml;
 }

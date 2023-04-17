@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.mvc.View?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<View fx:id="main" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.sample.MainPresenter">
+    <center>
+        <VBox styleClass="box">
+            <children>
+                <ColorPicker onAction="#updateColor" fx:id="colorPicker" />
+                <Label fx:id="color" text="%color.text" />
+                <Label fx:id="label" />
+            </children>
+        </VBox>
+    </center>
+</View>
