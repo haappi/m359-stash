@@ -1,4 +1,4 @@
-package io.github.haappi.sample;
+package io.github.haappi;
 
 import com.gluonhq.attach.lifecycle.LifecycleService;
 import com.gluonhq.attach.util.Platform;
@@ -12,21 +12,23 @@ import com.gluonhq.charm.glisten.control.NavigationDrawer.ViewItem;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import javafx.scene.image.Image;
 
-import static io.github.haappi.sample.Main.MAIN_VIEW;
+import static io.github.haappi.ProductivityApp.PRIMARY_VIEW;
+import static io.github.haappi.ProductivityApp.SECONDARY_VIEW;
 
 public class DrawerManager {
 
     public static void buildDrawer(AppManager app) {
         NavigationDrawer drawer = app.getDrawer();
-
+        
         NavigationDrawer.Header header = new NavigationDrawer.Header("Gluon Application",
-                "Final Project",
+                "Multi View Project",
                 new Avatar(21, new Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
         drawer.setHeader(header);
-
-        final Item mainItem = new ViewItem("Primary", MaterialDesignIcon.HOME.graphic(), MAIN_VIEW, ViewStackPolicy.SKIP);
-        drawer.getItems().addAll(mainItem);
-
+        
+        final Item primaryItem = new ViewItem("Primary", MaterialDesignIcon.HOME.graphic(), PRIMARY_VIEW, ViewStackPolicy.SKIP);
+        final Item secondaryItem = new ViewItem("Secondary", MaterialDesignIcon.DASHBOARD.graphic(), SECONDARY_VIEW);
+        drawer.getItems().addAll(primaryItem, secondaryItem);
+        
         if (Platform.isDesktop()) {
             final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());
             quitItem.selectedProperty().addListener((obs, ov, nv) -> {
@@ -37,5 +39,4 @@ public class DrawerManager {
             drawer.getItems().add(quitItem);
         }
     }
-
 }
