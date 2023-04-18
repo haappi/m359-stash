@@ -1,0 +1,17 @@
+name: Format
+
+on:
+  push
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          java-version: 17
+          distribution: zulu
+      - uses: actions/checkout@v3
+      - uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: "--skip-javadoc-formatting --aosp --replace"

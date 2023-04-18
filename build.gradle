@@ -11,11 +11,11 @@ repositories {
     }
 }
 
-mainClassName = 'io.github.haappi.ProductivityApp'
+mainClassName = "io.github.haappi.ProductivityApp"
+application.mainModule = "io.github.haappi.ProductivityApp"
 
 dependencies {
     implementation 'com.gluonhq:charm-glisten:6.2.3'
-    implementation 'org.openjfx:javafx-base:20'
 }
 
 javafx {
