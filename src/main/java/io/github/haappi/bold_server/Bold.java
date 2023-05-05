@@ -186,6 +186,9 @@ public class Bold {
         if (selectedCards.size() >= 2) {
             for (Card card : selectedCards) {
                 Card newCard = drawPile.size() > 0 ? drawPile.remove(0) : null;
+                if (card == null) {
+                    continue;
+                }
                 cards[card.getRow()][card.getCol()] = newCard;
                 if (newCard != null) {
                     newCard.setCol(card.getCol());
