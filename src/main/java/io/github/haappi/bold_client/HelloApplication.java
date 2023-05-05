@@ -1,8 +1,8 @@
 package io.github.haappi.bold_client;
 
 import io.github.haappi.packets.Card;
-
 import io.github.haappi.shared.Image;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;

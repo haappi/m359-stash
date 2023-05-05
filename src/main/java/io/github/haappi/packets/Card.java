@@ -4,17 +4,12 @@ import static io.github.haappi.shared.Utils.imageHashMap;
 
 import io.github.haappi.shared.Enums;
 
-import javafx.animation.RotateTransition;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
 
 import java.io.Serial;
 
 public class Card implements Packet {
     @Serial private static final long serialVersionUID = 5839422576067187289L;
-
 
     private final String fileURI;
     private final String cardName;
@@ -59,34 +54,34 @@ public class Card implements Packet {
         isFlipped = flipped;
     }
 
-//    public void flip() {
-//        setFlipped(!isFlipped);
-//
-//        RotateTransition transition = new RotateTransition(Duration.millis(100), this);
-//        transition.setAxis(Rotate.Y_AXIS);
-//        transition.setFromAngle(180);
-//        transition.setToAngle(90);
-//
-//        transition.setOnFinished(
-//                (a) -> {
-//                    if (isFlipped) {
-//                        setImage(getImage(backCardURI));
-//                    } else {
-//                        setImage(getImage(fileURI));
-//                    }
-//                    transition.setFromAngle(90);
-//                    transition.setToAngle(0);
-//                    transition.play();
-//                });
-//
-//        transition.play();
-//    }
+    //    public void flip() {
+    //        setFlipped(!isFlipped);
+    //
+    //        RotateTransition transition = new RotateTransition(Duration.millis(100), this);
+    //        transition.setAxis(Rotate.Y_AXIS);
+    //        transition.setFromAngle(180);
+    //        transition.setToAngle(90);
+    //
+    //        transition.setOnFinished(
+    //                (a) -> {
+    //                    if (isFlipped) {
+    //                        setImage(getImage(backCardURI));
+    //                    } else {
+    //                        setImage(getImage(fileURI));
+    //                    }
+    //                    transition.setFromAngle(90);
+    //                    transition.setToAngle(0);
+    //                    transition.play();
+    //                });
+    //
+    //        transition.play();
+    //    }
 
     public Card(Enums size, Enums color, Enums container, Enums pattern) {
-//        super(
-//                getImage(
-//                        "file:src/main/resources/card-images/"
-//                                + constructFileName(size, color, container, pattern)));
+        //        super(
+        //                getImage(
+        //                        "file:src/main/resources/card-images/"
+        //                                + constructFileName(size, color, container, pattern)));
 
         this.size = size;
         this.color = color;
@@ -99,7 +94,7 @@ public class Card implements Packet {
     }
 
     public Card(String fileURI) {
-//        super(getImage(fileURI));
+        //        super(getImage(fileURI));
         this.fileURI = fileURI;
         // get the rest of the string after the `/` after the last `/`
         fileURI = fileURI.substring(fileURI.lastIndexOf("/") + 1);

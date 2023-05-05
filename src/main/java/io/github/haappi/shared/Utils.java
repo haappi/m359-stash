@@ -1,6 +1,7 @@
 package io.github.haappi.shared;
 
 import io.github.haappi.packets.Card;
+
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -15,11 +16,11 @@ public class Utils {
         return String.valueOf(string.charAt(position));
     }
 
-        public static String getContentOfMessage(String message) {
+    public static String getContentOfMessage(String message) {
         return message.split(":")[1];
     }
 
-    public static ImageView getImageViewFromGridPane(GridPane gridPane, int row, int col){
+    public static ImageView getImageViewFromGridPane(GridPane gridPane, int row, int col) {
         for (Node node : gridPane.getChildren()) {
             if (GridPane.getRowIndex(node) == row && GridPane.getColumnIndex(node) == col) {
                 return (ImageView) node;

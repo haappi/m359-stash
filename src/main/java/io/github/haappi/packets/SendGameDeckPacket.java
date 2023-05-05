@@ -19,7 +19,7 @@ public class SendGameDeckPacket implements Packet {
     @Override
     public void handle() {
         GameView instance = GameView.getInstance();
-//        instance.cards = cards;
+        //        instance.cards = cards;
         instance.updateCards(cards);
     }
 }

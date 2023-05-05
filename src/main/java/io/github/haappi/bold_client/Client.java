@@ -1,6 +1,7 @@
 package io.github.haappi.bold_client;
 
 import javafx.application.Platform;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -54,12 +55,12 @@ public class Client {
 
         sendMessage("playerName:" + name);
 
-//        sendObject(
-//                new Hello(
-//                        name,
-//                        clientSocket.getInetAddress().getHostAddress(),
-//                        clientSocket.getPort(),
-//                        clientSocket.getRemoteSocketAddress().toString().split("/")[1]));
+        //        sendObject(
+        //                new Hello(
+        //                        name,
+        //                        clientSocket.getInetAddress().getHostAddress(),
+        //                        clientSocket.getPort(),
+        //                        clientSocket.getRemoteSocketAddress().toString().split("/")[1]));
 
         // start listening to messages from the server
         new Thread(
@@ -69,7 +70,8 @@ public class Client {
                                     Object object = objectInputStream.readObject();
                                     if (object instanceof String) {
                                         System.out.println("Reading String");
-                                        Platform.runLater(() -> GameView.messageReceived((String) object));
+                                        Platform.runLater(
+                                                () -> GameView.messageReceived((String) object));
                                     } else {
                                         System.out.println("Reading object");
                                         Platform.runLater(() -> GameView.messageReceived(object));
@@ -88,7 +90,7 @@ public class Client {
                 .start();
     }
 
-    public void sendMessage(Object object)  {
+    public void sendMessage(Object object) {
         if (objectStream == null) {
             return;
         }

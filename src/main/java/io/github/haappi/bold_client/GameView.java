@@ -1,5 +1,10 @@
 package io.github.haappi.bold_client;
 
+import static io.github.haappi.shared.Utils.getContentOfMessage;
+import static io.github.haappi.shared.Utils.getImageViewFromGridPane;
+
+import static javafx.scene.transform.Rotate.Y_AXIS;
+
 import io.github.haappi.packets.Card;
 
 import javafx.animation.RotateTransition;
@@ -16,10 +21,6 @@ import javafx.scene.layout.GridPane;
 import javafx.util.Duration;
 
 import java.util.ArrayList;
-
-import static io.github.haappi.shared.Utils.getContentOfMessage;
-import static io.github.haappi.shared.Utils.getImageViewFromGridPane;
-import static javafx.scene.transform.Rotate.Y_AXIS;
 
 public class GameView {
     public GridPane gameBoard;
@@ -63,27 +64,31 @@ public class GameView {
             ArrayList<RotateTransition> transitions = new ArrayList<>();
             Image image = HelloApplication.allCardImages.get("back");
             for (Card[] cardRow : GameView.cards) {
-               for (Card card : cardRow) {
-                   ImageView view = getImageViewFromGridPane(staticGameBoard, card.getRow(), card.getCol());
-                   if (view.getImage() == image) {
-                       continue;
-                   }
-                   RotateTransition transition = new RotateTransition(Duration.millis(500), view);
-                   transition.setAxis(Y_AXIS);
-                   transition.setFromAngle(180);
-                   transition.setToAngle(90);
-                   transition.setAutoReverse(true); // goes to the left once, goes to the right once. etc.
-                   transition.setOnFinished(event -> {
-                    view.setImage(image);
-                    transition.setFromAngle(90);
-                    transition.setToAngle(0);
-                    transition.play();
-                    transition.setOnFinished(eventt -> {
-                        transition.stop();
-                    });
-                });
-                   transitions.add(transition);
-               }
+                for (Card card : cardRow) {
+                    ImageView view =
+                            getImageViewFromGridPane(staticGameBoard, card.getRow(), card.getCol());
+                    if (view.getImage() == image) {
+                        continue;
+                    }
+                    RotateTransition transition = new RotateTransition(Duration.millis(500), view);
+                    transition.setAxis(Y_AXIS);
+                    transition.setFromAngle(180);
+                    transition.setToAngle(90);
+                    transition.setAutoReverse(
+                            true); // goes to the left once, goes to the right once. etc.
+                    transition.setOnFinished(
+                            event -> {
+                                view.setImage(image);
+                                transition.setFromAngle(90);
+                                transition.setToAngle(0);
+                                transition.play();
+                                transition.setOnFinished(
+                                        eventt -> {
+                                            transition.stop();
+                                        });
+                            });
+                    transitions.add(transition);
+                }
             }
             transitions.forEach(RotateTransition::play);
             return;
@@ -92,7 +97,8 @@ public class GameView {
             String message = getContentOfMessage(object);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Game Concluded!");
-            alert.setHeaderText("The game has concluded. Please look at the server to restart the game.");
+            alert.setHeaderText(
+                    "The game has concluded. Please look at the server to restart the game.");
             alert.setContentText(message);
         }
     }
@@ -100,11 +106,12 @@ public class GameView {
     public static void messageReceived(Object object) {
         System.out.println("Object received: " + object);
         if (object instanceof Card[][]) {
-            Platform.runLater(() ->  GameView.getInstance().updateCards((Card[][]) object));
+            Platform.runLater(() -> GameView.getInstance().updateCards((Card[][]) object));
             return;
         }
         if (object instanceof Card card) {
-            ImageView view = getImageViewFromGridPane(staticGameBoard, card.getRow(), card.getCol());
+            ImageView view =
+                    getImageViewFromGridPane(staticGameBoard, card.getRow(), card.getCol());
             System.out.println(HelloApplication.allCardImages.size());
 
             // sout all entires in HashMap allCardImages
@@ -112,9 +119,11 @@ public class GameView {
             for (String key : HelloApplication.allCardImages.keySet()) {
                 System.out.println(key);
             }
-            System.out.println("looking for: " + card.getCardName().replace(".png", "") + " in HashMap");
+            System.out.println(
+                    "looking for: " + card.getCardName().replace(".png", "") + " in HashMap");
 
-            Image image = HelloApplication.allCardImages.get(card.getCardName().replace(".png", ""));
+            Image image =
+                    HelloApplication.allCardImages.get(card.getCardName().replace(".png", ""));
             System.out.println(image.getUrl());
 
             RotateTransition transition = new RotateTransition(Duration.millis(500), view);
@@ -123,18 +132,20 @@ public class GameView {
             transition.setToAngle(90);
             transition.setAutoReverse(true); // goes to the left once, goes to the right once. etc.
 
-            transition.setOnFinished(event -> {
-                view.setImage(image);
-                transition.setToAngle(180);
-                transition.setFromAngle(90);
-                transition.play();
-                transition.setOnFinished(e3 -> {
-                    transition.stop();
-                    selectedCards.add(cards[card.getRow()][card.getCol()]);
-                });
-            });
+            transition.setOnFinished(
+                    event -> {
+                        view.setImage(image);
+                        transition.setToAngle(180);
+                        transition.setFromAngle(90);
+                        transition.play();
+                        transition.setOnFinished(
+                                e3 -> {
+                                    transition.stop();
+                                    selectedCards.add(cards[card.getRow()][card.getCol()]);
+                                });
+                    });
             transition.play();
-//            view.setOnMouseClicked(null);
+            //            view.setOnMouseClicked(null);
             return;
         }
         if (object instanceof Integer) {
@@ -148,15 +159,13 @@ public class GameView {
         GameView.staticScoreLabel = scoreLabel;
         GameView.staticGameBoard = gameBoard;
         GameView.playerTurnLabel = whosTurn;
-//        for (int i = 0; i < 5; i++) {
-//            for (int j = 0; j < 4; j++) {
-//                gameBoard.add(new Label("X"), i, j);
-//            }
-//        }
+        //        for (int i = 0; i < 5; i++) {
+        //            for (int j = 0; j < 4; j++) {
+        //                gameBoard.add(new Label("X"), i, j);
+        //            }
+        //        }
         bigInitFunction();
     }
-
-
 
     public GameView() {
         instance = this;
@@ -178,16 +187,21 @@ public class GameView {
                 ImageView imageView = new ImageView();
                 int finalX = x;
                 int finalY = y;
-                imageView.setOnMouseClicked(event -> {
-                    if (playerTurn) {
-                        if (GameView.cards[finalX][finalY] != null) {
-                            Client.getInstance().sendMessage("cardClicked:" + finalX + "," + finalY);
-                        }
-                    }
-                });
+                imageView.setOnMouseClicked(
+                        event -> {
+                            if (playerTurn) {
+                                if (GameView.cards[finalX][finalY] != null) {
+                                    Client.getInstance()
+                                            .sendMessage("cardClicked:" + finalX + "," + finalY);
+                                }
+                            }
+                        });
                 imageView.setFitWidth(100);
                 imageView.setFitHeight(100);
-                imageView.setImage(GameView.cards[x][y] != null ? HelloApplication.allCardImages.get("back") : HelloApplication.allCardImages.get("empty"));
+                imageView.setImage(
+                        GameView.cards[x][y] != null
+                                ? HelloApplication.allCardImages.get("back")
+                                : HelloApplication.allCardImages.get("empty"));
                 System.out.println("Adding image to gridpane at " + x + ", " + y);
                 gameBoard.add(imageView, y, x);
             }
