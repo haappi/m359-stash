@@ -19,9 +19,6 @@ public class HelloApplication extends Application {
     public static final HashMap<String, Card> allCards = new HashMap<>();
     public static final HashMap<String, Image> allCardImages = new HashMap<>();
 
-    // I'm using a conccurrent hashmap because i may have multiple threads trying to access the
-    // image at a given time, and I don't want bad things to happen
-
     public static synchronized HelloApplication getInstance() {
         return instance;
     }

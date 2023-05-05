@@ -89,7 +89,7 @@ public class GameView {
                             });
                     transitions.add(transition);
                 }
-            }
+            }// play again & matching code.
             transitions.forEach(RotateTransition::play);
             return;
         }
@@ -198,10 +198,14 @@ public class GameView {
                         });
                 imageView.setFitWidth(100);
                 imageView.setFitHeight(100);
-                imageView.setImage(
-                        GameView.cards[x][y] != null
-                                ? HelloApplication.allCardImages.get("back")
-                                : HelloApplication.allCardImages.get("empty"));
+
+                if (GameView.cards[x][y] == null) {
+                    imageView.setImage(HelloApplication.allCardImages.get("empty"));
+                    System.out.println(x + ", " + y + " is null.");
+                } else {
+                    imageView.setImage(HelloApplication.allCardImages.get("back"));
+                }
+
                 System.out.println("Adding image to gridpane at " + x + ", " + y);
                 gameBoard.add(imageView, y, x);
             }

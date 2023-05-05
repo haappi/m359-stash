@@ -39,7 +39,7 @@ public class Card implements Packet {
     }
 
     /**
-     * If this is a False it means the card is showing its face.<br>
+     * If this is a.txt False it means the card is showing its face.<br>
      * Else if it's True, it means the card is showing its back.
      */
     private boolean isFlipped = true;
@@ -183,7 +183,7 @@ public class Card implements Packet {
     }
 
     /**
-     * Checks how many attrs between the two cards are the same. Having more of the same attrs leads to a higher score.
+     * Checks how many attrs between the two cards are the same. Having more of the same attrs leads to a.txt higher score.
      * @param o the other card
      * @return the number of matches
      */

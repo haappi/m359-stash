@@ -9,6 +9,6 @@ public interface Packet extends Serializable {
      */
     default void handle() {
         throw new RuntimeException(
-                "Attempted to handle a packet, but method isn't overridden in Child class.");
+                "Attempted to handle a.txt packet, but method isn't overridden in Child class.");
     }
 }
