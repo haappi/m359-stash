@@ -30,10 +30,10 @@ public class Bold {
     }
 
     public void restartGame() {
-//        if (!gameOver) {
-//            return;
-//        }
-//        gameOver = false;
+        //        if (!gameOver) {
+        //            return;
+        //        }
+        //        gameOver = false;
 
         for (ClientHandler client : server.getClients()) {
             client.setScore(0);
@@ -127,7 +127,6 @@ public class Bold {
         return match(selectedCards);
     }
 
-
     public void createGameDeck() {
         for (int i = 0; i < cards.length; i++) {
             for (int j = 0; j < cards[i].length; j++) {
@@ -154,19 +153,32 @@ public class Bold {
         int nextIndex = (currentIndex + 1) % server.getClients().size();
         currentPlayer = server.getClients().get(nextIndex);
 
-
-//        if (selectedCards.size() >= 2) { // if they have selected atleast two cards, that must mean it was a match of some sort
+        //        if (selectedCards.size() >= 2) { // if they have selected atleast two cards, that
+        // must mean it was a match of some sort
         if (drawPile.size() == 0) {
             if (isGameCompleted()) {
                 HashMap<String, Integer> playerScores = new HashMap<>();
                 for (ClientHandler connectedClient : server.getClients()) {
-                    playerScores.put(connectedClient.getPlayerName(), connectedClient.getPlayerScore());
+                    playerScores.put(
+                            connectedClient.getPlayerName(), connectedClient.getPlayerScore());
                 }
                 // took the below from a stackoverflow thread
-                HashMap<String, Integer> sorted = playerScores.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+                HashMap<String, Integer> sorted =
+                        playerScores.entrySet().stream()
+                                .sorted(Map.Entry.comparingByKey())
+                                .collect(
+                                        Collectors.toMap(
+                                                Map.Entry::getKey,
+                                                Map.Entry::getValue,
+                                                (e1, e2) -> e1,
+                                                LinkedHashMap::new));
                 StringBuilder toStrings = new StringBuilder();
                 for (Map.Entry<String, Integer> entrySet : sorted.entrySet()) {
-                    toStrings.append(entrySet.getKey()).append(": ").append(entrySet.getValue()).append("\n");
+                    toStrings
+                            .append(entrySet.getKey())
+                            .append(": ")
+                            .append(entrySet.getValue())
+                            .append("\n");
                 }
                 server.broadcast("gameOver:" + toStrings);
             }
@@ -181,30 +193,30 @@ public class Bold {
                 }
             }
         }
-        new Thread(() -> {
-            try {
-                Thread.sleep(3000);
-                server.broadcast(cards);
-                server.broadcast("flipAllCards");
+        new Thread(
+                        () -> {
+                            try {
+                                Thread.sleep(3000);
+                                server.broadcast(cards);
+                                server.broadcast("flipAllCards");
 
-                Thread.sleep(1000);
+                                Thread.sleep(1000);
 
-                for (ClientHandler client : server.getClients()) {
-                    if (client == currentPlayer) {
-                        client.sendMessage("yourTurn");
-                    } else {
-                        client.sendMessage("notYourTurn");
-                    }
-                }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
-//        }
+                                for (ClientHandler client : server.getClients()) {
+                                    if (client == currentPlayer) {
+                                        client.sendMessage("yourTurn");
+                                    } else {
+                                        client.sendMessage("notYourTurn");
+                                    }
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        })
+                .start();
+        //        }
 
         selectedCards.clear();
-
-
     }
 
     public void start() {
@@ -218,7 +230,6 @@ public class Bold {
                 client.sendMessage("notYourTurn");
             }
         }
-
     }
 
     public boolean isGameCompleted() {
@@ -260,10 +271,10 @@ public class Bold {
         if (card1.getRow() == card2.getRow() && card1.getCol() == card2.getCol()) {
             return false;
         }
-        return card1.getSize() == card2.getSize() ||
-                card1.getColor() == card2.getColor() ||
-                card1.getContainer() == card2.getContainer() ||
-                card1.getPattern() == card2.getPattern();
+        return card1.getSize() == card2.getSize()
+                || card1.getColor() == card2.getColor()
+                || card1.getContainer() == card2.getContainer()
+                || card1.getPattern() == card2.getPattern();
     }
 
     public void clearDeck() {

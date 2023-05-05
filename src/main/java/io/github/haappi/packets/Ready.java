@@ -1,14 +1,14 @@
-//package io.github.haappi.packets;
+// package io.github.haappi.packets;
 //
-//import io.github.haappi.bold_server.ClientHandler;
-//import io.github.haappi.bold_server.HelloApplication;
-//import io.github.haappi.bold_server.Server;
+// import io.github.haappi.bold_server.ClientHandler;
+// import io.github.haappi.bold_server.HelloApplication;
+// import io.github.haappi.bold_server.Server;
 //
-//import java.io.Serial;
-//import java.util.ArrayList;
-//import java.util.Objects;
+// import java.io.Serial;
+// import java.util.ArrayList;
+// import java.util.Objects;
 //
-//public class Ready implements Packet {
+// public class Ready implements Packet {
 //    @Serial
 //    private static final long serialVersionUID = -5058600322899240319L;
 //    private final Player player;
@@ -36,4 +36,4 @@
 //            }
 //        }
 //    }
-//}
+// }

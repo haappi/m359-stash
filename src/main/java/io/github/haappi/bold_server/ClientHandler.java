@@ -15,11 +15,10 @@ public class ClientHandler extends Thread {
     private final Server server;
     private final String clientName;
 
-//    private Player player;
+    //    private Player player;
 
     private String playerName;
     private boolean playerReady = false;
-
 
     private ObjectOutputStream
             objectStream; // This is the output stream to the client (objects are "written" through
@@ -28,13 +27,13 @@ public class ClientHandler extends Thread {
             objectInputStream; // This is the input stream from the client (objects are "read"
     // through this)
 
-//    public Player getPlayer() {
-//        return player == null ? new Player(clientName) : player;
-//    }
+    //    public Player getPlayer() {
+    //        return player == null ? new Player(clientName) : player;
+    //    }
 
     //    public void setPlayer(Player player) {
-//        this.player = player;
-//    }
+    //        this.player = player;
+    //    }
     private int playerScore = 0;
 
     public ClientHandler(Socket bindedTo, Server server) {
@@ -101,12 +100,21 @@ public class ClientHandler extends Thread {
     @Override
     public void run() {
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(bindedTo.getInputStream()));
+            BufferedReader reader =
+                    new BufferedReader(new InputStreamReader(bindedTo.getInputStream()));
 
             while (true) {
                 try {
                     Object object = objectInputStream.readObject();
-                    Logger.getInstance().log("Message received: " + Logger.CYAN + object + Logger.YELLOW + " from " + clientName, Logger.YELLOW);
+                    Logger.getInstance()
+                            .log(
+                                    "Message received: "
+                                            + Logger.CYAN
+                                            + object
+                                            + Logger.YELLOW
+                                            + " from "
+                                            + clientName,
+                                    Logger.YELLOW);
                     if (object instanceof String packet) {
                         server.handleMessage(packet, this);
                     }

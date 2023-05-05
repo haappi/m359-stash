@@ -2,6 +2,7 @@ package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.CloseServer;
 import io.github.haappi.packets.ServerMessage;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,18 +16,12 @@ import java.util.TimerTask;
 
 public class MainView {
     private final ArrayList<Timer> timers = new ArrayList<>();
-    @FXML
-    protected ListView<Server> serverListView;
-    @FXML
-    protected TextField serverName;
-    @FXML
-    protected TextField bindIP;
-    @FXML
-    protected TextField bindPort;
-    @FXML
-    protected ListView<ClientHandler> connectedClients;
-    @FXML
-    protected TextField sendMessageClient;
+    @FXML protected ListView<Server> serverListView;
+    @FXML protected TextField serverName;
+    @FXML protected TextField bindIP;
+    @FXML protected TextField bindPort;
+    @FXML protected ListView<ClientHandler> connectedClients;
+    @FXML protected TextField sendMessageClient;
     private Server selectedServer;
     private ClientHandler selectedClient;
 
@@ -133,7 +128,7 @@ public class MainView {
         if (this.selectedServer.getClients().size() == 0) {
             return;
         }
-//         check if any of the players are NOT ready
+        //         check if any of the players are NOT ready
         for (ClientHandler player : this.selectedServer.getClients()) {
             if (!player.isPlayerReady()) {
                 System.out.printf("Player %s is not ready\n", player.getPlayerName());
@@ -142,20 +137,22 @@ public class MainView {
         }
         this.selectedServer.broadcast("start");
         new Thread(
-                () -> {
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    Platform.runLater(() -> {
-//                        if (selectedServer.getGameInstance().isGameCompleted()) {
-//
-//                        } else {
-                        this.selectedServer.getGameInstance().start();
-//                        }
-                    });
-                })
+                        () -> {
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            Platform.runLater(
+                                    () -> {
+                                        //                        if
+                                        // (selectedServer.getGameInstance().isGameCompleted()) {
+                                        //
+                                        //                        } else {
+                                        this.selectedServer.getGameInstance().start();
+                                        //                        }
+                                    });
+                        })
                 .start();
     }
 

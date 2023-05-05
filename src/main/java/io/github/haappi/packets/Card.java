@@ -1,14 +1,14 @@
 package io.github.haappi.packets;
 
 import io.github.haappi.shared.Enums;
+
 import javafx.scene.image.Image;
 
 import java.io.Serial;
 
 public class Card implements Packet {
     public static final String backCardURI = "file:src/main/resources/card-images/back.png";
-    @Serial
-    private static final long serialVersionUID = 5839422576067187289L;
+    @Serial private static final long serialVersionUID = 5839422576067187289L;
     private final String fileURI;
     private final String cardName;
     private final Enums size;
@@ -20,7 +20,7 @@ public class Card implements Packet {
     private boolean selected = false;
 
     public Card(Enums size, Enums color, Enums container, Enums pattern) {
-//        super("file:src/main/resources/card-images/back.png");
+        //        super("file:src/main/resources/card-images/back.png");
 
         this.size = size;
         this.color = color;
@@ -86,27 +86,28 @@ public class Card implements Packet {
     public int getRow() {
         return row;
     }
-//    /**
-//     * If this is a False it means the card is showing its face.<br>
-//     * Else if it's True, it means the card is showing its back.
-//     */
-//    private boolean isFlipped = true;
+
+    //    /**
+    //     * If this is a False it means the card is showing its face.<br>
+    //     * Else if it's True, it means the card is showing its back.
+    //     */
+    //    private boolean isFlipped = true;
 
     public void setRow(int row) {
         this.row = row;
     }
 
-//    public boolean isFlipped() {
-//        return isFlipped;
-//    }
-//
-//    private void setFlipped(boolean flipped) {
-//        isFlipped = flipped;
-//    }
-//
-//    public void flip() {
-//        setFlipped(!isFlipped);
-//    }
+    //    public boolean isFlipped() {
+    //        return isFlipped;
+    //    }
+    //
+    //    private void setFlipped(boolean flipped) {
+    //        isFlipped = flipped;
+    //    }
+    //
+    //    public void flip() {
+    //        setFlipped(!isFlipped);
+    //    }
 
     public int getCol() {
         return col;
@@ -136,9 +137,9 @@ public class Card implements Packet {
         return size;
     }
 
-//    public boolean isBackCard() {
-//        return isFlipped;
-//    }
+    //    public boolean isBackCard() {
+    //        return isFlipped;
+    //    }
 
     public Enums getColor() {
         return color;
@@ -148,16 +149,16 @@ public class Card implements Packet {
         return container;
     }
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        Card card = (Card) o;
-//        if (this.isBackCard() || card.isBackCard()) {
-//            return false;
-//        }
-//        return getNumberOfMatches(card) > 1;
-//    }
+    //    @Override
+    //    public boolean equals(Object o) {
+    //        if (this == o) return true;
+    //        if (o == null || getClass() != o.getClass()) return false;
+    //        Card card = (Card) o;
+    //        if (this.isBackCard() || card.isBackCard()) {
+    //            return false;
+    //        }
+    //        return getNumberOfMatches(card) > 1;
+    //    }
 
     public Enums getPattern() {
         return pattern;

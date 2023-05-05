@@ -5,8 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Player implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -1082792331851702559L;
+    @Serial private static final long serialVersionUID = -1082792331851702559L;
     private final ArrayList<Card[]> matches = new ArrayList<>();
     private String playerName;
     private boolean ready = false;
