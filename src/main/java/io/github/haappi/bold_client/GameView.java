@@ -4,6 +4,7 @@ import io.github.haappi.packets.Card;
 
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
@@ -179,12 +180,14 @@ public class GameView {
                 int finalY = y;
                 imageView.setOnMouseClicked(event -> {
                     if (playerTurn) {
-                        Client.getInstance().sendMessage("cardClicked:" + finalX + "," + finalY);
+                        if (GameView.cards[finalX][finalY] != null) {
+                            Client.getInstance().sendMessage("cardClicked:" + finalX + "," + finalY);
+                        }
                     }
                 });
                 imageView.setFitWidth(100);
                 imageView.setFitHeight(100);
-                imageView.setImage(HelloApplication.allCardImages.get("back"));
+                imageView.setImage(GameView.cards[x][y] != null ? HelloApplication.allCardImages.get("back") : HelloApplication.allCardImages.get("empty"));
                 System.out.println("Adding image to gridpane at " + x + ", " + y);
                 gameBoard.add(imageView, y, x);
             }
@@ -196,5 +199,11 @@ public class GameView {
         gameBoard.setHgap(10.0);
         gameBoard.setVgap(10.0);
         gameBoard.setPadding(new Insets(10, 10, 10, 10));
+    }
+
+    public void endTurnPacket(ActionEvent actionEvent) {
+        if (playerTurn) {
+            Client.getInstance().sendMessage("endTurn");
+        }
     }
 }

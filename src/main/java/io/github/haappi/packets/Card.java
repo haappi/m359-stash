@@ -106,7 +106,7 @@ public class Card implements Packet {
         fileURI = fileURI.replace(".png", "");
         this.cardName = fileURI;
 
-        if (fileURI.equals("back")) {
+        if (fileURI.equals("back") || fileURI.equals("empty")) {
             this.isFlipped = true;
 
             this.size = null;
