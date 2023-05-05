@@ -2,7 +2,6 @@ package io.github.haappi.bold_server;
 
 import io.github.haappi.packets.CloseServer;
 import io.github.haappi.packets.ServerMessage;
-import io.github.haappi.packets.StartGame;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -135,12 +134,12 @@ public class MainView {
             return;
         }
 //         check if any of the players are NOT ready
-                for (ClientHandler player : this.selectedServer.getClients()) {
-                    if (!player.isPlayerReady()) {
-                        System.out.printf("Player %s is not ready\n", player.getPlayerName());
-                        return;
-                    }
-                }
+        for (ClientHandler player : this.selectedServer.getClients()) {
+            if (!player.isPlayerReady()) {
+                System.out.printf("Player %s is not ready\n", player.getPlayerName());
+                return;
+            }
+        }
         this.selectedServer.broadcast("start");
         new Thread(
                 () -> {
@@ -153,7 +152,7 @@ public class MainView {
 //                        if (selectedServer.getGameInstance().isGameCompleted()) {
 //
 //                        } else {
-                            this.selectedServer.getGameInstance().start();
+                        this.selectedServer.getGameInstance().start();
 //                        }
                     });
                 })
@@ -186,5 +185,9 @@ public class MainView {
         } else {
             Logger.getInstance().log("Cannot restart a running game instance.", Logger.RED);
         }
+    }
+
+    public void clearDeck(ActionEvent actionEvent) {
+        this.selectedServer.getGameInstance().clearDeck();
     }
 }

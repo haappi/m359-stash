@@ -153,5 +153,9 @@ public class Server {
                 gameInstance.nextLosersTurn();
             }
         }
+        if (msg.startsWith("endTurn")) {
+            broadcast("noMatch");
+            gameInstance.nextLosersTurn();
+        }
     }
 }

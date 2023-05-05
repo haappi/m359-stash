@@ -15,7 +15,7 @@ public class Bold {
     private final ArrayList<Card> selectedCards = new ArrayList<>();
     private ClientHandler currentPlayer;
 
-    private boolean gameOver = false;
+    private final boolean gameOver = false;
 
     public Bold(Server server, int modifier) {
         this.server = server;
@@ -74,19 +74,51 @@ public class Bold {
     }
 
     public boolean match(ArrayList<Card> selectedCards) {
-        Enums size = selectedCards.get(0).getSize();
-        Enums color = selectedCards.get(0).getColor();
-        Enums container = selectedCards.get(0).getContainer();
-        Enums pattern = selectedCards.get(0).getPattern();
+        boolean sizeMatch = true;
+        boolean colorMatch = true;
+        boolean containerMatch = true;
+        boolean patternMatch = true;
+
+        Enums size = null;
+        Enums color = null;
+        Enums container = null;
+        Enums pattern = null;
 
         for (int i = 1; i < selectedCards.size(); i++) {
             Card card = selectedCards.get(i);
-            if (card.getSize() != size && card.getColor() != color
-                    && card.getContainer() != container && card.getPattern() != pattern) {
+
+            if (card == null) {
                 return false;
             }
+
+            if (size == null) {
+                size = card.getSize();
+            } else if (size != card.getSize()) {
+                sizeMatch = false;
+            }
+
+            if (color == null) {
+                color = card.getColor();
+            } else if (color != card.getColor()) {
+                colorMatch = false;
+            }
+
+            if (container == null) {
+                container = card.getContainer();
+            } else if (container != card.getContainer()) {
+                containerMatch = false;
+            }
+
+            if (pattern == null) {
+                pattern = card.getPattern();
+            } else if (pattern != card.getPattern()) {
+                patternMatch = false;
+            }
         }
-        return true;
+
+        System.out.println(size + " " + color + " " + container + " " + pattern);
+
+        return sizeMatch || colorMatch || containerMatch || patternMatch;
     }
 
     public boolean match(int x, int y) {
@@ -112,6 +144,7 @@ public class Bold {
     public void nextLosersTurn() {
         int score = selectedCards.size() * selectedCards.size();
         currentPlayer.increaseScore(score);
+        System.out.println(currentPlayer.getPlayerName() + " got " + score + " points");
 
         for (ClientHandler client : server.getClients()) {
             client.sendMessage("score:" + client.getPlayerScore());
@@ -122,48 +155,52 @@ public class Bold {
         currentPlayer = server.getClients().get(nextIndex);
 
 
-        if (selectedCards.size() >= 2) { // if they have selected atleast two cards, that must mean it was a match of some sort
-            for (Card card : selectedCards) {
-                Card newCard = drawPile.remove(0);
-                cards[card.getRow()][card.getCol()] = newCard;
-                newCard.setCol(card.getCol());
-                newCard.setRow(card.getRow());
-            }
-            if (drawPile.size() == 0) {
-                if (isGameCompleted()) {
-                    HashMap<String, Integer> playerScores = new HashMap<>();
-                    for (ClientHandler connectedClient : server.getClients()) {
-                        playerScores.put(connectedClient.getPlayerName(), connectedClient.getPlayerScore());
-                    }
-                    // took the below from a stackoverflow thread
-                    HashMap<String, Integer> sorted = playerScores.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-                    StringBuilder toStrings = new StringBuilder();
-                    for (Map.Entry<String, Integer> entrySet : sorted.entrySet()) {
-                        toStrings.append(entrySet.getKey()).append(": ").append(entrySet.getValue()).append("\n");
-                    }
-                    server.broadcast("gameOver:"+ toStrings);
+//        if (selectedCards.size() >= 2) { // if they have selected atleast two cards, that must mean it was a match of some sort
+        if (drawPile.size() == 0) {
+            if (isGameCompleted()) {
+                HashMap<String, Integer> playerScores = new HashMap<>();
+                for (ClientHandler connectedClient : server.getClients()) {
+                    playerScores.put(connectedClient.getPlayerName(), connectedClient.getPlayerScore());
                 }
-            }
-            new Thread(() -> {
-                try {
-                    Thread.sleep(3000);
-                    server.broadcast(cards);
-                    server.broadcast("flipAllCards");
-
-                    Thread.sleep(1000);
-
-                    for (ClientHandler client : server.getClients()) {
-                        if (client == currentPlayer) {
-                            client.sendMessage("yourTurn");
-                        } else {
-                            client.sendMessage("notYourTurn");
-                        }
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                // took the below from a stackoverflow thread
+                HashMap<String, Integer> sorted = playerScores.entrySet().stream().sorted(Map.Entry.comparingByKey()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+                StringBuilder toStrings = new StringBuilder();
+                for (Map.Entry<String, Integer> entrySet : sorted.entrySet()) {
+                    toStrings.append(entrySet.getKey()).append(": ").append(entrySet.getValue()).append("\n");
                 }
-            }).start();
+                server.broadcast("gameOver:" + toStrings);
+            }
         }
+        if (selectedCards.size() >= 2) {
+            for (Card card : selectedCards) {
+                Card newCard = drawPile.size() > 0 ? drawPile.remove(0) : null;
+                cards[card.getRow()][card.getCol()] = newCard;
+                if (newCard != null) {
+                    newCard.setCol(card.getCol());
+                    newCard.setRow(card.getRow());
+                }
+            }
+        }
+        new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+                server.broadcast(cards);
+                server.broadcast("flipAllCards");
+
+                Thread.sleep(1000);
+
+                for (ClientHandler client : server.getClients()) {
+                    if (client == currentPlayer) {
+                        client.sendMessage("yourTurn");
+                    } else {
+                        client.sendMessage("notYourTurn");
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+//        }
 
         selectedCards.clear();
 
@@ -227,5 +264,9 @@ public class Bold {
                 card1.getColor() == card2.getColor() ||
                 card1.getContainer() == card2.getContainer() ||
                 card1.getPattern() == card2.getPattern();
+    }
+
+    public void clearDeck() {
+        drawPile.clear();
     }
 }
