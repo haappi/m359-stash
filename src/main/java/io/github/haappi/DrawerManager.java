@@ -10,8 +10,8 @@ import com.gluonhq.charm.glisten.control.NavigationDrawer.Item;
 import com.gluonhq.charm.glisten.control.NavigationDrawer.ViewItem;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 
-import static io.github.haappi.hewwoapplication.PRIMARY_VIEW;
-import static io.github.haappi.hewwoapplication.SECONDARY_VIEW;
+import static io.github.haappi.HelloApplication.PRIMARY_VIEW;
+import static io.github.haappi.HelloApplication.SECONDARY_VIEW;
 
 public class DrawerManager {
 

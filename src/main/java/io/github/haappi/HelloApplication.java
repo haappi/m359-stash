@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 
-public class hewwoapplication extends Application {
+public class HelloApplication extends Application {
 
     public static final String PRIMARY_VIEW = HOME_VIEW;
     public static final String SECONDARY_VIEW = "Secondary View";
