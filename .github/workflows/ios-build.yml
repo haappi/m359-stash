@@ -20,24 +20,25 @@ jobs:
           distribution: 'zulu'
           java-version: 17
           cache: 'maven'
-      - name: Cache GraalVM installation
+      - name: Cache GraalVM
         uses: actions/cache@v2
         with:
           path: ~/.sdkman/candidates/graalvm/current
-          key: ${{ runner.os }}-graalvm-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-graalvm-
-      - name: Setup GraalVM built by Gluon
-        uses: gluonhq/setup-graalvm@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          key: macOS-graalvm-${{ hashFiles('**/sdkman.config') }}
+          restore-keys: macOS-graalvm-
+      - name: Install GraalVM
+        run: |
+          source ~/.sdkman/bin/sdkman-init.sh
+          sdk install java 21.2.0.r11-grl
       - uses: Apple-Actions/import-codesign-certs@v1
         with:
           p12-file-base64: ${{ secrets.GLUON_IOS_BASE64 }}
           p12-password: ${{ secrets.GLUON_IOS_CERTIFICATES_PASSWORD }}
       - name: Fix file permissions
         run: chmod +x mvnw
-      - name: Download provision profile
-        run: echo ${{ secrets.PROVISION_PROFILE }} | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
+      - name: Write secret to file
+        run: |
+          echo "${{ secrets.PROVISION_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
       - name: Download project dependencies
         run: ./mvnw dependency:go-offline
       - name: Build iOS app and create .ipa
