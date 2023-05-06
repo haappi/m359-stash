@@ -21,6 +21,12 @@ jobs:
         distribution: 'zulu'
         java-version: 17
         cache: 'maven'
+    - name: Cache GraalVM installation
+      uses: actions/cache@v2
+      with:
+        path: ~/.sdkman/candidates/graalvm/current
+        key: ${{ runner.os }}-graalvm-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-graalvm-
     - name: Setup GraalVM built by Gluon
       uses: gluonhq/setup-graalvm@master
       env:

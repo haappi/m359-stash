@@ -3,10 +3,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.haappi</groupId>
-    <artifactId>productivtyappusingmaven</artifactId>
+    <artifactId>ProductivityApp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>ProductivtyAppUsingMaven</name>
+    <name>ProductivityApp</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -90,7 +90,7 @@
                 <artifactId>gluonfx-maven-plugin</artifactId>
                 <version>${gluonfx.plugin.version}</version>
                 <configuration>
-                    <target>${gluonfx.target}</target>
+                    <target>ios</target>
                     <attachList>
                         <list>display</list>
                         <list>lifecycle</list>
