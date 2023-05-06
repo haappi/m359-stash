@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="[CI android]">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/filter-file.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/predefined-classes-config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/proxy-config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/resource-config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/serialization-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.javaa" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="shi takes like 10m just to load [CI ios] [CI android] [CI windows]">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-build.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,7 +233,7 @@
       <workItem from="1683353986738" duration="28000" />
       <workItem from="1683354048892" duration="7597000" />
       <workItem from="1683361972005" duration="7252000" />
-      <workItem from="1683379252808" duration="12768000" />
+      <workItem from="1683379252808" duration="14159000" />
     </task>
     <task id="LOCAL-00001" summary="e">
       <created>1681818560088</created>
@@ -513,15 +508,27 @@
       <option name="project" value="LOCAL" />
       <updated>1683390718050</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="shi takes like 10m just to load">
+      <created>1683399509389</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1683399509389</updated>
+    </task>
+    <task id="LOCAL-00041" summary="shi takes like 10m just to load [CI ios] [CI android] [CI windows]">
+      <created>1683399561291</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1683399561291</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="try this" />
-    <MESSAGE value="?????" />
     <MESSAGE value="fuck graalm" />
     <MESSAGE value="sighs" />
     <MESSAGE value="caching is stupid" />
@@ -545,6 +552,8 @@
     <MESSAGE value="kms [CI iOS]" />
     <MESSAGE value="[CI windows] [CI iOS]" />
     <MESSAGE value="[CI android]" />
-    <option name="LAST_COMMIT_MESSAGE" value="[CI android]" />
+    <MESSAGE value="shi takes like 10m just to load" />
+    <MESSAGE value="shi takes like 10m just to load [CI ios] [CI android] [CI windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="shi takes like 10m just to load [CI ios] [CI android] [CI windows]" />
   </component>
 </project>
