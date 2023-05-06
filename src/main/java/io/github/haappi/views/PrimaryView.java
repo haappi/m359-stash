@@ -1,8 +1,9 @@
 package io.github.haappi.views;
 
 import com.gluonhq.charm.glisten.mvc.View;
-import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+
+import java.io.IOException;
 
 public class PrimaryView {
 

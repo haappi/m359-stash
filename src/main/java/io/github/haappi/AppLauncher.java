@@ -1,9 +1,9 @@
 package io.github.haappi;
 
-import io.github.haappi.views.PrimaryView;
-import io.github.haappi.views.SecondaryView;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
+import io.github.haappi.views.PrimaryView;
+import io.github.haappi.views.SecondaryView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -12,12 +12,16 @@ import javafx.stage.Stage;
 
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 
-public class ProductivityAppp extends Application {
+public class AppLauncher extends Application {
 
     public static final String PRIMARY_VIEW = HOME_VIEW;
     public static final String SECONDARY_VIEW = "Secondary View";
 
     private final AppManager appManager = AppManager.initialize(this::postInit);
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void init() {
@@ -36,11 +40,7 @@ public class ProductivityAppp extends Application {
     private void postInit(Scene scene) {
         Swatch.BLUE.assignTo(scene);
 
-        scene.getStylesheets().add(ProductivityAppp.class.getResource("style.css").toExternalForm());
-        ((Stage) scene.getWindow()).getIcons().add(new Image(ProductivityAppp.class.getResourceAsStream("/icon.png")));
-    }
-
-    public static void main(String args[]) {
-        launch(args);
+        scene.getStylesheets().add(AppLauncher.class.getResource("style.css").toExternalForm());
+        ((Stage) scene.getWindow()).getIcons().add(new Image(AppLauncher.class.getResourceAsStream("/icon.png")));
     }
 }

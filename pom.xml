@@ -15,7 +15,7 @@
         <attach.version>4.0.18</attach.version>
         <gluonfx.plugin.version>1.0.18</gluonfx.plugin.version>
         <javafx.plugin.version>0.0.8</javafx.plugin.version>
-        <mainClassName>io.github.haappi.ProductivityAppp</mainClassName>
+        <mainClassName>io.github.haappi.ProductivityApp</mainClassName>
     </properties>
 
     <dependencies>

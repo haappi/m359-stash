@@ -19,18 +19,18 @@ public class PrimaryPresenter {
         primary.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
                 AppBar appBar = AppManager.getInstance().getAppBar();
-                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
+                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e ->
                         AppManager.getInstance().getDrawer().open()));
                 appBar.setTitleText("Primary");
-                appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> 
+                appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e ->
                         System.out.println("Search")));
             }
         });
     }
-    
+
     @FXML
     void buttonClick() {
         label.setText("Hello JavaFX Universe!");
     }
-    
+
 }
