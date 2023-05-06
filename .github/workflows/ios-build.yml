@@ -21,6 +21,14 @@ jobs:
         distribution: 'zulu'
         java-version: 17
         cache: 'maven'
+    - name: Setup GraalVM built by Gluon
+      uses: gluonhq/setup-graalvm@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: Apple-Actions/import-codesign-certs@v1
+      with:
+        p12-file-base64: ${{ secrets.GLUON_IOS_BASE64 }}
+        p12-password: ${{ secrets.GLUON_IOS_CERTIFICATES_PASSWORD }}
     - name: Fix file permissions
       run: chmod +x mvnw
     - name: Build iOS app and create .ipa
