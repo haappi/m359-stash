@@ -1,5 +1,7 @@
 name: Build iOS app and create .ipa
 
+on:
+  push
 
 
 jobs:
