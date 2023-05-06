@@ -16,6 +16,7 @@
         <gluonfx.plugin.version>1.0.18</gluonfx.plugin.version>
         <javafx.plugin.version>0.0.8</javafx.plugin.version>
         <mainClassName>io.github.haappi.ProductivityApp</mainClassName>
+<!--        <gluonfx.target>desktop</gluonfx.target>-->
     </properties>
 
     <dependencies>
@@ -90,7 +91,7 @@
                 <artifactId>gluonfx-maven-plugin</artifactId>
                 <version>${gluonfx.plugin.version}</version>
                 <configuration>
-                    <target>ios</target>
+                    <target>${gluonfx.target}</target>
                     <attachList>
                         <list>display</list>
                         <list>lifecycle</list>
