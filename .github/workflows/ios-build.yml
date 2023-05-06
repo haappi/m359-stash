@@ -8,21 +8,22 @@ jobs:
   build-ios:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Cache Maven dependencies
-      uses: actions/cache@v2
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: ${{ runner.os }}-maven-
+    - uses: actions/checkout@v3
+#    - name: Cache Maven dependencies
+#      uses: actions/cache@v2
+#      with:
+#        path: ~/.m2/repository
+#        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+#        restore-keys: ${{ runner.os }}-maven-
     - name: Set up JDK 17
-      uses: actions/setup-java@v2
+      uses: actions/setup-java@v3
       with:
         distribution: 'zulu'
         java-version: 17
+        cache: 'maven'
     - name: Build iOS app and create .ipa
       run: |
-        mvn -Pios gluonfx:build gluonfx:package
+        ./mvnw -Pios gluonfx:build gluonfx:package
         mkdir -p $HOME/artifacts
         mv target/client/*.ipa $HOME/artifacts/app.ipa
     - name: Upload .ipa as artifact
