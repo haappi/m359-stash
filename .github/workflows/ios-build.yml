@@ -30,12 +30,23 @@ jobs:
         uses: gluonhq/setup-graalvm@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Cache GraalVM
+        uses: actions/cache@v2
+        with:
+          path: ~/.sdkman/candidates/graalvm/current
+          key: ${{ runner.os }}-graalvm-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-graalvm-
+
       - uses: Apple-Actions/import-codesign-certs@v1
         with:
           p12-file-base64: ${{ secrets.GLUON_IOS_BASE64 }}
           p12-password: ${{ secrets.GLUON_IOS_CERTIFICATES_PASSWORD }}
       - name: Fix file permissions
         run: chmod +x mvnw
+      - name: Create file
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          touch ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
       - name: Write secret to file
         run: |
           echo "${{ secrets.PROVISION_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
