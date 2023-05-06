@@ -9,11 +9,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Cache Maven dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-maven-
+#          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+#          restore-keys: ${{ runner.os }}-maven-
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -21,7 +21,7 @@ jobs:
           java-version: 17
           cache: 'maven'
       - name: Cache GraalVM installation
-        uses: actions/cache@v2
+        uses: actions/cache@v2.1.4
         with:
           path: ~/.sdkman/candidates/graalvm/current
           key: ${{ runner.os }}-graalvm-${{ hashFiles('**/pom.xml') }}
@@ -30,12 +30,6 @@ jobs:
         uses: gluonhq/setup-graalvm@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Cache GraalVM
-        uses: actions/cache@v2
-        with:
-          path: ~/.sdkman/candidates/graalvm/current
-          key: ${{ runner.os }}-graalvm-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-graalvm-
 
       - uses: Apple-Actions/import-codesign-certs@v1
         with:
@@ -50,13 +44,11 @@ jobs:
       - name: Write secret to file
         run: |
           echo "${{ secrets.PROVISION_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
-      - name: Download project dependencies
-        run: ./mvnw dependency:go-offline
       - name: Build iOS app and create .ipa
         run: |
           ./mvnw -Pios gluonfx:build gluonfx:package
           mkdir -p $HOME/artifacts
-          mv target/client/*.ipa $HOME/artifacts/app.ipa
+          mv target/gluonfx/arm64-ios/*.ipa $HOME/artifacts/app.ipa
       - name: Upload .ipa as artifact
         uses: actions/upload-artifact@v2
         with:
