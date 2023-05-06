@@ -44,8 +44,10 @@ jobs:
           ./mvnw -Pios gluonfx:build gluonfx:package
           mkdir -p $HOME/artifacts
       - name: Move .ipa to artifacts
-        run:
+        run: |
+          ls target/gluonfx/arm64-ios
           mv target/gluonfx/arm64-ios/*.ipa $HOME/artifacts/app.ipa
+          ls $HOME/artifacts
       - name: Upload .ipa as artifact
         uses: actions/upload-artifact@v2
         with:
