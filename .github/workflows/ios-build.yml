@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'zulu'
-          java-version: 17
+          java-version: 20
           cache: 'maven'
       - name: Cache GraalVM installation
         uses: actions/cache@v2.1.4
