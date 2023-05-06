@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="shi takes like 10m just to load [CI ios] [CI android] [CI windows]">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-build.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
+    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="change java version [CI ios] [CI windows]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
@@ -233,7 +231,7 @@
       <workItem from="1683353986738" duration="28000" />
       <workItem from="1683354048892" duration="7597000" />
       <workItem from="1683361972005" duration="7252000" />
-      <workItem from="1683379252808" duration="14159000" />
+      <workItem from="1683379252808" duration="16293000" />
     </task>
     <task id="LOCAL-00001" summary="e">
       <created>1681818560088</created>
@@ -522,14 +520,20 @@
       <option name="project" value="LOCAL" />
       <updated>1683399561291</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="change java version [CI ios] [CI windows]">
+      <created>1683400629840</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1683400629840</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fuck graalm" />
     <MESSAGE value="sighs" />
     <MESSAGE value="caching is stupid" />
     <MESSAGE value="opops" />
@@ -554,6 +558,7 @@
     <MESSAGE value="[CI android]" />
     <MESSAGE value="shi takes like 10m just to load" />
     <MESSAGE value="shi takes like 10m just to load [CI ios] [CI android] [CI windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="shi takes like 10m just to load [CI ios] [CI android] [CI windows]" />
+    <MESSAGE value="change java version [CI ios] [CI windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="change java version [CI ios] [CI windows]" />
   </component>
 </project>

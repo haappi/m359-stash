@@ -91,6 +91,7 @@
                 <artifactId>gluonfx-maven-plugin</artifactId>
                 <version>${gluonfx.plugin.version}</version>
                 <configuration>
+                    <appIdentifier>io.github.haappi.ProductivityApp</appIdentifier>
                     <target>${gluonfx.target}</target>
                     <attachList>
                         <list>display</list>
