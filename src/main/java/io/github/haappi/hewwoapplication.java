@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 
-public class AppLauncher extends Application {
+public class hewwoapplication extends Application {
 
     public static final String PRIMARY_VIEW = HOME_VIEW;
     public static final String SECONDARY_VIEW = "Secondary View";
@@ -40,7 +40,7 @@ public class AppLauncher extends Application {
     private void postInit(Scene scene) {
         Swatch.BLUE.assignTo(scene);
 
-        scene.getStylesheets().add(AppLauncher.class.getResource("style.css").toExternalForm());
-        ((Stage) scene.getWindow()).getIcons().add(new Image(AppLauncher.class.getResourceAsStream("/icon.png")));
+        scene.getStylesheets().add(ProductivityApp.class.getResource("style.css").toExternalForm());
+        ((Stage) scene.getWindow()).getIcons().add(new Image(ProductivityApp.class.getResourceAsStream("/icon.png")));
     }
 }
