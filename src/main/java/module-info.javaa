@@ -6,6 +6,6 @@ module io.github.haappi.ProductivityApp {
     requires com.gluonhq.attach.util;
 
 
-    opens io.github.haappi to javafx.fxml;
+    opens io.github.haappi.ProductivityApp to javafx.fxml;
     exports io.github.haappi;
 }

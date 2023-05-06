@@ -15,8 +15,7 @@
         <attach.version>4.0.18</attach.version>
         <gluonfx.plugin.version>1.0.18</gluonfx.plugin.version>
         <javafx.plugin.version>0.0.8</javafx.plugin.version>
-        <mainClassName>io.github.haappi.ProductivityApp</mainClassName>
-<!--        <gluonfx.target>desktop</gluonfx.target>-->
+        <mainClassName>io.github.haappi.ProductivityAppp</mainClassName>
     </properties>
 
     <dependencies>
@@ -122,6 +121,7 @@
             <id>ios</id>
             <properties>
                 <gluonfx.target>ios</gluonfx.target>
+                <!--suppress UnresolvedMavenProperty -->
                 <bundle.version>${env.GITHUB_RUN_NUMBER}</bundle.version>
                 <bundle.short.version>1.0</bundle.short.version>
             </properties>

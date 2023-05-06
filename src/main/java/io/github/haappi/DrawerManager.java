@@ -5,25 +5,23 @@ import com.gluonhq.attach.util.Platform;
 import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
-import com.gluonhq.charm.glisten.control.Avatar;
 import com.gluonhq.charm.glisten.control.NavigationDrawer;
 import com.gluonhq.charm.glisten.control.NavigationDrawer.Item;
 import com.gluonhq.charm.glisten.control.NavigationDrawer.ViewItem;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-import javafx.scene.image.Image;
 
-import static io.github.haappi.ProductivityApp.PRIMARY_VIEW;
-import static io.github.haappi.ProductivityApp.SECONDARY_VIEW;
+import static io.github.haappi.ProductivityAppp.PRIMARY_VIEW;
+import static io.github.haappi.ProductivityAppp.SECONDARY_VIEW;
 
 public class DrawerManager {
 
     public static void buildDrawer(AppManager app) {
         NavigationDrawer drawer = app.getDrawer();
         
-        NavigationDrawer.Header header = new NavigationDrawer.Header("Gluon Application",
-                "Multi View Project",
-                new Avatar(21, new Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
-        drawer.setHeader(header);
+//        NavigationDrawer.Header header = new NavigationDrawer.Header("Gluon Application",
+//                "Multi View Project",
+//                new Avatar(21, new Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
+//        drawer.setHeader(header);
         
         final Item primaryItem = new ViewItem("Primary", MaterialDesignIcon.HOME.graphic(), PRIMARY_VIEW, ViewStackPolicy.SKIP);
         final Item secondaryItem = new ViewItem("Secondary", MaterialDesignIcon.DASHBOARD.graphic(), SECONDARY_VIEW);

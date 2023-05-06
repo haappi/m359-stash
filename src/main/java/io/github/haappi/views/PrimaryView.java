@@ -8,8 +8,7 @@ public class PrimaryView {
 
     public View getView() {
         try {
-            View view = FXMLLoader.load(PrimaryView.class.getResource("primary.fxml"));
-            return view;
+            return FXMLLoader.load(PrimaryView.class.getResource("primary.fxml"));
         } catch (IOException e) {
             System.out.println("IOException: " + e);
             return new View();
