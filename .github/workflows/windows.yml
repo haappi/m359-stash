@@ -31,10 +31,10 @@ jobs:
       - name: Make staging directory
         run: mkdir staging
 
-#      - name: Gluon License
-#        uses: gluonhq/gluon-build-license@v1
-#        with:
-#          gluon-license: ${{ secrets.GLUON_LICENSE }}
+      #      - name: Gluon License
+      #        uses: gluonhq/gluon-build-license@v1
+      #        with:
+      #          gluon-license: ${{ secrets.GLUON_LICENSE }}
 
       - name: Gluon Build and Package
         shell: cmd
