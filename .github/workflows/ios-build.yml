@@ -21,6 +21,8 @@ jobs:
         distribution: 'zulu'
         java-version: 17
         cache: 'maven'
+    - name: Fix file permissions
+      run: chmod +x mvnw
     - name: Build iOS app and create .ipa
       run: |
         ./mvnw -Pios gluonfx:build gluonfx:package
