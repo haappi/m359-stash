@@ -25,7 +25,10 @@ jobs:
 #        with:
 #          fileName: 'my.keystore'
 #          encodedString: ${{ secrets.GLUON_ANDROID_KEYSTORE_BASE64 }}
-
+      - name: Fix file permissions
+        run: |
+            sudo chmod +x mvnw
+            sudo chmod +x ./mvnw
       - name: Gluon Build
         run: |
           export ANDROID_SDK=$ANDROID_HOME
