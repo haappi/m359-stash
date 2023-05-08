@@ -60,6 +60,17 @@
             <artifactId>util</artifactId>
             <version>${attach.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents.client5</groupId>
+            <artifactId>httpclient5</artifactId>
+            <version>5.2.1</version>
+        </dependency>
+
     </dependencies>
 
     <repositories>
@@ -93,6 +104,7 @@
                 <configuration>
                     <appIdentifier>io.github.haappi.ProductivityApp</appIdentifier>
                     <target>${gluonfx.target}</target>
+                    <graalvmHome>H:\3fifntyniien\GraalVM\graalvm-ce-java17-22.3.1</graalvmHome>
                     <attachList>
                         <list>display</list>
                         <list>lifecycle</list>
