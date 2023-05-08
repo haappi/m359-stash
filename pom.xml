@@ -104,8 +104,9 @@
                 <configuration>
                     <appIdentifier>io.github.haappi.ProductivityApp</appIdentifier>
                     <target>${gluonfx.target}</target>
+                         <!--
                     <graalvmHome>H:\3fifntyniien\GraalVM\graalvm-ce-java17-22.3.1</graalvmHome>
-                    <attachList>
+                   --> <attachList>
                         <list>display</list>
                         <list>lifecycle</list>
                         <list>statusbar</list>
