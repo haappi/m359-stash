@@ -49,13 +49,11 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
   }
 
   private void postExceptionToWebServer(Throwable throwable) {
-    // post the exception data as json with the key named 'error'
     StringEntity entity =
         new StringEntity(
             "{\"error\": \"" + throwable.getMessage() + "\n" + throwable.getCause() + "\"}");
     webServer.setEntity(entity);
 
-    // send the request
     try {
       CloseableHttpClient client = HttpClients.createDefault();
       CloseableHttpResponse response = client.execute(webServer);
