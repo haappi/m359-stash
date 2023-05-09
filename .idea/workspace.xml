@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="change java version [CI ios] [CI windows]">
+    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="change ONE setting. [CI ios] [CI windows]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,28 +70,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "last_directory_selection": "C:/Users/Happy/Desktop/Projects/Java/ProductivityApp/src/main/resources/io/github/haappi/views",
-    "last_opened_file_path": "C:/Users/Happy/Desktop/Projects/Java/ProductivityApp",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "com.gluonhq.plugin.intellij.options.Options",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;last_directory_selection&quot;: &quot;C:/Users/Happy/Desktop/Projects/Java/ProductivityApp/src/main/resources/io/github/haappi/views&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Happy/Desktop/Projects/Java/ProductivityApp&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.gluonhq.plugin.intellij.options.Options&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp" />
@@ -231,7 +233,11 @@
       <workItem from="1683353986738" duration="28000" />
       <workItem from="1683354048892" duration="7597000" />
       <workItem from="1683361972005" duration="7252000" />
-      <workItem from="1683379252808" duration="16293000" />
+      <workItem from="1683379252808" duration="17880000" />
+      <workItem from="1683406913791" duration="9000" />
+      <workItem from="1683407000567" duration="740000" />
+      <workItem from="1683505092682" duration="2640000" />
+      <workItem from="1683548204594" duration="189000" />
     </task>
     <task id="LOCAL-00001" summary="e">
       <created>1681818560088</created>
@@ -527,14 +533,20 @@
       <option name="project" value="LOCAL" />
       <updated>1683400629840</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="change ONE setting. [CI ios] [CI windows]">
+      <created>1683404710429</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1683404710429</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sighs" />
     <MESSAGE value="caching is stupid" />
     <MESSAGE value="opops" />
     <MESSAGE value="[CI windows] update workflow" />
@@ -559,6 +571,7 @@
     <MESSAGE value="shi takes like 10m just to load" />
     <MESSAGE value="shi takes like 10m just to load [CI ios] [CI android] [CI windows]" />
     <MESSAGE value="change java version [CI ios] [CI windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="change java version [CI ios] [CI windows]" />
+    <MESSAGE value="change ONE setting. [CI ios] [CI windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="change ONE setting. [CI ios] [CI windows]" />
   </component>
 </project>

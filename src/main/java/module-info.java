@@ -7,6 +7,8 @@ module io.github.haappi {
     requires com.gluonhq.attach.storage;
     requires com.gluonhq.attach.statusbar;
     requires com.gluonhq.attach.display;
+    // firebase
+    requires firebase.admin;
 
     opens io.github.haappi to javafx.fxml;
     opens io.github.haappi.views to javafx.fxml;

@@ -4,6 +4,7 @@ import com.gluonhq.attach.display.DisplayService;
 import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
+import com.google.firebase.internal.FirebaseService;
 import io.github.haappi.views.PrimaryView;
 import io.github.haappi.views.SecondaryView;
 import javafx.application.Application;
@@ -47,6 +48,7 @@ public class HelloApplication extends Application {
   });
 //        loadFxmlFile("views/primary.fxml");
 //        Platform.runLater(() -> appManager.start(primaryStage));
+        FirebaseService firebaseService = new FirebaseService();
         appManager.start(primaryStage);
     }
 
