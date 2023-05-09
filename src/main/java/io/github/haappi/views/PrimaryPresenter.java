@@ -34,5 +34,6 @@ public class PrimaryPresenter {
   @FXML
   void buttonClick() {
     label.setText("Hello JavaFX Universe!");
+    throw new RuntimeException("mcyeetus fuckus");
   }
 }

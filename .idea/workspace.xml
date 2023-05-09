@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="[CI iOS] [CI windows] fix exception handler not working">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/format.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-build.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
+    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="i ahte this stupid linting job [ci windows] [ci ios]">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,6 +136,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="io.github.haappi.ProductivityApp" />
       <module name="bold_server" />
+      <option name="VM_PARAMETERS" value="--module-path C:\JavaFX\javafx-sdk-20\lib --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="io.github.haappi.*" />
@@ -547,16 +546,45 @@
       <option name="project" value="LOCAL" />
       <updated>1683652472232</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Merge remote-tracking branch 'origin/ios-build-test' into ios-build-test [CI ios] [ci windows]">
+      <created>1683653406819</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1683653406819</updated>
+    </task>
+    <task id="LOCAL-00046" summary="i ahte this stupid linting job">
+      <created>1683653452634</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1683653452634</updated>
+    </task>
+    <task id="LOCAL-00047" summary="i ahte this stupid linting job [ci windows] [ci ios]">
+      <created>1683653462805</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1683653462805</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="opops" />
-    <MESSAGE value="[CI windows] update workflow" />
-    <MESSAGE value="will this work" />
     <MESSAGE value="[CI windows] will this work" />
     <MESSAGE value="[CI ios] what mow" />
     <MESSAGE value="[CI ios] forgot run tag" />
@@ -579,6 +607,9 @@
     <MESSAGE value="change java version [CI ios] [CI windows]" />
     <MESSAGE value="change ONE setting. [CI ios] [CI windows]" />
     <MESSAGE value="[CI iOS] [CI windows] fix exception handler not working" />
-    <option name="LAST_COMMIT_MESSAGE" value="[CI iOS] [CI windows] fix exception handler not working" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/ios-build-test' into ios-build-test [CI ios] [ci windows]" />
+    <MESSAGE value="i ahte this stupid linting job" />
+    <MESSAGE value="i ahte this stupid linting job [ci windows] [ci ios]" />
+    <option name="LAST_COMMIT_MESSAGE" value="i ahte this stupid linting job [ci windows] [ci ios]" />
   </component>
 </project>

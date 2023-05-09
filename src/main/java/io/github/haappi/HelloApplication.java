@@ -7,6 +7,9 @@ import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
 import java.io.IOException;
+
+import io.github.haappi.views.PrimaryView;
+import io.github.haappi.views.SecondaryView;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -32,11 +35,11 @@ public class HelloApplication extends Application {
   public void init() {
     Platform.runLater(
         () -> Thread.currentThread().setUncaughtExceptionHandler(ExceptionHandler.getInstance()));
-    throw new RuntimeException("Test exception");
-    //        appManager.addViewFactory(PRIMARY_VIEW, () -> new PrimaryView().getView());
-    //        appManager.addViewFactory(SECONDARY_VIEW, () -> new SecondaryView().getView());
-    //
-    //        DrawerManager.buildDrawer(appManager);
+//    throw new RuntimeException("Test exception");
+            appManager.addViewFactory(PRIMARY_VIEW, () -> new PrimaryView().getView());
+            appManager.addViewFactory(SECONDARY_VIEW, () -> new SecondaryView().getView());
+
+            DrawerManager.buildDrawer(appManager);
   }
 
   @Override
