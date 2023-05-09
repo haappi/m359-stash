@@ -1,6 +1,8 @@
 package io.github.haappi;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URISyntaxException;
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -49,9 +51,23 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
   }
 
   private void postExceptionToWebServer(Throwable throwable) {
+    StringWriter sw = new StringWriter();
+    PrintWriter pw = new PrintWriter(sw);
+    throwable.printStackTrace(pw);
+    String stackTrace = sw.toString(); // stack trace as a string
+
+    // close the writers
+    try {
+      pw.close();
+      sw.close();
+    } catch (IOException e) {
+      LOGGER.error("Failed to close writers! " + e.getMessage());
+    }
+
+
     StringEntity entity =
         new StringEntity(
-            "{\"error\": \"" + throwable.getMessage() + "\n" + throwable.getCause() + "\"}");
+            "{\"error\": \"" + stackTrace + "\"}");
     webServer.setEntity(entity);
 
     try {
