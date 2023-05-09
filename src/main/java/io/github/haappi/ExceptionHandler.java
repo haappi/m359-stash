@@ -56,6 +56,14 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
     throwable.printStackTrace(pw);
     String stackTrace = sw.toString(); // stack trace as a string
 
+    // close the writers
+    try {
+      pw.close();
+      sw.close();
+    } catch (IOException e) {
+      LOGGER.error("Failed to close writers! " + e.getMessage());
+    }
+
 
     StringEntity entity =
         new StringEntity(
