@@ -4,14 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="bah">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/ExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/ExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/webserver/BasicWebserver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/webserver/CustomHttpHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="[CI iOS] [CI windows] fix exception handler not working">
+      <change afterPath="$PROJECT_DIR$/.github/workflows/format.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-build.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +237,7 @@
       <workItem from="1683505092682" duration="2640000" />
       <workItem from="1683548204594" duration="189000" />
       <workItem from="1683646656698" duration="638000" />
-      <workItem from="1683651306646" duration="956000" />
+      <workItem from="1683651306646" duration="1459000" />
     </task>
     <task id="LOCAL-00001" summary="e">
       <created>1681818560088</created>
@@ -544,14 +540,20 @@
       <option name="project" value="LOCAL" />
       <updated>1683404710429</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="[CI iOS] [CI windows] fix exception handler not working">
+      <created>1683652472232</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1683652472232</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="caching is stupid" />
     <MESSAGE value="opops" />
     <MESSAGE value="[CI windows] update workflow" />
     <MESSAGE value="will this work" />
@@ -576,6 +578,7 @@
     <MESSAGE value="shi takes like 10m just to load [CI ios] [CI android] [CI windows]" />
     <MESSAGE value="change java version [CI ios] [CI windows]" />
     <MESSAGE value="change ONE setting. [CI ios] [CI windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="change ONE setting. [CI ios] [CI windows]" />
+    <MESSAGE value="[CI iOS] [CI windows] fix exception handler not working" />
+    <option name="LAST_COMMIT_MESSAGE" value="[CI iOS] [CI windows] fix exception handler not working" />
   </component>
 </project>
