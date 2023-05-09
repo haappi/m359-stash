@@ -28,16 +28,18 @@ public class HelloApplication extends Application {
     private Stage stage;
 
     public static void main(String[] args) {
-        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
+        Thread.setDefaultUncaughtExceptionHandler(ExceptionHandler.getInstance());
         launch(args);
     }
 
     @Override
     public void init() {
-        appManager.addViewFactory(PRIMARY_VIEW, () -> new PrimaryView().getView());
-        appManager.addViewFactory(SECONDARY_VIEW, () -> new SecondaryView().getView());
-
-        DrawerManager.buildDrawer(appManager);
+        Platform.runLater(() -> Thread.currentThread().setUncaughtExceptionHandler(ExceptionHandler.getInstance()));
+        throw new RuntimeException("Test exception");
+//        appManager.addViewFactory(PRIMARY_VIEW, () -> new PrimaryView().getView());
+//        appManager.addViewFactory(SECONDARY_VIEW, () -> new SecondaryView().getView());
+//
+//        DrawerManager.buildDrawer(appManager);
     }
 
     @Override
@@ -49,7 +51,7 @@ public class HelloApplication extends Application {
   });
 //        loadFxmlFile("views/primary.fxml");
 //        Platform.runLater(() -> appManager.start(primaryStage));
-        FirebaseService firebaseService = new FirebaseService();
+//        FirebaseService firebaseService = new FirebaseService();
         appManager.start(primaryStage);
     }
 

@@ -9,6 +9,10 @@ module io.github.haappi {
     requires com.gluonhq.attach.display;
     // firebase
     requires firebase.admin;
+    requires org.slf4j;
+    requires org.apache.httpcomponents.client5.httpclient5;
+    requires org.apache.httpcomponents.core5.httpcore5;
+    requires jdk.httpserver;
 
     opens io.github.haappi to javafx.fxml;
     opens io.github.haappi.views to javafx.fxml;
