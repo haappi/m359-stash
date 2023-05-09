@@ -8,7 +8,7 @@ module io.github.haappi {
   requires com.gluonhq.attach.statusbar;
   requires com.gluonhq.attach.display;
   // firebase
-  requires firebase.admin;
+//  requires firebase.admin;
   requires org.slf4j;
   requires org.apache.httpcomponents.client5.httpclient5;
   requires org.apache.httpcomponents.core5.httpcore5;

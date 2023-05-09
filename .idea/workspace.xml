@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="i ahte this stupid linting job [ci windows] [ci ios]">
+    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="saftey stuff [CI iOs] [ci windows]">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-build.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -237,13 +239,7 @@
       <workItem from="1683548204594" duration="189000" />
       <workItem from="1683646656698" duration="638000" />
       <workItem from="1683651306646" duration="1459000" />
-    </task>
-    <task id="LOCAL-00001" summary="e">
-      <created>1681818560088</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1681818560088</updated>
+      <workItem from="1683654515343" duration="612000" />
     </task>
     <task id="LOCAL-00002" summary="e">
       <created>1681900490192</created>
@@ -567,7 +563,28 @@
       <option name="project" value="LOCAL" />
       <updated>1683653462805</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="make entire stacktrace show up just cuz">
+      <created>1683654216665</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1683654216665</updated>
+    </task>
+    <task id="LOCAL-00049" summary="saftey stuff">
+      <created>1683654241995</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1683654241995</updated>
+    </task>
+    <task id="LOCAL-00050" summary="saftey stuff [CI iOs] [ci windows]">
+      <created>1683654251784</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1683654251785</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,9 +602,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CI windows] will this work" />
-    <MESSAGE value="[CI ios] what mow" />
-    <MESSAGE value="[CI ios] forgot run tag" />
     <MESSAGE value="[CI windows] try this" />
     <MESSAGE value="[CI iOS] THERE GOES ANOTHER 10M of my lfei" />
     <MESSAGE value="[CI windows] THERE GOES ANOTHER 10M of my lfei" />
@@ -610,6 +624,9 @@
     <MESSAGE value="Merge remote-tracking branch 'origin/ios-build-test' into ios-build-test [CI ios] [ci windows]" />
     <MESSAGE value="i ahte this stupid linting job" />
     <MESSAGE value="i ahte this stupid linting job [ci windows] [ci ios]" />
-    <option name="LAST_COMMIT_MESSAGE" value="i ahte this stupid linting job [ci windows] [ci ios]" />
+    <MESSAGE value="make entire stacktrace show up just cuz" />
+    <MESSAGE value="saftey stuff" />
+    <MESSAGE value="saftey stuff [CI iOs] [ci windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="saftey stuff [CI iOs] [ci windows]" />
   </component>
 </project>
