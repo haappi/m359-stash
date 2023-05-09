@@ -28,6 +28,7 @@ public class HelloApplication extends Application {
     private Stage stage;
 
     public static void main(String[] args) {
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler());
         launch(args);
     }
 
