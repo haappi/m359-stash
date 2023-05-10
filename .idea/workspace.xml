@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="i ahte this stupid linting job [ci windows] [ci ios]">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="[CI iOS] [CI windows] see if it bothers to compile using graalvm" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -235,14 +233,7 @@
       <workItem from="1683651306646" duration="1459000" />
       <workItem from="1683654515343" duration="1531000" />
       <workItem from="1683668485642" duration="6740000" />
-      <workItem from="1683739303263" duration="342000" />
-    </task>
-    <task id="LOCAL-00004" summary="fic tjhos">
-      <created>1683353123743</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1683353123743</updated>
+      <workItem from="1683739303263" duration="645000" />
     </task>
     <task id="LOCAL-00005" summary="hmmmmmmmmm">
       <created>1683354328753</created>
@@ -580,7 +571,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683655779323</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="[CI iOS] [CI windows] see if it bothers to compile using graalvm">
+      <created>1683739917424</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1683739917424</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +596,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CI windows] THERE GOES ANOTHER 10M of my lfei" />
     <MESSAGE value="[CI iOS] LETS FUCKING GO" />
     <MESSAGE value="[CI windows] that took ages" />
     <MESSAGE value="[CI windows] [CI iOS] im stupid" />
@@ -623,6 +620,7 @@
     <MESSAGE value="saftey stuff [CI iOs] [ci windows]" />
     <MESSAGE value="AHAHAHAH UCK THIS [CI iOs] [ci windows]" />
     <MESSAGE value="uhhh [CI iOs] [ci windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="uhhh [CI iOs] [ci windows]" />
+    <MESSAGE value="[CI iOS] [CI windows] see if it bothers to compile using graalvm" />
+    <option name="LAST_COMMIT_MESSAGE" value="[CI iOS] [CI windows] see if it bothers to compile using graalvm" />
   </component>
 </project>
