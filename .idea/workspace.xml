@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="uhhh [CI iOs] [ci windows]">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Utils.java" afterDir="false" />
+    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="i ahte this stupid linting job [ci windows] [ci ios]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/ExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/ExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +51,15 @@
         <entry key="$PROJECT_DIR$" value="ios-build-test" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="template" />
+        <option value="z-old-.*" />
+      </list>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -74,28 +78,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/Happy/Desktop/Projects/Java/ProductivityApp/src/main/resources/io/github/haappi/views&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Happy/Desktop/Projects/Java/ProductivityApp&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.gluonhq.plugin.intellij.options.Options&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/azul" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp" />
@@ -137,11 +128,11 @@
       </method>
     </configuration>
     <configuration name="ProductivityApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="azul-20" />
+      <option name="ALTERNATIVE_JRE_PATH" value="h drive azul 20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="io.github.haappi.ProductivityApp" />
-      <module name="bold_server" />
-      <option name="VM_PARAMETERS" value="--module-path C:\JavaFX\javafx-sdk-20\lib --add-modules javafx.controls,javafx.fxml" />
+      <module name="ProductivityApp" />
+      <option name="VM_PARAMETERS" value="--module-path H:\3fifntyniien\javafx-sdk-20.0.1\lib --add-modules javafx.controls,javafx.fxml" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="io.github.haappi.*" />
@@ -244,6 +235,7 @@
       <workItem from="1683651306646" duration="1459000" />
       <workItem from="1683654515343" duration="1531000" />
       <workItem from="1683668485642" duration="6740000" />
+      <workItem from="1683739303263" duration="342000" />
     </task>
     <task id="LOCAL-00004" summary="fic tjhos">
       <created>1683353123743</created>

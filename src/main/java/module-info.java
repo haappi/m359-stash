@@ -14,6 +14,8 @@ module io.github.haappi {
   requires org.apache.httpcomponents.core5.httpcore5;
   requires jdk.httpserver;
   requires com.gluonhq.attach.device;
+  requires org.mongodb.driver.sync.client;
+  requires org.mongodb.bson;
 
   opens io.github.haappi to
       javafx.fxml;
