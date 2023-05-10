@@ -13,6 +13,7 @@ module io.github.haappi {
   requires org.apache.httpcomponents.client5.httpclient5;
   requires org.apache.httpcomponents.core5.httpcore5;
   requires jdk.httpserver;
+  requires com.gluonhq.attach.device;
 
   opens io.github.haappi to
       javafx.fxml;

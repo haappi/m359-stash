@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="AHAHAHAH UCK THIS [CI iOs] [ci windows]" />
+    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="uhhh [CI iOs] [ci windows]">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/ExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/ExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -235,14 +242,8 @@
       <workItem from="1683548204594" duration="189000" />
       <workItem from="1683646656698" duration="638000" />
       <workItem from="1683651306646" duration="1459000" />
-      <workItem from="1683654515343" duration="980000" />
-    </task>
-    <task id="LOCAL-00003" summary="whys modularity so weird">
-      <created>1682684321901</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1682684321901</updated>
+      <workItem from="1683654515343" duration="1531000" />
+      <workItem from="1683668485642" duration="6740000" />
     </task>
     <task id="LOCAL-00004" summary="fic tjhos">
       <created>1683353123743</created>
@@ -580,7 +581,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683655421463</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="uhhh [CI iOs] [ci windows]">
+      <created>1683655779323</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1683655779323</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +606,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CI iOS] THERE GOES ANOTHER 10M of my lfei" />
     <MESSAGE value="[CI windows] THERE GOES ANOTHER 10M of my lfei" />
     <MESSAGE value="[CI iOS] LETS FUCKING GO" />
     <MESSAGE value="[CI windows] that took ages" />
@@ -623,6 +630,7 @@
     <MESSAGE value="saftey stuff" />
     <MESSAGE value="saftey stuff [CI iOs] [ci windows]" />
     <MESSAGE value="AHAHAHAH UCK THIS [CI iOs] [ci windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="AHAHAHAH UCK THIS [CI iOs] [ci windows]" />
+    <MESSAGE value="uhhh [CI iOs] [ci windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="uhhh [CI iOs] [ci windows]" />
   </component>
 </project>

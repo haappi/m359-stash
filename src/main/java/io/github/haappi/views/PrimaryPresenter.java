@@ -1,10 +1,13 @@
 package io.github.haappi.views;
 
+import com.gluonhq.attach.device.DeviceService;
+import com.gluonhq.attach.display.DisplayService;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import javafx.fxml.FXML;
+import javafx.geometry.Dimension2D;
 import javafx.scene.control.Label;
 
 public class PrimaryPresenter {
@@ -34,6 +37,12 @@ public class PrimaryPresenter {
   @FXML
   void buttonClick() {
     label.setText("Hello JavaFX Universe!");
-    throw new RuntimeException("mcyeetus fuckus");
+
+DisplayService.create().ifPresent(service -> {
+    Dimension2D resolution = service.getScreenResolution();
+      System.out.printf("Screen resolution: %.0fx%.0f", resolution.getWidth(), resolution.getHeight());
+  });
+
+//    throw new RuntimeException("mcyeetus fuckus");
   }
 }
