@@ -8,13 +8,6 @@ jobs:
     if: "contains(github.event.head_commit.message, '[CI iOS]')"
     runs-on: macos-latest
     steps:
-#      - name: Wait for linting to finish
-#        uses: lewagon/wait-on-check-action@v1.3.1
-#        with:
-#          ref: ${{ github.ref }}
-#          repo-token: ${{ secrets.GITHUB_TOKEN }}
-#          check-name: 'Format'
-#          wait-interval: 10
       - uses: actions/checkout@v3
       - name: Set up JDK
         uses: actions/setup-java@v3
@@ -22,16 +15,12 @@ jobs:
           distribution: 'zulu'
           java-version: 20
           cache: 'maven'
-      - name: Cache GraalVM installation
-        uses: actions/cache@v2.1.4
-        with:
-          path: ~/.sdkman/candidates/graalvm/current
-          key: ${{ runner.os }}-graalvm-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-graalvm-
-      - name: Setup GraalVM built by Gluon
+      - name: Setup Gluon's GraalVM
         uses: gluonhq/setup-graalvm@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          jdk: 'java17'
       - name: Install HomeBrew
         run: |
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

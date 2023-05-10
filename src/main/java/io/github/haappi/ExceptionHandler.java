@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
@@ -38,6 +41,20 @@ public class ExceptionHandler implements Thread.UncaughtExceptionHandler {
     }
     return instance;
   }
+
+  private Map<String, String> getSystemInformation() {
+    HashMap<String, String> map = new HashMap<>();
+    map.put("os.name", System.getProperty("os.name"));
+    map.put("os.version", System.getProperty("os.version"));
+    map.put("java.version", System.getProperty("java.version"));
+    map.put("java.vendor", System.getProperty("java.vendor"));
+    map.put("java.vm.name", System.getProperty("java.vm.name"));
+    map.put("java.vm.version", System.getProperty("java.vm.version"));
+    return map;
+
+  }
+
+
 
   public void uncaughtException(Thread t, Throwable e) {
     e.printStackTrace();

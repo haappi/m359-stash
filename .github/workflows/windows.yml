@@ -8,16 +8,7 @@ jobs:
     if: "contains(github.event.head_commit.message, '[CI windows]')"
     runs-on: windows-latest
     steps:
-#      - name: Wait for linting to finish
-#        uses: lewagon/wait-on-check-action@v1.3.1
-#        with:
-#          ref: ${{ github.ref }}
-#          repo-token: ${{ secrets.GITHUB_TOKEN }}
-#          check-name: 'Format'
-#          wait-interval: 10
-
       - uses: actions/checkout@v2
-
       - name: Set up JDK
         uses: actions/setup-java@v3
         with:
@@ -35,6 +26,8 @@ jobs:
         uses: gluonhq/setup-graalvm@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          jdk: 'java17'
 
       - name: Make staging directory
         run: mkdir staging
