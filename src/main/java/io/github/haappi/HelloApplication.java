@@ -44,6 +44,7 @@ public class HelloApplication extends Application {
 
   @Override
   public void start(Stage primaryStage) {
+
     this.stage = primaryStage;
     Services.get(DisplayService.class)
         .ifPresent(
