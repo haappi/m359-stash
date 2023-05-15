@@ -35,6 +35,7 @@ public class GlobalHttpClass {
         return httpClient;
     }
 
+
     public Response login(String username, String password) throws IOException {
         HttpPost httpPost = new HttpPost(fireBaseURL + "accounts:signInWithPassword");
 
