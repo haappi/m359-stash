@@ -4,8 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="[CI iOS] [CI windows] aaaa">
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="[CI iOS] [CI windows] this isnt saffe">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Config.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/GlobalHttpClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Response.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/android.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/android.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-build.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/ExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/ExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/ProductivityApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/ProductivityApp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Utils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/SecondaryPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/SecondaryPresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/SecondaryView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/SecondaryView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/primary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +46,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="bold_server" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -53,14 +69,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubProjectSettings">
-    <option name="branchProtectionPatterns">
-      <list>
-        <option value="template" />
-        <option value="z-old-.*" />
-      </list>
-    </option>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -78,71 +86,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/azul" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "C:/Users/Happy/Downloads/javafx-example-app-auth0-login-master/javafx-example-app-auth0-login-master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src\main\resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff\src\main\resources\io\github\haappi" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src\main" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src\main\java\io\github\haappi" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src\main\java\io\github\haappi\views" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.ProductivityApp">
-    <configuration name="HelloApplication" type="Application" factoryName="Application" singleton="false" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.github.haappi.bold_client.HelloApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.github.haappi.bold_client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="azul-20" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="io.github.haappi.Launcher" />
-      <option name="VM_PARAMETERS" value="--module-path C:\JavaFX\javafx-sdk-20\lib --add-modules javafx.controls,javafx.fxml" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.github.haappi.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProductivityApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="ALTERNATIVE_JRE_PATH" value="h drive azul 20" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="MAIN_CLASS_NAME" value="io.github.haappi.ProductivityApp" />
-      <module name="ProductivityApp" />
-      <option name="VM_PARAMETERS" value="--module-path H:\3fifntyniien\javafx-sdk-20.0.1\lib --add-modules javafx.controls,javafx.fxml" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.github.haappi.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Maven.schoolStuff [gluonfx:run]">
     <configuration name="ProductivityApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="azul-20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -173,30 +148,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="io.github.haappi.ProductivityApp.Launcher" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="io.github.haappi.ProductivityApp.Launcher" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="io.github.haappi.ProductivityApp.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+    <configuration name="schoolStuff [gluonfx:run]" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="gluonfx:run" />
+              </list>
+            </option>
+            <option name="pomFileName" value="pom.xml" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
     </configuration>
-    <list>
-      <item itemvalue="Application.ProductivityApp" />
-      <item itemvalue="Application.io.github.haappi.ProductivityApp.Launcher" />
-      <item itemvalue="Application.Launcher" />
-      <item itemvalue="Application.HelloApplication" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.ProductivityApp" />
-        <item itemvalue="Application.ProductivityApp" />
-        <item itemvalue="Application.io.github.haappi.ProductivityApp.Launcher" />
-        <item itemvalue="Application.Launcher" />
         <item itemvalue="Application.ProductivityApp" />
       </list>
     </recent_temporary>
@@ -204,7 +183,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fdb1a286-88ac-4b96-b033-ac6c135feb34" name="Changes" comment="" />
+      <changelist id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="" />
       <created>1681816887290</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -237,6 +216,9 @@
       <workItem from="1683668485642" duration="6740000" />
       <workItem from="1683739303263" duration="1008000" />
       <workItem from="1683824009586" duration="1990000" />
+      <workItem from="1684029267900" duration="760000" />
+      <workItem from="1684080238407" duration="5902000" />
+      <workItem from="1684130740459" duration="7360000" />
     </task>
     <task id="LOCAL-00006" summary="work">
       <created>1683354420305</created>
@@ -599,7 +581,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CI windows] that took ages" />
     <MESSAGE value="[CI windows] [CI iOS] im stupid" />
     <MESSAGE value="[CI iOS] [CI Windows] idrk waht i changed but oit works" />
     <MESSAGE value="[CI iOS] [CI Windows] i deleted my logs by accident :(" />
@@ -624,6 +605,7 @@
     <MESSAGE value="uhhh [CI iOs] [ci windows]" />
     <MESSAGE value="[CI iOS] [CI windows] see if it bothers to compile using graalvm" />
     <MESSAGE value="[CI iOS] [CI windows] aaaa" />
-    <option name="LAST_COMMIT_MESSAGE" value="[CI iOS] [CI windows] aaaa" />
+    <MESSAGE value="[CI iOS] [CI windows] this isnt saffe" />
+    <option name="LAST_COMMIT_MESSAGE" value="[CI iOS] [CI windows] this isnt saffe" />
   </component>
 </project>

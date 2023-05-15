@@ -13,4 +13,15 @@ public class Utils {
         sb.append("}");
         return sb.toString();
     }
+
+    public static void sleepAndRunLater(long millis, Runnable runnable) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(millis);
+            } catch (InterruptedException e) {
+                System.out.println("InterruptedException: " + e);
+            }
+            runnable.run();
+        }).start();
+    }
 }
