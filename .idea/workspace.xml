@@ -4,15 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="lol apparently i need my ci tags&#10;[CI iOS] [CI windows]">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginView.java" afterDir="false" />
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="fuckin hell&#10;[CI iOS] [CI windows]">
+      <change afterPath="$PROJECT_DIR$/scuffed_api_key.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scuffed_api_key.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/icon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/icon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,14 +210,7 @@
       <workItem from="1684161922514" duration="814000" />
       <workItem from="1684190679090" duration="2707000" />
       <workItem from="1684219337970" duration="3434000" />
-      <workItem from="1684222818647" duration="1433000" />
-    </task>
-    <task id="LOCAL-00009" summary="stupid">
-      <created>1683354884757</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1683354884757</updated>
+      <workItem from="1684222818647" duration="2471000" />
     </task>
     <task id="LOCAL-00010" summary="hmmmmmm">
       <created>1683355467190</created>
@@ -558,7 +548,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684220677984</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="fuckin hell&#10;[CI iOS] [CI windows]">
+      <created>1684224278142</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1684224278142</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,7 +573,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CI iOS] [CI Windows] i deleted my logs by accident :(" />
     <MESSAGE value="why does it randomly work now [CI iOS] [CI Windows]" />
     <MESSAGE value="can i use zulu 20 or is that not a thing [CI iOS] [CI Windows]" />
     <MESSAGE value="[CI iOS] [CI windows] i want to say slurs" />
@@ -601,6 +597,7 @@
     <MESSAGE value="[CI iOS] [CI windows] this isnt saffe" />
     <MESSAGE value="try" />
     <MESSAGE value="lol apparently i need my ci tags&#10;[CI iOS] [CI windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="lol apparently i need my ci tags&#10;[CI iOS] [CI windows]" />
+    <MESSAGE value="fuckin hell&#10;[CI iOS] [CI windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="fuckin hell&#10;[CI iOS] [CI windows]" />
   </component>
 </project>

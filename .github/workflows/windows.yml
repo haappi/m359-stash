@@ -33,7 +33,7 @@ jobs:
         run: mkdir staging
       - name: Make secrets file
         run: |
-          echo "apiKey=${{ secrets.FIREBASE_API_KEY }}" > src/main/resources/io/github/haappi/secret.properties
+          scuffed_api_key.bat ${{ secrets.FIREBASE_API_KEY }}
 
       #      - name: Gluon License
       #        uses: gluonhq/gluon-build-license@v1

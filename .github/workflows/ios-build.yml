@@ -34,16 +34,17 @@ jobs:
           p12-file-base64: ${{ secrets.GLUON_IOS_BASE64 }}
           p12-password: ${{ secrets.GLUON_IOS_CERTIFICATES_PASSWORD }}
       - name: Fix file permissions
-        run: chmod +x mvnw
+        run: |
+          chmod +x mvnw
+          chomd +x scuffed_api_key.sh
       - name: Create file
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           touch ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
-          touch src/main/resources/io/github/haappi/secret.properties
       - name: Write secret to file
         run: |
           echo "${{ secrets.PROVISION_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
-          echo "api_key=${{ secrets.FIREBASE_API_KEY }}" > src/main/resources/io/github/haappi/secret.properties
+          ./scuffed_api_key.sh ${{ secrets.FIREBASE_API_KEY }}
       - name: Build iOS app and create .ipa
         run: |
           ./mvnw -Pios gluonfx:build gluonfx:package

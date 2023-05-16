@@ -45,7 +45,7 @@ public class HelloApplication extends Application {
                 () -> Thread.currentThread().setUncaughtExceptionHandler(ExceptionHandler.getInstance()));
 
         properties = new Properties();
-        properties.setProperty("apiKey", "AIzaSyAkRpMbVq_XyspjjP557LRuzSDseDNrPhw");
+        properties.setProperty("apiKey", "fsdufhsdufhsdufhsdufyhsduifhsduifhsduifhsdiufhsdui");
 
 
 //        appManager.addViewFactory(SECONDARY_VIEW, () -> new PrimaryView().getView());
