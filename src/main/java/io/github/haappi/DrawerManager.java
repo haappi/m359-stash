@@ -26,7 +26,7 @@ public class DrawerManager {
 
         final Item primaryItem =
                 new ViewItem(
-                        "Login", MaterialDesignIcon.HOME.graphic(), PRIMARY_VIEW, ViewStackPolicy.SKIP);
+                        "Login", MaterialDesignIcon.HOME.graphic(), "Login", ViewStackPolicy.SKIP);
         final Item secondaryItem =
                 new ViewItem("Secondary", MaterialDesignIcon.DASHBOARD.graphic(), SECONDARY_VIEW);
         drawer.getItems().addAll(primaryItem, secondaryItem);

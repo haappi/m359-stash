@@ -4,6 +4,8 @@ import com.gluonhq.attach.display.DisplayService;
 import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
+import io.github.haappi.views.LoginHandler;
+import io.github.haappi.views.LoginView;
 import io.github.haappi.views.PrimaryView;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -13,10 +15,13 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+ import java.io.InputStreamReader;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Scanner;
 
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 
@@ -39,13 +44,13 @@ public class HelloApplication extends Application {
         Platform.runLater(
                 () -> Thread.currentThread().setUncaughtExceptionHandler(ExceptionHandler.getInstance()));
 
-        InputStream inputStream = getClass().getResourceAsStream("secrets.properties");
         properties = new Properties();
-        properties.load(inputStream);
+        properties.setProperty("apiKey", "AIzaSyAkRpMbVq_XyspjjP557LRuzSDseDNrPhw");
 
-        appManager.addViewFactory(PRIMARY_VIEW, () -> new PrimaryView().getView());
 
-//        appManager.addViewFactory("Login", LoginHandler::load);
+//        appManager.addViewFactory(SECONDARY_VIEW, () -> new PrimaryView().getView());
+
+        appManager.addViewFactory(PRIMARY_VIEW, () -> new LoginView().load());
 //        appManager.addViewFactory(SECONDARY_VIEW, () -> new SecondaryView().getView());
         DrawerManager.buildDrawer(appManager);
 //        InputStream inputStream = getClass().getResourceAsStream("login.fxml");
