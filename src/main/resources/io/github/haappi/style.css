@@ -1,3 +1,8 @@
 .root {
 
 }
+
+.floating-action-button {
+    -fx-background-color: #4CAF50; /* Set the background color */
+    -fx-text-fill: white; /* Set the text color */
+}

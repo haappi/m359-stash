@@ -7,7 +7,6 @@ import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import io.github.haappi.GlobalHttpClass;
 import io.github.haappi.Response;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;

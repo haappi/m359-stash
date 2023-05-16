@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class LoginView {
 
-        public  View load() {
+    public View load() {
         try {
             return FXMLLoader.load(LoginView.class.getResource("login.fxml"));
         } catch (IOException e) {

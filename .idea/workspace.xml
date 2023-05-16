@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="bro please just work for the love of god&#10;[CI iOS]">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="kys&#10;[CI iOS] [CI windows]">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/dark_mode.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/light_mode.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scuffed_api_key.bat" beforeDir="false" afterPath="$PROJECT_DIR$/scuffed_api_key.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/primary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +48,7 @@
       <list>
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -72,24 +77,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Happy/Downloads/javafx-example-app-auth0-login-master/javafx-example-app-auth0-login-master&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "last_opened_file_path": "C:/Users/Happy/Downloads/javafx-example-app-auth0-login-master/javafx-example-app-auth0-login-master",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "vcs.Git",
+    "show.migrate.to.gradle.popup": "false",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp" />
@@ -208,14 +214,7 @@
       <workItem from="1684161922514" duration="814000" />
       <workItem from="1684190679090" duration="2707000" />
       <workItem from="1684219337970" duration="3434000" />
-      <workItem from="1684222818647" duration="2857000" />
-    </task>
-    <task id="LOCAL-00012" summary="try this">
-      <created>1683357656764</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1683357656764</updated>
+      <workItem from="1684222818647" duration="4900000" />
     </task>
     <task id="LOCAL-00013" summary="?????">
       <created>1683358056967</created>
@@ -553,7 +552,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684225552808</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="kys&#10;[CI iOS] [CI windows]">
+      <created>1684225893383</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1684225893383</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -571,7 +577,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CI iOS] [CI windows] i want to say slurs" />
     <MESSAGE value="kms [CI iOS]" />
     <MESSAGE value="[CI windows] [CI iOS]" />
     <MESSAGE value="[CI android]" />
@@ -596,6 +601,7 @@
     <MESSAGE value="fuckin hell&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="bro please just work for the love of god&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="bro please just work for the love of god&#10;[CI iOS]" />
-    <option name="LAST_COMMIT_MESSAGE" value="bro please just work for the love of god&#10;[CI iOS]" />
+    <MESSAGE value="kys&#10;[CI iOS] [CI windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="kys&#10;[CI iOS] [CI windows]" />
   </component>
 </project>
