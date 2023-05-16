@@ -40,7 +40,7 @@ public class GlobalHttpClass {
         HttpPost httpPost = new HttpPost(fireBaseURL + "accounts:signInWithPassword");
 
         List<NameValuePair> params = new ArrayList<>();
-        params.add(new BasicNameValuePair("key", "AIzaSyDDQdgCmEZc_OoWRBdRok0hxJS2Bv-H14M"));
+        params.add(new BasicNameValuePair("key", HelloApplication.properties.getProperty("apiKey")));
         params.add(new BasicNameValuePair("email", username));
         params.add(new BasicNameValuePair("password", password));
         params.add(new BasicNameValuePair("returnSecureToken", "true"));

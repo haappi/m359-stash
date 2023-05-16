@@ -39,11 +39,11 @@ jobs:
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
           touch ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
-#          touch src/main/resources/io/github/haappi/secret.properties
+          touch src/main/resources/io/github/haappi/secret.properties
       - name: Write secret to file
         run: |
           echo "${{ secrets.PROVISION_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
-#          echo "FIREBASE_KEY=${{ secrets.FIREBASE_API_KEY }}" > src/main/resources/io/github/haappi/secret.properties
+          echo "api_key=${{ secrets.FIREBASE_API_KEY }}" > src/main/resources/io/github/haappi/secret.properties
       - name: Build iOS app and create .ipa
         run: |
           ./mvnw -Pios gluonfx:build gluonfx:package
