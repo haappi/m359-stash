@@ -36,7 +36,7 @@ jobs:
       - name: Fix file permissions
         run: |
           chmod +x mvnw
-          chomd +x scuffed_api_key.sh
+          chmod +x scuffed_api_key.sh
       - name: Create file
         run: |
           mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
