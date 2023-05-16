@@ -50,6 +50,7 @@ public class HelloApplication extends Application {
         DrawerManager.buildDrawer(appManager);
 //        InputStream inputStream = getClass().getResourceAsStream("login.fxml");
 
+
 //        FXMLLoader loader = new FXMLLoader();
 //        loader.setLocation(getClass().getResource("views/login.fxml"));
 
