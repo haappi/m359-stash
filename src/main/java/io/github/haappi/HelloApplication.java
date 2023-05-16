@@ -45,7 +45,7 @@ public class HelloApplication extends Application {
                 () -> Thread.currentThread().setUncaughtExceptionHandler(ExceptionHandler.getInstance()));
 
         properties = new Properties();
-        properties.setProperty("apiKey", "fsdufhsdufhsdufhsdufyhsduifhsduifhsduifhsdiufhsdui");
+        properties.setProperty("apiKey", "white");
 
 
 //        appManager.addViewFactory(SECONDARY_VIEW, () -> new PrimaryView().getView());
@@ -100,3 +100,4 @@ public class HelloApplication extends Application {
                 .add(new Image(ProductivityApp.class.getResourceAsStream("/icon.png")));
     }
 }
+

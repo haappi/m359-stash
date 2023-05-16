@@ -33,7 +33,7 @@ jobs:
         run: mkdir staging
       - name: Make secrets file
         run: |
-          scuffed_api_key.bat ${{ secrets.FIREBASE_API_KEY }}
+          ((Get-Content -path src/main/java/io/github/haappi/HelloApplication.java -Raw) -replace 'fsdufhsdufhsdufhsdufyhsduifhsduifhsduifhsdiufhsdui','{{ secrets.FIREBASE_API_KEY }}') | Set-Content -Path src/main/java/io/github/haappi/HelloApplication.java
 
       #      - name: Gluon License
       #        uses: gluonhq/gluon-build-license@v1

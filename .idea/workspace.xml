@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="fuckin hell&#10;[CI iOS] [CI windows]">
-      <change afterPath="$PROJECT_DIR$/scuffed_api_key.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scuffed_api_key.sh" afterDir="false" />
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="bro please just work for the love of god&#10;[CI iOS]">
       <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scuffed_api_key.bat" beforeDir="false" afterPath="$PROJECT_DIR$/scuffed_api_key.bat" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,21 +208,7 @@
       <workItem from="1684161922514" duration="814000" />
       <workItem from="1684190679090" duration="2707000" />
       <workItem from="1684219337970" duration="3434000" />
-      <workItem from="1684222818647" duration="2471000" />
-    </task>
-    <task id="LOCAL-00010" summary="hmmmmmm">
-      <created>1683355467190</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1683355467192</updated>
-    </task>
-    <task id="LOCAL-00011" summary="gravlm cache?">
-      <created>1683356219937</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1683356219937</updated>
+      <workItem from="1684222818647" duration="2857000" />
     </task>
     <task id="LOCAL-00012" summary="try this">
       <created>1683357656764</created>
@@ -555,7 +539,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684224278142</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="bro please just work for the love of god&#10;[CI iOS] [CI windows]">
+      <created>1684225420891</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1684225420891</updated>
+    </task>
+    <task id="LOCAL-00060" summary="bro please just work for the love of god&#10;[CI iOS]">
+      <created>1684225552808</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1684225552808</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -573,8 +571,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="why does it randomly work now [CI iOS] [CI Windows]" />
-    <MESSAGE value="can i use zulu 20 or is that not a thing [CI iOS] [CI Windows]" />
     <MESSAGE value="[CI iOS] [CI windows] i want to say slurs" />
     <MESSAGE value="kms [CI iOS]" />
     <MESSAGE value="[CI windows] [CI iOS]" />
@@ -598,6 +594,8 @@
     <MESSAGE value="try" />
     <MESSAGE value="lol apparently i need my ci tags&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="fuckin hell&#10;[CI iOS] [CI windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="fuckin hell&#10;[CI iOS] [CI windows]" />
+    <MESSAGE value="bro please just work for the love of god&#10;[CI iOS] [CI windows]" />
+    <MESSAGE value="bro please just work for the love of god&#10;[CI iOS]" />
+    <option name="LAST_COMMIT_MESSAGE" value="bro please just work for the love of god&#10;[CI iOS]" />
   </component>
 </project>
