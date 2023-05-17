@@ -5,7 +5,9 @@ import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
 import io.github.haappi.views.LoginView;
+import io.github.haappi.views.RandomTestView;
 import io.github.haappi.views.SecondaryView;
+import io.github.haappi.views.ViewEnums;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
@@ -21,9 +23,6 @@ import java.util.Properties;
 import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 
 public class HelloApplication extends Application {
-
-    public static final String PRIMARY_VIEW = HOME_VIEW;
-    public static final String SECONDARY_VIEW = "Secondary View";
     public static Properties properties;
     private static HelloApplication instance;
     private final AppManager appManager = AppManager.initialize(this::postInit);
@@ -54,10 +53,9 @@ public class HelloApplication extends Application {
 
 //        appManager.addViewFactory(SECONDARY_VIEW, () -> new PrimaryView().getView());
 
-        appManager.addViewFactory(PRIMARY_VIEW, () -> new LoginView().load());
-        appManager.addViewFactory(SECONDARY_VIEW, () -> new SecondaryView().getView());
+        appManager.addViewFactory(ViewEnums.SPLASH.toString(), () -> new LoginView().load());
+        appManager.addViewFactory(ViewEnums.THIRD.toString(), () -> new RandomTestView().getView());
         DrawerManager.buildDrawer(appManager);
-//        InputStream inputStream = getClass().getResourceAsStream("login.fxml");
 
 
 //        FXMLLoader loader = new FXMLLoader();

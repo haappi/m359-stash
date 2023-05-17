@@ -20,7 +20,10 @@
         "pattern": "\\Qio/github/haappi/style.css\\E"
       },
       {
-        "pattern": "\\Qio/github/haappi/views/primary.fxml\\E"
+        "pattern": "\\Qio/github/haappi/views/*.fxml\\E"
+      },
+        {
+        "pattern": "\\Qio/github/haappi/views/*.css\\E"
       }
     ]
   },

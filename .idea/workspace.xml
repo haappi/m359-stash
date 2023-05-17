@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="kys&#10;[CI iOS] [CI windows]">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="hmmmmm&#10;[CI iOS] [CI windows]">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/RandomTestView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/third.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/dark_mode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/dark_mode.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +46,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -78,7 +81,7 @@
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "ios-build-test",
-    "last_opened_file_path": "C:/Users/Happy/Downloads/javafx-example-app-auth0-login-master/javafx-example-app-auth0-login-master",
+    "last_opened_file_path": "C:/Users/Happy/Desktop/Projects/Java/schoolStuff/src/main/resources/io/github/haappi/views",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -95,6 +98,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff\src\main\resources\io\github\haappi\views" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src\main\resources" />
     </key>
@@ -214,14 +218,7 @@
       <workItem from="1684222818647" duration="4900000" />
       <workItem from="1684278741021" duration="19000" />
       <workItem from="1684351255057" duration="2000" />
-      <workItem from="1684352706820" duration="457000" />
-    </task>
-    <task id="LOCAL-00013" summary="?????">
-      <created>1683358056967</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1683358056967</updated>
+      <workItem from="1684352706820" duration="3225000" />
     </task>
     <task id="LOCAL-00014" summary="fuck graalm">
       <created>1683358110235</created>
@@ -559,7 +556,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684225893383</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="hmmmmm&#10;[CI iOS] [CI windows]">
+      <created>1684353190857</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1684353190857</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +581,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="kms [CI iOS]" />
     <MESSAGE value="[CI windows] [CI iOS]" />
     <MESSAGE value="[CI android]" />
     <MESSAGE value="shi takes like 10m just to load" />
@@ -602,6 +605,7 @@
     <MESSAGE value="bro please just work for the love of god&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="bro please just work for the love of god&#10;[CI iOS]" />
     <MESSAGE value="kys&#10;[CI iOS] [CI windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="kys&#10;[CI iOS] [CI windows]" />
+    <MESSAGE value="hmmmmm&#10;[CI iOS] [CI windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="hmmmmm&#10;[CI iOS] [CI windows]" />
   </component>
 </project>

@@ -9,9 +9,8 @@ import com.gluonhq.charm.glisten.control.NavigationDrawer;
 import com.gluonhq.charm.glisten.control.NavigationDrawer.Item;
 import com.gluonhq.charm.glisten.control.NavigationDrawer.ViewItem;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
+import io.github.haappi.views.ViewEnums;
 
-import static io.github.haappi.HelloApplication.PRIMARY_VIEW;
-import static io.github.haappi.HelloApplication.SECONDARY_VIEW;
 
 public class DrawerManager {
 
@@ -26,10 +25,10 @@ public class DrawerManager {
 
         final Item primaryItem =
                 new ViewItem(
-                        "Login", MaterialDesignIcon.HOME.graphic(), PRIMARY_VIEW, ViewStackPolicy.SKIP);
+                        "Login", MaterialDesignIcon.HOME.graphic(), ViewEnums.SPLASH.toString(), ViewStackPolicy.SKIP);
 
         final Item secondaryItem =
-                new ViewItem("Secondary", MaterialDesignIcon.DASHBOARD.graphic(), SECONDARY_VIEW);
+                new ViewItem("Secondary", MaterialDesignIcon.DASHBOARD.graphic(), ViewEnums.THIRD.toString());
         drawer.getItems().addAll(primaryItem, secondaryItem);
 
         if (Platform.isDesktop()) {
