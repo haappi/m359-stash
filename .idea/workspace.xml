@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="kys&#10;[CI iOS] [CI windows]">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/dark_mode.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/light_mode.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/dark_mode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/dark_mode.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,6 +77,7 @@
   "keyToString": {
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "ios-build-test",
     "last_opened_file_path": "C:/Users/Happy/Downloads/javafx-example-app-auth0-login-master/javafx-example-app-auth0-login-master",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
@@ -215,6 +212,9 @@
       <workItem from="1684190679090" duration="2707000" />
       <workItem from="1684219337970" duration="3434000" />
       <workItem from="1684222818647" duration="4900000" />
+      <workItem from="1684278741021" duration="19000" />
+      <workItem from="1684351255057" duration="2000" />
+      <workItem from="1684352706820" duration="457000" />
     </task>
     <task id="LOCAL-00013" summary="?????">
       <created>1683358056967</created>
