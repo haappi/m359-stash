@@ -25,8 +25,6 @@ public class DrawerManager {
                                 Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
         drawer.setHeader(header);
 
-//        final Item blank = new Item("Blank", MaterialDesignIcon.EMPTY.graphic());
-
         final Item primaryItem =
                 new ViewItem(
                         "Login", MaterialDesignIcon.LOCK, ViewEnums.SPLASH, ViewStackPolicy.SKIP);
