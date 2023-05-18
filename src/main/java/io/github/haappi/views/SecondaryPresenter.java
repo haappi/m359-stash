@@ -7,9 +7,11 @@ import com.gluonhq.charm.glisten.control.FloatingActionButton;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import javafx.fxml.FXML;
+import javafx.scene.layout.VBox;
 
 public class SecondaryPresenter {
 
+    public VBox vbox;
     @FXML
     private View secondary;
 

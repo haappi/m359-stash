@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -23,6 +24,7 @@ public class LoginHandler {
     public Label label;
     public TextField email;
     public PasswordField password;
+    public VBox vbox;
 
     @FXML
     private View primary;

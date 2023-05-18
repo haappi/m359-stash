@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
@@ -20,6 +21,7 @@ public class PrimaryPresenter {
 
     public TextField email;
     public PasswordField password;
+    public VBox vbox;
     @FXML
     private View primary;
 

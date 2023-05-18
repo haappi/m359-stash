@@ -11,7 +11,7 @@
       minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" stylesheets="secondary.css"
       xmlns="http://javafx.com/javafx/18" fx:controller="io.github.haappi.views.SecondaryPresenter">
     <center>
-        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+        <VBox fx:id="vbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                     <children>

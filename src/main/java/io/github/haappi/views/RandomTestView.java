@@ -9,11 +9,13 @@ import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import io.github.haappi.HelloApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
 public class RandomTestView extends View {
     public View secondary;
+    public VBox vbox;
 
     public View getView() {
         try {

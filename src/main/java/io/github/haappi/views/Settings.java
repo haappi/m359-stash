@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class Settings {
     public View primary;
-    public VBox hmmm;
+    public VBox vbox;
 
     public static View load() {
         try {
@@ -56,7 +56,7 @@ public class Settings {
             }
 
         });
-        hmmm.getChildren().add(switchButton);
+        vbox.getChildren().add(switchButton);
 
 
         ObservableList<Swatching> listInstance = FXCollections.observableArrayList(Swatching.getAllAsList());
@@ -67,6 +67,6 @@ public class Settings {
                 swatching.assignTo(primary.getScene());
             }
         });
-        hmmm.getChildren().add(comboBox);
+        vbox.getChildren().add(comboBox);
     }
 }
