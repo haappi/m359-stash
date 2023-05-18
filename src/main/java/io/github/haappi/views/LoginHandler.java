@@ -5,8 +5,10 @@ import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import io.github.haappi.GlobalHttpClass;
+import io.github.haappi.HelloApplication;
 import io.github.haappi.Response;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -28,7 +30,7 @@ public class LoginHandler {
 
     public static View load() {
         try {
-            return FXMLLoader.load(LoginHandler.class.getResource("login.fxml"));
+            return FXMLLoader.load(HelloApplication.class.getResource("login.fxml"));
         } catch (IOException e) {
             System.out.println("IOException: " + e);
             return new View();
@@ -54,18 +56,32 @@ public class LoginHandler {
     }
 
     @FXML
-    void buttonClick() throws IOException {
+    void login() throws IOException {
         GlobalHttpClass globalHttpClass = GlobalHttpClass.getHttpClient();
         Response resp = globalHttpClass.login(email.getText(), password.getText());
+        label.setText(resp.getMessage());
         if (resp.succeeded()) {
-            label.setText("Login succeeded");
-            sleepAndRunLater(2000, () -> {
+            System.out.println("a");
+            sleepAndRunLater(() -> {
+                Platform.runLater(() -> {
+                    System.out.println("bb");
+                    AppManager.getInstance().switchView(ViewEnums.HMMM.toString());
+                });
+            });
+        }
+    }
+
+    public void signup(ActionEvent actionEvent) throws IOException {
+                GlobalHttpClass globalHttpClass = GlobalHttpClass.getHttpClient();
+        Response resp = globalHttpClass.signup(email.getText(), password.getText());
+        label.setText(resp.getMessage());
+        if (resp.succeeded()) {
+            sleepAndRunLater(() -> {
                 Platform.runLater(() -> {
                     AppManager.getInstance().switchView("Secondary View");
                 });
             });
-        } else {
-            label.setText("Login failed");
         }
+
     }
 }

@@ -45,12 +45,12 @@ public class HelloApplication extends Application {
                 () -> Thread.currentThread().setUncaughtExceptionHandler(ExceptionHandler.getInstance()));
 
         properties = new Properties();
-        properties.setProperty("apiKey", "fsdufhsdufhsdufhsdufyhsduifhsduifhsduifhsdiufhsdui");
+        properties.setProperty("apiKey", "AIzaSyC8ULrlwfwUzha71jECnSds9b7IhbKZnPc");
 
 
 //        appManager.addViewFactory(SECONDARY_VIEW, () -> new PrimaryView().getView());
 
-        appManager.addViewFactory(ViewEnums.SPLASH.toString(), () -> new LoginView().load());
+        appManager.addViewFactory(ViewEnums.SPLASH.toString(), () -> LoginHandler.load());
         appManager.addViewFactory(ViewEnums.THIRD.toString(), () -> new RandomTestView().getView());
         appManager.addViewFactory(ViewEnums.HMMM.toString(), YetAnotherShittyView::getView);
         DrawerManager.buildDrawer(appManager);
