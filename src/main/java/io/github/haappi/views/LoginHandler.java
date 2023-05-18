@@ -72,7 +72,7 @@ public class LoginHandler {
     }
 
     public void signup(ActionEvent actionEvent) throws IOException {
-                GlobalHttpClass globalHttpClass = GlobalHttpClass.getHttpClient();
+        GlobalHttpClass globalHttpClass = GlobalHttpClass.getHttpClient();
         Response resp = globalHttpClass.signup(email.getText(), password.getText());
         label.setText(resp.getMessage());
         if (resp.succeeded()) {
@@ -82,6 +82,11 @@ public class LoginHandler {
                 });
             });
         }
+    }
 
+    public void resetPassword() throws IOException {
+        GlobalHttpClass globalHttpClass = GlobalHttpClass.getHttpClient();
+        Response resp = globalHttpClass.resetPassword(email.getText());
+        label.setText(resp.getMessage());
     }
 }

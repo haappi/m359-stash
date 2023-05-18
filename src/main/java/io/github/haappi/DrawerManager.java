@@ -19,10 +19,10 @@ public class DrawerManager {
     public static void buildDrawer(AppManager app) {
         NavigationDrawer drawer = app.getDrawer();
 
-                NavigationDrawer.Header header = new NavigationDrawer.Header("Productivity App",
-                        "A rather, strange \"productivity\" app",
-                        new Avatar(21, new
-                                Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
+        NavigationDrawer.Header header = new NavigationDrawer.Header("Productivity App",
+                "A rather, strange \"productivity\" app",
+                new Avatar(21, new
+                        Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
         drawer.setHeader(header);
 
         final Item primaryItem =
@@ -35,7 +35,10 @@ public class DrawerManager {
         final Item thirdItem =
                 new ViewItem("Third", MaterialDesignIcon.DASHBOARD, ViewEnums.HMMM);
 
-        drawer.getItems().addAll(primaryItem, secondaryItem, thirdItem);
+        final Item settingsItem =
+                new ViewItem("Settings", MaterialDesignIcon.SETTINGS, ViewEnums.SETTINGS);
+
+        drawer.getItems().addAll(primaryItem, secondaryItem, thirdItem, settingsItem);
 
         if (Platform.isDesktop()) {
             final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());

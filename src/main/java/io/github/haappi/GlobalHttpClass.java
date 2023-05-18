@@ -116,4 +116,38 @@ public class GlobalHttpClass {
         return new Response(true, "Login successful: Logged in as " + Config.getInstance().getDisplayName());
 
     }
+
+    public Response resetPassword(String email) throws IOException {
+        HttpPost httpPost = new HttpPost(fireBaseURL + "accounts:sendOobCode");
+
+        List<NameValuePair> params = new ArrayList<>();
+        params.add(new BasicNameValuePair("key", HelloApplication.properties.getProperty("apiKey")));
+        params.add(new BasicNameValuePair("email", email));
+        params.add(new BasicNameValuePair("requestType", "PASSWORD_RESET"));
+
+        httpPost.setEntity(new UrlEncodedFormEntity(params));
+
+        String resp = httpClient.execute(httpPost, response -> {
+            if (response.getCode() >= 300) {
+                return null;
+            }
+            final HttpEntity responseEntity = response.getEntity();
+            if (responseEntity == null) {
+                return null;
+            }
+            try (InputStream inputStream = responseEntity.getContent()) {
+                return new String(inputStream.readAllBytes());
+            }
+
+        });
+
+        if (resp == null) {
+            return new Response(false, "Error: Email not valid.t");
+        }
+
+        JSONObject json = new JSONObject(resp);
+        System.out.println(json.toString(4));
+
+        return new Response(true, "Password reset email sent to " + email);
+    }
 }

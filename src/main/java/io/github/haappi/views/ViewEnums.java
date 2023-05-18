@@ -6,16 +6,12 @@ public enum ViewEnums {
     SPLASH(HOME_VIEW),
     LOGIN("Login"),
     HMMM("Hmmm"),
-    SECONDARY("Secondary"), THIRD("Third");
+    SECONDARY("Secondary"), THIRD("Third"), SETTINGS("Settings");
 
     private final String viewName;
 
     ViewEnums(String viewName) {
         this.viewName = viewName;
-    }
-
-    public String toString() {
-        return viewName;
     }
 
     public static ViewEnums fromViewName(String viewName) {
@@ -27,6 +23,9 @@ public enum ViewEnums {
         return null;
     }
 
+    public String toString() {
+        return viewName;
+    }
 
 
 }

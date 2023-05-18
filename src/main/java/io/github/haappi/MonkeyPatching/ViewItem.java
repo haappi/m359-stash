@@ -2,10 +2,8 @@ package io.github.haappi.MonkeyPatching;
 
 import com.gluonhq.charm.glisten.application.ViewStackPolicy;
 import com.gluonhq.charm.glisten.control.NavigationDrawer;
-import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import io.github.haappi.views.ViewEnums;
-import javafx.scene.Node;
 
 public class ViewItem extends NavigationDrawer.ViewItem {
 

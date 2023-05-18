@@ -4,7 +4,10 @@ import com.gluonhq.attach.display.DisplayService;
 import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
-import io.github.haappi.views.*;
+import io.github.haappi.views.LoginHandler;
+import io.github.haappi.views.RandomTestView;
+import io.github.haappi.views.Settings;
+import io.github.haappi.views.ViewEnums;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
@@ -16,8 +19,6 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Properties;
-
-import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 
 public class HelloApplication extends Application {
     public static Properties properties;
@@ -52,7 +53,7 @@ public class HelloApplication extends Application {
 
         appManager.addViewFactory(ViewEnums.SPLASH.toString(), () -> LoginHandler.load());
         appManager.addViewFactory(ViewEnums.THIRD.toString(), () -> new RandomTestView().getView());
-        appManager.addViewFactory(ViewEnums.HMMM.toString(), YetAnotherShittyView::getView);
+        appManager.addViewFactory(ViewEnums.SETTINGS.toString(), () -> Settings.load());
         DrawerManager.buildDrawer(appManager);
     }
 
@@ -82,7 +83,7 @@ public class HelloApplication extends Application {
 
 
     private void postInit(Scene scene) {
-        Swatch.BLUE.assignTo(scene);
+        Swatch.GREY.assignTo(scene);
 //        toggleTheme();
         scene.getStylesheets().add(ProductivityApp.class.getResource("style.css").toExternalForm());
         ((Stage) scene.getWindow())
@@ -122,5 +123,9 @@ public class HelloApplication extends Application {
         stage.getScene().getStylesheets().add(theme);
     }
 
+    @Override
+    public void stop() {
+        System.out.println("applcation is endeing");
+    }
 }
 

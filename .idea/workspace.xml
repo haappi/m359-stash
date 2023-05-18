@@ -4,29 +4,40 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="closes #28">
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/100.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/1024.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/114.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/120.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/144.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/152.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/167.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/180.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/20.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/29.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/40.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/50.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/57.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/58.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/60.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/72.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/76.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/80.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/87.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/Contents.json" afterDir="false" />
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="[ci ios] shiiii">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Swatching.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/SwitchButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Settings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/pomodoro.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/settings.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/update_time.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/update_time_folders.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/ios-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-build.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scuffed_api_key.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scuffed_api_key.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/GlobalHttpClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/GlobalHttpClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/MonkeyPatching/ViewItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/MonkeyPatching/ViewItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/YetAnotherShittyView.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/filter-file.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/filter-file.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/predefined-classes-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/predefined-classes-config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/resource-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/resource-config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/serialization-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/serialization-config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/dark_mode.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/light_mode.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,8 +72,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="CSS File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -75,11 +86,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -111,16 +122,16 @@
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "omg__a__new__branch",
-    "last_opened_file_path": "C:/Users/Happy/Desktop/Projects/Java/schoolStuff",
+    "last_opened_file_path": "C:/Users/Happy/Desktop/Projects/Java/schoolStuff/src/main/resources/io/github/haappi",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "vcs.Git",
     "show.migrate.to.gradle.popup": "false",
     "vue.rearranger.settings.migration": "true"
@@ -128,8 +139,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff\src\main\resources\io\github\haappi" />
+      <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff\src\main\resources\io\github\haappi\views" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src\main\resources" />
@@ -142,7 +153,7 @@
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.schoolStuff [gluonfx:run]">
+  <component name="RunManager" selected="Batch.update_time">
     <configuration name="ProductivityApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="azul-20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -169,6 +180,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="update_time" type="BatchConfigurationType" factoryName="Batch" temporary="true">
+      <module name="ProductivityApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="update_time.bat" />
+      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -200,6 +222,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Batch.update_time" />
         <item itemvalue="Application.ProductivityApp" />
         <item itemvalue="Application.ProductivityApp" />
       </list>
@@ -253,21 +276,8 @@
       <workItem from="1684352706820" duration="3436000" />
       <workItem from="1684370583803" duration="6187000" />
       <workItem from="1684391775031" duration="757000" />
-      <workItem from="1684392554975" duration="3794000" />
-    </task>
-    <task id="LOCAL-00021" summary="[CI windows] will this work">
-      <created>1683360025540</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360025540</updated>
-    </task>
-    <task id="LOCAL-00022" summary="[CI ios] what mow">
-      <created>1683360219434</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360219434</updated>
+      <workItem from="1684392554975" duration="5590000" />
+      <workItem from="1684399660496" duration="6623000" />
     </task>
     <task id="LOCAL-00023" summary="[CI ios] forgot run tag">
       <created>1683360260439</created>
@@ -598,7 +608,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684395766979</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="[ci ios] custom app icons?">
+      <created>1684396485725</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1684396485725</updated>
+    </task>
+    <task id="LOCAL-00071" summary="[ci ios] shiiii">
+      <created>1684396694680</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1684396694681</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -616,8 +640,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change ONE setting. [CI ios] [CI windows]" />
-    <MESSAGE value="[CI iOS] [CI windows] fix exception handler not working" />
     <MESSAGE value="Merge remote-tracking branch 'origin/ios-build-test' into ios-build-test [CI ios] [ci windows]" />
     <MESSAGE value="i ahte this stupid linting job" />
     <MESSAGE value="i ahte this stupid linting job [ci windows] [ci ios]" />
@@ -641,6 +663,8 @@
     <MESSAGE value="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="closes #36" />
     <MESSAGE value="closes #28" />
-    <option name="LAST_COMMIT_MESSAGE" value="closes #28" />
+    <MESSAGE value="[ci ios] custom app icons?" />
+    <MESSAGE value="[ci ios] shiiii" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ci ios] shiiii" />
   </component>
 </project>
