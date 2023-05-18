@@ -4,14 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="closes #36">
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="closes #28">
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/100.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/1024.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/114.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/120.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/144.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/152.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/167.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/180.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/20.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/29.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/57.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/58.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/72.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/76.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/80.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/87.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-build.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/GlobalHttpClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/GlobalHttpClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +75,19 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="f0403c0e-d7f7-40ed-9090-12d82bd89b50" />
+        <option name="url" value="https://github.com/haappi/schoolStuff/" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -83,7 +111,7 @@
     "WebServerToolWindowFactoryState": "false",
     "dart.analysis.tool.window.visible": "false",
     "git-widget-placeholder": "omg__a__new__branch",
-    "last_opened_file_path": "C:/Users/Happy/Desktop/Projects/Java/schoolStuff - Copy",
+    "last_opened_file_path": "C:/Users/Happy/Desktop/Projects/Java/schoolStuff",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -224,14 +252,7 @@
       <workItem from="1684352706820" duration="3436000" />
       <workItem from="1684370583803" duration="6187000" />
       <workItem from="1684391775031" duration="757000" />
-      <workItem from="1684392554975" duration="3114000" />
-    </task>
-    <task id="LOCAL-00020" summary="will this work">
-      <created>1683360010398</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360010398</updated>
+      <workItem from="1684392554975" duration="3794000" />
     </task>
     <task id="LOCAL-00021" summary="[CI windows] will this work">
       <created>1683360025540</created>
@@ -569,7 +590,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684394446965</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="closes #28">
+      <created>1684395766979</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1684395766979</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -587,7 +615,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change java version [CI ios] [CI windows]" />
     <MESSAGE value="change ONE setting. [CI ios] [CI windows]" />
     <MESSAGE value="[CI iOS] [CI windows] fix exception handler not working" />
     <MESSAGE value="Merge remote-tracking branch 'origin/ios-build-test' into ios-build-test [CI ios] [ci windows]" />
@@ -612,6 +639,7 @@
     <MESSAGE value="see if this works on github&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="closes #36" />
-    <option name="LAST_COMMIT_MESSAGE" value="closes #36" />
+    <MESSAGE value="closes #28" />
+    <option name="LAST_COMMIT_MESSAGE" value="closes #28" />
   </component>
 </project>
