@@ -47,14 +47,7 @@ jobs:
           ./scuffed_api_key.sh ${{ secrets.FIREBASE_API_KEY }}
       - name: Build iOS app and create .ipa
         run: |
-          ./mvnw -Pios gluonfx:build
-#          mkdir -p src/ios/assets
-#          cp target/gluonfx/arm64-ios/gensrc/ios/assets/Assets.xcassets src/ios/assets
-#          rm -rf src/ios/assets/Assets.xcassets/AppIcon.appiconset
-#          mkdir -p src/ios/assets/Assets.xcassets
-#          cp -r src/main/resources/ios/Assets.xcassets/AppIcon.appiconset src/ios/assets/Assets.xcassets
-#          ./mvnw -Pios gluonfx:link gluonfx:package
-          ./mvnw -Pios gluonfx:package
+          ./mvnw -Pios gluonfx:build gluonfx:package
       - name: Upload .ipa as artifact
         uses: actions/upload-artifact@v2
         with:
