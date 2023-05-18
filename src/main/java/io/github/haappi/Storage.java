@@ -1,22 +1,18 @@
 package io.github.haappi;
 
-import com.gluonhq.charm.glisten.visual.Theme;
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPatch;
-import org.apache.hc.client5.http.classic.methods.HttpPut;
 import org.apache.hc.client5.http.entity.UrlEncodedFormEntity;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.http.io.entity.StringEntity;
-import org.apache.hc.core5.http.message.BasicNameValuePair;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -102,46 +98,44 @@ public class Storage {
         System.out.println("ha loser");
 
 //        new Thread(() -> {
-            String uusername = username.split("@")[0]; // Remove domain (if any)
-            uusername = uusername.replaceAll("[^A-Za-z0-9]", "");
-            String url = fireBaseURL + "users/" + uusername + "/" + "config" + ".json";
+        String uusername = username.split("@")[0]; // Remove domain (if any)
+        uusername = uusername.replaceAll("[^A-Za-z0-9]", "");
+        String url = fireBaseURL + "users/" + uusername + "/" + "config" + ".json";
 
-            System.out.println(url);
+        System.out.println(url);
 
-            HttpPatch httpPatch = new HttpPatch(url);
+        HttpPatch httpPatch = new HttpPatch(url);
 
-                String requestBody = String.format("{ \"%s\": \"%s\"}", configSetting, configValue);
-    httpPatch.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
+        String requestBody = String.format("{ \"%s\": \"%s\"}", configSetting, configValue);
+        httpPatch.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
 
 
-            String resp = null;
-            try {
-                resp = httpClient.execute(httpPatch, response -> {
-                    System.out.println(response.getCode());
-                    if (response.getCode() >= 300) {
-                        return null;
-                    }
-                    final HttpEntity responseEntity = response.getEntity();
-                    if (responseEntity == null) {
-                        return null;
-                    }
-                    try (InputStream inputStream = responseEntity.getContent()) {
-                        return new String(inputStream.readAllBytes());
-                    }
-                });
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        String resp = null;
+        try {
+            resp = httpClient.execute(httpPatch, response -> {
+                System.out.println(response.getCode());
+                if (response.getCode() >= 300) {
+                    return null;
+                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                    return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                    return new String(inputStream.readAllBytes());
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-            if (resp == null || resp.equals("null")) {
-                return;
-            }
+        if (resp == null || resp.equals("null")) {
+            return;
+        }
 
-            JSONObject json = new JSONObject(resp);
-            System.out.println(json.toString(4));
+        JSONObject json = new JSONObject(resp);
+        System.out.println(json.toString(4));
 //        });
-
-
 
 
     }

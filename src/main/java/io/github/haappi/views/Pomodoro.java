@@ -37,17 +37,17 @@ public class Pomodoro {
     }
 
 
-public void pause() {
-    if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) {
-        timeline.pause();
+    public void pause() {
+        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) {
+            timeline.pause();
+        }
     }
-}
 
-public void continueTimer() {
-    if (timeline != null && timeline.getStatus() == Animation.Status.PAUSED) {
-        timeline.play();
+    public void continueTimer() {
+        if (timeline != null && timeline.getStatus() == Animation.Status.PAUSED) {
+            timeline.play();
+        }
     }
-}
 
 
     public void restart(ActionEvent actionEvent) {

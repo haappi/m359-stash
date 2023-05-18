@@ -1,14 +1,14 @@
 package io.github.haappi.views;
 
-import com.gluonhq.charm.glisten.control.TimePicker;
 import com.gluonhq.charm.glisten.mvc.View;
 import io.github.haappi.HelloApplication;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -34,15 +34,15 @@ public class TaskTracker {
     }
 
     public void createTask() {
-                    String taskName = taskNameField.getText();
-            if (!taskName.isEmpty() && datePicker.getValue() != null ) {
-                String dueDate = datePicker.getValue().toString();
-                TaskObject task = new TaskObject(taskName, dueDate);
-                tasks.add(task);
-                taskNameField.clear();
-                datePicker.setValue(null);
-            }
-        
+        String taskName = taskNameField.getText();
+        if (!taskName.isEmpty() && datePicker.getValue() != null) {
+            String dueDate = datePicker.getValue().toString();
+            TaskObject task = new TaskObject(taskName, dueDate);
+            tasks.add(task);
+            taskNameField.clear();
+            datePicker.setValue(null);
+        }
+
 
         tasksListView.setPrefHeight(200);
         tasksListView.setItems(tasks);
@@ -63,9 +63,9 @@ public class TaskTracker {
 
     public static class TaskObject {
 
-        private String name;
-        private String date;
-        private boolean done;
+        private final String name;
+        private final String date;
+        private final boolean done;
 
         public TaskObject(String name, String dueDate) {
             this.name = name;
@@ -73,16 +73,14 @@ public class TaskTracker {
             this.done = false;
         }
 
-     public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("{");
-    sb.append("\"name\": \"").append(name).append("\", ");
-    sb.append("\"dueDate\": \"").append(date).append("\", ");
-    sb.append("\"completed\": ").append(done);
-    sb.append("}");
-    return sb.toString();
-}
-
+        public String toString() {
+            String sb = "{" +
+                    "\"name\": \"" + name + "\", " +
+                    "\"dueDate\": \"" + date + "\", " +
+                    "\"completed\": " + done +
+                    "}";
+            return sb;
+        }
 
 
     }

@@ -70,26 +70,25 @@ public class LoginHandler {
                     AppManager.getInstance().switchView(ViewEnums.HABITS.toString());
                 });
             });
-        DrawerManager.buildDrawer(AppManager.getInstance());
-        sleepAndRunLater( () -> {
-            try {
-                HashMap<String, String> config = Storage.getInstance().loadConfig(Config.getInstance().getEmail());
-                if (config.get("darkModeEnabled").equals("true")) {
-                    Theme.DARK.assignTo(primary.getScene());
-                } else {
-                    Theme.LIGHT.assignTo(primary.getScene());
-                }
-
+            DrawerManager.buildDrawer(AppManager.getInstance());
+            sleepAndRunLater(() -> {
                 try {
-                    Swatching enumm = Swatching.valueOf(config.get("theme"));
-                    enumm.assignTo(primary.getScene());
-                } catch (IllegalArgumentException e) {
-                    return;
+                    HashMap<String, String> config = Storage.getInstance().loadConfig(Config.getInstance().getEmail());
+                    if (config.get("darkModeEnabled").equals("true")) {
+                        Theme.DARK.assignTo(primary.getScene());
+                    } else {
+                        Theme.LIGHT.assignTo(primary.getScene());
+                    }
+
+                    try {
+                        Swatching enumm = Swatching.valueOf(config.get("theme"));
+                        enumm.assignTo(primary.getScene());
+                    } catch (IllegalArgumentException e) {
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }, false);
+            }, false);
         }
     }
 
@@ -103,14 +102,14 @@ public class LoginHandler {
                     AppManager.getInstance().switchView("Secondary View");
                 });
             });
-        DrawerManager.buildDrawer(AppManager.getInstance());
-        sleepAndRunLater( () -> {
-            try {
-                Storage.getInstance().loadConfig(Config.getInstance().getEmail());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }, false);
+            DrawerManager.buildDrawer(AppManager.getInstance());
+            sleepAndRunLater(() -> {
+                try {
+                    Storage.getInstance().loadConfig(Config.getInstance().getEmail());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }, false);
         }
     }
 

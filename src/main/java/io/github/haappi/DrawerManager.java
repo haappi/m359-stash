@@ -31,17 +31,17 @@ public class DrawerManager {
                         "Login", MaterialDesignIcon.LOCK, ViewEnums.SPLASH, ViewStackPolicy.SKIP);
 
         if (!(Config.getInstance().getDisplayName() == null)) {
-                    final Item secondaryItem =
-                new ViewItem("Pomodoro", MaterialDesignIcon.TIMER, ViewEnums.POMODORO);
+            final Item secondaryItem =
+                    new ViewItem("Pomodoro", MaterialDesignIcon.TIMER, ViewEnums.POMODORO);
 
-        final Item thirdItem =
-                new ViewItem("Habits", MaterialDesignIcon.ASSIGNMENT, ViewEnums.HABITS);
+            final Item thirdItem =
+                    new ViewItem("Habits", MaterialDesignIcon.ASSIGNMENT, ViewEnums.HABITS);
 
-        final Item settingsItem =
-                new ViewItem("Settings", MaterialDesignIcon.SETTINGS, ViewEnums.SETTINGS);
+            final Item settingsItem =
+                    new ViewItem("Settings", MaterialDesignIcon.SETTINGS, ViewEnums.SETTINGS);
 
             final Item chartsItem =
-                new ViewItem("Charts", MaterialDesignIcon.TRENDING_UP, ViewEnums.CHARTS);
+                    new ViewItem("Charts", MaterialDesignIcon.TRENDING_UP, ViewEnums.CHARTS);
             drawer.getItems().addAll(secondaryItem, thirdItem, settingsItem);
 
         }
