@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="see if this works on github&#10;[CI iOS] [CI windows]">
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/MonkeyPatching/ViewItem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,26 +74,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "WebServerToolWindowFactoryState": "false",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "ios-build-test",
-    "last_opened_file_path": "C:/Users/Happy/Desktop/Projects/Java/schoolStuff/src/main/resources/io/github/haappi",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "vcs.Git",
-    "show.migrate.to.gradle.popup": "false",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;new__main__branch&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Happy/Desktop/Projects/Java/schoolStuff - Copy&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff\src\main\resources\io\github\haappi" />
@@ -215,14 +218,9 @@
       <workItem from="1684278741021" duration="19000" />
       <workItem from="1684351255057" duration="2000" />
       <workItem from="1684352706820" duration="3436000" />
-      <workItem from="1684370583803" duration="5573000" />
-    </task>
-    <task id="LOCAL-00016" summary="caching is stupid">
-      <created>1683359201514</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1683359201514</updated>
+      <workItem from="1684370583803" duration="6187000" />
+      <workItem from="1684391775031" duration="757000" />
+      <workItem from="1684392554975" duration="1454000" />
     </task>
     <task id="LOCAL-00017" summary="opops">
       <created>1683359237916</created>
@@ -560,7 +558,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684374415513</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]">
+      <created>1684377246897</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1684377246897</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -578,7 +583,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="shi takes like 10m just to load" />
     <MESSAGE value="shi takes like 10m just to load [CI ios] [CI android] [CI windows]" />
     <MESSAGE value="change java version [CI ios] [CI windows]" />
     <MESSAGE value="change ONE setting. [CI ios] [CI windows]" />
@@ -603,6 +607,7 @@
     <MESSAGE value="hmmmmm&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="try&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="see if this works on github&#10;[CI iOS] [CI windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="see if this works on github&#10;[CI iOS] [CI windows]" />
+    <MESSAGE value="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]" />
   </component>
 </project>

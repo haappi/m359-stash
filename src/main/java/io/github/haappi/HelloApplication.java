@@ -54,16 +54,6 @@ public class HelloApplication extends Application {
         appManager.addViewFactory(ViewEnums.THIRD.toString(), () -> new RandomTestView().getView());
         appManager.addViewFactory(ViewEnums.HMMM.toString(), YetAnotherShittyView::getView);
         DrawerManager.buildDrawer(appManager);
-
-
-//        FXMLLoader loader = new FXMLLoader();
-//        loader.setLocation(getClass().getResource("views/login.fxml"));
-
-//        Parent root = loader.load();
-//        Scene scene = new Scene(root);
-
-//        stage.setScene(scene);
-//        stage.show();
     }
 
     @Override
