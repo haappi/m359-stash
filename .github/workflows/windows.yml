@@ -1,0 +1,49 @@
+name: Windows
+
+on:
+  push
+
+jobs:
+  build:
+    if: "contains(github.event.head_commit.message, '[CI windows]')"
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 20
+          cache: 'maven'
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Visual Studio shell
+        uses: egor-tensin/vs-shell@v1
+
+      - name: Setup Gluon's GraalVM
+        uses: gluonhq/setup-graalvm@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          jdk: 'java17'
+
+      - name: Make staging directory
+        run: mkdir staging
+      - name: Make secrets file
+        run: |
+          ((Get-Content -path src/main/java/io/github/haappi/HelloApplication.java -Raw) -replace 'fsdufhsdufhsdufhsdufyhsduifhsduifhsduifhsdiufhsdui','${{ secrets.FIREBASE_API_KEY }}') | Set-Content -Path src/main/java/io/github/haappi/HelloApplication.java
+
+      - name: Gluon Build and Package
+        shell: cmd
+        run: .\mvnw -Pdesktop gluonfx:build gluonfx:package
+
+      - name: Copy native bundles to staging
+        run: |
+          cp -r target/gluonfx/x86_64-windows/ProductivityApp.exe staging
+      - name: Upload
+        uses: actions/upload-artifact@v2
+        with:
+          name: Package
+          path: staging

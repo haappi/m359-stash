@@ -1,0 +1,55 @@
+name: Build iOS app
+
+on:
+  push
+
+jobs:
+  build-ios:
+    if: "contains(github.event.head_commit.message, '[CI iOS]')"
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: 20
+          cache: 'maven'
+      - name: Setup Gluon's GraalVM
+        uses: gluonhq/setup-graalvm@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          jdk: 'java17'
+      - name: Install HomeBrew
+        run: |
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      - name: Extra stuff
+        run: |
+          brew install libusbmuxd
+          brew install libimobiledevice
+
+      - uses: Apple-Actions/import-codesign-certs@v1
+        with:
+          p12-file-base64: ${{ secrets.GLUON_IOS_BASE64 }}
+          p12-password: ${{ secrets.GLUON_IOS_CERTIFICATES_PASSWORD }}
+      - name: Fix file permissions
+        run: |
+          chmod +x mvnw
+          chmod +x scuffed_api_key.sh
+      - name: Create file
+        run: |
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          touch ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
+      - name: Write secret to file
+        run: |
+          echo "${{ secrets.PROVISION_PROFILE }}" | base64 --decode > ~/Library/MobileDevice/Provisioning\ Profiles/4d9ad007-c0c7-481f-b36b-aa21730c7d79.mobileprovision
+          ./scuffed_api_key.sh ${{ secrets.FIREBASE_API_KEY }}
+      - name: Build iOS app and create .ipa
+        run: |
+          ./mvnw -Pios gluonfx:build gluonfx:package
+      - name: Upload .ipa as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app
+          path: target/gluonfx/arm64-ios/ProductivityApp.ipa
