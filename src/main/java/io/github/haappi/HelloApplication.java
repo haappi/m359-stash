@@ -49,7 +49,6 @@ public class HelloApplication extends Application {
 //        appManager.addViewFactory(SECONDARY_VIEW, () -> new PrimaryView().getView());
 
         appManager.addViewFactory(ViewEnums.SPLASH.toString(), () -> LoginHandler.load());
-        appManager.addViewFactory(ViewEnums.POMODORO.toString(), () -> new RandomTestView().getView());
         appManager.addViewFactory(ViewEnums.SETTINGS.toString(), () -> Settings.load());
         appManager.addViewFactory(ViewEnums.POMODORO.toString(), () -> Pomodoro.load());
         DrawerManager.buildDrawer(appManager);
