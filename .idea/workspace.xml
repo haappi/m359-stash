@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/MonkeyPatching/ViewItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
-    </list>
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -220,21 +215,7 @@
       <workItem from="1684352706820" duration="3436000" />
       <workItem from="1684370583803" duration="6187000" />
       <workItem from="1684391775031" duration="757000" />
-      <workItem from="1684392554975" duration="1454000" />
-    </task>
-    <task id="LOCAL-00017" summary="opops">
-      <created>1683359237916</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1683359237916</updated>
-    </task>
-    <task id="LOCAL-00018" summary="[CI windows] update workflow">
-      <created>1683359644729</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1683359644729</updated>
+      <workItem from="1684392554975" duration="1790000" />
     </task>
     <task id="LOCAL-00019" summary="[CI windows] update workflow">
       <created>1683359945400</created>
@@ -565,7 +546,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684377246897</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]">
+      <created>1684394045625</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1684394045625</updated>
+    </task>
+    <task id="LOCAL-00067" summary="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]">
+      <created>1684394143344</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1684394143344</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
