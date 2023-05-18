@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="[ci ios] [ci windows] fuckin hellllll">
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/TaskTracker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/tasktracker.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Swatching.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Swatching.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Settings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/pomodoro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/pomodoro.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,6 +257,7 @@
       <workItem from="1684392554975" duration="5590000" />
       <workItem from="1684399660496" duration="6623000" />
       <workItem from="1684409121155" duration="3484000" />
+      <workItem from="1684422227556" duration="2652000" />
     </task>
     <task id="LOCAL-00025" summary="[CI iOS] THERE GOES ANOTHER 10M of my lfei">
       <created>1683361159839</created>

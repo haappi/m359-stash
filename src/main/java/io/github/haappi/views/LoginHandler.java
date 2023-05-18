@@ -67,7 +67,7 @@ public class LoginHandler {
             sleepAndRunLater(() -> {
                 Platform.runLater(() -> {
                     System.out.println("bb");
-                    AppManager.getInstance().switchView(ViewEnums.HMMM.toString());
+                    AppManager.getInstance().switchView(ViewEnums.HABITS.toString());
                 });
             });
         DrawerManager.buildDrawer(AppManager.getInstance());

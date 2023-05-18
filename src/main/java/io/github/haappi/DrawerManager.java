@@ -13,8 +13,6 @@ import io.github.haappi.MonkeyPatching.ViewItem;
 import io.github.haappi.views.ViewEnums;
 import javafx.scene.image.Image;
 
-import java.util.Objects;
-
 
 public class DrawerManager {
 
@@ -34,10 +32,10 @@ public class DrawerManager {
 
         if (!(Config.getInstance().getDisplayName() == null)) {
                     final Item secondaryItem =
-                new ViewItem("Pomodoro", MaterialDesignIcon.TIMER, ViewEnums.THIRD);
+                new ViewItem("Pomodoro", MaterialDesignIcon.TIMER, ViewEnums.POMODORO);
 
         final Item thirdItem =
-                new ViewItem("Habits", MaterialDesignIcon.ASSIGNMENT, ViewEnums.HMMM);
+                new ViewItem("Habits", MaterialDesignIcon.ASSIGNMENT, ViewEnums.HABITS);
 
         final Item settingsItem =
                 new ViewItem("Settings", MaterialDesignIcon.SETTINGS, ViewEnums.SETTINGS);

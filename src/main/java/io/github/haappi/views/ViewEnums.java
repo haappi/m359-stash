@@ -5,8 +5,8 @@ import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 public enum ViewEnums {
     SPLASH(HOME_VIEW),
     LOGIN("Login"),
-    HMMM("Hmmm"),
-    SECONDARY("Secondary"), THIRD("Third"), SETTINGS("Settings"), CHARTS("Charts");
+    HABITS("Habits"),
+    SECONDARY("Secondary"), POMODORO("Pomodoro"), SETTINGS("Settings"), CHARTS("Charts");
 
     private final String viewName;
 

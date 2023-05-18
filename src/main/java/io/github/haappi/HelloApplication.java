@@ -4,10 +4,7 @@ import com.gluonhq.attach.display.DisplayService;
 import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
-import io.github.haappi.views.LoginHandler;
-import io.github.haappi.views.RandomTestView;
-import io.github.haappi.views.Settings;
-import io.github.haappi.views.ViewEnums;
+import io.github.haappi.views.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
@@ -52,8 +49,9 @@ public class HelloApplication extends Application {
 //        appManager.addViewFactory(SECONDARY_VIEW, () -> new PrimaryView().getView());
 
         appManager.addViewFactory(ViewEnums.SPLASH.toString(), () -> LoginHandler.load());
-        appManager.addViewFactory(ViewEnums.THIRD.toString(), () -> new RandomTestView().getView());
+        appManager.addViewFactory(ViewEnums.POMODORO.toString(), () -> new RandomTestView().getView());
         appManager.addViewFactory(ViewEnums.SETTINGS.toString(), () -> Settings.load());
+        appManager.addViewFactory(ViewEnums.POMODORO.toString(), () -> Pomodoro.load());
         DrawerManager.buildDrawer(appManager);
     }
 

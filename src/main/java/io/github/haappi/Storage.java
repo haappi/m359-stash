@@ -110,12 +110,6 @@ public class Storage {
 
             HttpPatch httpPatch = new HttpPatch(url);
 
-//            List<NameValuePair> params = new ArrayList<>();
-//            params.add(new BasicNameValuePair("configSetting", configSetting));
-//            params.add(new BasicNameValuePair("configValue", configValue));
-//
-//            httpPatch.setEntity(new UrlEncodedFormEntity(params));
-
                 String requestBody = String.format("{ \"%s\": \"%s\"}", configSetting, configValue);
     httpPatch.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
 
