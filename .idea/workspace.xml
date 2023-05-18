@@ -4,31 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="try&#10;[CI iOS] [CI windows]">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/YetAnotherShittyView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" afterDir="false" />
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="see if this works on github&#10;[CI iOS] [CI windows]">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/RandomTestView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/RandomTestView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/filter-file.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/filter-file.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/predefined-classes-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/predefined-classes-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/proxy-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/proxy-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/resource-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/resource-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/serialization-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/serialization-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/dark_mode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/dark_mode.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/light_mode.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/light_mode.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/primary.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/primary.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/primary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/secondary.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/views/third.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -238,14 +215,7 @@
       <workItem from="1684278741021" duration="19000" />
       <workItem from="1684351255057" duration="2000" />
       <workItem from="1684352706820" duration="3436000" />
-      <workItem from="1684370583803" duration="3588000" />
-    </task>
-    <task id="LOCAL-00015" summary="sighs">
-      <created>1683358356809</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1683358356809</updated>
+      <workItem from="1684370583803" duration="5573000" />
     </task>
     <task id="LOCAL-00016" summary="caching is stupid">
       <created>1683359201514</created>
@@ -583,7 +553,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684356125220</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="see if this works on github&#10;[CI iOS] [CI windows]">
+      <created>1684374415513</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1684374415513</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -601,7 +578,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="[CI android]" />
     <MESSAGE value="shi takes like 10m just to load" />
     <MESSAGE value="shi takes like 10m just to load [CI ios] [CI android] [CI windows]" />
     <MESSAGE value="change java version [CI ios] [CI windows]" />
@@ -626,6 +602,7 @@
     <MESSAGE value="kys&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="hmmmmm&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="try&#10;[CI iOS] [CI windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="try&#10;[CI iOS] [CI windows]" />
+    <MESSAGE value="see if this works on github&#10;[CI iOS] [CI windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="see if this works on github&#10;[CI iOS] [CI windows]" />
   </component>
 </project>
