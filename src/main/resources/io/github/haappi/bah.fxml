@@ -8,11 +8,11 @@
 <View xmlns:fx="http://javafx.com/fxml/1" fx:id="secondary" maxHeight="-Infinity" maxWidth="-Infinity"
       minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" stylesheets="@secondary.css"
-      xmlns="http://javafx.com/javafx/8" fx:controller="io.github.haappi.views.SecondaryPresenter">
+      xmlns="http://javafx.com/javafx/8" fx:controller="io.github.haappi.views.RandomTestView">
     <center>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
             <children>
-                <Label text="This is Secondary!"/>
+                <Label text="This is gay!"/>
             </children>
         </VBox>
     </center>

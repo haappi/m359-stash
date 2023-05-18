@@ -5,6 +5,7 @@ import static com.gluonhq.charm.glisten.application.AppManager.HOME_VIEW;
 public enum ViewEnums {
     SPLASH(HOME_VIEW),
     LOGIN("Login"),
+    HMMM("Hmmm"),
     SECONDARY("Secondary"), THIRD("Third");
 
     private final String viewName;

@@ -4,10 +4,7 @@ import com.gluonhq.attach.display.DisplayService;
 import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
-import io.github.haappi.views.LoginView;
-import io.github.haappi.views.RandomTestView;
-import io.github.haappi.views.SecondaryView;
-import io.github.haappi.views.ViewEnums;
+import io.github.haappi.views.*;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Dimension2D;
@@ -55,6 +52,7 @@ public class HelloApplication extends Application {
 
         appManager.addViewFactory(ViewEnums.SPLASH.toString(), () -> new LoginView().load());
         appManager.addViewFactory(ViewEnums.THIRD.toString(), () -> new RandomTestView().getView());
+        appManager.addViewFactory(ViewEnums.HMMM.toString(), YetAnotherShittyView::getView);
         DrawerManager.buildDrawer(appManager);
 
 

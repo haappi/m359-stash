@@ -253,6 +253,7 @@
                     <reflectionList>
                         <list>io.github.haappi.views.PrimaryPresenter</list>
                         <list>io.github.haappi.views.SecondaryPresenter</list>
+                        <list>io.github.haappi.views.RandomTestView</list>
                         <list>io.github.haappi.views.LoginHandler</list>
                     </reflectionList>
                     <mainClass>${mainClassName}</mainClass>

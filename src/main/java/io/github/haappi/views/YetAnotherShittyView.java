@@ -12,12 +12,13 @@ import javafx.fxml.FXMLLoader;
 
 import java.io.IOException;
 
-public class RandomTestView extends View {
-    public View secondary;
+public class YetAnotherShittyView {
 
-    public View getView() {
+        @FXML
+    private View secondary;
+    public static View getView() {
         try {
-            View view = FXMLLoader.load(HelloApplication.class.getResource("third.fxml"));
+            View view = FXMLLoader.load(HelloApplication.class.getResource("bah.fxml"));
             return view;
         } catch (IOException e) {
             System.out.println("IOException: " + e);
@@ -25,16 +26,11 @@ public class RandomTestView extends View {
         }
     }
 
-//    public RandomTestView() {
-//        super("Secondary");
-//    }
-
-    @FXML
-    public void initialize() {
+        public void initialize() {
         secondary.setShowTransitionFactory(BounceInRightTransition::new);
 
         FloatingActionButton fab =
-                new FloatingActionButton(MaterialDesignIcon.INFO.text, e -> System.out.println("Info"));
+                new FloatingActionButton(MaterialDesignIcon.INFO.text, e -> System.out.println("Infooooooooo"));
         fab.showOn(secondary);
 
         secondary
@@ -46,11 +42,13 @@ public class RandomTestView extends View {
                                 appBar.setNavIcon(
                                         MaterialDesignIcon.MENU.button(
                                                 e -> AppManager.getInstance().getDrawer().open()));
-                                appBar.setTitleText("Secondary");
+                                appBar.setTitleText("im fat");
                                 appBar
                                         .getActionItems()
                                         .add(MaterialDesignIcon.FAVORITE.button(e -> System.out.println("Favorite")));
                             }
                         });
+
     }
+
 }

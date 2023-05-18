@@ -29,7 +29,11 @@ public class DrawerManager {
 
         final Item secondaryItem =
                 new ViewItem("Secondary", MaterialDesignIcon.DASHBOARD.graphic(), ViewEnums.THIRD.toString());
-        drawer.getItems().addAll(primaryItem, secondaryItem);
+
+        final Item thirdItem =
+                new ViewItem("Third", MaterialDesignIcon.DASHBOARD.graphic(), ViewEnums.HMMM.toString());
+
+        drawer.getItems().addAll(primaryItem, secondaryItem, thirdItem);
 
         if (Platform.isDesktop()) {
             final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());
