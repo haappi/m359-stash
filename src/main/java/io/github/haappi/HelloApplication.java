@@ -51,6 +51,7 @@ public class HelloApplication extends Application {
         appManager.addViewFactory(ViewEnums.SPLASH.toString(), () -> LoginHandler.load());
         appManager.addViewFactory(ViewEnums.SETTINGS.toString(), () -> Settings.load());
         appManager.addViewFactory(ViewEnums.POMODORO.toString(), () -> Pomodoro.load());
+        appManager.addViewFactory(ViewEnums.HABITS.toString(), () -> TaskTracker.load());
         DrawerManager.buildDrawer(appManager);
     }
 

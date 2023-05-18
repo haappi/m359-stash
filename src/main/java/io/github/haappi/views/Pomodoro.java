@@ -1,6 +1,9 @@
 package io.github.haappi.views;
 
+import com.gluonhq.charm.glisten.application.AppManager;
+import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
+import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import io.github.haappi.HelloApplication;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -34,6 +37,21 @@ public class Pomodoro {
         int minutes = remainSeconds / 60;
         int secondss = remainSeconds % 60;
         return (String.format("%02d:%02d", minutes, secondss));
+    }
+
+    public void initialize() {
+        primary
+                .showingProperty()
+                .addListener(
+                        (obs, oldValue, newValue) -> {
+                            if (newValue) {
+                                AppBar appBar = AppManager.getInstance().getAppBar();
+                                appBar.setNavIcon(
+                                        MaterialDesignIcon.MENU.button(
+                                                e -> AppManager.getInstance().getDrawer().open()));
+                                appBar.setTitleText("Primary");
+                            }
+                        });
     }
 
 

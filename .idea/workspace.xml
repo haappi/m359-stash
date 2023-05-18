@@ -4,18 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="[ci ios] [ci windows] fuckin hellllll">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/TaskTracker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/tasktracker.fxml" afterDir="false" />
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="[ci ios] [ci windows] e">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryPresenter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Settings.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/TaskTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/TaskTracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/pomodoro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/pomodoro.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/tasktracker.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/tasktracker.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,13 +263,7 @@
       <workItem from="1684399660496" duration="6623000" />
       <workItem from="1684409121155" duration="3484000" />
       <workItem from="1684422227556" duration="2652000" />
-    </task>
-    <task id="LOCAL-00025" summary="[CI iOS] THERE GOES ANOTHER 10M of my lfei">
-      <created>1683361159839</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1683361159839</updated>
+      <workItem from="1684426078022" duration="1600000" />
     </task>
     <task id="LOCAL-00026" summary="[CI windows] THERE GOES ANOTHER 10M of my lfei">
       <created>1683361245010</created>
@@ -602,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684409423661</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="[ci ios] [ci windows] e">
+      <created>1684426196860</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1684426196860</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -620,7 +626,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="i ahte this stupid linting job [ci windows] [ci ios]" />
     <MESSAGE value="make entire stacktrace show up just cuz" />
     <MESSAGE value="saftey stuff" />
     <MESSAGE value="saftey stuff [CI iOs] [ci windows]" />
@@ -645,6 +650,7 @@
     <MESSAGE value="[ci ios] shiiii" />
     <MESSAGE value="[ci ios] wtf ios" />
     <MESSAGE value="[ci ios] [ci windows] fuckin hellllll" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ci ios] [ci windows] fuckin hellllll" />
+    <MESSAGE value="[ci ios] [ci windows] e" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ci ios] [ci windows] e" />
   </component>
 </project>

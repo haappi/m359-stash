@@ -2,7 +2,10 @@
 
 <?import com.gluonhq.charm.glisten.control.Icon?>
 <?import com.gluonhq.charm.glisten.mvc.View?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <View xmlns:fx="http://javafx.com/fxml/1" fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
@@ -12,10 +15,9 @@
         <VBox fx:id="vbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0"
               BorderPane.alignment="CENTER">
             <children>
-                <TextField fx:id="taskNameField"/>
+                <TextField fx:id="taskNameField" promptText="Task"/>
                 <DatePicker fx:id="datePicker"/>
                 <ListView fx:id="tasksListView" prefHeight="200.0" prefWidth="200.0"/>
-                <Label fx:id="label" prefHeight="107.0" prefWidth="96.0" text="00:00" textAlignment="CENTER"/>
                 <Button mnemonicParsing="false" onAction="#createTask" text="Create Task">
                     <graphic>
                         <Icon content="LANGUAGE"/>

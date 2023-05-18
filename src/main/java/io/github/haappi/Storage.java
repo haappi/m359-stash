@@ -139,4 +139,135 @@ public class Storage {
 
 
     }
+
+
+    public String getPreviousTasks(String username) {
+        username = username.split("@")[0]; // Remove domain (if any)
+        username = username.replaceAll("[^A-Za-z0-9]", "");
+        String url = fireBaseURL + "users/" + username + "/" + "tasks" + ".json";
+        HttpGet httpGet = new HttpGet(url);
+
+        String resp = null;
+        try {
+            resp = httpClient.execute(httpGet, response -> {
+                if (response.getCode() >= 300) {
+                    return null;
+                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                    return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                    return new String(inputStream.readAllBytes());
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (resp == null || resp.equals("null")) {
+            return null;
+        }
+        System.out.println(resp);
+
+        JSONObject json = new JSONObject(resp);
+        StringBuilder sb = new StringBuilder();
+        for (String key : json.keySet()) {
+            sb.append(key).append("\n");
+        }
+        return sb.toString();
+    }
+
+    public void addTask(String username, String task) {
+        // get old tasks and append it
+        String oldTasks = getPreviousTasks(username);
+        if (oldTasks == null) {
+            oldTasks = "";
+        }
+        oldTasks += task + "\n";
+
+        username = username.split("@")[0]; // Remove domain (if any)
+        username = username.replaceAll("[^A-Za-z0-9]", "");
+        String url = fireBaseURL + "users/" + username + "/" + "tasks" + ".json";
+
+        HttpPatch httpPatch = new HttpPatch(url);
+
+        String requestBody = String.format("{ \"%s\": \"%s\"}", "tasks", oldTasks);
+        System.out.println(requestBody);
+        httpPatch.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
+
+        String resp = null;
+
+        try {
+            resp = httpClient.execute(httpPatch, response -> {
+                System.out.println(response.getCode());
+                if (response.getCode() >= 300) {
+                    return null;
+                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                    return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                    return new String(inputStream.readAllBytes());
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (resp == null || resp.equals("null")) {
+            return;
+        }
+
+        JSONObject json = new JSONObject(resp);
+        System.out.println(json.toString(4));
+    }
+
+    public void removeTask(String username, String taskObj) {
+        // get old tasks and append it
+        String oldTasks = getPreviousTasks(username);
+        if (oldTasks == null) {
+            oldTasks = "";
+        }
+        oldTasks = oldTasks.replace(taskObj + "\n", "");
+
+        username = username.split("@")[0]; // Remove domain (if any)
+        username = username.replaceAll("[^A-Za-z0-9]", "");
+
+        String url = fireBaseURL + "users/" + username + "/" + "tasks" + ".json";
+
+        HttpPatch httpPatch = new HttpPatch(url);
+
+        String requestBody = String.format("{ \"%s\": \"%s\"}", "tasks", oldTasks);
+        httpPatch.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
+
+        String resp = null;
+
+        try {
+            resp = httpClient.execute(httpPatch, response -> {
+                System.out.println(response.getCode());
+                if (response.getCode() >= 300) {
+                    return null;
+                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                    return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                    return new String(inputStream.readAllBytes());
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (resp == null || resp.equals("null")) {
+            return;
+        }
+
+        JSONObject json = new JSONObject(resp);
+        System.out.println(json.toString(4));
+
+    }
 }

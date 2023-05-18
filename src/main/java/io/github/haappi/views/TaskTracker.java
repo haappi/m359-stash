@@ -1,7 +1,12 @@
 package io.github.haappi.views;
 
+import com.gluonhq.charm.glisten.application.AppManager;
+import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
+import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
+import io.github.haappi.Config;
 import io.github.haappi.HelloApplication;
+import io.github.haappi.Storage;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,19 +19,18 @@ import javafx.scene.layout.VBox;
 import java.io.IOException;
 
 public class TaskTracker {
-    public ListView<TaskObject> listView;
     public Label label;
     public VBox vbox;
     public View primary;
     public TextField taskNameField;
     public DatePicker datePicker;
-    private ObservableList<TaskObject> tasks;
+    private final ObservableList<TaskObject> tasks = javafx.collections.FXCollections.observableArrayList();
     @FXML
     private ListView<TaskObject> tasksListView;
 
     public static View load() {
         try {
-            return FXMLLoader.load(HelloApplication.class.getResource("tracker.fxml"));
+            return FXMLLoader.load(HelloApplication.class.getResource("tasktracker.fxml"));
         } catch (IOException e) {
             e.printStackTrace();
             return new View();
@@ -41,6 +45,7 @@ public class TaskTracker {
             tasks.add(task);
             taskNameField.clear();
             datePicker.setValue(null);
+            Storage.getInstance().addTask(Config.getInstance().getDisplayName(), task.toString());
         }
 
 
@@ -59,6 +64,30 @@ public class TaskTracker {
             sb.append(task.toString()).append("\n");
         }
         return sb.toString();
+    }
+
+
+    public void initialize() {
+        primary
+                .showingProperty()
+                .addListener(
+                        (obs, oldValue, newValue) -> {
+                            if (newValue) {
+                                AppBar appBar = AppManager.getInstance().getAppBar();
+                                appBar.setNavIcon(
+                                        MaterialDesignIcon.MENU.button(
+                                                e -> AppManager.getInstance().getDrawer().open()));
+                                appBar.setTitleText("Primary");
+                            }
+                        });
+
+        tasksListView.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                TaskObject task = tasksListView.getSelectionModel().getSelectedItem();
+                tasks.remove(task);
+                Storage.getInstance().removeTask(Config.getInstance().getDisplayName(), task.toString());
+            }
+        });
     }
 
     public static class TaskObject {

@@ -50,9 +50,6 @@ public class LoginHandler {
                                         MaterialDesignIcon.MENU.button(
                                                 e -> AppManager.getInstance().getDrawer().open()));
                                 appBar.setTitleText("Primary");
-                                appBar
-                                        .getActionItems()
-                                        .add(MaterialDesignIcon.SEARCH.button(e -> System.out.println("Search")));
                             }
                         });
     }

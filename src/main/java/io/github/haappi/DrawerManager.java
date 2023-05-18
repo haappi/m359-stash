@@ -16,7 +16,9 @@ import javafx.scene.image.Image;
 
 public class DrawerManager {
 
-    public static void buildDrawer(AppManager app) {
+    public static void
+
+    buildDrawer(AppManager app) {
         NavigationDrawer drawer = app.getDrawer();
         drawer.getItems().clear();
 
