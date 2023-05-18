@@ -41,4 +41,8 @@ public class Config {
     public String getEmail() {
         return config.get("email");
     }
+
+    public HashMap<String, String> getConfig() {
+        return config;
+    }
 }

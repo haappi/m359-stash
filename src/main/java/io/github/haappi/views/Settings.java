@@ -5,9 +5,7 @@ import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import com.gluonhq.charm.glisten.visual.Theme;
-import io.github.haappi.HelloApplication;
-import io.github.haappi.Swatching;
-import io.github.haappi.SwitchButton;
+import io.github.haappi.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -47,12 +45,18 @@ public class Settings {
                         });
 
 
-        SwitchButton switchButton = new SwitchButton("Light Mode", "Dark Mode", true);
+        SwitchButton switchButton = new SwitchButton("Light Mode", "Dark Mode", Boolean.parseBoolean(Config.getInstance().getConfig().get("darkModeEnabled")));
         switchButton.addListener((old, oldd, newe) -> {
             if (old.getValue().booleanValue()) {
                 Theme.LIGHT.assignTo(primary.getScene());
             } else {
                 Theme.DARK.assignTo(primary.getScene());
+            }
+
+            try {
+                Storage.getInstance().setConfigValue(Config.getInstance().getEmail(), "darkModeEnabled", newe.toString());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
 
         });
@@ -65,6 +69,12 @@ public class Settings {
             Swatching swatching = comboBox.getSelectionModel().getSelectedItem();
             if (swatching != null) {
                 swatching.assignTo(primary.getScene());
+            }
+
+            try {
+                Storage.getInstance().setConfigValue(Config.getInstance().getEmail(), "theme", swatching != null ? swatching.name() : "");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         });
         vbox.getChildren().add(comboBox);

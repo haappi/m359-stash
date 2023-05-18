@@ -4,40 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="[ci ios] shiiii">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Swatching.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/SwitchButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/pomodoro.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/settings.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/update_time.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/update_time_folders.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/ios-build.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/ios-build.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.github/workflows/windows.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/windows.yml" afterDir="false" />
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="[ci ios] [ci windows] fuckin hellllll">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scuffed_api_key.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scuffed_api_key.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Config.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/GlobalHttpClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/GlobalHttpClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/MonkeyPatching/ViewItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/MonkeyPatching/ViewItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Swatching.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Swatching.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/LoginHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Settings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/ViewEnums.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/YetAnotherShittyView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/filter-file.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/filter-file.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/jni-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/predefined-classes-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/predefined-classes-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/reflect-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/resource-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/resource-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/serialization-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/native-image/serialization-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/dark_mode.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/light_mode.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/primary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +128,7 @@
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Batch.update_time">
+  <component name="RunManager" selected="Maven.schoolStuff [gluonfx:run]">
     <configuration name="ProductivityApp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="azul-20" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -278,20 +253,7 @@
       <workItem from="1684391775031" duration="757000" />
       <workItem from="1684392554975" duration="5590000" />
       <workItem from="1684399660496" duration="6623000" />
-    </task>
-    <task id="LOCAL-00023" summary="[CI ios] forgot run tag">
-      <created>1683360260439</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360260439</updated>
-    </task>
-    <task id="LOCAL-00024" summary="[CI windows] try this">
-      <created>1683360738804</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360738804</updated>
+      <workItem from="1684409121155" duration="3484000" />
     </task>
     <task id="LOCAL-00025" summary="[CI iOS] THERE GOES ANOTHER 10M of my lfei">
       <created>1683361159839</created>
@@ -622,7 +584,21 @@
       <option name="project" value="LOCAL" />
       <updated>1684396694681</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="[ci ios] wtf ios">
+      <created>1684409200082</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1684409200082</updated>
+    </task>
+    <task id="LOCAL-00073" summary="[ci ios] [ci windows] fuckin hellllll">
+      <created>1684409423661</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1684409423661</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -640,8 +616,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Merge remote-tracking branch 'origin/ios-build-test' into ios-build-test [CI ios] [ci windows]" />
-    <MESSAGE value="i ahte this stupid linting job" />
     <MESSAGE value="i ahte this stupid linting job [ci windows] [ci ios]" />
     <MESSAGE value="make entire stacktrace show up just cuz" />
     <MESSAGE value="saftey stuff" />
@@ -665,6 +639,8 @@
     <MESSAGE value="closes #28" />
     <MESSAGE value="[ci ios] custom app icons?" />
     <MESSAGE value="[ci ios] shiiii" />
-    <option name="LAST_COMMIT_MESSAGE" value="[ci ios] shiiii" />
+    <MESSAGE value="[ci ios] wtf ios" />
+    <MESSAGE value="[ci ios] [ci windows] fuckin hellllll" />
+    <option name="LAST_COMMIT_MESSAGE" value="[ci ios] [ci windows] fuckin hellllll" />
   </component>
 </project>

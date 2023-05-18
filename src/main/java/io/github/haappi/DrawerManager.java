@@ -13,11 +13,14 @@ import io.github.haappi.MonkeyPatching.ViewItem;
 import io.github.haappi.views.ViewEnums;
 import javafx.scene.image.Image;
 
+import java.util.Objects;
+
 
 public class DrawerManager {
 
     public static void buildDrawer(AppManager app) {
         NavigationDrawer drawer = app.getDrawer();
+        drawer.getItems().clear();
 
         NavigationDrawer.Header header = new NavigationDrawer.Header("Productivity App",
                 "A rather, strange \"productivity\" app",
@@ -29,16 +32,23 @@ public class DrawerManager {
                 new ViewItem(
                         "Login", MaterialDesignIcon.LOCK, ViewEnums.SPLASH, ViewStackPolicy.SKIP);
 
-        final Item secondaryItem =
-                new ViewItem("Secondary", MaterialDesignIcon.DASHBOARD, ViewEnums.THIRD);
+        if (!(Config.getInstance().getDisplayName() == null)) {
+                    final Item secondaryItem =
+                new ViewItem("Pomodoro", MaterialDesignIcon.TIMER, ViewEnums.THIRD);
 
         final Item thirdItem =
-                new ViewItem("Third", MaterialDesignIcon.DASHBOARD, ViewEnums.HMMM);
+                new ViewItem("Habits", MaterialDesignIcon.ASSIGNMENT, ViewEnums.HMMM);
 
         final Item settingsItem =
                 new ViewItem("Settings", MaterialDesignIcon.SETTINGS, ViewEnums.SETTINGS);
 
-        drawer.getItems().addAll(primaryItem, secondaryItem, thirdItem, settingsItem);
+            final Item chartsItem =
+                new ViewItem("Charts", MaterialDesignIcon.TRENDING_UP, ViewEnums.CHARTS);
+            drawer.getItems().addAll(secondaryItem, thirdItem, settingsItem);
+
+        }
+
+        drawer.getItems().addAll(primaryItem);
 
         if (Platform.isDesktop()) {
             final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());

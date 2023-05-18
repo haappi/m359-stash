@@ -25,8 +25,7 @@ public enum Swatching {
     PURPLE(Swatch.PURPLE),
     RED(Swatch.RED),
     TEAL(Swatch.TEAL),
-    YELLOW(Swatch.YELLOW),
-    ;
+    YELLOW(Swatch.YELLOW);
 
 
     private final Swatch swatch;

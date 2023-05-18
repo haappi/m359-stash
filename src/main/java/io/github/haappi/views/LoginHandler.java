@@ -4,9 +4,8 @@ import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-import io.github.haappi.GlobalHttpClass;
-import io.github.haappi.HelloApplication;
-import io.github.haappi.Response;
+import com.gluonhq.charm.glisten.visual.Theme;
+import io.github.haappi.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 import static io.github.haappi.Utils.sleepAndRunLater;
 
@@ -70,6 +70,26 @@ public class LoginHandler {
                     AppManager.getInstance().switchView(ViewEnums.HMMM.toString());
                 });
             });
+        DrawerManager.buildDrawer(AppManager.getInstance());
+        sleepAndRunLater( () -> {
+            try {
+                HashMap<String, String> config = Storage.getInstance().loadConfig(Config.getInstance().getEmail());
+                if (config.get("darkModeEnabled").equals("true")) {
+                    Theme.DARK.assignTo(primary.getScene());
+                } else {
+                    Theme.LIGHT.assignTo(primary.getScene());
+                }
+
+                try {
+                    Swatching enumm = Swatching.valueOf(config.get("theme"));
+                    enumm.assignTo(primary.getScene());
+                } catch (IllegalArgumentException e) {
+                    return;
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }, false);
         }
     }
 
@@ -83,6 +103,14 @@ public class LoginHandler {
                     AppManager.getInstance().switchView("Secondary View");
                 });
             });
+        DrawerManager.buildDrawer(AppManager.getInstance());
+        sleepAndRunLater( () -> {
+            try {
+                Storage.getInstance().loadConfig(Config.getInstance().getEmail());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }, false);
         }
     }
 

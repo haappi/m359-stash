@@ -6,7 +6,7 @@ public enum ViewEnums {
     SPLASH(HOME_VIEW),
     LOGIN("Login"),
     HMMM("Hmmm"),
-    SECONDARY("Secondary"), THIRD("Third"), SETTINGS("Settings");
+    SECONDARY("Secondary"), THIRD("Third"), SETTINGS("Settings"), CHARTS("Charts");
 
     private final String viewName;
 
