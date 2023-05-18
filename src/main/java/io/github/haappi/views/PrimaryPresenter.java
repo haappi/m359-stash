@@ -50,7 +50,7 @@ public class PrimaryPresenter {
         Response resp = globalHttpClass.login(email.getText(), password.getText());
         if (resp.succeeded()) {
             label.setText("Login succeeded");
-            sleepAndRunLater(2000, () -> {
+            sleepAndRunLater(() -> {
                 Platform.runLater(() -> {
                     AppManager.getInstance().switchView("Secondary View");
                 });
