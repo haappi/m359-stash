@@ -42,7 +42,7 @@ public class Settings {
                         });
 
 
-        SwitchButton switchButton = new SwitchButton("Light Mode", "Dark Mode", Boolean.parseBoolean(Config.getInstance().getConfig().get("darkModeEnabled")));
+        SwitchButton switchButton = new SwitchButton("Light Mode", "Dark Mode", Boolean.parseBoolean((String) Config.getInstance().getConfig().get("darkModeEnabled")));
         switchButton.addListener((old, oldd, newe) -> {
             if (old.getValue().booleanValue()) {
                 Theme.LIGHT.assignTo(primary.getScene());

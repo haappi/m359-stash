@@ -1,11 +1,15 @@
 package io.github.haappi;
 
+import io.github.haappi.views.TaskTracker;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class Config {
     // singleton
     private static Config instance = null;
-    private final HashMap<String, String> config = new HashMap<>();
+    private final HashMap<String, Object> config = new HashMap<>();
 
     private Config() {
         // private constructor
@@ -19,7 +23,7 @@ public class Config {
     }
 
     public String getDisplayName() {
-        return config.get("displayName");
+        return (String) config.get("displayName");
     }
 
     public void setDisplayName(String displayName) {
@@ -27,7 +31,7 @@ public class Config {
     }
 
     public String getIdToken() {
-        return config.get("idToken");
+        return (String) config.get("idToken");
     }
 
     public void setIdToken(String idToken) {
@@ -35,14 +39,22 @@ public class Config {
     }
 
     public String setEmail(String email) {
-        return config.put("email", email);
+        return (String) config.put("email", email);
     }
 
     public String getEmail() {
-        return config.get("email");
+        return (String) config.get("email");
     }
 
-    public HashMap<String, String> getConfig() {
+    public ArrayList<TaskTracker.TaskObject> getTasks() {
+        return (ArrayList<TaskTracker.TaskObject>) config.get("tasks");
+    }
+
+    public void setTasks(ArrayList<TaskTracker.TaskObject> tasks) {
+        config.put("tasks", tasks);
+    }
+
+    public HashMap<String, Object> getConfig() {
         return config;
     }
 }

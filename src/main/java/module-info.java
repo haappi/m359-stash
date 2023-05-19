@@ -17,11 +17,12 @@ module io.github.haappi {
     requires org.mongodb.driver.sync.client;
     requires org.mongodb.bson;
     requires org.json;
+    requires com.google.gson;
 
     opens io.github.haappi to
             javafx.fxml;
     opens io.github.haappi.views to
-            javafx.fxml;
+            javafx.fxml, com.google.gson;
 
     exports io.github.haappi;
     exports io.github.haappi.views;

@@ -6,24 +6,34 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<View xmlns:fx="http://javafx.com/fxml/1" fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" stylesheets="@primary.css"
-      xmlns="http://javafx.com/javafx/18" fx:controller="io.github.haappi.views.TaskTracker">
+
+<View fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" stylesheets="@primary.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.haappi.views.TaskTracker">
     <center>
-        <VBox fx:id="vbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0"
-              BorderPane.alignment="CENTER">
+        <VBox fx:id="vbox" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
             <children>
-                <TextField fx:id="taskNameField" promptText="Task"/>
-                <DatePicker fx:id="datePicker"/>
-                <ListView fx:id="tasksListView" prefHeight="200.0" prefWidth="200.0"/>
+                <TextField fx:id="taskNameField" promptText="Task" />
+                <DatePicker fx:id="datePicker" />
+                <ListView fx:id="tasksListView" prefHeight="200.0" prefWidth="200.0" />
                 <Button mnemonicParsing="false" onAction="#createTask" text="Create Task">
                     <graphic>
-                        <Icon content="LANGUAGE"/>
+                        <Icon content="LANGUAGE" />
                     </graphic>
                 </Button>
             </children>
         </VBox>
     </center>
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#refresh">
+               <graphic>
+                  <Icon content="REFRESH" />
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
 </View>

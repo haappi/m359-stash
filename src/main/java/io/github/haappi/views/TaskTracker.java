@@ -7,7 +7,9 @@ import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import io.github.haappi.Config;
 import io.github.haappi.HelloApplication;
 import io.github.haappi.Storage;
+import io.github.haappi.Utils;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DatePicker;
@@ -17,6 +19,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TaskTracker {
     public Label label;
@@ -45,7 +49,7 @@ public class TaskTracker {
             tasks.add(task);
             taskNameField.clear();
             datePicker.setValue(null);
-            Storage.getInstance().addTask(Config.getInstance().getDisplayName(), task.toString());
+            Storage.getInstance().appendTask(task);
         }
 
 
@@ -85,9 +89,14 @@ public class TaskTracker {
             if (event.getClickCount() == 2) {
                 TaskObject task = tasksListView.getSelectionModel().getSelectedItem();
                 tasks.remove(task);
-                Storage.getInstance().removeTask(Config.getInstance().getDisplayName(), task.toString());
+                Storage.getInstance().removeTask(task);
             }
         });
+    }
+
+    public void refresh(ActionEvent actionEvent) {
+        tasks.clear();
+        tasks.addAll(Storage.getInstance().getTasks());
     }
 
     public static class TaskObject {
@@ -103,12 +112,15 @@ public class TaskTracker {
         }
 
         public String toString() {
-            String sb = "{" +
-                    "\"name\": \"" + name + "\", " +
-                    "\"dueDate\": \"" + date + "\", " +
-                    "\"completed\": " + done +
-                    "}";
-            return sb;
+            return name + " " + date;
+        }
+
+        public Map<String, String> asJson() {
+            Map<String, String> json = new HashMap<>();
+            json.put("name", name);
+            json.put("date", date);
+            json.put("done", String.valueOf(done));
+            return json;
         }
 
 

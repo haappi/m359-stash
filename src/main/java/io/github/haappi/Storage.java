@@ -1,5 +1,6 @@
 package io.github.haappi;
 
+import io.github.haappi.views.TaskTracker;
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPatch;
@@ -9,12 +10,19 @@ import org.apache.hc.core5.http.ContentType;
 import org.apache.hc.core5.http.HttpEntity;
 import org.apache.hc.core5.http.NameValuePair;
 import org.apache.hc.core5.http.io.entity.StringEntity;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static io.github.haappi.Utils.jsonString;
 
 public class Storage {
     private static final HttpClient httpClient = HttpClients.createDefault();
@@ -106,8 +114,7 @@ public class Storage {
 
         HttpPatch httpPatch = new HttpPatch(url);
 
-        String requestBody = String.format("{ \"%s\": \"%s\"}", configSetting, configValue);
-        httpPatch.setEntity(new StringEntity(requestBody, ContentType.APPLICATION_JSON));
+        httpPatch.setEntity(new StringEntity(jsonString(Map.of(configSetting, configValue)), ContentType.APPLICATION_JSON));
 
 
         String resp = null;
@@ -141,6 +148,7 @@ public class Storage {
     }
 
 
+    @Deprecated
     public String getPreviousTasks(String username) {
         username = username.split("@")[0]; // Remove domain (if any)
         username = username.replaceAll("[^A-Za-z0-9]", "");
@@ -178,6 +186,106 @@ public class Storage {
         return sb.toString();
     }
 
+    public ArrayList<TaskTracker.TaskObject> getTasks() {
+        String username = Config.getInstance().getDisplayName();
+
+        username = username.split("@")[0]; // Remove domain (if any)
+        username = username.replaceAll("[^A-Za-z0-9]", "");
+        String url = fireBaseURL + "users/" + username + ".json";
+        HttpGet httpGet = new HttpGet(url);
+
+        String resp = null;
+        try {
+            resp = httpClient.execute(httpGet, response -> {
+                if (response.getCode() >= 300) {
+                    return null;
+                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                    return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                    return new String(inputStream.readAllBytes());
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (resp == null || resp.equals("null")) {
+            return new ArrayList<>();
+        }
+
+        JSONObject json = new JSONObject(resp);
+        ArrayList<TaskTracker.TaskObject> tasks = new ArrayList<>();
+
+        System.out.println(json.toString(4));
+
+        for (String key : json.keySet()) {
+            JSONArray arr = json.getJSONArray(key);
+            for (int i = 0; i < arr.length(); i++) {
+                JSONObject obj = arr.getJSONObject(i);
+                tasks.add(new TaskTracker.TaskObject(obj.getString("name"), obj.getString("date")));
+            }
+        }
+
+        return tasks;
+    }
+
+    public void appendTask(TaskTracker.TaskObject taskObject) {
+        ArrayList<TaskTracker.TaskObject> tasks = getTasks();
+        tasks.add(taskObject);
+        setTasks(Config.getInstance().getDisplayName(), tasks);
+    }
+
+    private void setTasks(String username, ArrayList<TaskTracker.TaskObject> tasks) {
+        username = username.split("@")[0]; // Remove domain (if any)
+        username = username.replaceAll("[^A-Za-z0-9]", "");
+        String url = fireBaseURL + "users/" + username + ".json";
+
+        HttpPatch httpPatch = new HttpPatch(url);
+
+        String json = HelloApplication.gson.toJson(Map.of("tasks", tasks));
+        System.out.println("json string: " + json);
+
+        httpPatch.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
+
+        String resp = null;
+
+        try {
+            resp = httpClient.execute(httpPatch, response -> {
+                System.out.println(response.getCode());
+//                if (response.getCode() >= 300) {
+//                    return null;
+//                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                    return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                    return new String(inputStream.readAllBytes());
+                }
+            });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        if (resp == null || resp.equals("null")) {
+            return;
+        }
+
+        System.out.println(resp);
+
+        Config.getInstance().setTasks(tasks);
+    }
+
+    public void removeTask(TaskTracker.TaskObject taskObject) {
+        ArrayList<TaskTracker.TaskObject> tasks = getTasks();
+        tasks.remove(taskObject);
+        setTasks(Config.getInstance().getDisplayName(), tasks);
+    }
+
+    @Deprecated
     public void addTask(String username, String task) {
         // get old tasks and append it
         String oldTasks = getPreviousTasks(username);
@@ -224,6 +332,7 @@ public class Storage {
         System.out.println(json.toString(4));
     }
 
+    @Deprecated
     public void removeTask(String username, String taskObj) {
         // get old tasks and append it
         String oldTasks = getPreviousTasks(username);

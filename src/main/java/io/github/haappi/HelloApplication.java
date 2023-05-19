@@ -4,6 +4,7 @@ import com.gluonhq.attach.display.DisplayService;
 import com.gluonhq.attach.util.Services;
 import com.gluonhq.charm.glisten.application.AppManager;
 import com.gluonhq.charm.glisten.visual.Swatch;
+import com.google.gson.Gson;
 import io.github.haappi.views.*;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -20,6 +21,7 @@ import java.util.Properties;
 public class HelloApplication extends Application {
     public static Properties properties;
     private static HelloApplication instance;
+    public static final Gson gson = new Gson();
     private final AppManager appManager = AppManager.initialize(this::postInit);
     private boolean isDarkMode = false;
     private Stage stage;
@@ -38,6 +40,11 @@ public class HelloApplication extends Application {
 
     @Override
     public void init() throws IOException {
+        Config.getInstance().setDisplayName("loser");
+        System.out.println(Storage.getInstance().getTasks());
+        Storage.getInstance().appendTask(new TaskTracker.TaskObject("sdfufhsdyuifh", "iok"));
+
+
         HelloApplication.instance = this;
         Platform.runLater(
                 () -> Thread.currentThread().setUncaughtExceptionHandler(ExceptionHandler.getInstance()));

@@ -1,19 +1,29 @@
 package io.github.haappi;
 
 import javafx.application.Platform;
+import org.bson.json.JsonObject;
+import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 public class Utils {
-    public static String getHashMapAsJsonString(HashMap<String, String> map) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("{");
-        for (String key : map.keySet()) {
-            sb.append("\"").append(key).append("\":\"").append(map.get(key)).append("\",");
-        }
-        sb.deleteCharAt(sb.length() - 1);
-        sb.append("}");
-        return sb.toString();
+    public static <E> String jsonString(Map<E, E> data) {
+        return new JSONObject(data).toString();
+    }
+
+    public static <E> String jsonString(List<E> data) {
+        return new JSONObject(data).toString();
+    }
+
+    public static <E> String jsonString(E data) {
+        return new JSONObject(data).toString();
+    }
+
+    public static <E> String jsonString(E[] data) {
+        return new JSONObject(data).toString();
     }
 
     public static void sleepAndRunLater(long millis, Runnable runnable, boolean javaFxThread) {
