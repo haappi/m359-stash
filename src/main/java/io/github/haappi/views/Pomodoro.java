@@ -1,9 +1,12 @@
 package io.github.haappi.views;
 
+import com.gluonhq.charm.glisten.application.AppManager;
+import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.control.Dialog;
 import com.gluonhq.charm.glisten.control.FloatingActionButton;
 import com.gluonhq.charm.glisten.control.TextField;
 import com.gluonhq.charm.glisten.mvc.View;
+import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import io.github.haappi.HelloApplication;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -17,6 +20,9 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class Pomodoro {
+    public VBox vbox;
+    public View primary;
+    public Label label;
     private int sessionCount;
     private int remainingSessions;
     private String workingOn;
@@ -38,6 +44,22 @@ public class Pomodoro {
             System.out.println("IOException: " + e);
             return new View();
         }
+    }
+
+    @FXML
+    private void initialize() {
+        primary
+                .showingProperty()
+                .addListener(
+                        (obs, oldValue, newValue) -> {
+                            if (newValue) {
+                                AppBar appBar = AppManager.getInstance().getAppBar();
+                                appBar.setNavIcon(
+                                        MaterialDesignIcon.MENU.button(
+                                                e -> AppManager.getInstance().getDrawer().open()));
+                                appBar.setTitleText("Primary");
+                            }
+                        });
     }
 
     private void createTimerFlow(String sessionCount) {

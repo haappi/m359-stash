@@ -1,5 +1,7 @@
 package io.github.haappi.views;
 
+import com.gluonhq.charm.glisten.application.AppManager;
+import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.control.Dialog;
 import com.gluonhq.charm.glisten.control.FloatingActionButton;
 import com.gluonhq.charm.glisten.mvc.View;
@@ -18,10 +20,11 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class HabitTracking {
+    private final ArrayList<HabitTask> habits = new ArrayList<>();
     public ListView<HabitTask> listView;
     public VBox vbox;
+    public View primary;
     private CheckBox[] checkBoxes;
-    private final ArrayList<HabitTask> habits = new ArrayList<>();
 
     public static View load() {
         try {
@@ -34,6 +37,20 @@ public class HabitTracking {
 
     @FXML
     private void initialize() {
+        primary
+                .showingProperty()
+                .addListener(
+                        (obs, oldValue, newValue) -> {
+                            if (newValue) {
+                                AppBar appBar = AppManager.getInstance().getAppBar();
+                                appBar.setNavIcon(
+                                        MaterialDesignIcon.MENU.button(
+                                                e -> AppManager.getInstance().getDrawer().open()));
+                                appBar.setTitleText("Primary");
+                            }
+                        });
+
+
         checkBoxes = new CheckBox[7];
         String[] daysOfWeek = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
         for (int i = 0; i < 7; i++) {
