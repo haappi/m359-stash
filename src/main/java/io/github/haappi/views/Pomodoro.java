@@ -94,6 +94,7 @@ public class Pomodoro {
             });
   }
 
+
   private void startPomodoro() {
     if (!isRunning) {
       sessionCount = Integer.parseInt(sessionCountTextField.getText());

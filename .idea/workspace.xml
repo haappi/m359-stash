@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="[CI iOS] [CI windows]">
-      <change afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/HabitTracking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Login.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/Storage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryPresenter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/PrimaryView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/RandomTestView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/SecondaryPresenter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/SecondaryView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/habittracking.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/HabitTracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/HabitTracking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/habittracking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/habittracking.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/tasktracker.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/tasktracker.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -264,14 +259,7 @@
       <workItem from="1684426078022" duration="1621000" />
       <workItem from="1684476559217" duration="1698000" />
       <workItem from="1684479657738" duration="12834000" />
-      <workItem from="1684510169796" duration="4145000" />
-    </task>
-    <task id="LOCAL-00030" summary="[CI iOS] [CI Windows] idrk waht i changed but oit works">
-      <created>1683368121874</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1683368121874</updated>
+      <workItem from="1684510169796" duration="4450000" />
     </task>
     <task id="LOCAL-00031" summary="[CI iOS] [CI Windows] i deleted my logs by accident :(">
       <created>1683368969488</created>
@@ -609,7 +597,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684492473355</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="[CI iOS] [CI windows]">
+      <created>1684514729474</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1684514729474</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
