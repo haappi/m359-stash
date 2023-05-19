@@ -1,7 +1,15 @@
 package io.github.haappi;
 
+import static io.github.haappi.Utils.jsonString;
+
 import io.github.haappi.views.HabitTracking;
 import io.github.haappi.views.TaskTracker;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.apache.hc.client5.http.classic.HttpClient;
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.classic.methods.HttpPatch;
@@ -15,377 +23,364 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static io.github.haappi.Utils.jsonString;
-
 public class Storage {
-    private static final HttpClient httpClient = HttpClients.createDefault();
-    private static final String fireBaseURL =
-            "https://java-final-project-b9dca-default-rtdb.firebaseio.com/";
-    private static Storage instance = null;
+  private static final HttpClient httpClient = HttpClients.createDefault();
+  private static final String fireBaseURL =
+      "https://java-final-project-b9dca-default-rtdb.firebaseio.com/";
+  private static Storage instance = null;
 
-    private Storage() {
-        // Private constructor
+  private Storage() {
+    // Private constructor
+  }
+
+  public static Storage getInstance() {
+    if (instance == null) {
+      instance = new Storage();
     }
+    return instance;
+  }
 
-    public static Storage getInstance() {
-        if (instance == null) {
-            instance = new Storage();
-        }
-        return instance;
+  public HttpClient getHttpClientInstance() {
+    return httpClient;
+  }
+
+  public <E> void saveData(String username, String path, List<E> data) throws IOException {
+    username = username.replaceAll("[^A-Za-z0-9]", "");
+    String url = fireBaseURL + "users/" + username + "/" + path + ".json";
+
+    HttpPatch httpPatch = new HttpPatch(url);
+
+    httpPatch.setEntity(new UrlEncodedFormEntity((List<? extends NameValuePair>) data));
+
+    String resp =
+        httpClient.execute(
+            httpPatch,
+            response -> {
+              if (response.getCode() >= 300) {
+                return null;
+              }
+              final HttpEntity responseEntity = response.getEntity();
+              if (responseEntity == null) {
+                return null;
+              }
+              try (InputStream inputStream = responseEntity.getContent()) {
+                return new String(inputStream.readAllBytes());
+              }
+            });
+
+    JSONObject json = new JSONObject(resp);
+    System.out.println(json.toString(4));
+  }
+
+  public HashMap<String, String> loadConfig(String username) throws IOException {
+    username = username.split("@")[0]; // Remove domain (if any)
+    username = username.replaceAll("[^A-Za-z0-9]", "");
+    String url = fireBaseURL + "users/" + username + "/" + "config" + ".json";
+    HttpGet httpGet = new HttpGet(url);
+
+    String resp =
+        httpClient.execute(
+            httpGet,
+            response -> {
+              if (response.getCode() >= 300) {
+                return null;
+              }
+              final HttpEntity responseEntity = response.getEntity();
+              if (responseEntity == null) {
+                return null;
+              }
+              try (InputStream inputStream = responseEntity.getContent()) {
+                return new String(inputStream.readAllBytes());
+              }
+            });
+
+    if (resp == null || resp.equals("null")) {
+      return null;
     }
+    System.out.println(resp);
 
-    public HttpClient getHttpClientInstance() {
-        return httpClient;
-    }
+    JSONObject json = new JSONObject(resp);
+    HashMap<String, String> config = new HashMap<>();
+    config.put("theme", json.getString("theme"));
+    config.put("darkModeEnabled", json.getString("darkModeEnabled"));
+    // somehow force apply it
+    return config;
+  }
 
-    public <E> void saveData(String username, String path, List<E> data) throws IOException {
-        username = username.replaceAll("[^A-Za-z0-9]", "");
-        String url = fireBaseURL + "users/" + username + "/" + path + ".json";
+  public void setConfigValue(String username, String configSetting, String configValue)
+      throws IOException {
+    Config.getInstance().getConfig().put(configSetting, configValue);
+    System.out.println("ha loser");
 
-        HttpPatch httpPatch = new HttpPatch(url);
+    //        new Thread(() -> {
+    String uusername = username.split("@")[0]; // Remove domain (if any)
+    uusername = uusername.replaceAll("[^A-Za-z0-9]", "");
+    String url = fireBaseURL + "users/" + uusername + "/" + "config" + ".json";
 
-        httpPatch.setEntity(new UrlEncodedFormEntity((List<? extends NameValuePair>) data));
+    System.out.println(url);
 
-        String resp =
-                httpClient.execute(
-                        httpPatch,
-                        response -> {
-                            if (response.getCode() >= 300) {
-                                return null;
-                            }
-                            final HttpEntity responseEntity = response.getEntity();
-                            if (responseEntity == null) {
-                                return null;
-                            }
-                            try (InputStream inputStream = responseEntity.getContent()) {
-                                return new String(inputStream.readAllBytes());
-                            }
-                        });
+    HttpPatch httpPatch = new HttpPatch(url);
 
-        JSONObject json = new JSONObject(resp);
-        System.out.println(json.toString(4));
-    }
+    httpPatch.setEntity(
+        new StringEntity(
+            jsonString(Map.of(configSetting, configValue)), ContentType.APPLICATION_JSON));
 
-    public HashMap<String, String> loadConfig(String username) throws IOException {
-        username = username.split("@")[0]; // Remove domain (if any)
-        username = username.replaceAll("[^A-Za-z0-9]", "");
-        String url = fireBaseURL + "users/" + username + "/" + "config" + ".json";
-        HttpGet httpGet = new HttpGet(url);
-
-        String resp =
-                httpClient.execute(
-                        httpGet,
-                        response -> {
-                            if (response.getCode() >= 300) {
-                                return null;
-                            }
-                            final HttpEntity responseEntity = response.getEntity();
-                            if (responseEntity == null) {
-                                return null;
-                            }
-                            try (InputStream inputStream = responseEntity.getContent()) {
-                                return new String(inputStream.readAllBytes());
-                            }
-                        });
-
-        if (resp == null || resp.equals("null")) {
-            return null;
-        }
-        System.out.println(resp);
-
-        JSONObject json = new JSONObject(resp);
-        HashMap<String, String> config = new HashMap<>();
-        config.put("theme", json.getString("theme"));
-        config.put("darkModeEnabled", json.getString("darkModeEnabled"));
-        // somehow force apply it
-        return config;
-    }
-
-    public void setConfigValue(String username, String configSetting, String configValue)
-            throws IOException {
-        Config.getInstance().getConfig().put(configSetting, configValue);
-        System.out.println("ha loser");
-
-        //        new Thread(() -> {
-        String uusername = username.split("@")[0]; // Remove domain (if any)
-        uusername = uusername.replaceAll("[^A-Za-z0-9]", "");
-        String url = fireBaseURL + "users/" + uusername + "/" + "config" + ".json";
-
-        System.out.println(url);
-
-        HttpPatch httpPatch = new HttpPatch(url);
-
-        httpPatch.setEntity(
-                new StringEntity(
-                        jsonString(Map.of(configSetting, configValue)), ContentType.APPLICATION_JSON));
-
-        String resp = null;
-        try {
-            resp =
-                    httpClient.execute(
-                            httpPatch,
-                            response -> {
-                                System.out.println(response.getCode());
-                                if (response.getCode() >= 300) {
-                                    return null;
-                                }
-                                final HttpEntity responseEntity = response.getEntity();
-                                if (responseEntity == null) {
-                                    return null;
-                                }
-                                try (InputStream inputStream = responseEntity.getContent()) {
-                                    return new String(inputStream.readAllBytes());
-                                }
-                            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        if (resp == null || resp.equals("null")) {
-            return;
-        }
-
-        JSONObject json = new JSONObject(resp);
-        System.out.println(json.toString(4));
-    }
-
-    public ArrayList<TaskTracker.TaskObject> getTasks() {
-        String username = Config.getInstance().getDisplayName();
-
-        username = username.split("@")[0]; // Remove domain (if any)
-        username = username.replaceAll("[^A-Za-z0-9]", "");
-        String url = fireBaseURL + "users/" + username + ".json";
-        HttpGet httpGet = new HttpGet(url);
-
-        String resp = null;
-        try {
-            resp =
-                    httpClient.execute(
-                            httpGet,
-                            response -> {
-                                if (response.getCode() >= 300) {
-                                    return null;
-                                }
-                                final HttpEntity responseEntity = response.getEntity();
-                                if (responseEntity == null) {
-                                    return null;
-                                }
-                                try (InputStream inputStream = responseEntity.getContent()) {
-                                    return new String(inputStream.readAllBytes());
-                                }
-                            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        if (resp == null || resp.equals("null")) {
-            return new ArrayList<>();
-        }
-
-        JSONObject json = new JSONObject(resp);
-        ArrayList<TaskTracker.TaskObject> tasks = new ArrayList<>();
-
-        System.out.println(json.toString(4));
-
-        for (String key : json.keySet()) {
-            JSONArray arr;
-            try {
-                arr = json.getJSONArray(key);
-            } catch (JSONException e) {
-                continue;
-            }
-            for (int i = 0; i < arr.length(); i++) {
-                JSONObject obj = arr.getJSONObject(i);
-                try {
-                    tasks.add(
-                            new TaskTracker.TaskObject(
-                                    obj.getString("name"), obj.getString("date"), obj.getString("time")));
-                } catch (JSONException e) {
-                    continue;
+    String resp = null;
+    try {
+      resp =
+          httpClient.execute(
+              httpPatch,
+              response -> {
+                System.out.println(response.getCode());
+                if (response.getCode() >= 300) {
+                  return null;
                 }
-            }
-        }
-
-        return tasks;
-    }
-
-    public void appendTask(TaskTracker.TaskObject taskObject) {
-        ArrayList<TaskTracker.TaskObject> tasks = getTasks();
-        tasks.add(taskObject);
-        setTasks(Config.getInstance().getDisplayName(), tasks);
-    }
-
-    private void setTasks(String username, ArrayList<TaskTracker.TaskObject> tasks) {
-        username = username.split("@")[0]; // Remove domain (if any)
-        username = username.replaceAll("[^A-Za-z0-9]", "");
-        String url = fireBaseURL + "users/" + username + ".json";
-
-        HttpPatch httpPatch = new HttpPatch(url);
-
-        String json = HelloApplication.gson.toJson(Map.of("tasks", tasks));
-        System.out.println("json string: " + json);
-
-        httpPatch.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
-
-        String resp = null;
-
-        try {
-            resp =
-                    httpClient.execute(
-                            httpPatch,
-                            response -> {
-                                System.out.println(response.getCode());
-                                //                if (response.getCode() >= 300) {
-                                //                    return null;
-                                //                }
-                                final HttpEntity responseEntity = response.getEntity();
-                                if (responseEntity == null) {
-                                    return null;
-                                }
-                                try (InputStream inputStream = responseEntity.getContent()) {
-                                    return new String(inputStream.readAllBytes());
-                                }
-                            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        if (resp == null || resp.equals("null")) {
-            return;
-        }
-
-        System.out.println(resp);
-
-        Config.getInstance().setTasks(tasks);
-    }
-
-    public void removeTask(TaskTracker.TaskObject taskObject) {
-        ArrayList<TaskTracker.TaskObject> tasks = getTasks();
-        tasks.remove(taskObject);
-        setTasks(Config.getInstance().getDisplayName(), tasks);
-    }
-
-    public ArrayList<HabitTracking.HabitTask> getHabits() {
-        String username = Config.getInstance().getDisplayName();
-
-        username = username.split("@")[0]; // Remove domain (if any)
-        username = username.replaceAll("[^A-Za-z0-9]", "");
-        String url = fireBaseURL + "users/" + username + ".json";
-        HttpGet httpGet = new HttpGet(url);
-
-        String resp = null;
-        try {
-            resp =
-                    httpClient.execute(
-                            httpGet,
-                            response -> {
-                                if (response.getCode() >= 300) {
-                                    return null;
-                                }
-                                final HttpEntity responseEntity = response.getEntity();
-                                if (responseEntity == null) {
-                                    return null;
-                                }
-                                try (InputStream inputStream = responseEntity.getContent()) {
-                                    return new String(inputStream.readAllBytes());
-                                }
-                            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        if (resp == null || resp.equals("null")) {
-            return new ArrayList<>();
-        }
-
-        JSONObject json = new JSONObject(resp);
-        ArrayList<HabitTracking.HabitTask> tasks = new ArrayList<>();
-
-        System.out.println(json.toString(4));
-
-        for (String key : json.keySet()) {
-            JSONArray arr;
-            try {
-                arr = json.getJSONArray(key);
-            } catch (JSONException e) {
-                continue;
-            }
-            for (int i = 0; i < arr.length(); i++) {
-                JSONObject obj = arr.getJSONObject(i);
-                try {
-                    tasks.add(
-                            new HabitTracking.HabitTask(
-                                    obj.getString("habitName"), obj.getInt("timesDone")));
-                } catch (JSONException e) {
-                    continue;
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                  return null;
                 }
-            }
-        }
-
-        return tasks;
+                try (InputStream inputStream = responseEntity.getContent()) {
+                  return new String(inputStream.readAllBytes());
+                }
+              });
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
 
-    public void appendHabit(HabitTracking.HabitTask habitTask) {
-        ArrayList<HabitTracking.HabitTask> tasks = getHabits();
-        tasks.add(habitTask);
-        setHabits(Config.getInstance().getDisplayName(), tasks);
+    if (resp == null || resp.equals("null")) {
+      return;
     }
 
-    public void setHabits(String username, ArrayList<HabitTracking.HabitTask> habits) {
-        username = username.split("@")[0]; // Remove domain (if any)
-        username = username.replaceAll("[^A-Za-z0-9]", "");
-        String url = fireBaseURL + "users/" + username + ".json";
+    JSONObject json = new JSONObject(resp);
+    System.out.println(json.toString(4));
+  }
 
-        HttpPatch httpPatch = new HttpPatch(url);
+  public ArrayList<TaskTracker.TaskObject> getTasks() {
+    String username = Config.getInstance().getDisplayName();
 
-        String json = HelloApplication.gson.toJson(Map.of("habits", habits));
-        System.out.println("json string: " + json);
+    username = username.split("@")[0]; // Remove domain (if any)
+    username = username.replaceAll("[^A-Za-z0-9]", "");
+    String url = fireBaseURL + "users/" + username + ".json";
+    HttpGet httpGet = new HttpGet(url);
 
-        httpPatch.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
+    String resp = null;
+    try {
+      resp =
+          httpClient.execute(
+              httpGet,
+              response -> {
+                if (response.getCode() >= 300) {
+                  return null;
+                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                  return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                  return new String(inputStream.readAllBytes());
+                }
+              });
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
 
-        String resp = null;
+    if (resp == null || resp.equals("null")) {
+      return new ArrayList<>();
+    }
 
+    JSONObject json = new JSONObject(resp);
+    ArrayList<TaskTracker.TaskObject> tasks = new ArrayList<>();
+
+    System.out.println(json.toString(4));
+
+    for (String key : json.keySet()) {
+      JSONArray arr;
+      try {
+        arr = json.getJSONArray(key);
+      } catch (JSONException e) {
+        continue;
+      }
+      for (int i = 0; i < arr.length(); i++) {
+        JSONObject obj = arr.getJSONObject(i);
         try {
-            resp =
-                    httpClient.execute(
-                            httpPatch,
-                            response -> {
-                                System.out.println(response.getCode());
-                                //                if (response.getCode() >= 300) {
-                                //                    return null;
-                                //                }
-                                final HttpEntity responseEntity = response.getEntity();
-                                if (responseEntity == null) {
-                                    return null;
-                                }
-                                try (InputStream inputStream = responseEntity.getContent()) {
-                                    return new String(inputStream.readAllBytes());
-                                }
-                            });
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+          tasks.add(
+              new TaskTracker.TaskObject(
+                  obj.getString("name"), obj.getString("date"), obj.getString("time")));
+        } catch (JSONException e) {
+          continue;
         }
-
-        if (resp == null || resp.equals("null")) {
-            return;
-        }
-
-        System.out.println(resp);
-
+      }
     }
 
-    public void removeHabit(HabitTracking.HabitTask habitTask) {
-        ArrayList<HabitTracking.HabitTask> tasks = getHabits();
-        tasks.remove(habitTask);
-        setHabits(Config.getInstance().getDisplayName(), tasks);
+    return tasks;
+  }
+
+  public void appendTask(TaskTracker.TaskObject taskObject) {
+    ArrayList<TaskTracker.TaskObject> tasks = getTasks();
+    tasks.add(taskObject);
+    setTasks(Config.getInstance().getDisplayName(), tasks);
+  }
+
+  private void setTasks(String username, ArrayList<TaskTracker.TaskObject> tasks) {
+    username = username.split("@")[0]; // Remove domain (if any)
+    username = username.replaceAll("[^A-Za-z0-9]", "");
+    String url = fireBaseURL + "users/" + username + ".json";
+
+    HttpPatch httpPatch = new HttpPatch(url);
+
+    String json = HelloApplication.gson.toJson(Map.of("tasks", tasks));
+    System.out.println("json string: " + json);
+
+    httpPatch.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
+
+    String resp = null;
+
+    try {
+      resp =
+          httpClient.execute(
+              httpPatch,
+              response -> {
+                System.out.println(response.getCode());
+                //                if (response.getCode() >= 300) {
+                //                    return null;
+                //                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                  return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                  return new String(inputStream.readAllBytes());
+                }
+              });
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
 
+    if (resp == null || resp.equals("null")) {
+      return;
+    }
 
+    System.out.println(resp);
+
+    Config.getInstance().setTasks(tasks);
+  }
+
+  public void removeTask(TaskTracker.TaskObject taskObject) {
+    ArrayList<TaskTracker.TaskObject> tasks = getTasks();
+    tasks.remove(taskObject);
+    setTasks(Config.getInstance().getDisplayName(), tasks);
+  }
+
+  public ArrayList<HabitTracking.HabitTask> getHabits() {
+    String username = Config.getInstance().getDisplayName();
+
+    username = username.split("@")[0]; // Remove domain (if any)
+    username = username.replaceAll("[^A-Za-z0-9]", "");
+    String url = fireBaseURL + "users/" + username + ".json";
+    HttpGet httpGet = new HttpGet(url);
+
+    String resp = null;
+    try {
+      resp =
+          httpClient.execute(
+              httpGet,
+              response -> {
+                if (response.getCode() >= 300) {
+                  return null;
+                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                  return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                  return new String(inputStream.readAllBytes());
+                }
+              });
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    if (resp == null || resp.equals("null")) {
+      return new ArrayList<>();
+    }
+
+    JSONObject json = new JSONObject(resp);
+    ArrayList<HabitTracking.HabitTask> tasks = new ArrayList<>();
+
+    System.out.println(json.toString(4));
+
+    for (String key : json.keySet()) {
+      JSONArray arr;
+      try {
+        arr = json.getJSONArray(key);
+      } catch (JSONException e) {
+        continue;
+      }
+      for (int i = 0; i < arr.length(); i++) {
+        JSONObject obj = arr.getJSONObject(i);
+        try {
+          tasks.add(
+              new HabitTracking.HabitTask(obj.getString("habitName"), obj.getInt("timesDone")));
+        } catch (JSONException e) {
+          continue;
+        }
+      }
+    }
+
+    return tasks;
+  }
+
+  public void appendHabit(HabitTracking.HabitTask habitTask) {
+    ArrayList<HabitTracking.HabitTask> tasks = getHabits();
+    tasks.add(habitTask);
+    setHabits(Config.getInstance().getDisplayName(), tasks);
+  }
+
+  public void setHabits(String username, ArrayList<HabitTracking.HabitTask> habits) {
+    username = username.split("@")[0]; // Remove domain (if any)
+    username = username.replaceAll("[^A-Za-z0-9]", "");
+    String url = fireBaseURL + "users/" + username + ".json";
+
+    HttpPatch httpPatch = new HttpPatch(url);
+
+    String json = HelloApplication.gson.toJson(Map.of("habits", habits));
+    System.out.println("json string: " + json);
+
+    httpPatch.setEntity(new StringEntity(json, ContentType.APPLICATION_JSON));
+
+    String resp = null;
+
+    try {
+      resp =
+          httpClient.execute(
+              httpPatch,
+              response -> {
+                System.out.println(response.getCode());
+                //                if (response.getCode() >= 300) {
+                //                    return null;
+                //                }
+                final HttpEntity responseEntity = response.getEntity();
+                if (responseEntity == null) {
+                  return null;
+                }
+                try (InputStream inputStream = responseEntity.getContent()) {
+                  return new String(inputStream.readAllBytes());
+                }
+              });
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+
+    if (resp == null || resp.equals("null")) {
+      return;
+    }
+
+    System.out.println(resp);
+  }
+
+  public void removeHabit(HabitTracking.HabitTask habitTask) {
+    ArrayList<HabitTracking.HabitTask> tasks = getHabits();
+    tasks.remove(habitTask);
+    setHabits(Config.getInstance().getDisplayName(), tasks);
+  }
 }
