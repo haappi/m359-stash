@@ -28,10 +28,10 @@ import java.util.Map;
 import java.util.Objects;
 
 public class TaskTracker {
+    private final VBox animation = new VBox();
     public Label label;
     public VBox vbox;
     public View primary;
-    private final VBox animation = new VBox();
     @FXML
     private CharmListView<TaskObject, LocalDate> tasksListView;
 
@@ -90,17 +90,16 @@ public class TaskTracker {
                             }
                         });
 
-        tasksListView.setOnMouseClicked(event -> {
-            System.out.println("a");
-            System.out.println(event.getClickCount());
-            if (event.getClickCount() >= 2) {
-                finishTaskAnimation();
-                TaskObject task = tasksListView.getSelectedItem();
-                Storage.getInstance().removeTask(task);
-                refresh();
-            }
-        });
-        tasksListView.setOnMouseClicked(event -> System.out.println("gay"));
+//        tasksListView.setOnMouseClicked(event -> {
+//            System.out.println("a");
+//            System.out.println(event.getClickCount());
+//            if (event.getClickCount() >= 2) {
+//                finishTaskAnimation();
+//                TaskObject task = tasksListView.getSelectedItem();
+//                Storage.getInstance().removeTask(task);
+//                refresh();
+//            }
+//        });
 
         final FloatingActionButton floatingActionButton = new FloatingActionButton();
         floatingActionButton.setOnAction(e -> {

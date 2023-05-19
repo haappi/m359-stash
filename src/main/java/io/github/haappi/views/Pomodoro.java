@@ -1,15 +1,15 @@
 package io.github.haappi.views;
 
-import com.gluonhq.charm.glisten.application.AppManager;
-import com.gluonhq.charm.glisten.control.AppBar;
+import com.gluonhq.charm.glisten.control.Dialog;
+import com.gluonhq.charm.glisten.control.FloatingActionButton;
+import com.gluonhq.charm.glisten.control.TextField;
 import com.gluonhq.charm.glisten.mvc.View;
-import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import io.github.haappi.HelloApplication;
-import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -17,12 +17,19 @@ import javafx.util.Duration;
 import java.io.IOException;
 
 public class Pomodoro {
-    public VBox vbox;
-    public View primary;
-    public Label label;
-    private boolean isWorkingTime = false;
-    private int remainSeconds = 0;
+    private int sessionCount;
+    private int remainingSessions;
+    private String workingOn;
+    private int remainingTime;
+    private boolean isRunning;
+    private boolean isPaused;
     private Timeline timeline;
+    @FXML
+    private Label timerLabel;
+    @FXML
+    private TextField sessionCountTextField;
+    @FXML
+    private TextField taskTextField;
 
     public static View load() {
         try {
@@ -33,70 +40,125 @@ public class Pomodoro {
         }
     }
 
-    private String formatTimerText(int seconds) {
-        int minutes = remainSeconds / 60;
-        int secondss = remainSeconds % 60;
-        return (String.format("%02d:%02d", minutes, secondss));
-    }
-
-    public void initialize() {
-        primary
-                .showingProperty()
-                .addListener(
-                        (obs, oldValue, newValue) -> {
-                            if (newValue) {
-                                AppBar appBar = AppManager.getInstance().getAppBar();
-                                appBar.setNavIcon(
-                                        MaterialDesignIcon.MENU.button(
-                                                e -> AppManager.getInstance().getDrawer().open()));
-                                appBar.setTitleText("Primary");
-                            }
-                        });
-    }
-
-
-    public void pause() {
-        if (timeline != null && timeline.getStatus() == Animation.Status.RUNNING) {
-            timeline.pause();
+    private void createTimerFlow(String sessionCount) {
+        try {
+            this.sessionCount = Integer.parseInt(sessionCount);
+            this.remainingSessions = this.sessionCount;
+        } catch (NumberFormatException e) {
+            System.out.println("has to be minutes dingdong");
+            return;
         }
+
+        Dialog<String> dialog = new Dialog<>();
+        dialog.setTitleText("What do you want to work on during this session?");
+
+        VBox dialogContent = new VBox();
+        javafx.scene.control.TextField inputField = new javafx.scene.control.TextField();
+        Button saveButton = new Button("Save");
+
+        saveButton.setOnAction(event -> {
+            dialog.setResult(inputField.getText());
+            dialog.hide();
+        });
+
+        dialogContent.getChildren().addAll(new Label("Answer Here:"), inputField, saveButton);
+        dialog.setContent(dialogContent);
+
+        dialog.showAndWait().ifPresent(input -> {
+            this.workingOn = input;
+            this.remainingTime = 25 * 60; // 25 minutes
+            this.isRunning = true;
+            this.startPomodoro();
+        });
+
     }
 
-    public void continueTimer() {
-        if (timeline != null && timeline.getStatus() == Animation.Status.PAUSED) {
+    private void startPomodoro() {
+        if (!isRunning) {
+            sessionCount = Integer.parseInt(sessionCountTextField.getText());
+            workingOn = taskTextField.getText();
+            remainingTime = 25 * 60; // 25 minutes
+
+            timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                if (remainingTime > 0) {
+                    remainingTime--;
+                    updateTimer();
+                } else {
+                    sessionCount--;
+                    if (sessionCount == 0) {
+                        stopTimer();
+                    } else {
+                        remainingTime = 5 * 60; // 5 minutes break
+                        updateTimer();
+                    }
+                }
+            }));
+
+            timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
+            isRunning = true;
         }
     }
 
-
-    public void restart(ActionEvent actionEvent) {
-        startTimer();
-    }
-
+    @FXML
     private void startTimer() {
-        if (timeline != null) {
-            timeline.stop();
-        }
-
-        if (isWorkingTime) {
-            remainSeconds = 25 * 60; // 25 minutes
-            label.setText("Work Time: " + formatTimerText(remainSeconds));
-        } else {
-            remainSeconds = 5 * 60;
-            label.setText("Break Time: " + formatTimerText(remainSeconds));
-        }
-
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
-            remainSeconds--;
-
-            if (remainSeconds <= 0) {
-                timeline.stop();
-                isWorkingTime = !isWorkingTime;
+        final FloatingActionButton floatingActionButton = new FloatingActionButton();
+        floatingActionButton.setOnAction(e -> {
+            if (this.sessionCount == 0) {
+            } else {
+                this.createTimerFlow(Integer.toString(this.sessionCount));
             }
 
-            label.setText((isWorkingTime ? "Work Time: " : "Break Time: ") + formatTimerText(remainSeconds));
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
 
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setTitleText("How many 25 minute sessions do you want to work?");
+
+            VBox dialogContent = new VBox();
+            javafx.scene.control.TextField inputField = new javafx.scene.control.TextField();
+            Button saveButton = new Button("Save");
+
+            saveButton.setOnAction(event -> {
+                dialog.setResult(inputField.getText());
+                dialog.hide();
+            });
+
+            dialogContent.getChildren().addAll(new Label("Count:"), inputField, saveButton);
+            dialog.setContent(dialogContent);
+
+            dialog.showAndWait().ifPresent(this::createTimerFlow);
+        });
+
+    }
+
+    @FXML
+    private void pauseTimer() {
+        if (isRunning && !isPaused) {
+            timeline.pause();
+            isPaused = true;
+        }
+    }
+
+    @FXML
+    private void resumeTimer() {
+        if (isRunning && isPaused) {
+            timeline.play();
+            isPaused = false;
+        }
+    }
+
+    private void stopTimer() {
+        timeline.stop();
+        isRunning = false;
+        isPaused = false;
+        remainingTime = 0;
+        updateTimer();
+    }
+
+
+    private void updateTimer() {
+        int minutes = remainingTime / 60;
+        int seconds = remainingTime % 60;
+        String time = String.format("%02d:%02d", minutes, seconds);
+        timerLabel.setText(time);
     }
 }

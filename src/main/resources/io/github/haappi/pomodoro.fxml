@@ -15,17 +15,12 @@
               BorderPane.alignment="CENTER">
             <children>
                 <Label fx:id="label" prefHeight="107.0" prefWidth="96.0" text="00:00" textAlignment="CENTER"/>
-                <Button mnemonicParsing="false" onAction="#pause" text="Pause">
+                <Button mnemonicParsing="false" onAction="#pauseTimer" text="Pause">
                     <graphic>
                         <Icon content="LANGUAGE"/>
                     </graphic>
                 </Button>
-                <Button mnemonicParsing="false" onAction="#continueTimer" text="Continue">
-                    <graphic>
-                        <Icon content="LANGUAGE"/>
-                    </graphic>
-                </Button>
-                <Button mnemonicParsing="false" onAction="#restart" text="Restart">
+                <Button mnemonicParsing="false" onAction="#startTimer" text="Start">
                     <graphic>
                         <Icon content="LANGUAGE"/>
                     </graphic>

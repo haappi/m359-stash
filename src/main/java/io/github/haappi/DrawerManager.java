@@ -46,6 +46,7 @@ public class DrawerManager {
 
             final Item chartsItem =
                     new ViewItem("Charts", MaterialDesignIcon.TRENDING_UP, ViewEnums.CHARTS);
+
             drawer.getItems().addAll(secondaryItem, thirdItem, settingsItem);
 
         }
