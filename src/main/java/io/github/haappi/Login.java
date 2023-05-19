@@ -1,5 +1,3 @@
 package io.github.haappi;
 
-
-public class Login {
-}
+public class Login {}
