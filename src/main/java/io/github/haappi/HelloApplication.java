@@ -19,9 +19,9 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class HelloApplication extends Application {
+    public static final Gson gson = new Gson();
     public static Properties properties;
     private static HelloApplication instance;
-    public static final Gson gson = new Gson();
     private final AppManager appManager = AppManager.initialize(this::postInit);
     private boolean isDarkMode = false;
     private Stage stage;
@@ -40,9 +40,9 @@ public class HelloApplication extends Application {
 
     @Override
     public void init() throws IOException {
-        Config.getInstance().setDisplayName("loser");
-        System.out.println(Storage.getInstance().getTasks());
-        Storage.getInstance().appendTask(new TaskTracker.TaskObject("sdfufhsdyuifh", "iok"));
+//        Config.getInstance().setDisplayName("loser");
+//        System.out.println(Storage.getInstance().getTasks());
+//        Storage.getInstance().appendTask(new TaskTracker.TaskObject("sdfufhsdyuifh", "iok"));
 
 
         HelloApplication.instance = this;
@@ -58,7 +58,7 @@ public class HelloApplication extends Application {
         appManager.addViewFactory(ViewEnums.SPLASH.toString(), () -> LoginHandler.load());
         appManager.addViewFactory(ViewEnums.SETTINGS.toString(), () -> Settings.load());
         appManager.addViewFactory(ViewEnums.POMODORO.toString(), () -> Pomodoro.load());
-        appManager.addViewFactory(ViewEnums.HABITS.toString(), () -> TaskTracker.load());
+        appManager.addViewFactory(ViewEnums.TASKS.toString(), () -> TaskTracker.load());
         DrawerManager.buildDrawer(appManager);
     }
 

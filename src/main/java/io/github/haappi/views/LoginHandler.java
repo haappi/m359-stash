@@ -64,13 +64,20 @@ public class LoginHandler {
             sleepAndRunLater(() -> {
                 Platform.runLater(() -> {
                     System.out.println("bb");
-                    AppManager.getInstance().switchView(ViewEnums.HABITS.toString());
+//                    AppManager.getInstance().switchView(ViewEnums.HABITS.toString());
                 });
             });
             DrawerManager.buildDrawer(AppManager.getInstance());
             sleepAndRunLater(() -> {
                 try {
                     HashMap<String, String> config = Storage.getInstance().loadConfig(Config.getInstance().getEmail());
+
+                    if (config == null) {
+                        config = new HashMap<>();
+                        config.put("darkModeEnabled", "false");
+                        config.put("theme", "BLUE");
+                    }
+
                     if (config.get("darkModeEnabled").equals("true")) {
                         Theme.DARK.assignTo(primary.getScene());
                     } else {

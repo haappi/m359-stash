@@ -51,7 +51,7 @@ public class Settings {
             }
 
             try {
-                Storage.getInstance().setConfigValue(Config.getInstance().getEmail(), "darkModeEnabled", old.getValue().toString());
+                Storage.getInstance().setConfigValue(Config.getInstance().getEmail(), "darkModeEnabled", String.valueOf((!old.getValue().booleanValue())));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

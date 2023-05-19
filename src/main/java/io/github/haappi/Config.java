@@ -4,7 +4,6 @@ import io.github.haappi.views.TaskTracker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Objects;
 
 public class Config {
     // singleton

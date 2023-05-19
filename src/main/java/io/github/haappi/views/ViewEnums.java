@@ -6,6 +6,7 @@ public enum ViewEnums {
     SPLASH(HOME_VIEW),
     LOGIN("Login"),
     HABITS("Habits"),
+    TASKS("Tasks"),
     SECONDARY("Secondary"), POMODORO("Pomodoro"), SETTINGS("Settings"), CHARTS("Charts");
 
     private final String viewName;

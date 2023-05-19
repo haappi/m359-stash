@@ -18,6 +18,7 @@ module io.github.haappi {
     requires org.mongodb.bson;
     requires org.json;
     requires com.google.gson;
+    requires annotations;
 
     opens io.github.haappi to
             javafx.fxml;

@@ -1,36 +1,39 @@
 package io.github.haappi.views;
 
 import com.gluonhq.charm.glisten.application.AppManager;
-import com.gluonhq.charm.glisten.control.AppBar;
+import com.gluonhq.charm.glisten.control.*;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-import io.github.haappi.Config;
 import io.github.haappi.HelloApplication;
 import io.github.haappi.Storage;
-import io.github.haappi.Utils;
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.DatePicker;
+import javafx.geometry.Side;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class TaskTracker {
     public Label label;
     public VBox vbox;
     public View primary;
-    public TextField taskNameField;
-    public DatePicker datePicker;
-    private final ObservableList<TaskObject> tasks = javafx.collections.FXCollections.observableArrayList();
+    private final VBox animation = new VBox();
     @FXML
-    private ListView<TaskObject> tasksListView;
+    private CharmListView<TaskObject, LocalDate> tasksListView;
 
     public static View load() {
         try {
@@ -41,33 +44,35 @@ public class TaskTracker {
         }
     }
 
-    public void createTask() {
-        String taskName = taskNameField.getText();
-        if (!taskName.isEmpty() && datePicker.getValue() != null) {
-            String dueDate = datePicker.getValue().toString();
-            TaskObject task = new TaskObject(taskName, dueDate);
-            tasks.add(task);
-            taskNameField.clear();
-            datePicker.setValue(null);
-            Storage.getInstance().appendTask(task);
-        }
+    public void taskCreateFlow(String taskName) {
+        DatePicker datePicker = new DatePicker();
+        LocalDate date = datePicker.showAndWait().orElseGet(LocalDate::now);
 
+        TimePicker timePicker = new TimePicker();
+        LocalTime time = timePicker.showAndWait().orElseGet(LocalTime::now).withSecond(0).withNano(0);
 
-        tasksListView.setPrefHeight(200);
-        tasksListView.setItems(tasks);
+        TaskObject task = new TaskObject(taskName, date.toString(), time.toString());
+        Storage.getInstance().appendTask(task);
+
+        refresh();
 
     }
 
-    public ObservableList<TaskObject> getTasks() {
-        return tasks;
-    }
+    private void finishTaskAnimation() {
 
-    public String tasksToString() {
-        StringBuilder sb = new StringBuilder();
-        for (TaskObject task : tasks) {
-            sb.append(task.toString()).append("\n");
-        }
-        return sb.toString();
+        TranslateTransition slideDown = new TranslateTransition(Duration.seconds(2), vbox);
+        slideDown.setByY(400);
+        slideDown.setOnFinished(event -> {
+            FadeTransition fadeOut = new FadeTransition(Duration.seconds(2), vbox);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            fadeOut.setOnFinished(fadeEvent -> {
+                slideDown.setToY(-200);
+            });
+            fadeOut.play();
+        });
+
+        slideDown.play();
     }
 
 
@@ -86,43 +91,140 @@ public class TaskTracker {
                         });
 
         tasksListView.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-                TaskObject task = tasksListView.getSelectionModel().getSelectedItem();
-                tasks.remove(task);
+            System.out.println("a");
+            System.out.println(event.getClickCount());
+            if (event.getClickCount() >= 2) {
+                finishTaskAnimation();
+                TaskObject task = tasksListView.getSelectedItem();
                 Storage.getInstance().removeTask(task);
+                refresh();
             }
         });
+        tasksListView.setOnMouseClicked(event -> System.out.println("gay"));
+
+        final FloatingActionButton floatingActionButton = new FloatingActionButton();
+        floatingActionButton.setOnAction(e -> {
+            Dialog<String> dialog = new Dialog<>();
+            dialog.setTitleText("Create a task");
+
+            VBox dialogContent = new VBox();
+            TextField inputField = new TextField();
+            Button saveButton = new Button("Save");
+
+            saveButton.setOnAction(event -> {
+                dialog.setResult(inputField.getText());
+                dialog.hide();
+            });
+
+            dialogContent.getChildren().addAll(new Label("Task Name:"), inputField, saveButton);
+            dialog.setContent(dialogContent);
+
+            dialog.showAndWait().ifPresent(this::taskCreateFlow);
+        });
+
+        FloatingActionButton secondary = new FloatingActionButton(MaterialDesignIcon.REFRESH.text, e -> refresh());
+        secondary.getStyleClass().add(FloatingActionButton.STYLE_CLASS_MINI);
+        secondary.attachTo(floatingActionButton, Side.TOP);
+
+
+        FloatingActionButton delete = new FloatingActionButton(MaterialDesignIcon.DELETE.text, e -> {
+            TaskObject task = tasksListView.getSelectedItem();
+            Storage.getInstance().removeTask(task);
+            refresh();
+        });
+
+        delete.getStyleClass().add(FloatingActionButton.STYLE_CLASS_MINI);
+        delete.show();
+        delete.setFloatingActionButtonHandler(FloatingActionButton.BOTTOM_LEFT);
+        floatingActionButton.showOn(primary);
+
+        animation.getStyleClass().add("slide-down-vbox");
+        animation.getChildren().add(new Label("Hooray. You finished a task!"));
+        animation.setTranslateY(-200);
+
+        primary.getChildren().add(animation);
+
+        refresh();
+
+
     }
 
-    public void refresh(ActionEvent actionEvent) {
-        tasks.clear();
-        tasks.addAll(Storage.getInstance().getTasks());
+    public void refresh() {
+        tasksListView.setComparator(
+                (o1, o2) -> {
+                    LocalDate o1Date = LocalDate.parse(o1.date);
+                    LocalDate o2Date = LocalDate.parse(o2.date);
+                    LocalTime o1Time = LocalTime.parse(o1.time);
+                    LocalTime o2Time = LocalTime.parse(o2.time);
+                    if (o1Date.isBefore(o2Date)) {
+                        return -1;
+                    } else if (o1Date.isAfter(o2Date)) {
+                        return 1;
+                    } else {
+                        if (o1Time.isBefore(o2Time)) {
+                            return -1;
+                        } else if (o1Time.isAfter(o2Time)) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    }
+                }
+        );
+        ArrayList<TaskObject> tasks = Storage.getInstance().getTasks();
+        ObservableList<TaskObject> notes = FXCollections.observableArrayList(new ArrayList<>(tasks));
+        tasksListView.setItems(notes);
+
     }
 
     public static class TaskObject {
 
         private final String name;
         private final String date;
+        private final String time;
         private final boolean done;
 
-        public TaskObject(String name, String dueDate) {
+        public TaskObject(String name, String dueDate, String dueTime, boolean done) {
             this.name = name;
             this.date = dueDate;
+            this.time = dueTime;
             this.done = false;
         }
 
+        public TaskObject(String name, String dueDate, String dueTime) {
+            this(name, dueDate, dueTime, false);
+        }
+
         public String toString() {
-            return name + " " + date;
+            return name + " " + date + " " + time + " " + (done ? "Done" : "Not Done");
         }
 
         public Map<String, String> asJson() {
             Map<String, String> json = new HashMap<>();
             json.put("name", name);
             json.put("date", date);
+            json.put("time", time);
             json.put("done", String.valueOf(done));
             return json;
         }
 
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+            final TaskObject other = (TaskObject) obj;
+            if (!Objects.equals(this.name, other.name)) {
+                return false;
+            }
+            if (!Objects.equals(this.date, other.date)) {
+                return false;
+            }
+            if (!Objects.equals(this.time, other.time)) {
+                return false;
+            }
+            return this.done == other.done;
+        }
 
     }
 

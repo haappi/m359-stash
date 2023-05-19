@@ -32,12 +32,14 @@ public class DrawerManager {
                 new ViewItem(
                         "Login", MaterialDesignIcon.LOCK, ViewEnums.SPLASH, ViewStackPolicy.SKIP);
 
+        drawer.getItems().addAll(primaryItem);
+
         if (!(Config.getInstance().getDisplayName() == null)) {
             final Item secondaryItem =
                     new ViewItem("Pomodoro", MaterialDesignIcon.TIMER, ViewEnums.POMODORO);
 
             final Item thirdItem =
-                    new ViewItem("Habits", MaterialDesignIcon.ASSIGNMENT, ViewEnums.HABITS);
+                    new ViewItem("ToDo", MaterialDesignIcon.ASSIGNMENT, ViewEnums.TASKS);
 
             final Item settingsItem =
                     new ViewItem("Settings", MaterialDesignIcon.SETTINGS, ViewEnums.SETTINGS);
@@ -48,7 +50,6 @@ public class DrawerManager {
 
         }
 
-        drawer.getItems().addAll(primaryItem);
 
         if (Platform.isDesktop()) {
             final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());

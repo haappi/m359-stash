@@ -1,13 +1,10 @@
 package io.github.haappi;
 
 import javafx.application.Platform;
-import org.bson.json.JsonObject;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class Utils {
     public static <E> String jsonString(Map<E, E> data) {
