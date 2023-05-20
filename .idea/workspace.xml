@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/MonkeyPatching/ViewItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/DrawerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/HelloApplication.java" afterDir="false" />
+    <list default="true" id="c889a1d4-90e6-4d05-ad59-3ba29f7e08cd" name="Changes" comment="[CI iOS] [CI windows]">
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/HabitTracking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/HabitTracking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/haappi/views/Pomodoro.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/bah.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/habittracking.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/habittracking.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/secondary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/settings.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/settings.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/tasktracker.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/tasktracker.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/io/github/haappi/third.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +48,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="CSS File" />
+        <option value="FxmlFile" />
+        <option value="Kotlin Class" />
         <option value="Class" />
       </list>
     </option>
@@ -52,10 +58,23 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ios-build-test" />
+        <entry key="$PROJECT_DIR$" value="new_main_branch" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="f0403c0e-d7f7-40ed-9090-12d82bd89b50" />
+        <option name="url" value="https://github.com/haappi/schoolStuff/" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -76,19 +95,20 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ToolWindowRun.ShowToolbar&quot;: &quot;false&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;new__main__branch&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Happy/Desktop/Projects/Java/schoolStuff - Copy&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;omg__a__new__branch&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Happy/Desktop/Projects/Java/schoolStuff/src/main/resources/io/github/haappi&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -97,6 +117,7 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff\src\main\resources\io\github\haappi" />
+      <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\schoolStuff\src\main\resources\io\github\haappi\views" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp" />
       <recent name="C:\Users\Happy\Desktop\Projects\Java\ProductivityApp\src\main\resources" />
@@ -140,6 +161,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="update_time" type="BatchConfigurationType" factoryName="Batch" temporary="true">
+      <module name="ProductivityApp" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="update_time.bat" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="schoolStuff [gluonfx:run]" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -167,7 +199,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.ProductivityApp" />
+        <item itemvalue="Batch.update_time" />
         <item itemvalue="Application.ProductivityApp" />
       </list>
     </recent_temporary>
@@ -220,105 +252,14 @@
       <workItem from="1684352706820" duration="3436000" />
       <workItem from="1684370583803" duration="6187000" />
       <workItem from="1684391775031" duration="757000" />
-      <workItem from="1684392554975" duration="1454000" />
-    </task>
-    <task id="LOCAL-00017" summary="opops">
-      <created>1683359237916</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1683359237916</updated>
-    </task>
-    <task id="LOCAL-00018" summary="[CI windows] update workflow">
-      <created>1683359644729</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1683359644729</updated>
-    </task>
-    <task id="LOCAL-00019" summary="[CI windows] update workflow">
-      <created>1683359945400</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1683359945400</updated>
-    </task>
-    <task id="LOCAL-00020" summary="will this work">
-      <created>1683360010398</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360010398</updated>
-    </task>
-    <task id="LOCAL-00021" summary="[CI windows] will this work">
-      <created>1683360025540</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360025540</updated>
-    </task>
-    <task id="LOCAL-00022" summary="[CI ios] what mow">
-      <created>1683360219434</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360219434</updated>
-    </task>
-    <task id="LOCAL-00023" summary="[CI ios] forgot run tag">
-      <created>1683360260439</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360260439</updated>
-    </task>
-    <task id="LOCAL-00024" summary="[CI windows] try this">
-      <created>1683360738804</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1683360738804</updated>
-    </task>
-    <task id="LOCAL-00025" summary="[CI iOS] THERE GOES ANOTHER 10M of my lfei">
-      <created>1683361159839</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1683361159839</updated>
-    </task>
-    <task id="LOCAL-00026" summary="[CI windows] THERE GOES ANOTHER 10M of my lfei">
-      <created>1683361245010</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1683361245010</updated>
-    </task>
-    <task id="LOCAL-00027" summary="[CI iOS] LETS FUCKING GO">
-      <created>1683366291484</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1683366291484</updated>
-    </task>
-    <task id="LOCAL-00028" summary="[CI windows] that took ages">
-      <created>1683366526129</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1683366526129</updated>
-    </task>
-    <task id="LOCAL-00029" summary="[CI windows] [CI iOS] im stupid">
-      <created>1683367652737</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1683367652737</updated>
-    </task>
-    <task id="LOCAL-00030" summary="[CI iOS] [CI Windows] idrk waht i changed but oit works">
-      <created>1683368121874</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1683368121874</updated>
+      <workItem from="1684392554975" duration="5590000" />
+      <workItem from="1684399660496" duration="6623000" />
+      <workItem from="1684409121155" duration="3484000" />
+      <workItem from="1684422227556" duration="2652000" />
+      <workItem from="1684426078022" duration="1621000" />
+      <workItem from="1684476559217" duration="1698000" />
+      <workItem from="1684479657738" duration="12834000" />
+      <workItem from="1684510169796" duration="4450000" />
     </task>
     <task id="LOCAL-00031" summary="[CI iOS] [CI Windows] i deleted my logs by accident :(">
       <created>1683368969488</created>
@@ -565,7 +506,105 @@
       <option name="project" value="LOCAL" />
       <updated>1684377246897</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]">
+      <created>1684394045625</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1684394045625</updated>
+    </task>
+    <task id="LOCAL-00067" summary="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]">
+      <created>1684394143344</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1684394143344</updated>
+    </task>
+    <task id="LOCAL-00068" summary="closes #36">
+      <created>1684394446965</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1684394446965</updated>
+    </task>
+    <task id="LOCAL-00069" summary="closes #28">
+      <created>1684395766979</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1684395766979</updated>
+    </task>
+    <task id="LOCAL-00070" summary="[ci ios] custom app icons?">
+      <created>1684396485725</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1684396485725</updated>
+    </task>
+    <task id="LOCAL-00071" summary="[ci ios] shiiii">
+      <created>1684396694680</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1684396694681</updated>
+    </task>
+    <task id="LOCAL-00072" summary="[ci ios] wtf ios">
+      <created>1684409200082</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1684409200082</updated>
+    </task>
+    <task id="LOCAL-00073" summary="[ci ios] [ci windows] fuckin hellllll">
+      <created>1684409423661</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1684409423661</updated>
+    </task>
+    <task id="LOCAL-00074" summary="[ci ios] [ci windows] e">
+      <created>1684426196860</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1684426196860</updated>
+    </task>
+    <task id="LOCAL-00075" summary="[ci ios] [ci windows] :/">
+      <created>1684428319239</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1684428319239</updated>
+    </task>
+    <task id="LOCAL-00076" summary="closes #29">
+      <created>1684482832593</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1684482832593</updated>
+    </task>
+    <task id="LOCAL-00077" summary="closes #30">
+      <created>1684490291047</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1684490291047</updated>
+    </task>
+    <task id="LOCAL-00078" summary="[CI iOS] [CI windows]">
+      <created>1684492473355</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1684492473355</updated>
+    </task>
+    <task id="LOCAL-00079" summary="[CI iOS] [CI windows]">
+      <created>1684514729474</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1684514729474</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,17 +622,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="shi takes like 10m just to load [CI ios] [CI android] [CI windows]" />
-    <MESSAGE value="change java version [CI ios] [CI windows]" />
-    <MESSAGE value="change ONE setting. [CI ios] [CI windows]" />
-    <MESSAGE value="[CI iOS] [CI windows] fix exception handler not working" />
-    <MESSAGE value="Merge remote-tracking branch 'origin/ios-build-test' into ios-build-test [CI ios] [ci windows]" />
-    <MESSAGE value="i ahte this stupid linting job" />
-    <MESSAGE value="i ahte this stupid linting job [ci windows] [ci ios]" />
-    <MESSAGE value="make entire stacktrace show up just cuz" />
-    <MESSAGE value="saftey stuff" />
-    <MESSAGE value="saftey stuff [CI iOs] [ci windows]" />
-    <MESSAGE value="AHAHAHAH UCK THIS [CI iOs] [ci windows]" />
     <MESSAGE value="uhhh [CI iOs] [ci windows]" />
     <MESSAGE value="[CI iOS] [CI windows] see if it bothers to compile using graalvm" />
     <MESSAGE value="[CI iOS] [CI windows] aaaa" />
@@ -608,6 +636,17 @@
     <MESSAGE value="try&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="see if this works on github&#10;[CI iOS] [CI windows]" />
     <MESSAGE value="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]" />
-    <option name="LAST_COMMIT_MESSAGE" value="weeeeeeeeeeeeeeeeeeee&#10;[CI iOS] [CI windows]" />
+    <MESSAGE value="closes #36" />
+    <MESSAGE value="closes #28" />
+    <MESSAGE value="[ci ios] custom app icons?" />
+    <MESSAGE value="[ci ios] shiiii" />
+    <MESSAGE value="[ci ios] wtf ios" />
+    <MESSAGE value="[ci ios] [ci windows] fuckin hellllll" />
+    <MESSAGE value="[ci ios] [ci windows] e" />
+    <MESSAGE value="[ci ios] [ci windows] :/" />
+    <MESSAGE value="closes #29" />
+    <MESSAGE value="closes #30" />
+    <MESSAGE value="[CI iOS] [CI windows]" />
+    <option name="LAST_COMMIT_MESSAGE" value="[CI iOS] [CI windows]" />
   </component>
 </project>

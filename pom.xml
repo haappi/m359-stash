@@ -174,6 +174,11 @@
             <artifactId>json</artifactId>
             <version>20230227</version>
         </dependency>
+        <dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.10.1</version>
+</dependency>
 
 
         <!-- pom.xml -->
@@ -251,10 +256,23 @@
                         <list>device</list>
                     </attachList>
                     <reflectionList>
-                        <list>io.github.haappi.views.PrimaryPresenter</list>
-                        <list>io.github.haappi.views.SecondaryPresenter</list>
-                        <list>io.github.haappi.views.RandomTestView</list>
                         <list>io.github.haappi.views.LoginHandler</list>
+                        <list>io.github.haappi.views.Pomodoro</list>
+                        <list>io.github.haappi.views.Settings</list>
+                        <list>io.github.haappi.views.TaskTracker</list>
+                        <list>io.github.haappi.views.ViewEnums</list>
+                        <list>io.github.haappi.views.HabitTracking</list>
+                        <list>io.github.haappi.Config</list>
+                        <list>io.github.haappi.DrawerManager</list>
+                        <list>io.github.haappi.ExceptionHandler</list>
+                        <list>io.github.haappi.GlobalHttpClass</list>
+                        <list>io.github.haappi.HelloApplication</list>
+                        <list>io.github.haappi.ProductivityApp</list>
+                        <list>io.github.haappi.Response</list>
+                        <list>io.github.haappi.Storage</list>
+                        <list>io.github.haappi.Swatching</list>
+                        <list>io.github.haappi.SwitchButton</list>
+                        <list>io.github.haappi.Utils</list>
                     </reflectionList>
                     <mainClass>${mainClassName}</mainClass>
                 </configuration>

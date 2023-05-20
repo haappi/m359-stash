@@ -1,6 +1,6 @@
 #!/bin/bash
 
-search="fsdufhsdufhsdufhsdufyhsduifhsduifhsduifhsdiufhsdui"
+search="AIzaSyC8ULrlwfwUzha71jECnSds9b7IhbKZnPc"
 replace="$1"
 input_file="src/main/java/io/github/haappi/HelloApplication.java"
 output_file="src/main/java/io/github/haappi/HelloApplicationn.java"

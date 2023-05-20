@@ -13,41 +13,52 @@ import io.github.haappi.MonkeyPatching.ViewItem;
 import io.github.haappi.views.ViewEnums;
 import javafx.scene.image.Image;
 
-
 public class DrawerManager {
 
-    public static void buildDrawer(AppManager app) {
-        NavigationDrawer drawer = app.getDrawer();
+  public static void buildDrawer(AppManager app) {
+    NavigationDrawer drawer = app.getDrawer();
+    drawer.getItems().clear();
 
-                NavigationDrawer.Header header = new NavigationDrawer.Header("Productivity App",
-                        "A rather, strange \"productivity\" app",
-                        new Avatar(21, new
-                                Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
-        drawer.setHeader(header);
+    NavigationDrawer.Header header =
+        new NavigationDrawer.Header(
+            "Productivity App",
+            "A rather, strange \"productivity\" app",
+            new Avatar(21, new Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
+    drawer.setHeader(header);
 
-        final Item primaryItem =
-                new ViewItem(
-                        "Login", MaterialDesignIcon.LOCK, ViewEnums.SPLASH, ViewStackPolicy.SKIP);
+    final Item primaryItem =
+        new ViewItem("Login", MaterialDesignIcon.LOCK, ViewEnums.SPLASH, ViewStackPolicy.SKIP);
 
-        final Item secondaryItem =
-                new ViewItem("Secondary", MaterialDesignIcon.DASHBOARD, ViewEnums.THIRD);
+    drawer.getItems().addAll(primaryItem);
 
-        final Item thirdItem =
-                new ViewItem("Third", MaterialDesignIcon.DASHBOARD, ViewEnums.HMMM);
+    if (!(Config.getInstance().getDisplayName() == null)) {
+      final Item secondaryItem =
+          new ViewItem("Pomodoro", MaterialDesignIcon.TIMER, ViewEnums.POMODORO);
 
-        drawer.getItems().addAll(primaryItem, secondaryItem, thirdItem);
+      final Item thirdItem = new ViewItem("ToDo", MaterialDesignIcon.ASSIGNMENT, ViewEnums.TASKS);
+      final Item habitItem =
+          new ViewItem("Habits", MaterialDesignIcon.PERM_CONTACT_CALENDAR, ViewEnums.HABITS);
 
-        if (Platform.isDesktop()) {
-            final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());
-            quitItem
-                    .selectedProperty()
-                    .addListener(
-                            (obs, ov, nv) -> {
-                                if (nv) {
-                                    Services.get(LifecycleService.class).ifPresent(LifecycleService::shutdown);
-                                }
-                            });
-            drawer.getItems().add(quitItem);
-        }
+      final Item settingsItem =
+          new ViewItem("Settings", MaterialDesignIcon.SETTINGS, ViewEnums.SETTINGS);
+
+      final Item chartsItem =
+          new ViewItem("Charts", MaterialDesignIcon.TRENDING_UP, ViewEnums.CHARTS);
+
+      drawer.getItems().addAll(secondaryItem, thirdItem, settingsItem);
     }
+
+    if (Platform.isDesktop()) {
+      final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());
+      quitItem
+          .selectedProperty()
+          .addListener(
+              (obs, ov, nv) -> {
+                if (nv) {
+                  Services.get(LifecycleService.class).ifPresent(LifecycleService::shutdown);
+                }
+              });
+      drawer.getItems().add(quitItem);
+    }
+  }
 }
